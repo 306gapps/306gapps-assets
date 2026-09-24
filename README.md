@@ -3,9 +3,37 @@
 Google apps dumped from Pixel OTA images, published as manifests plus payloads
 for [306gapps](https://github.com/306gapps/306gapps) to build from.
 
-A workflow watches Google's OTA listing. When the current flagship Pixel gets a
-build we have not seen, it downloads the OTA, splits `payload.bin`, extracts the
-partitions, sorts the files into packages, and publishes a release.
+A workflow watches Google's OTA listing. For every supported Android version it
+finds the newest generic Pixel build, and for any it has not seen it downloads
+the OTA, splits `payload.bin`, extracts the partitions, sorts the files into
+packages, and publishes a release.
+
+## Support window
+
+**Android 13 through the current release.** The window is defined by which
+`packages/a<N>.yaml` files exist -- add a definition file and that version is
+covered, delete one and it is not. Nothing else needs changing.
+
+| Android | API | definitions | verified against a real dump |
+| --- | --- | --- | --- |
+| 17 | 37 | `packages/a17.yaml` | yes - `cubs` CD1A.260905.001.B1 |
+| 16 | 36 | `packages/a16.yaml` | not yet |
+| 15 | 35 | `packages/a15.yaml` | not yet |
+| 14 | 34 | `packages/a14.yaml` | not yet |
+| 13 | 33 | `packages/a13.yaml` | not yet |
+
+Only the Android 17 definitions have been checked against an actual dump. The
+rest were derived from them and are hypotheses: Google moves apps between
+`/product` and `/system_ext` and renames directories between releases. The first
+workflow run for each version refuses to publish on an API mismatch and lists
+every unclaimed apk, apex and jar; work through that list, then delete the notice
+at the top of the file.
+
+A structural change worth knowing about: on Android 17 the bulk of GMS Core
+ships as a 148 MB **apex** (`product/apex/com.google.android.gmssystem*.apex`)
+and `priv-app/PrebuiltGmsCore/` holds only the Chimera modules. Older releases
+ship it as an apk. Every definition file carries both globs, so whichever the
+dump actually contains is what gets claimed.
 
 ## Layout
 
@@ -66,6 +94,8 @@ added Google app surfaces instead of silently going missing.
 | tool | what it does |
 | --- | --- |
 | `tools/pixel.py` | parse Google's OTA listing, pick the newest generic build |
+| `tools/plan_dumps.py` | work out which supported versions need a dump |
+| `tools/fetch_busybox.py` | republish the static busybox the installer bundles |
 | `tools/extract.py` | OTA zip → `payload.bin` → partition images → file tree |
 | `tools/build_manifest.py` | sort the tree into packages, emit `manifest.json` + payloads |
 | `tools/publish_index.py` | add a release to `index.json`, retire old ones |
@@ -74,6 +104,7 @@ Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
 
 ```
+python3 tools/plan_dumps.py --packages packages --index index.json
 python3 tools/pixel.py --list-devices
 python3 tools/pixel.py --device cubs > build.json
 python3 tools/extract.py --url "$(jq -r .url build.json)" \
@@ -96,6 +127,17 @@ cd tools && python3 -m unittest discover -p 'test_*.py'
 The glob matcher and the OTA parser are both covered. The extraction step is
 exercised by the workflow rather than by unit tests, since it needs multi-gigabyte
 inputs.
+
+## busybox
+
+The recovery installer bundles a static busybox so it runs against one
+predictable toolset rather than whatever a given recovery provides. We
+republish the build from [Magisk](https://github.com/topjohnwu/Magisk), which is
+well tested across exactly the devices and recoveries this targets.
+
+BusyBox is GPLv2. Republishing the binary carries the obligation to offer the
+corresponding source, which the `NOTICE` published alongside it does, and which
+the builder copies into every recovery zip.
 
 ## Licensing
 

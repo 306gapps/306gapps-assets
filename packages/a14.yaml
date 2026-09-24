@@ -1,4 +1,4 @@
-# Package definitions for Android 16.
+# Package definitions for Android 14.
 #
 # NOT YET VERIFIED against a real dump. These were derived from the Android 17
 # definitions, which were written against cubs (Pixel 11) CD1A.260905.001.B1.
@@ -14,9 +14,9 @@
 # use wildcards rather than exact names.
 
 android:
-  api: 36
-  version: "16"
-  codename: Baklava
+  api: 34
+  version: "14"
+  codename: UpsideDownCake
 
 packages:
   # ---- core ----------------------------------------------------------------

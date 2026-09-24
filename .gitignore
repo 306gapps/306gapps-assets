@@ -2,3 +2,7 @@
 /out/
 __pycache__/
 *.pyc
+# busybox binaries are republished to a GitHub release, not stored in git
+/tools/busybox/busybox-*
+/tools/busybox/index-fragment.json
+/out/
