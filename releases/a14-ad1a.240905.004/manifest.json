@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/comet-ota-ad1a.240905.004-ba016cd3.zip",
       "sha256": "ba016cd3026a91fc1189f6f249e7f414058a4067e544fb25b1f534d61bce92ec"
     },
-    "created": "2026-09-24T19:05:17Z",
+    "created": "2026-09-24T19:43:18Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004"
   },
   "packages": [
@@ -516,6 +516,32 @@
       ]
     },
     {
+      "id": "trichrome",
+      "name": "Trichrome shared library",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
+          "asset": "8e18b52222085c3b-TrichromeLibrary-Stub.apk",
+          "sha256": "8e18b52222085c3b27a795be48aae95787d8037e19f02b64e90afce706f918ba",
+          "size": 12701,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
+          "asset": "e6cd03ba6e9020c4-TrichromeLibrary.apk.gz",
+          "sha256": "e6cd03ba6e9020c44bf0e34d0656acb97899c3d225211b10f87b7bf26ed4c7d3",
+          "size": 62128169,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
+    },
+    {
       "id": "chrome",
       "name": "Chrome",
       "category": "apps",
@@ -537,29 +563,11 @@
           "mode": "0644",
           "context": "",
           "kind": "etc"
-        },
-        {
-          "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
-          "asset": "8e18b52222085c3b-TrichromeLibrary-Stub.apk",
-          "sha256": "8e18b52222085c3b27a795be48aae95787d8037e19f02b64e90afce706f918ba",
-          "size": 12701,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
-          "asset": "e6cd03ba6e9020c4-TrichromeLibrary.apk.gz",
-          "sha256": "e6cd03ba6e9020c44bf0e34d0656acb97899c3d225211b10f87b7bf26ed4c7d3",
-          "size": 62128169,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
-      "summary": "Includes the Trichrome library Chrome and WebView share.",
       "requires": [
-        "gmscore"
+        "gmscore",
+        "trichrome"
       ]
     },
     {
@@ -585,6 +593,9 @@
           "context": "",
           "kind": "etc"
         }
+      ],
+      "requires": [
+        "trichrome"
       ]
     },
     {
