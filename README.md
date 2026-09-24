@@ -115,8 +115,14 @@ python3 tools/build_manifest.py --tree work/tree --packages packages/a17.yaml \
 ```
 
 `extract.py` needs `payload-dumper-go`, `erofs-utils` (Android 13+ images) and
-`e2fsprogs` (older ext4 images). `python3 tools/extract.py --check-tools` reports
-what is missing.
+`e2fsprogs` (older ext4 images). Building `payload-dumper-go` also needs
+`liblzma-dev`, because it depends on a cgo xz binding.
+`python3 tools/extract.py --check-tools` reports what is missing.
+
+A dump is disk-hungry: the OTA, the payload, the split images and the extracted
+tree are each several gigabytes. Pass `--reclaim` to delete each one as soon as
+it has been consumed, which roughly halves the peak and is what CI uses. Without
+it, nothing is deleted and a second run reuses the intermediates.
 
 ## Testing
 

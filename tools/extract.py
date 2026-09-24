@@ -80,8 +80,14 @@ def sha256_of(path: Path) -> str:
     return h.hexdigest()
 
 
-def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS) -> dict[str, Path]:
-    """Pull payload.bin out of the OTA and split it into partition images."""
+def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS,
+                   reclaim: bool = False) -> dict[str, Path]:
+    """Pull payload.bin out of the OTA and split it into partition images.
+
+    With reclaim set, each intermediate is deleted as soon as it has been
+    consumed. The OTA, the payload and the images are each several gigabytes
+    and CI runners do not have room for all of them at once.
+    """
     payload = work / "payload.bin"
     if not payload.exists():
         with zipfile.ZipFile(ota) as z:
@@ -92,6 +98,9 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS) -> dict[str, Pa
             print(f"  extracting {names[0]}")
             with z.open(names[0]) as src, open(payload, "wb") as dst:
                 shutil.copyfileobj(src, dst, 1 << 22)
+        if reclaim:
+            # The payload is out; the zip around it is dead weight from here.
+            drop(ota)
 
     out = work / "images"
     out.mkdir(exist_ok=True)
@@ -104,6 +113,9 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS) -> dict[str, Pa
                       "install from https://github.com/ssut/payload-dumper-go")
         print(f"  splitting payload into {', '.join(missing)}")
         run([dumper, "-o", str(out), "-p", ",".join(missing), str(payload)])
+        if reclaim:
+            # The images are split; nothing reads the payload again.
+            drop(payload)
     else:
         print(f"  reusing images already split from the payload")
 
@@ -117,6 +129,19 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS) -> dict[str, Pa
     if not images:
         raise SystemExit("payload contained none of the requested partitions")
     return images
+
+
+def drop(path: Path) -> None:
+    """Delete a large intermediate and say how much room it returned."""
+    try:
+        size = path.stat().st_size
+    except OSError:
+        return
+    try:
+        path.unlink()
+    except OSError:
+        return
+    print(f"  reclaimed {size / (1 << 30):.1f} GiB from {path.name}")
 
 
 def image_format(img: Path) -> str:
@@ -216,6 +241,9 @@ def main() -> int:
     p.add_argument("--partitions", default=",".join(PARTITIONS))
     p.add_argument("--xattrs", action="store_true",
                    help="record SELinux labels (requires running as root)")
+    p.add_argument("--reclaim", action="store_true",
+                   help="delete each intermediate as soon as it is consumed "
+                        "(halves the peak disk a dump needs)")
     p.add_argument("--check-tools", action="store_true")
     args = p.parse_args()
 
@@ -235,12 +263,20 @@ def main() -> int:
             ota = download(args.url, work / "ota.zip", args.sha256)
 
         parts = tuple(x.strip() for x in args.partitions.split(",") if x.strip())
-        images = unpack_payload(ota, work, parts)
+        # Only reclaim an OTA we downloaded ourselves; one the caller supplied
+        # is theirs to keep.
+        images = unpack_payload(ota, work, parts,
+                                reclaim=args.reclaim and not args.ota)
 
         if tree.exists():
             shutil.rmtree(tree)
-        for part, img in images.items():
-            extract_image(img, tree / part, args.xattrs)
+        # Largest first: extracting product before system means the biggest
+        # image is freed earliest, which is when headroom is tightest.
+        order = sorted(images, key=lambda p: images[p].stat().st_size, reverse=True)
+        for part in order:
+            extract_image(images[part], tree / part, args.xattrs)
+            if args.reclaim:
+                drop(images[part])
         flatten(tree)
     except MissingTool as e:
         print(f"error: {e}", file=sys.stderr)
