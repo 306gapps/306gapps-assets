@@ -71,18 +71,27 @@ def sha256_of(path: Path) -> tuple[str, int]:
 
 
 def walk_tree(root: Path) -> list[str]:
-    """Return every regular file under root, as partition-relative paths."""
+    """Return every regular file and symlink under root, partition-relative.
+
+    Symlinks are included rather than skipped: apps whose native libraries are
+    linked in from elsewhere on the partition break silently without them.
+    """
     out = []
     for part in PARTITIONS:
         base = root / part
         if not base.is_dir():
             continue
-        for dirpath, _, filenames in os.walk(base):
+        for dirpath, dirnames, filenames in os.walk(base, followlinks=False):
+            # A symlink to a directory shows up in dirnames, not filenames.
+            for name in list(dirnames):
+                full = Path(dirpath) / name
+                if full.is_symlink():
+                    dirnames.remove(name)
+                    out.append(str(full.relative_to(root)))
             for name in filenames:
                 full = Path(dirpath) / name
-                if not full.is_file() or full.is_symlink():
-                    continue
-                out.append(str(full.relative_to(root)))
+                if full.is_symlink() or full.is_file():
+                    out.append(str(full.relative_to(root)))
     return sorted(out)
 
 
@@ -131,6 +140,33 @@ def assign(files: list[str], defs: list[dict]) -> tuple[dict[str, list[str]], li
     unclaimed = [f for f in files if f not in claimed
                  and not any(matches(p, f) for p in IGNORE)]
     return by_package, unclaimed
+
+
+def check_symlink_targets(packages: list[dict]) -> list[str]:
+    """Warn when a package ships a link whose target it does not also ship.
+
+    Apps whose native libraries live in the partition's lib64 are linked in
+    rather than copied. Claiming the app without its libraries produces a
+    dangling link and an app that will not start.
+    """
+    provided = {f["path"] for p in packages for f in p["files"]}
+    problems = []
+    for p in packages:
+        for f in p["files"]:
+            if f.get("kind") != "symlink":
+                continue
+            target = f["target"]
+            if not target.startswith("/"):
+                # Relative targets resolve next to the link and are normally
+                # within the same directory tree we already ship.
+                continue
+            claimed = target.lstrip("/")
+            if claimed not in provided:
+                problems.append(
+                    f"{p['id']}: {f['path']} links to {target}, which no "
+                    f"package ships -- the link will dangle"
+                )
+    return problems
 
 
 def check_references(packages: list[dict]) -> list[str]:
@@ -214,6 +250,19 @@ def build(args) -> int:
         entries = []
         for rel in by_package[d["id"]]:
             full = root / rel
+
+            # A symlink is recorded by its target; there is no payload to copy
+            # and nothing to hash.
+            if full.is_symlink():
+                entries.append({
+                    "path": rel,
+                    "size": 0,
+                    "mode": "0777",
+                    "kind": "symlink",
+                    "target": os.readlink(full),
+                })
+                continue
+
             digest, size = sha256_of(full)
             name = asset_name(digest, rel)
             dest = assets / name
@@ -256,6 +305,9 @@ def build(args) -> int:
         for line in problems:
             print(f"error: {line}", file=sys.stderr)
         return 1
+
+    for line in check_symlink_targets(packages):
+        print(f"warning: {line}", file=sys.stderr)
 
     release_id = args.release or f"a{android['version']}-{args.build.lower()}"
     manifest = {

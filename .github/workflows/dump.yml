@@ -1,18 +1,17 @@
 name: dump
 
-# Watches Google's OTA listing and publishes a new release whenever the current
-# flagship Pixel gets a build we have not dumped yet.
+# Watches Google's OTA listing and publishes a release for every supported
+# Android version that has a build we have not dumped yet.
+#
+# The support window is whichever packages/a<N>.yaml files exist. Add a
+# definition file and that version is covered; remove it and it is not.
 on:
   schedule:
     - cron: "17 6 * * *"
   workflow_dispatch:
     inputs:
-      device:
-        description: "Device codename (blank = newest Pixel)"
-        required: false
-        default: ""
-      major:
-        description: "Android major version (blank = newest)"
+      version:
+        description: "Android major version (blank = every supported version)"
         required: false
         default: ""
       force:
@@ -28,62 +27,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  discover:
+  plan:
     runs-on: ubuntu-latest
     outputs:
-      build: ${{ steps.pick.outputs.build }}
-      device: ${{ steps.pick.outputs.device }}
-      build_id: ${{ steps.pick.outputs.build_id }}
-      url: ${{ steps.pick.outputs.url }}
-      sha256: ${{ steps.pick.outputs.sha256 }}
-      major: ${{ steps.pick.outputs.major }}
-      release_id: ${{ steps.pick.outputs.release_id }}
-      needed: ${{ steps.pick.outputs.needed }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      any: ${{ steps.plan.outputs.any }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pyyaml
 
-      - id: pick
-        name: Find the newest Pixel build
-        env:
-          FORCE: ${{ inputs.force }}
+      - id: plan
+        name: Work out what needs dumping
+        working-directory: tools
         run: |
-          python3 tools/pixel.py \
-            --device "${{ inputs.device }}" \
-            ${{ inputs.major && format('--major {0}', inputs.major) || '' }} \
-            > build.json
-          cat build.json
-
-          python3 - <<'PY' >> "$GITHUB_OUTPUT"
-          import json, os, pathlib
-          b = json.load(open("build.json"))
-          major = b["version"].split(".")[0]
-          release_id = f"a{major}-{b['build_id'].lower()}"
-
-          published = set()
-          idx = pathlib.Path("index.json")
-          if idx.exists():
-              published = {r["id"] for r in json.loads(idx.read_text())["releases"]}
-
-          needed = release_id not in published or os.environ["FORCE"] == "true"
-          for k, v in {
-              "device": b["device"], "build_id": b["build_id"],
-              "url": b["url"], "sha256": b["sha256"],
-              "major": major, "release_id": release_id,
-              "needed": str(needed).lower(),
-          }.items():
-              print(f"{k}={v}")
-          PY
+          python3 plan_dumps.py \
+            --packages ../packages \
+            --index ../index.json \
+            ${{ inputs.version && format('--only {0}', inputs.version) || '' }} \
+            ${{ inputs.force && '--force' || '' }} \
+            --github-output "$GITHUB_OUTPUT" > /dev/null
 
       - name: Report
         run: |
-          if [ "${{ steps.pick.outputs.needed }}" != "true" ]; then
-            echo "::notice::${{ steps.pick.outputs.release_id }} is already published"
+          if [ "${{ steps.plan.outputs.any }}" != "true" ]; then
+            echo "::notice::every supported version is up to date"
           fi
 
   dump:
-    needs: discover
-    if: needs.discover.outputs.needed == 'true'
+    needs: plan
+    if: needs.plan.outputs.any == 'true'
     runs-on: ubuntu-latest
+    # One release at a time: each needs ~30 GB of scratch, and they all push to
+    # the same index.
+    max-parallel: 1
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    name: "android ${{ matrix.major }} (${{ matrix.device }})"
     steps:
       - uses: actions/checkout@v4
 
@@ -98,12 +81,16 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.27"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install extraction tools
         run: |
+          pip install --quiet pyyaml
           sudo apt-get update -qq
           sudo apt-get install -y -qq erofs-utils e2fsprogs
-          go install github.com/ssut/payload-dumper-go/cmd/payload-dumper-go@latest
+          go install github.com/ssut/payload-dumper-go@latest
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
 
       - name: Verify tools
@@ -112,76 +99,77 @@ jobs:
       - name: Extract partitions
         run: |
           python3 tools/extract.py \
-            --url "${{ needs.discover.outputs.url }}" \
-            --sha256 "${{ needs.discover.outputs.sha256 }}" \
+            --url "${{ matrix.url }}" \
+            --sha256 "${{ matrix.sha256 }}" \
             --work work --tree work/tree
-          # The images are large and no longer needed.
+          # The images and the payload are large and no longer needed.
           rm -rf work/images work/payload.bin work/ota.zip
           df -h /
 
-      - name: Check the dump matches the package definitions
-        id: defs
+      - name: Check the dump matches the definitions
         run: |
-          MAJOR="${{ needs.discover.outputs.major }}"
-          DEFS="packages/a${MAJOR}.yaml"
-          if [ ! -f "$DEFS" ]; then
-            echo "::error::$DEFS does not exist. Android $MAJOR is new - copy the" \
-                 "previous version's definitions and reconcile them against the dump."
-            exit 1
-          fi
-          SDK=$(grep -h '^ro.build.version.sdk=' work/tree/*/build.prop \
-                work/tree/*/etc/build.prop 2>/dev/null | head -n1 | cut -d= -f2)
+          DEFS="packages/a${{ matrix.major }}.yaml"
+          SDK=$(grep -h '^ro.build.version.sdk=' \
+                work/tree/*/build.prop work/tree/*/etc/build.prop 2>/dev/null |
+                head -n1 | cut -d= -f2)
           WANT=$(python3 -c "import yaml;print(yaml.safe_load(open('$DEFS'))['android']['api'])")
           if [ -n "$SDK" ] && [ "$SDK" != "$WANT" ]; then
             echo "::error::$DEFS declares API $WANT but the dump is API $SDK"
             exit 1
           fi
-          echo "defs=$DEFS" >> "$GITHUB_OUTPUT"
 
       - name: Build the manifest
-        env:
-          RELEASE: ${{ needs.discover.outputs.release_id }}
+        working-directory: tools
         run: |
-          python3 tools/build_manifest.py \
-            --tree work/tree \
-            --packages "${{ steps.defs.outputs.defs }}" \
-            --assets out/assets \
-            --out "out/releases/$RELEASE/manifest.json" \
-            --release "$RELEASE" \
-            --device "${{ needs.discover.outputs.device }}" \
-            --build "${{ needs.discover.outputs.build_id }}" \
-            --image-url "${{ needs.discover.outputs.url }}" \
-            --image-sha256 "${{ needs.discover.outputs.sha256 }}" \
-            --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE" \
-            --report "out/releases/$RELEASE/unclaimed.txt"
+          python3 build_manifest.py \
+            --tree ../work/tree \
+            --packages "../packages/a${{ matrix.major }}.yaml" \
+            --assets ../out/assets \
+            --out "../out/releases/${{ matrix.release_id }}/manifest.json" \
+            --release "${{ matrix.release_id }}" \
+            --device "${{ matrix.device }}" \
+            --build "${{ matrix.build_id }}" \
+            --image-url "${{ matrix.url }}" \
+            --image-sha256 "${{ matrix.sha256 }}" \
+            --asset-base "https://github.com/${{ github.repository }}/releases/download/${{ matrix.release_id }}" \
+            --report "../out/releases/${{ matrix.release_id }}/unclaimed.txt"
 
-      # The builder is the consumer of this manifest, so let it be the judge.
+      # The builder consumes this manifest, so let it be the judge.
       - name: Validate with the builder
         run: |
-          go install github.com/306gapps/306gapps/cmd/306gapps@latest
-          "$HOME/go/bin/306gapps" validate "out/releases/${{ needs.discover.outputs.release_id }}/manifest.json"
+          go install github.com/306gapps/306gapps/cmd/306gapps@latest || {
+            echo "::notice::builder not published yet; skipping cross-validation"
+            exit 0
+          }
+          "$HOME/go/bin/306gapps" validate \
+            "out/releases/${{ matrix.release_id }}/manifest.json"
 
       - name: Publish payloads
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE: ${{ needs.discover.outputs.release_id }}
+          RELEASE: ${{ matrix.release_id }}
         run: |
           gh release create "$RELEASE" \
             --title "$RELEASE" \
-            --notes "Dumped from ${{ needs.discover.outputs.device }} ${{ needs.discover.outputs.build_id }}.
-          Source: ${{ needs.discover.outputs.url }}" \
-            || echo "release already exists, uploading into it"
+            --notes "Dumped from ${{ matrix.device }} (${{ matrix.model }}) ${{ matrix.build_id }}.
+
+          Source: ${{ matrix.url }}" \
+            || echo "release exists, uploading into it"
           gh release upload "$RELEASE" out/assets/* --clobber
 
       - name: Commit the manifest to the Android version branch
         env:
-          RELEASE: ${{ needs.discover.outputs.release_id }}
-          BRANCH: a${{ needs.discover.outputs.major }}
+          RELEASE: ${{ matrix.release_id }}
+          BRANCH: a${{ matrix.major }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin "$BRANCH" && git checkout "$BRANCH" \
-            || git checkout --orphan "$BRANCH" && git rm -rf --cached . >/dev/null 2>&1 || true
+          if git fetch origin "$BRANCH" 2>/dev/null; then
+            git checkout "$BRANCH"
+          else
+            git checkout --orphan "$BRANCH"
+            git rm -rf --cached . >/dev/null 2>&1 || true
+          fi
           mkdir -p "releases/$RELEASE"
           cp "out/releases/$RELEASE/manifest.json" "releases/$RELEASE/"
           cp "out/releases/$RELEASE/unclaimed.txt" "releases/$RELEASE/" 2>/dev/null || true
@@ -191,10 +179,11 @@ jobs:
 
       - name: Update the index on main
         env:
-          RELEASE: ${{ needs.discover.outputs.release_id }}
-          BRANCH: a${{ needs.discover.outputs.major }}
+          RELEASE: ${{ matrix.release_id }}
+          BRANCH: a${{ matrix.major }}
         run: |
           git checkout main
+          git pull --rebase origin main
           python3 tools/publish_index.py \
             --index index.json \
             --manifest "out/releases/$RELEASE/manifest.json" \
@@ -206,12 +195,11 @@ jobs:
           git push origin main
 
       - name: Flag unclaimed apps
-        env:
-          RELEASE: ${{ needs.discover.outputs.release_id }}
         run: |
-          FILE="out/releases/$RELEASE/unclaimed.txt"
-          APKS=$(grep '\.apk$' "$FILE" 2>/dev/null || true)
-          if [ -n "$APKS" ]; then
-            echo "::warning::This dump contains apks no package claims:"
-            echo "$APKS" | while read -r f; do echo "::warning::  $f"; done
+          FILE="out/releases/${{ matrix.release_id }}/unclaimed.txt"
+          CODE=$(grep -E '\.(apk|apex|capex|jar)$' "$FILE" 2>/dev/null |
+                 grep -v '^system/' || true)
+          if [ -n "$CODE" ]; then
+            COUNT=$(echo "$CODE" | wc -l)
+            echo "::warning::android ${{ matrix.major }}: $COUNT unclaimed file(s); see releases/${{ matrix.release_id }}/unclaimed.txt"
           fi

@@ -95,10 +95,17 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS) -> dict[str, Pa
 
     out = work / "images"
     out.mkdir(exist_ok=True)
-    dumper = need("payload-dumper-go",
-                  "install from https://github.com/ssut/payload-dumper-go")
-    print(f"  splitting payload into {', '.join(partitions)}")
-    run([dumper, "-o", str(out), "-p", ",".join(partitions), str(payload)])
+
+    # Splitting a 4 GB payload takes minutes; skip it when every image we need
+    # is already sitting there from a previous run.
+    missing = [p for p in partitions if not (out / f"{p}.img").exists()]
+    if missing:
+        dumper = need("payload-dumper-go",
+                      "install from https://github.com/ssut/payload-dumper-go")
+        print(f"  splitting payload into {', '.join(missing)}")
+        run([dumper, "-o", str(out), "-p", ",".join(missing), str(payload)])
+    else:
+        print(f"  reusing images already split from the payload")
 
     images = {}
     for part in partitions:

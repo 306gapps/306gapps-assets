@@ -9,7 +9,7 @@
 android:
   api: 37
   version: "17"
-  codename: Cinnamon Bun
+  codename: CinnamonBun
 
 packages:
   # ---- core ----------------------------------------------------------------
