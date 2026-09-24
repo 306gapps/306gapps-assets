@@ -31,24 +31,21 @@ IGNORE = (
     "**/etc/selinux/**",
     "**/etc/fs_config_*",
 
-    # Ahead-of-time compilation artifacts, which Android 13 and 14 ship beside
-    # each apk. An odex records the checksums of the boot classpath it was
-    # compiled against, and every custom ROM has a different one, so ART
-    # rejects these and compiles the apk itself regardless. They are dead
-    # weight on the only devices this targets, and for the ota target they are
-    # worse than that: the ROM build does its own dexpreopt, and artifacts
-    # compiled against a Pixel boot image have no business in it.
+    # Every compilation artifact. An odex records the checksums of the boot
+    # classpath it was compiled against, and every custom ROM has a different
+    # one, so ART rejects it and compiles the apk itself regardless. A profile
+    # would survive the move, but its only benefit is compiling hot methods
+    # sooner, and a slow first boot is expected after flashing anyway.
+    #
+    # None of these change what is installed, only how quickly it warms up, and
+    # ART regenerates whatever it wants. For the ota target they are worse than
+    # useless: the ROM build runs its own dexpreopt.
     "**/oat/**",
     "**/*.odex",
     "**/*.vdex",
     "**/*.art",
-
-    # Note that .prof files are deliberately NOT here, despite also being an
-    # ART artifact. A profile references the dex checksum only, so it stays
-    # valid wherever the same apk is installed, and ART uses it to compile the
-    # hot methods first. Most are empty and inert, but a few carry real data
-    # (10-40 KB on recent releases). An odex cannot survive a change of boot
-    # classpath; a profile does not care about one.
+    "**/*.dex",
+    "**/*.prof",
 )
 
 KIND_BY_PATH = (

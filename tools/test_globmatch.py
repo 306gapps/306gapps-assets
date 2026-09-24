@@ -50,13 +50,15 @@ class TestIgnoreRules(unittest.TestCase):
         from build_manifest import IGNORE
         return any(matches(i, path) for i in IGNORE)
 
-    def test_drops_ahead_of_time_artifacts(self):
-        # Bound to the boot classpath they were compiled against, so useless on
-        # any custom ROM and wrong for a ROM build's own dexpreopt.
+    def test_drops_every_compilation_artifact(self):
+        # None of these change what is installed, only how quickly it warms up,
+        # and ART regenerates whatever it wants.
         for p in ("product/priv-app/GmsCore/oat/arm64/GmsCore.odex",
                   "product/priv-app/GmsCore/oat/arm64/GmsCore.vdex",
                   "product/app/Photos/oat/arm/Photos.odex",
-                  "system/framework/arm64/boot.art"):
+                  "system/framework/arm64/boot.art",
+                  "product/priv-app/Phonesky/Phonesky.apk.prof",
+                  "product/app/Photos/Photos.dex"):
             self.assertTrue(self.ignored(p), p)
 
     def test_keeps_the_payloads_that_matter(self):
