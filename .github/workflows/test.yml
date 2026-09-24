@@ -1,0 +1,23 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Unit tests
+        working-directory: tools
+        run: python3 -m unittest discover -p 'test_*.py' -v
+      - name: Package definitions parse
+        run: |
+          for f in packages/*.yaml; do
+            python3 -c "import yaml,sys;yaml.safe_load(open('$f'))" && echo "ok $f"
+          done
