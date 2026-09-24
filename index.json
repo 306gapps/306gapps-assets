@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-24T17:55:03Z",
+  "updated": "2026-09-24T18:02:46Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -16,6 +16,20 @@
       "created": "2026-09-24T17:54:04Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cd1a.260905.001.b1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
+    },
+    {
+      "id": "a16-cp1a.260505.005",
+      "android": {
+        "api": 36,
+        "version": "16",
+        "codename": "Baklava"
+      },
+      "device": "stallion",
+      "build": "CP1A.260505.005",
+      "branch": "a16",
+      "created": "2026-09-24T18:01:50Z",
+      "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a16/releases/a16-cp1a.260505.005/manifest.json",
+      "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005"
     }
   ],
   "tools": {
