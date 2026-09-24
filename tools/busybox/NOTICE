@@ -1,0 +1,11 @@
+BusyBox, as built and distributed by the Magisk project (1.36.1 (v30.7)).
+
+BusyBox is free software licensed under the GNU General Public License
+version 2, Copyright (C) its many contributors. The binary published here is
+unmodified.
+
+Complete corresponding source code is available from:
+  https://github.com/topjohnwu/ndk-busybox
+  https://busybox.net/
+
+Source: https://github.com/topjohnwu/Magisk/releases/download/v30.7/Magisk-v30.7.apk

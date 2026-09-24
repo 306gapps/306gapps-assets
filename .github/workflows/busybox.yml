@@ -1,0 +1,55 @@
+name: busybox
+
+# Republishes the static busybox the recovery installer bundles, so a new
+# Magisk build does not require a new release of the builder.
+on:
+  schedule:
+    - cron: "40 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch busybox from the latest Magisk release
+        run: |
+          python3 tools/fetch_busybox.py \
+            --out out/busybox --json out/busybox/fragment.json
+          cat out/busybox/fragment.json
+
+      - name: Publish and record in the index
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create tools --title tools \
+            --notes "Helper binaries the builder bundles into packages." \
+            || echo "release exists"
+          gh release upload tools out/busybox/busybox-* out/busybox/NOTICE --clobber
+
+          python3 - <<'PY'
+          import json, pathlib
+          frag = json.loads(pathlib.Path("out/busybox/fragment.json").read_text())
+          idx = pathlib.Path("index.json")
+          doc = json.loads(idx.read_text()) if idx.exists() else {
+              "schema": 1, "repo": "", "releases": []}
+          base = ("https://github.com/${{ github.repository }}"
+                  "/releases/download/tools")
+          for arch, p in frag["busybox"].items():
+              p["base"] = base
+          doc.setdefault("tools", {})["busybox"] = frag["busybox"]
+          idx.write_text(json.dumps(doc, indent=2) + "\n")
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "index: update busybox" || echo "nothing to commit"
+          git push origin main
