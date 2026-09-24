@@ -60,10 +60,10 @@ jobs:
     needs: plan
     if: needs.plan.outputs.any == 'true'
     runs-on: ubuntu-latest
-    # One release at a time: each needs ~30 GB of scratch, and they all push to
-    # the same index.
-    max-parallel: 1
     strategy:
+      # One release at a time: each needs ~30 GB of scratch, and they all push
+      # to the same index and branch.
+      max-parallel: 1
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
