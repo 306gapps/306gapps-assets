@@ -216,6 +216,17 @@ jobs:
               for name in sorted(missing)[:10]:
                   print(f"  {name}", file=sys.stderr)
               sys.exit(1)
+
+          # Only once every needed payload is confirmed present: drop the ones
+          # nothing references. A re-dump that drops files -- as removing the
+          # compilation artifacts did -- otherwise leaves them on the release
+          # forever, and they accumulate with every rebuild.
+          stale = have - want
+          for name in sorted(stale):
+              print(f"pruning unreferenced asset {name}")
+              subprocess.run(["gh", "release", "delete-asset",
+                              "${{ matrix.release_id }}", name, "--yes"],
+                             check=False)
           CHECK
 
       - name: Commit the manifest to the Android version branch
