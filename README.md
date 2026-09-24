@@ -99,6 +99,7 @@ added Google app surfaces instead of silently going missing.
 | `tools/extract.py` | OTA zip → `payload.bin` → partition images → file tree |
 | `tools/build_manifest.py` | sort the tree into packages, emit `manifest.json` + payloads |
 | `tools/publish_index.py` | add a release to `index.json`, retire old ones |
+| `tools/rebuild_index.py` | reconstruct `index.json` from what is actually published |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
@@ -115,8 +116,22 @@ python3 tools/build_manifest.py --tree work/tree --packages packages/a17.yaml \
 ```
 
 `extract.py` needs `payload-dumper-go`, `erofs-utils` (Android 13+ images) and
-`e2fsprogs` (older ext4 images). `python3 tools/extract.py --check-tools` reports
-what is missing.
+`e2fsprogs` (older ext4 images). Building `payload-dumper-go` also needs
+`liblzma-dev`, because it depends on a cgo xz binding.
+`python3 tools/extract.py --check-tools` reports what is missing.
+
+**erofs-utils must be 1.8 or newer.** 1.7.1, which Ubuntu ships, silently
+truncates large files during extraction and still exits zero -- it cut 24 KiB
+off a 148 MiB apex and reported success, producing a package that looked fine
+and could not install. `--check-tools` refuses a version known to be affected,
+CI builds 1.9.4 from source, and `build_manifest.py` independently verifies that
+every apk, apex and jar it claims is still a readable archive. That last check is
+the one that does not depend on knowing which versions are broken.
+
+A dump is disk-hungry: the OTA, the payload, the split images and the extracted
+tree are each several gigabytes. Pass `--reclaim` to delete each one as soon as
+it has been consumed, which roughly halves the peak and is what CI uses. Without
+it, nothing is deleted and a second run reuses the intermediates.
 
 ## Testing
 

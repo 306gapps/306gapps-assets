@@ -67,6 +67,9 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
+    env:
+      # 1.7.1, which Ubuntu ships, corrupts large files silently.
+      EROFS_VERSION: "1.9.4"
     steps:
       - uses: actions/checkout@v4
 
@@ -89,20 +92,43 @@ jobs:
         run: |
           pip install --quiet pyyaml
           sudo apt-get update -qq
-          sudo apt-get install -y -qq erofs-utils e2fsprogs
+          # liblzma-dev is not optional: payload-dumper-go depends on go-xz,
+          # which is cgo and will not compile without lzma.h.
+          sudo apt-get install -y -qq e2fsprogs liblzma-dev liblz4-dev \
+            libzstd-dev zlib1g-dev uuid-dev autoconf automake libtool pkg-config
           go install github.com/ssut/payload-dumper-go@latest
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
+
+      # Ubuntu ships erofs-utils 1.7.1, which silently truncates large files
+      # during extraction and still exits zero -- it cut 24 KiB off a 148 MiB
+      # apex and reported success. Build a known-good version instead.
+      - name: Build erofs-utils ${{ env.EROFS_VERSION }}
+        run: |
+          curl -fsSL -o erofs.tar.gz \
+            "https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-${EROFS_VERSION}.tar.gz"
+          tar xzf erofs.tar.gz
+          cd "erofs-utils-${EROFS_VERSION}"
+          ./autogen.sh
+          ./configure --prefix="$HOME/.local" \
+            --enable-lz4 --enable-lzma --enable-zstd
+          make -j"$(nproc)"
+          make install
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/fsck.erofs" -V
 
       - name: Verify tools
         run: python3 tools/extract.py --check-tools
 
       - name: Extract partitions
         run: |
+          # --reclaim drops the zip, the payload and each image the moment it
+          # has been consumed. Without it the peak is the OTA plus the payload
+          # plus every image plus the tree, all alive at once, which a runner
+          # does not have room for.
           python3 tools/extract.py \
             --url "${{ matrix.url }}" \
             --sha256 "${{ matrix.sha256 }}" \
-            --work work --tree work/tree
-          # The images and the payload are large and no longer needed.
+            --work work --tree work/tree --reclaim
           rm -rf work/images work/payload.bin work/ota.zip
           df -h /
 
@@ -155,7 +181,42 @@ jobs:
 
           Source: ${{ matrix.url }}" \
             || echo "release exists, uploading into it"
-          gh release upload "$RELEASE" out/assets/* --clobber
+
+          # Several gigabytes across a hundred-odd assets: a single transient
+          # failure should not cost the whole dump. --clobber makes a retry
+          # pick up where the last attempt stopped.
+          for attempt in 1 2 3; do
+            if gh release upload "$RELEASE" out/assets/* --clobber; then
+              echo "uploaded on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" = 3 ]; then
+              echo "::error::upload failed after 3 attempts"
+              exit 1
+            fi
+            echo "upload attempt $attempt failed; retrying"
+            sleep 30
+          done
+
+          # Every payload the manifest names must actually be on the release,
+          # or the builder will fail for users rather than here.
+          python3 - <<'CHECK'
+          import json, subprocess, sys
+          m = json.load(open("out/releases/${{ matrix.release_id }}/manifest.json"))
+          want = {f["asset"] for p in m["packages"] for f in p["files"] if f.get("asset")}
+          have = set(subprocess.run(
+              ["gh", "release", "view", "${{ matrix.release_id }}",
+               "--json", "assets", "--jq", ".assets[].name"],
+              capture_output=True, text=True, check=True).stdout.split())
+          missing = want - have
+          print(f"manifest names {len(want)} payloads; release carries {len(have)}")
+          if missing:
+              print(f"error: {len(missing)} payload(s) missing from the release:",
+                    file=sys.stderr)
+              for name in sorted(missing)[:10]:
+                  print(f"  {name}", file=sys.stderr)
+              sys.exit(1)
+          CHECK
 
       - name: Commit the manifest to the Android version branch
         env:
@@ -164,8 +225,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # The version branches are orphans holding only manifests. Creating
+          # one leaves main's files in the working tree as untracked, so every
+          # switch afterwards needs -f or git refuses to overwrite them.
           if git fetch origin "$BRANCH" 2>/dev/null; then
-            git checkout "$BRANCH"
+            git checkout -f "$BRANCH"
           else
             git checkout --orphan "$BRANCH"
             git rm -rf --cached . >/dev/null 2>&1 || true
@@ -182,7 +246,7 @@ jobs:
           RELEASE: ${{ matrix.release_id }}
           BRANCH: a${{ matrix.major }}
         run: |
-          git checkout main
+          git checkout -f main
           git pull --rebase origin main
           python3 tools/publish_index.py \
             --index index.json \

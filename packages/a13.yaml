@@ -30,7 +30,10 @@ packages:
       only the Chimera modules.
     include:
       - product/apex/com.google.android.gmssystem*.apex
-      - product/priv-app/PrebuiltGmsCore/**
+      # The directory has carried a release-codename suffix in the past
+      # (PrebuiltGmsCoreSc, ...Tm), and the chimera modules inside still do
+      # (PrebuiltGmsCoreVic_* on Android 17), so match the family.
+      - product/priv-app/PrebuiltGmsCore*/**
       - product/etc/permissions/privapp-permissions-google*.xml
       - product/etc/sysconfig/google.xml
       - product/etc/sysconfig/google_build.xml
