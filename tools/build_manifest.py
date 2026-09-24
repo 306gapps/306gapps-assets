@@ -185,6 +185,42 @@ def assign(files: list[str], defs: list[dict]) -> tuple[dict[str, list[str]], li
     return by_package, unclaimed
 
 
+# <library name="..." file="/system/framework/foo.jar"/> in a permissions xml
+# declares a shared library an app links against at runtime.
+LIBRARY_REF = re.compile(r'file="(/[^"]+\.jar)"')
+
+
+def check_declared_libraries(root: Path, packages: list[dict]) -> list[str]:
+    """Warn when a claimed permissions xml declares a jar no package ships.
+
+    An app whose permissions file names a shared library that is not installed
+    fails to start, and nothing else in the pipeline would notice: the xml is
+    present, the apk is present, and only the jar between them is missing.
+    """
+    provided = {f["path"] for p in packages for f in p["files"]}
+    problems = []
+    for p in packages:
+        for f in p["files"]:
+            if not f["path"].endswith(".xml") or "/etc/permissions/" not in f["path"]:
+                continue
+            full = root / f["path"]
+            try:
+                text = full.read_text(errors="replace")
+            except OSError:
+                continue
+            for ref in LIBRARY_REF.findall(text):
+                want = ref.lstrip("/")
+                if want in provided:
+                    continue
+                # A jar the ROM itself provides is not ours to ship.
+                if (root / want).exists():
+                    problems.append(
+                        f"{p['id']}: {f['path']} declares {ref}, which is in "
+                        f"the dump but no package claims"
+                    )
+    return problems
+
+
 def check_symlink_targets(packages: list[dict]) -> list[str]:
     """Warn when a package ships a link whose target it does not also ship.
 
@@ -378,6 +414,9 @@ def build(args) -> int:
         return 1
 
     for line in check_symlink_targets(packages):
+        print(f"warning: {line}", file=sys.stderr)
+
+    for line in check_declared_libraries(root, packages):
         print(f"warning: {line}", file=sys.stderr)
 
     release_id = args.release or f"a{android['version']}-{args.build.lower()}"
