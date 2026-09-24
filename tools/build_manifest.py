@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import re
+import gzip
 import shutil
 import sys
 import zipfile
@@ -74,16 +75,30 @@ def verify_container(path: Path) -> str:
     hypothetical: erofs-utils 1.7.1 cut 24 KiB off a 148 MiB apex and reported
     success, which would have shipped a package that cannot install. Reading
     the central directory is cheap and catches exactly that.
+
+    Chrome, the WebView and the Trichrome library ship gzipped -- Android
+    inflates compressed system apps on first boot -- and they are among the
+    largest payloads here, so they are unpacked and checked too rather than
+    skipped for want of a matching suffix.
     """
-    if not str(path).endswith(ZIP_KINDS):
+    name = str(path)
+    opener = open
+    if name.endswith(".gz"):
+        inner = name[:-3]
+        if not inner.endswith(ZIP_KINDS):
+            return ""
+        opener = gzip.open
+    elif not name.endswith(ZIP_KINDS):
         return ""
+
     try:
-        with zipfile.ZipFile(path) as z:
-            if not z.namelist():
-                return "archive is empty"
+        with opener(path, "rb") as fh:
+            with zipfile.ZipFile(fh) as z:
+                if not z.namelist():
+                    return "archive is empty"
     except zipfile.BadZipFile as e:
         return f"not a readable archive ({e})"
-    except OSError as e:
+    except (OSError, EOFError) as e:
         return f"cannot read ({e})"
     return ""
 
