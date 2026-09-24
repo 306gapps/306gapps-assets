@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-24T18:52:37Z",
+  "updated": "2026-09-24T18:59:23Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -41,7 +41,7 @@
       "device": "tegu",
       "build": "BD4A.250505.003",
       "branch": "a15",
-      "created": "2026-09-24T18:08:00Z",
+      "created": "2026-09-24T18:58:33Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a15/releases/a15-bd4a.250505.003/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
     },
