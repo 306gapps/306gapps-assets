@@ -1,14 +1,10 @@
 # Package definitions for Android 15.
 #
-# NOT YET VERIFIED against a real dump. These were derived from the Android 17
-# definitions, which were written against cubs (Pixel 11) CD1A.260905.001.B1.
-# Google moves apps between /product and /system_ext and renames directories
-# between releases, so treat every glob here as a hypothesis until a dump has
-# confirmed it.
-#
-# The first workflow run for this version will refuse to publish if the API
-# level disagrees, and will list every unclaimed apk, apex and jar. Work
-# through that list, then delete this notice.
+# Reconciled against a real dump of tegu (Pixel 9a) BD4A.250505.003.
+# Derived from the Android 17 definitions and then corrected against what that
+# dump actually contained. Packages that match nothing on this release are
+# reported by the workflow; run tools/suggest_globs.py to tell a wrong glob
+# apart from an app this device simply does not ship.
 #
 # Directory names carry version suffixes that change every release, so globs
 # use wildcards rather than exact names.
@@ -148,7 +144,7 @@ packages:
     removes:
       - system_ext/app/LatinIME
     include:
-      - product/app/LatinIMEGooglePrebuilt/**
+      - product/app/LatinIMEGooglePrebuilt*/**
 
   - id: photos
     name: Google Photos
@@ -260,7 +256,7 @@ packages:
     category: pixel
     requires: [gmscore]
     include:
-      - product/priv-app/RecorderPrebuilt_*/**
+      - product/priv-app/RecorderPrebuilt*/**
 
   - id: pixelcamera
     name: Pixel Camera
