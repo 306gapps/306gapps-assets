@@ -41,3 +41,33 @@ class TestGlob(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestIgnoreRules(unittest.TestCase):
+    """The dump-wide ignore list, which decides what never reaches a package."""
+
+    def ignored(self, path: str) -> bool:
+        from build_manifest import IGNORE
+        return any(matches(i, path) for i in IGNORE)
+
+    def test_drops_every_compilation_artifact(self):
+        # None of these change what is installed, only how quickly it warms up,
+        # and ART regenerates whatever it wants.
+        for p in ("product/priv-app/GmsCore/oat/arm64/GmsCore.odex",
+                  "product/priv-app/GmsCore/oat/arm64/GmsCore.vdex",
+                  "product/app/Photos/oat/arm/Photos.odex",
+                  "system/framework/arm64/boot.art",
+                  "product/priv-app/Phonesky/Phonesky.apk.prof",
+                  "product/app/Photos/Photos.dex"):
+            self.assertTrue(self.ignored(p), p)
+
+    def test_keeps_the_payloads_that_matter(self):
+        for p in ("product/priv-app/GmsCore/GmsCore.apk",
+                  "product/apex/com.google.android.gmssystem.apex",
+                  "product/etc/permissions/privapp-permissions-google.xml",
+                  "product/framework/com.google.android.dialer.support.jar"):
+            self.assertFalse(self.ignored(p), p)
+
+    def test_drops_rom_metadata(self):
+        for p in ("product/etc/build.prop", "product/etc/selinux/x_file_contexts"):
+            self.assertTrue(self.ignored(p), p)

@@ -30,6 +30,22 @@ IGNORE = (
     "**/*.prop",
     "**/etc/selinux/**",
     "**/etc/fs_config_*",
+
+    # Every compilation artifact. An odex records the checksums of the boot
+    # classpath it was compiled against, and every custom ROM has a different
+    # one, so ART rejects it and compiles the apk itself regardless. A profile
+    # would survive the move, but its only benefit is compiling hot methods
+    # sooner, and a slow first boot is expected after flashing anyway.
+    #
+    # None of these change what is installed, only how quickly it warms up, and
+    # ART regenerates whatever it wants. For the ota target they are worse than
+    # useless: the ROM build runs its own dexpreopt.
+    "**/oat/**",
+    "**/*.odex",
+    "**/*.vdex",
+    "**/*.art",
+    "**/*.dex",
+    "**/*.prof",
 )
 
 KIND_BY_PATH = (

@@ -77,6 +77,15 @@ from the dump by glob:
 | `default` | starts selected in the picker |
 | `props` | build properties to apply; `{gms_version}` is read from the dump |
 
+Compilation artifacts (`oat/`, `.odex`, `.vdex`, `.art`, `.dex`, `.prof`) are
+never claimed. An odex records the checksums of the boot classpath it was
+compiled against, and every custom ROM has a different one, so ART rejects it
+and compiles the apk itself regardless. A profile would survive the move, but
+its only benefit is compiling hot methods sooner, and a slow first boot after
+flashing is expected anyway. None of them change *what* is installed. For the
+`ota` target they are worse than useless, since the ROM build runs its own
+dexpreopt.
+
 A file may be claimed by exactly one package. Anything left unclaimed is
 reported, and unclaimed **apks** raise a workflow warning — that is how a newly
 added Google app surfaces instead of silently going missing.
