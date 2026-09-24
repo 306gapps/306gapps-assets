@@ -160,7 +160,42 @@ jobs:
 
           Source: ${{ matrix.url }}" \
             || echo "release exists, uploading into it"
-          gh release upload "$RELEASE" out/assets/* --clobber
+
+          # Several gigabytes across a hundred-odd assets: a single transient
+          # failure should not cost the whole dump. --clobber makes a retry
+          # pick up where the last attempt stopped.
+          for attempt in 1 2 3; do
+            if gh release upload "$RELEASE" out/assets/* --clobber; then
+              echo "uploaded on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" = 3 ]; then
+              echo "::error::upload failed after 3 attempts"
+              exit 1
+            fi
+            echo "upload attempt $attempt failed; retrying"
+            sleep 30
+          done
+
+          # Every payload the manifest names must actually be on the release,
+          # or the builder will fail for users rather than here.
+          python3 - <<'CHECK'
+          import json, subprocess, sys
+          m = json.load(open("out/releases/${{ matrix.release_id }}/manifest.json"))
+          want = {f["asset"] for p in m["packages"] for f in p["files"] if f.get("asset")}
+          have = set(subprocess.run(
+              ["gh", "release", "view", "${{ matrix.release_id }}",
+               "--json", "assets", "--jq", ".assets[].name"],
+              capture_output=True, text=True, check=True).stdout.split())
+          missing = want - have
+          print(f"manifest names {len(want)} payloads; release carries {len(have)}")
+          if missing:
+              print(f"error: {len(missing)} payload(s) missing from the release:",
+                    file=sys.stderr)
+              for name in sorted(missing)[:10]:
+                  print(f"  {name}", file=sys.stderr)
+              sys.exit(1)
+          CHECK
 
       - name: Commit the manifest to the Android version branch
         env:
