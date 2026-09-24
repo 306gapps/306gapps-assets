@@ -123,15 +123,30 @@ def image_format(img: Path) -> str:
     return "unknown"
 
 
-def extract_image(img: Path, dest: Path) -> None:
-    """Unpack a partition image into dest, preserving modes and xattrs."""
+def extract_image(img: Path, dest: Path, xattrs: bool = False) -> None:
+    """Unpack a partition image into dest, preserving modes.
+
+    SELinux labels are not captured. Writing a security.selinux xattr needs
+    CAP_SYS_ADMIN, so an unprivileged extraction -- which is what CI does --
+    fails outright with --xattrs. The labels are not missed: every path a gapps
+    package installs to falls under the generic file_contexts rules that
+    resolve to system_file, which is exactly what the installer applies by
+    default per partition. Pass --xattrs when extracting as root if you want
+    them recorded anyway.
+    """
     dest.mkdir(parents=True, exist_ok=True)
     fmt = image_format(img)
     print(f"  {img.name}: {fmt}")
 
     if fmt == "erofs":
         tool = need("fsck.erofs", "install erofs-utils")
-        run([tool, f"--extract={dest}", "--xattrs", "--overwrite", str(img)])
+        # --preserve-perms matters: run as an ordinary user, fsck.erofs applies
+        # the umask to extracted files, which would record the wrong modes in
+        # the manifest.
+        cmd = [tool, f"--extract={dest}", "--preserve-perms", "--overwrite"]
+        if xattrs:
+            cmd.append("--xattrs")
+        run(cmd + [str(img)])
     elif fmt == "ext4":
         tool = need("debugfs", "install e2fsprogs")
         run([tool, "-R", f"rdump / {dest}", str(img)],
@@ -144,18 +159,29 @@ def extract_image(img: Path, dest: Path) -> None:
 
 
 def flatten(tree: Path) -> None:
-    """Some dumps nest the partition under itself (product/product/...).
+    """Reduce a system-as-root image to just the partition's own content.
 
-    Collapse that so paths match what the manifest expects.
+    system.img on modern devices is extracted at the *device* root: alongside
+    the real /system content (in a nested system/ directory) sit mount points
+    like dev/, proc/ and mnt/ that belong to no partition. product.img and
+    system_ext.img have no such wrapper and are left alone.
+
+    The nested directory replaces the base rather than merging into it -- the
+    two overlap (both carry bin/, etc/) and merging silently mixes mount points
+    into the partition.
     """
     for part in PARTITIONS:
         base = tree / part
         nested = base / part
-        if nested.is_dir() and not (base / "etc").exists():
-            print(f"  flattening {part}/{part}")
-            for child in nested.iterdir():
-                shutil.move(str(child), str(base / child.name))
-            nested.rmdir()
+        if not nested.is_dir():
+            continue
+        print(f"  {part}: keeping {part}/{part} (system-as-root layout)")
+        staging = tree / f".{part}.flatten"
+        if staging.exists():
+            shutil.rmtree(staging)
+        shutil.move(str(nested), str(staging))
+        shutil.rmtree(base)
+        shutil.move(str(staging), str(base))
 
 
 def check_tools() -> int:
@@ -181,6 +207,8 @@ def main() -> int:
     p.add_argument("--work", default="work", help="scratch directory")
     p.add_argument("--tree", default="work/tree", help="where to write the tree")
     p.add_argument("--partitions", default=",".join(PARTITIONS))
+    p.add_argument("--xattrs", action="store_true",
+                   help="record SELinux labels (requires running as root)")
     p.add_argument("--check-tools", action="store_true")
     args = p.parse_args()
 
@@ -205,7 +233,7 @@ def main() -> int:
         if tree.exists():
             shutil.rmtree(tree)
         for part, img in images.items():
-            extract_image(img, tree / part)
+            extract_image(img, tree / part, args.xattrs)
         flatten(tree)
     except MissingTool as e:
         print(f"error: {e}", file=sys.stderr)

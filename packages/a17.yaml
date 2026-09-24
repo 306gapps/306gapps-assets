@@ -1,0 +1,312 @@
+# Package definitions for Android 17, written against a real dump of
+# cubs (Pixel 11) CD1A.260905.001.B1.
+#
+# Directory names carry version suffixes that change every release
+# (RecorderPrebuilt_847964105, SetupWizardPrebuilt_cd1a, EuiccSupportPixel-P23),
+# so globs use wildcards rather than exact names. An exact name here would
+# silently stop matching next month.
+
+android:
+  api: 37
+  version: "17"
+  codename: Cinnamon Bun
+
+packages:
+  # ---- core ----------------------------------------------------------------
+  - id: gmscore
+    name: Google Play services
+    category: core
+    required: true
+    summary: >-
+      Core Google services framework. Everything else depends on it. On
+      Android 17 the bulk of it ships as an apex; the priv-app directory holds
+      only the Chimera modules.
+    include:
+      - product/apex/com.google.android.gmssystem*.apex
+      - product/priv-app/PrebuiltGmsCore/**
+      - product/etc/permissions/privapp-permissions-google*.xml
+      - product/etc/sysconfig/google.xml
+      - product/etc/sysconfig/google_build.xml
+      - product/etc/sysconfig/google-hiddenapi-package-whitelist.xml
+      - product/etc/sysconfig/google-staged-installer-whitelist.xml
+      - product/etc/sysconfig/google-install-constraints-package-allowlist.xml
+      - product/etc/sysconfig/google-initial-package-stopped-states.xml
+      - product/etc/sysconfig/google-system-apps-update-ownership.xml
+      - product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml
+      - product/etc/default-permissions/default-permissions.xml
+
+  - id: gsf
+    name: Google Services Framework
+    category: core
+    required: true
+    summary: Device registration and push messaging.
+    include:
+      - system_ext/priv-app/GoogleServicesFramework/**
+
+  - id: vending
+    name: Google Play Store
+    category: core
+    default: true
+    requires: [gmscore, gsf]
+    summary: App store and Play Protect.
+    include:
+      - product/priv-app/Phonesky/**
+
+  - id: verifier
+    name: Play Protect verifier
+    category: core
+    requires: [gmscore]
+    include:
+      - product/priv-app/VerifierPrebuiltClassic/**
+      - product/etc/permissions/com.google.android.verifier.xml
+      - product/etc/default-permissions/default-permissions-verifier.xml
+
+  # ---- setup ---------------------------------------------------------------
+  - id: setupwizard
+    name: Google Setup Wizard
+    category: setup
+    default: true
+    requires: [gmscore, vending]
+    summary: >-
+      Replaces the AOSP first-boot flow. Needed to sign in during setup;
+      without it you sign in from Settings afterwards.
+    include:
+      - product/priv-app/SetupWizardPrebuilt_*/**
+      - system_ext/priv-app/SetupWizardPixelPrebuilt_*/**
+      - product/priv-app/PartnerSetupPrebuilt/**
+      - product/priv-app/GoogleRestorePrebuilt-*/**
+      - product/priv-app/SearchSelectorPrebuilt/**
+      - product/etc/permissions/com.google.android.apps.setupwizard.searchselector.xml
+      - product/overlay/PixelSetupWizardOverlay*.apk
+      - system_ext/priv-app/CarrierSetup/**
+
+  # ---- apps ----------------------------------------------------------------
+  - id: gsa
+    name: Google app and Assistant
+    category: apps
+    requires: [gmscore]
+    summary: Search, Assistant and the at-a-glance widget. Large (~350 MB).
+    include:
+      - product/priv-app/Velvet/**
+
+  - id: gemini
+    name: Gemini
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/priv-app/GeminiShell_*/**
+      - product/etc/sysconfig/gemini_experience.xml
+      - product/etc/sysconfig/gemini_intelligence_device.xml
+
+  - id: dialer
+    name: Google Phone
+    category: apps
+    requires: [gmscore]
+    summary: Call screening and spam protection.
+    removes:
+      - system_ext/priv-app/Dialer
+    include:
+      - product/priv-app/GoogleDialer/**
+      - product/etc/permissions/com.google.android.dialer.support.xml
+      # The permissions xml declares this shared library; without it the
+      # dialer fails to start.
+      - product/framework/com.google.android.dialer.support.jar
+
+  - id: messages
+    name: Google Messages
+    category: apps
+    requires: [gmscore]
+    summary: RCS-capable SMS client.
+    removes:
+      - system_ext/priv-app/messaging
+    include:
+      - product/priv-app/PrebuiltBugle/**
+
+  - id: contacts
+    name: Google Contacts
+    category: apps
+    requires: [gmscore]
+    removes:
+      - system_ext/priv-app/Contacts
+    include:
+      - product/app/GoogleContacts/**
+
+  - id: gboard
+    name: Gboard
+    category: apps
+    requires: [gmscore]
+    removes:
+      - system_ext/app/LatinIME
+    include:
+      - product/app/LatinIMEGooglePrebuilt/**
+
+  - id: photos
+    name: Google Photos
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/Photos/**
+      - product/app/MarkupGoogle_v*/**
+
+  - id: calendar
+    name: Google Calendar
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/CalendarGooglePrebuilt/**
+
+  - id: chrome
+    name: Chrome
+    category: apps
+    requires: [gmscore]
+    summary: Includes the Trichrome library Chrome and WebView share.
+    include:
+      - product/app/Chrome/**
+      - product/app/Chrome-Stub/**
+      - product/app/TrichromeLibrary/**
+      - product/app/TrichromeLibrary-Stub/**
+
+  - id: webview
+    name: Google WebView
+    category: apps
+    include:
+      - product/app/WebViewGoogle/**
+      - product/app/WebViewGoogle-Stub/**
+
+  - id: gmail
+    name: Gmail
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/PrebuiltGmail/**
+
+  - id: maps
+    name: Google Maps
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/Maps/**
+
+  - id: drive
+    name: Google Drive
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/Drive/**
+
+  - id: youtube
+    name: YouTube
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/YouTube/**
+      - product/app/YouTubeMusicPrebuilt/**
+
+  - id: keep
+    name: Google Keep
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/GoogleKeepPrebuilt/**
+
+  - id: meet
+    name: Google Meet
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/MeetPrebuilt_*/**
+
+  # ---- pixel ---------------------------------------------------------------
+  - id: pixellauncher
+    name: Pixel Launcher
+    category: pixel
+    requires: [gmscore]
+    summary: Pixel home screen. Pair with gsa for the search bar.
+    removes:
+      - system_ext/priv-app/Launcher3QuickStep
+    include:
+      - system_ext/priv-app/NexusLauncherRelease/**
+      - system_ext/priv-app/WallpaperPickerGoogleRelease/**
+      - system_ext/etc/permissions/com.google.android.apps.pixel.launcherconnector.xml
+
+  - id: pixelsetup
+    name: Pixel wallpapers and themes
+    category: pixel
+    include:
+      - product/app/PixelThemesStub*/**
+      - product/app/PixelWallpapers*/**
+      - product/app/WallpaperEmojiPrebuilt-*/**
+
+  - id: nowplaying
+    name: Now Playing
+    category: pixel
+    requires: [gmscore]
+    include:
+      - product/app/NowPlayingPrebuilt/**
+      - product/etc/default-permissions/default-permissions_nowplaying.xml
+
+  - id: recorder
+    name: Pixel Recorder
+    category: pixel
+    requires: [gmscore]
+    include:
+      - product/priv-app/RecorderPrebuilt_*/**
+
+  - id: pixelcamera
+    name: Pixel Camera
+    category: pixel
+    requires: [gmscore]
+    include:
+      - product/priv-app/GoogleCamera/**
+
+  # ---- extras --------------------------------------------------------------
+  - id: tts
+    name: Google Text-to-Speech
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/app/GoogleTTS/**
+
+  - id: wellbeing
+    name: Digital Wellbeing
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/priv-app/WellbeingPrebuilt/**
+
+  - id: euicc
+    name: eSIM support
+    category: extras
+    requires: [gmscore]
+    summary: Needed for eSIM provisioning on most carriers.
+    include:
+      - product/priv-app/EuiccGoogle/**
+      - system_ext/priv-app/EuiccSupportPixel-*/**
+      - system_ext/priv-app/EuiccSupportPixelPermissions/**
+      - system_ext/priv-app/EuiccGoogleOverlay/**
+      - system_ext/etc/permissions/com.google.euiccpixel*.xml
+
+  - id: talkback
+    name: TalkBack and accessibility
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/app/talkback/**
+      - product/app/SwitchAccessPrebuilt_*/**
+      - product/app/VoiceAccessPrebuilt/**
+      - product/app/SoundAmplifierPrebuilt_*/**
+      - product/etc/default-permissions/default-permissions_talkback.xml
+
+  - id: findmydevice
+    name: Find My Device
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/app/FindMyDevicePrebuilt-*/**
+
+  - id: wallet
+    name: Google Wallet quick access
+    category: extras
+    requires: [gmscore]
+    include:
+      - system_ext/priv-app/QuickAccessWallet/**
