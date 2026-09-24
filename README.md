@@ -77,6 +77,13 @@ from the dump by glob:
 | `default` | starts selected in the picker |
 | `props` | build properties to apply; `{gms_version}` is read from the dump |
 
+Ahead-of-time compilation artifacts (`oat/`, `.odex`, `.vdex`, `.art`) are never
+claimed. Android 13 and 14 ship them beside each apk, but an odex records the
+checksums of the boot classpath it was compiled against, and every custom ROM
+has a different one -- ART rejects them and compiles the apk itself regardless.
+For the `ota` target they are worse than useless, since the ROM build does its
+own dexpreopt.
+
 A file may be claimed by exactly one package. Anything left unclaimed is
 reported, and unclaimed **apks** raise a workflow warning — that is how a newly
 added Google app surfaces instead of silently going missing.

@@ -30,6 +30,18 @@ IGNORE = (
     "**/*.prop",
     "**/etc/selinux/**",
     "**/etc/fs_config_*",
+
+    # Ahead-of-time compilation artifacts, which Android 13 and 14 ship beside
+    # each apk. An odex records the checksums of the boot classpath it was
+    # compiled against, and every custom ROM has a different one, so ART
+    # rejects these and compiles the apk itself regardless. They are dead
+    # weight on the only devices this targets, and for the ota target they are
+    # worse than that: the ROM build does its own dexpreopt, and artifacts
+    # compiled against a Pixel boot image have no business in it.
+    "**/oat/**",
+    "**/*.odex",
+    "**/*.vdex",
+    "**/*.art",
 )
 
 KIND_BY_PATH = (
