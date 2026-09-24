@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/tegu-ota-bd4a.250505.003-06eb56e8.zip",
       "sha256": "06eb56e8bbaf4c593e730b74285519a82bcc5727ea309d1815c944e5f259d18d"
     },
-    "created": "2026-09-24T18:08:00Z",
+    "created": "2026-09-24T18:58:33Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
   },
   "packages": [
@@ -255,13 +255,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/Phonesky/Phonesky.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "App store and Play Protect.",
@@ -398,13 +391,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/GoogleDialer/GoogleDialer.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Call screening and spam protection.",
@@ -451,13 +437,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/GoogleContacts/GoogleContacts.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -621,13 +600,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -647,13 +619,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/Maps/Maps.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -692,13 +657,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/YouTube/YouTube.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         },
         {
           "path": "product/app/YouTubeMusicPrebuilt/YouTubeMusicPrebuilt.apk",
@@ -840,15 +798,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk.prof",
-          "asset": "6fd43388b9aca755-GoogleCamera.apk.prof",
-          "sha256": "6fd43388b9aca75565d62e752134e20dec6b647a391dbf3f9c587c6bf2766f75",
-          "size": 36718,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
