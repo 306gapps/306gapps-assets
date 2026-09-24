@@ -114,6 +114,7 @@ added Google app surfaces instead of silently going missing.
 | `tools/publish_index.py` | add a release to `index.json`, retire old ones |
 | `tools/rebuild_index.py` | reconstruct `index.json` from what is actually published |
 | `tools/suggest_globs.py` | for packages that matched nothing, say whether the glob is wrong or the app is absent |
+| `tools/prune_release.py` | remove release assets no manifest references |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
