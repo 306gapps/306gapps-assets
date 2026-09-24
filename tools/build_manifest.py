@@ -13,6 +13,7 @@ import os
 import re
 import shutil
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -43,6 +44,32 @@ KIND_BY_PATH = (
     ("**/*.jar", "jar"),
     ("**/etc/**", "etc"),
 )
+
+
+# Every one of these is a zip underneath, so a truncated or mangled extraction
+# shows up as an unreadable archive.
+ZIP_KINDS = (".apk", ".apex", ".capex", ".jar")
+
+
+def verify_container(path: Path) -> str:
+    """Return an error string if a zip-shaped payload is not readable.
+
+    An extractor that silently truncates a file and exits zero is not
+    hypothetical: erofs-utils 1.7.1 cut 24 KiB off a 148 MiB apex and reported
+    success, which would have shipped a package that cannot install. Reading
+    the central directory is cheap and catches exactly that.
+    """
+    if not str(path).endswith(ZIP_KINDS):
+        return ""
+    try:
+        with zipfile.ZipFile(path) as z:
+            if not z.namelist():
+                return "archive is empty"
+    except zipfile.BadZipFile as e:
+        return f"not a readable archive ({e})"
+    except OSError as e:
+        return f"cannot read ({e})"
+    return ""
 
 
 def classify(path: str) -> str:
@@ -246,6 +273,7 @@ def build(args) -> int:
 
     packages = []
     empty = []
+    corrupt: list[str] = []
     for d in defs:
         entries = []
         for rel in by_package[d["id"]]:
@@ -274,6 +302,10 @@ def build(args) -> int:
                     "path": rel, "size": 0, "mode": mode,
                     "context": selinux_context(full), "kind": classify(rel),
                 })
+                continue
+
+            if problem := verify_container(full):
+                corrupt.append(f"{rel}: {problem}")
                 continue
 
             digest, size = sha256_of(full)
@@ -313,6 +345,16 @@ def build(args) -> int:
                 for k, v in d["props"].items()
             }
         packages.append(pkg)
+
+    if corrupt:
+        print(f"\nerror: {len(corrupt)} payload(s) did not survive extraction:",
+              file=sys.stderr)
+        for line in corrupt:
+            print(f"  {line}", file=sys.stderr)
+        print("\nThis is an extraction bug, not a packaging one. Check the "
+              "erofs-utils version:\nolder releases truncate large files and "
+              "still exit zero.", file=sys.stderr)
+        return 1
 
     if problems := check_references(packages):
         for line in problems:
