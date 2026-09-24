@@ -42,6 +42,13 @@ IGNORE = (
     "**/*.odex",
     "**/*.vdex",
     "**/*.art",
+
+    # Note that .prof files are deliberately NOT here, despite also being an
+    # ART artifact. A profile references the dex checksum only, so it stays
+    # valid wherever the same apk is installed, and ART uses it to compile the
+    # hot methods first. Most are empty and inert, but a few carry real data
+    # (10-40 KB on recent releases). An odex cannot survive a change of boot
+    # classpath; a profile does not care about one.
 )
 
 KIND_BY_PATH = (
