@@ -204,8 +204,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # The version branches are orphans holding only manifests. Creating
+          # one leaves main's files in the working tree as untracked, so every
+          # switch afterwards needs -f or git refuses to overwrite them.
           if git fetch origin "$BRANCH" 2>/dev/null; then
-            git checkout "$BRANCH"
+            git checkout -f "$BRANCH"
           else
             git checkout --orphan "$BRANCH"
             git rm -rf --cached . >/dev/null 2>&1 || true
@@ -222,7 +225,7 @@ jobs:
           RELEASE: ${{ matrix.release_id }}
           BRANCH: a${{ matrix.major }}
         run: |
-          git checkout main
+          git checkout -f main
           git pull --rebase origin main
           python3 tools/publish_index.py \
             --index index.json \

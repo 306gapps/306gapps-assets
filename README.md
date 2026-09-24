@@ -99,6 +99,7 @@ added Google app surfaces instead of silently going missing.
 | `tools/extract.py` | OTA zip → `payload.bin` → partition images → file tree |
 | `tools/build_manifest.py` | sort the tree into packages, emit `manifest.json` + payloads |
 | `tools/publish_index.py` | add a release to `index.json`, retire old ones |
+| `tools/rebuild_index.py` | reconstruct `index.json` from what is actually published |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
