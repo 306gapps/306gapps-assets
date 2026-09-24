@@ -1,8 +1,23 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-24T17:40:52Z",
-  "releases": [],
+  "updated": "2026-09-24T17:55:03Z",
+  "releases": [
+    {
+      "id": "a17-cd1a.260905.001.b1",
+      "android": {
+        "api": 37,
+        "version": "17",
+        "codename": "CinnamonBun"
+      },
+      "device": "cubs",
+      "build": "CD1A.260905.001.B1",
+      "branch": "a17",
+      "created": "2026-09-24T17:54:04Z",
+      "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cd1a.260905.001.b1/manifest.json",
+      "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
+    }
+  ],
   "tools": {
     "busybox": {
       "arm64": {
