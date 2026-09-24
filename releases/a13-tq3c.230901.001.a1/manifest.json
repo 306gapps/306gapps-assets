@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-24T18:21:32Z",
+    "created": "2026-09-24T19:11:35Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1"
   },
   "packages": [
@@ -167,294 +167,6 @@
           "kind": "apk"
         },
         {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_AdsDynamite.odex",
-          "asset": "8baaaf6a8c6901f8-PrebuiltGmsCoreSc_AdsDynamite.odex",
-          "sha256": "8baaaf6a8c6901f818761822ef1b14382beb4b992edf8d9738a7084dcddbebf7",
-          "size": 62116,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_AdsDynamite.vdex",
-          "asset": "3f5849d4faf839f9-PrebuiltGmsCoreSc_AdsDynamite.vdex",
-          "sha256": "3f5849d4faf839f91055fb86bf7315806659b110060359a0e1a627b2202f91da",
-          "size": 111820,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_CronetDynamite.odex",
-          "asset": "291045b19996e74b-PrebuiltGmsCoreSc_CronetDynamite.odex",
-          "sha256": "291045b19996e74b04f7ecdfd07d030a44c46d8aa61ed65c474edf96dd0ca4e9",
-          "size": 21156,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_CronetDynamite.vdex",
-          "asset": "3088373071065a76-PrebuiltGmsCoreSc_CronetDynamite.vdex",
-          "sha256": "3088373071065a764e64eb34266fe55b2173373184195ed5a3e38841a9a8c105",
-          "size": 7300,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteLoader.odex",
-          "asset": "5feb4990aa3bc786-PrebuiltGmsCoreSc_DynamiteLoader.odex",
-          "sha256": "5feb4990aa3bc78620731b2d18638223c524a6ba2bb1a56e7d39183061e84d24",
-          "size": 21156,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteLoader.vdex",
-          "asset": "cc0ec52585e0448a-PrebuiltGmsCoreSc_DynamiteLoader.vdex",
-          "sha256": "cc0ec52585e0448a8585e369419869aa7e62361a2436f3ec844d0ea9278785cb",
-          "size": 4548,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteModulesA.odex",
-          "asset": "9c76613a87e21fd7-PrebuiltGmsCoreSc_DynamiteModulesA.odex",
-          "sha256": "9c76613a87e21fd765df97bf9859caf7c81791b502c3ee522cb8f493021315b0",
-          "size": 25252,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteModulesA.vdex",
-          "asset": "cd2ea3ea29a117e5-PrebuiltGmsCoreSc_DynamiteModulesA.vdex",
-          "sha256": "cd2ea3ea29a117e512c327666b2f1dc59a044332d91342e48a9d0c99fa2b83c3",
-          "size": 17980,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteModulesC.odex",
-          "asset": "88fa3195bfafb141-PrebuiltGmsCoreSc_DynamiteModulesC.odex",
-          "sha256": "88fa3195bfafb141ac65199d16665423f751d6a099608540bbfbcb7c86599fe1",
-          "size": 29348,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_DynamiteModulesC.vdex",
-          "asset": "0cbda2af68e90d7b-PrebuiltGmsCoreSc_DynamiteModulesC.vdex",
-          "sha256": "0cbda2af68e90d7b50a71354ea141577f899572a49105f2074a5614b0181e67f",
-          "size": 31768,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_GoogleCertificates.odex",
-          "asset": "ca31731711f5d07a-PrebuiltGmsCoreSc_GoogleCertificates.odex",
-          "sha256": "ca31731711f5d07afc25c7172fd6937f5cb9b08fc4831a2a1e89063244380ead",
-          "size": 21156,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_GoogleCertificates.vdex",
-          "asset": "b1864be118fb832a-PrebuiltGmsCoreSc_GoogleCertificates.vdex",
-          "sha256": "b1864be118fb832ae3ef753f2d6c9a13eb704d9e1b9c029dbd6143e8a69be1a5",
-          "size": 4396,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_MapsDynamite.odex",
-          "asset": "f493d73c6ee10344-PrebuiltGmsCoreSc_MapsDynamite.odex",
-          "sha256": "f493d73c6ee103446255947907d294f4d75fe5f2cb6ae8d81e973be65454983a",
-          "size": 37540,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_MapsDynamite.vdex",
-          "asset": "128be87e4f1df2ac-PrebuiltGmsCoreSc_MapsDynamite.vdex",
-          "sha256": "128be87e4f1df2acd50918e4609d47962f66f0982e8b7251eb3f2904a317bcdc",
-          "size": 56580,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_MeasurementDynamite.odex",
-          "asset": "8f1e77b17a95a94e-PrebuiltGmsCoreSc_MeasurementDynamite.odex",
-          "sha256": "8f1e77b17a95a94e5c6cdfe3f0da4bad0e2d9766c0b82f2916b9fb1fd9d9c03d",
-          "size": 21156,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm/PrebuiltGmsCoreSc_MeasurementDynamite.vdex",
-          "asset": "c807bfed01c80875-PrebuiltGmsCoreSc_MeasurementDynamite.vdex",
-          "sha256": "c807bfed01c808759c044305aa26716878488e66f165a8651c505b3e20853129",
-          "size": 9344,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_AdsDynamite.odex",
-          "asset": "ecaa29b0b8401aba-PrebuiltGmsCoreSc_AdsDynamite.odex",
-          "sha256": "ecaa29b0b8401aba2948d3ac9b7cdb7ecb5ad2d958122bc1bd88e7e5bffb0c82",
-          "size": 62384,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_AdsDynamite.vdex",
-          "asset": "3f5849d4faf839f9-PrebuiltGmsCoreSc_AdsDynamite.vdex",
-          "sha256": "3f5849d4faf839f91055fb86bf7315806659b110060359a0e1a627b2202f91da",
-          "size": 111820,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_CronetDynamite.odex",
-          "asset": "d260e98eaca2a580-PrebuiltGmsCoreSc_CronetDynamite.odex",
-          "sha256": "d260e98eaca2a580b3ecec2c28fc917386e6225f69a62852eed7f3b0d94a6e67",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_CronetDynamite.vdex",
-          "asset": "3088373071065a76-PrebuiltGmsCoreSc_CronetDynamite.vdex",
-          "sha256": "3088373071065a764e64eb34266fe55b2173373184195ed5a3e38841a9a8c105",
-          "size": 7300,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteLoader.odex",
-          "asset": "2c8b22ce709fcba2-PrebuiltGmsCoreSc_DynamiteLoader.odex",
-          "sha256": "2c8b22ce709fcba23979c9ec02a9605e50f03eeeba89fef7fdc1f0224895caf9",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteLoader.vdex",
-          "asset": "cc0ec52585e0448a-PrebuiltGmsCoreSc_DynamiteLoader.vdex",
-          "sha256": "cc0ec52585e0448a8585e369419869aa7e62361a2436f3ec844d0ea9278785cb",
-          "size": 4548,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteModulesA.odex",
-          "asset": "d83c1fdeca581dd5-PrebuiltGmsCoreSc_DynamiteModulesA.odex",
-          "sha256": "d83c1fdeca581dd55c72f6e68cd5bbacbc6828432bfe10b60a0af32a3ede515f",
-          "size": 25520,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteModulesA.vdex",
-          "asset": "cd2ea3ea29a117e5-PrebuiltGmsCoreSc_DynamiteModulesA.vdex",
-          "sha256": "cd2ea3ea29a117e512c327666b2f1dc59a044332d91342e48a9d0c99fa2b83c3",
-          "size": 17980,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteModulesC.odex",
-          "asset": "4077728f92211ddc-PrebuiltGmsCoreSc_DynamiteModulesC.odex",
-          "sha256": "4077728f92211ddcf89633efa783a0773262b713551884c6f5c5fb93788ad8be",
-          "size": 29616,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_DynamiteModulesC.vdex",
-          "asset": "0cbda2af68e90d7b-PrebuiltGmsCoreSc_DynamiteModulesC.vdex",
-          "sha256": "0cbda2af68e90d7b50a71354ea141577f899572a49105f2074a5614b0181e67f",
-          "size": 31768,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_GoogleCertificates.odex",
-          "asset": "37f168a4be49e6d9-PrebuiltGmsCoreSc_GoogleCertificates.odex",
-          "sha256": "37f168a4be49e6d991e9f617af2bfbf5c0f6059251651afde9df725310e46d0f",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_GoogleCertificates.vdex",
-          "asset": "b1864be118fb832a-PrebuiltGmsCoreSc_GoogleCertificates.vdex",
-          "sha256": "b1864be118fb832ae3ef753f2d6c9a13eb704d9e1b9c029dbd6143e8a69be1a5",
-          "size": 4396,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_MapsDynamite.odex",
-          "asset": "190ca76e64f004dc-PrebuiltGmsCoreSc_MapsDynamite.odex",
-          "sha256": "190ca76e64f004dc9082546ac6ee5911a25133f2f0105e8679e84a7fed6c3b95",
-          "size": 37808,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_MapsDynamite.vdex",
-          "asset": "128be87e4f1df2ac-PrebuiltGmsCoreSc_MapsDynamite.vdex",
-          "sha256": "128be87e4f1df2acd50918e4609d47962f66f0982e8b7251eb3f2904a317bcdc",
-          "size": 56580,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_MeasurementDynamite.odex",
-          "asset": "bb8629dc70618101-PrebuiltGmsCoreSc_MeasurementDynamite.odex",
-          "sha256": "bb8629dc7061810143aa1827da4ec7fff8068777556bb536801aa8b5bf63c56f",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/oat/arm64/PrebuiltGmsCoreSc_MeasurementDynamite.vdex",
-          "asset": "c807bfed01c80875-PrebuiltGmsCoreSc_MeasurementDynamite.vdex",
-          "sha256": "c807bfed01c808759c044305aa26716878488e66f165a8651c505b3e20853129",
-          "size": 9344,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
           "path": "product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk",
           "asset": "e41c84c7981babf0-AndroidPlatformServices.apk",
           "sha256": "e41c84c7981babf0338b61b4dcf406c9e274318f5ddda5b78f73fb0f4fe41f2e",
@@ -462,24 +174,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/independent/oat/arm64/AndroidPlatformServices.odex",
-          "asset": "200f6eb953ca9e6a-AndroidPlatformServices.odex",
-          "sha256": "200f6eb953ca9e6a9507c21fcf207e69a83f669ed3e5cda74ca1b05609d7ae8c",
-          "size": 74672,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/independent/oat/arm64/AndroidPlatformServices.vdex",
-          "asset": "6b1dab83e39db13a-AndroidPlatformServices.vdex",
-          "sha256": "6b1dab83e39db13a2eb6868f8d0ee29552bf712649aab70fc441dcad25f6e9ef",
-          "size": 145932,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk",
@@ -498,78 +192,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/oat/arm64/MlkitBarcodeUIPrebuilt.odex",
-          "asset": "00942f5fe46d9332-MlkitBarcodeUIPrebuilt.odex",
-          "sha256": "00942f5fe46d9332f95df499588bb7baf41029fdaa1733b599ba632493fbf765",
-          "size": 62384,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/oat/arm64/MlkitBarcodeUIPrebuilt.vdex",
-          "asset": "81bcc318dbf8becd-MlkitBarcodeUIPrebuilt.vdex",
-          "sha256": "81bcc318dbf8becde6700b0ffd453311f476d44dffe62c8312441a8e9938522b",
-          "size": 111004,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/oat/arm64/VisionBarcodePrebuilt.odex",
-          "asset": "0a1629e5d2f4870f-VisionBarcodePrebuilt.odex",
-          "sha256": "0a1629e5d2f4870f18415f93e3e65c202a22624859d9695a5af8368fb2189901",
-          "size": 29616,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/oat/arm64/VisionBarcodePrebuilt.vdex",
-          "asset": "57035ab9d7ea2863-VisionBarcodePrebuilt.vdex",
-          "sha256": "57035ab9d7ea28634cb9acf94028de755cf63239ca1d11c5e8ed91e542373e61",
-          "size": 27884,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/oat/arm/PrebuiltGmsCoreSc.odex",
-          "asset": "7062fbdc754ea270-PrebuiltGmsCoreSc.odex",
-          "sha256": "7062fbdc754ea270e87ebebdfc5a561191ce767438d822e683eed4376d7dce1f",
-          "size": 840356,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/oat/arm/PrebuiltGmsCoreSc.vdex",
-          "asset": "2217361d3935d9c4-PrebuiltGmsCoreSc.vdex",
-          "sha256": "2217361d3935d9c474bb89685412621f22a9391a8fb650e0f0fe6c11f4c43e8f",
-          "size": 2447452,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/oat/arm64/PrebuiltGmsCoreSc.odex",
-          "asset": "673c49d5f3ef499d-PrebuiltGmsCoreSc.odex",
-          "sha256": "673c49d5f3ef499d6e1c611a3c8d228caced9547ccf5ea9abce051a4327c2a47",
-          "size": 840632,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/oat/arm64/PrebuiltGmsCoreSc.vdex",
-          "asset": "2217361d3935d9c4-PrebuiltGmsCoreSc.vdex",
-          "sha256": "2217361d3935d9c474bb89685412621f22a9391a8fb650e0f0fe6c11f4c43e8f",
-          "size": 2447452,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
@@ -588,24 +210,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/GoogleServicesFramework/oat/arm64/GoogleServicesFramework.odex",
-          "asset": "2fc1be729fbfb529-GoogleServicesFramework.odex",
-          "sha256": "2fc1be729fbfb52965aa8156ae1b06e1ffc467379277c18858ed9347078d6e79",
-          "size": 41904,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/GoogleServicesFramework/oat/arm64/GoogleServicesFramework.vdex",
-          "asset": "e39cd048a09289b5-GoogleServicesFramework.vdex",
-          "sha256": "e39cd048a09289b5e7dd97a71b1a7069c7bb10c287aaf697bc9651080c7348e7",
-          "size": 58988,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Device registration and push messaging.",
@@ -624,40 +228,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/Phonesky/Phonesky.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Phonesky/oat/arm64/Phonesky.art",
-          "asset": "7967a5dc30071202-Phonesky.art",
-          "sha256": "7967a5dc3007120258a25b9090b364e94d2eed3d4965f978ec9e6b9dd2b0a007",
-          "size": 16384,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Phonesky/oat/arm64/Phonesky.odex",
-          "asset": "8c6e997557712be3-Phonesky.odex",
-          "sha256": "8c6e997557712be3017d9d39d761e57d224acb846e1761df446075ad1ef8feae",
-          "size": 316344,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Phonesky/oat/arm64/Phonesky.vdex",
-          "asset": "666b365e71a297b3-Phonesky.vdex",
-          "sha256": "666b365e71a297b348b4b7e293833ba7a58d9dc0d22bafaef2005da2c4bec8e1",
-          "size": 917916,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "App store and Play Protect.",
@@ -709,24 +279,6 @@
           "kind": "apk"
         },
         {
-          "path": "product/priv-app/PartnerSetupPrebuilt/oat/arm64/PartnerSetupPrebuilt.odex",
-          "asset": "82ea738010eabc08-PartnerSetupPrebuilt.odex",
-          "sha256": "82ea738010eabc086dc897788ab48c62fb77062f6692d6f28a09d8f6e640e9cc",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/PartnerSetupPrebuilt/oat/arm64/PartnerSetupPrebuilt.vdex",
-          "asset": "1361aa9430767a37-PartnerSetupPrebuilt.vdex",
-          "sha256": "1361aa9430767a37e9a218b03c06bbca6ab3dea623ce3f3b07f42e1a49bc8b4a",
-          "size": 15640,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
           "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
           "asset": "b15cdfe6ccdcc5ce-CarrierSetup.apk",
           "sha256": "b15cdfe6ccdcc5ce442940a23584e3e0992f8062902330041ac8139a1bfb262f",
@@ -734,24 +286,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/CarrierSetup/oat/arm64/CarrierSetup.odex",
-          "asset": "c0fa29b59855ed9c-CarrierSetup.odex",
-          "sha256": "c0fa29b59855ed9caca4a596a3acd8d30278731bfc595ae303f3d54ee8f03977",
-          "size": 37808,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/CarrierSetup/oat/arm64/CarrierSetup.vdex",
-          "asset": "e3710d756d785600-CarrierSetup.vdex",
-          "sha256": "e3710d756d785600bf64bfa544b092223e4d1d06359b368837d5374b025c8887",
-          "size": 54888,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Replaces the AOSP first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
@@ -774,42 +308,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/Velvet/oat/arm/Velvet.odex",
-          "asset": "87af6f66a4a2444c-Velvet.odex",
-          "sha256": "87af6f66a4a2444cdfc21fc4fa02e2d817d1a182fdfc26d034b648949f81b98c",
-          "size": 1389220,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Velvet/oat/arm/Velvet.vdex",
-          "asset": "78ecc1284ad2dec7-Velvet.vdex",
-          "sha256": "78ecc1284ad2dec7ca7f2c5c6d6be70ca6a5f9b978a763936a1866447089e7d2",
-          "size": 4064648,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Velvet/oat/arm64/Velvet.odex",
-          "asset": "0c44cc7556a687f3-Velvet.odex",
-          "sha256": "0c44cc7556a687f3a62298297e0c6178375c8cd493d33c2c3ba7e83db2db2cfe",
-          "size": 1389496,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/Velvet/oat/arm64/Velvet.vdex",
-          "asset": "78ecc1284ad2dec7-Velvet.vdex",
-          "sha256": "78ecc1284ad2dec7ca7f2c5c6d6be70ca6a5f9b978a763936a1866447089e7d2",
-          "size": 4064648,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
@@ -848,40 +346,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/GoogleDialer/GoogleDialer.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleDialer/oat/arm64/GoogleDialer.art",
-          "asset": "ccd597771ac1027f-GoogleDialer.art",
-          "sha256": "ccd597771ac1027f91b089da46eeb3df40c5407178a8f9866beb8a228df897dc",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleDialer/oat/arm64/GoogleDialer.odex",
-          "asset": "1821d6013731d278-GoogleDialer.odex",
-          "sha256": "1821d6013731d27823a9ad5eecb3ce1433ad96e23f7bd8204391664a8e9bd7aa",
-          "size": 156592,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleDialer/oat/arm64/GoogleDialer.vdex",
-          "asset": "c7859766a4f4bd24-GoogleDialer.vdex",
-          "sha256": "c7859766a4f4bd2406871d1b03127581828b16f77f3062546974eec7f49fa990",
-          "size": 496464,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Call screening and spam protection.",
@@ -928,40 +392,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/GoogleContacts/GoogleContacts.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/GoogleContacts/oat/arm64/GoogleContacts.art",
-          "asset": "24c58d9c4bca945a-GoogleContacts.art",
-          "sha256": "24c58d9c4bca945af54d6d9f10153310f3d05e3aa3fbde7bdd41af64da629627",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/GoogleContacts/oat/arm64/GoogleContacts.odex",
-          "asset": "fc6c213e4a6f2bf3-GoogleContacts.odex",
-          "sha256": "fc6c213e4a6f2bf33808f42c6d507ec9c5bef23aadf0bb3bf927546272c6d000",
-          "size": 123832,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/GoogleContacts/oat/arm64/GoogleContacts.vdex",
-          "asset": "48cf6ba7edc9dda4-GoogleContacts.vdex",
-          "sha256": "48cf6ba7edc9dda40e8fc06d1afa137f923c518a982aa6f32af6f870f0e42271",
-          "size": 326708,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -969,6 +399,28 @@
       ],
       "removes": [
         "system_ext/priv-app/Contacts"
+      ]
+    },
+    {
+      "id": "gboard",
+      "name": "Gboard",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/LatinIMEGooglePrebuilt2023Tablet/LatinIMEGooglePrebuilt2023Tablet.apk",
+          "asset": "56f849551ae63a7c-LatinIMEGooglePrebuilt2023Tablet.apk",
+          "sha256": "56f849551ae63a7cf67ffc5cbc3dff22536a1165999b1b7b06a9bac79d7a60b2",
+          "size": 85628720,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/app/LatinIME"
       ]
     },
     {
@@ -984,24 +436,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/Photos/oat/arm64/Photos.odex",
-          "asset": "b539777de331fd5f-Photos.odex",
-          "sha256": "b539777de331fd5fef22acc74a08f9434d786b43c047ff19064ff1ed81bd87b9",
-          "size": 316344,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/Photos/oat/arm64/Photos.vdex",
-          "asset": "0e04fce83cb319e3-Photos.vdex",
-          "sha256": "0e04fce83cb319e31b0b735bab54fa1f72b1b13bc4f4fa74de4b6e5bb55887d0",
-          "size": 1037284,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1021,24 +455,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/CalendarGooglePrebuilt/oat/arm64/CalendarGooglePrebuilt.odex",
-          "asset": "da9f15ffe2b2c40b-CalendarGooglePrebuilt.odex",
-          "sha256": "da9f15ffe2b2c40b4b28a102d57cf48d24f93c8ca55dc992d499a0e9e3ce60b5",
-          "size": 250800,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/CalendarGooglePrebuilt/oat/arm64/CalendarGooglePrebuilt.vdex",
-          "asset": "576b6560dea8f713-CalendarGooglePrebuilt.vdex",
-          "sha256": "576b6560dea8f713799b050d8b48a176c42f997ec72688b1cc616145445313a3",
-          "size": 806724,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1130,40 +546,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/PrebuiltGmail/oat/arm64/PrebuiltGmail.art",
-          "asset": "db6f698d54573e57-PrebuiltGmail.art",
-          "sha256": "db6f698d54573e572ae989e803e6c629264f21dddeb67454980f2dc15dbe8d4b",
-          "size": 16384,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/PrebuiltGmail/oat/arm64/PrebuiltGmail.odex",
-          "asset": "fb6ee79e59bb71a3-PrebuiltGmail.odex",
-          "sha256": "fb6ee79e59bb71a314fcdab9f3b61c97e8be9934cfe607255b8b014718508a07",
-          "size": 340912,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/PrebuiltGmail/oat/arm64/PrebuiltGmail.vdex",
-          "asset": "5ff3c29505d918fd-PrebuiltGmail.vdex",
-          "sha256": "5ff3c29505d918fd115c426290034816c86517b320df03a3b707ca6095bb014c",
-          "size": 1018848,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1183,40 +565,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/Maps/Maps.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/Maps/oat/arm64/Maps.art",
-          "asset": "35f913f609fb3888-Maps.art",
-          "sha256": "35f913f609fb388884cf97cb5b19ab08d5f12eba25ebad6e98e91d26b58ed6ef",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/Maps/oat/arm64/Maps.odex",
-          "asset": "b18bd702b74e1fc9-Maps.odex",
-          "sha256": "b18bd702b74e1fc9bbc11b7fc7d334736a108ef566a670c17af85625a688270e",
-          "size": 398264,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/Maps/oat/arm64/Maps.vdex",
-          "asset": "b42e62d9a350b114-Maps.vdex",
-          "sha256": "b42e62d9a350b1149369fb47b0e46e71c93c721ec76c7bc135d4acfc4412457b",
-          "size": 1293980,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1236,24 +584,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/Drive/oat/arm64/Drive.odex",
-          "asset": "88b0ca21c7457700-Drive.odex",
-          "sha256": "88b0ca21c74577003bb61d41b72cdc051b7d1b1d9f5d5a11f8451a9ac60c0996",
-          "size": 181176,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/Drive/oat/arm64/Drive.vdex",
-          "asset": "de92f8d8e3fc776e-Drive.vdex",
-          "sha256": "de92f8d8e3fc776eaeb99d3efac841dd1dabc4752e55d8054607c5d06cf64a14",
-          "size": 585112,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1275,67 +605,6 @@
           "kind": "apk"
         },
         {
-          "path": "product/app/YouTube/YouTube.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm/YouTube.art",
-          "asset": "ac0ca0d160e5f149-YouTube.art",
-          "sha256": "ac0ca0d160e5f149536a6880830462e8a47dae65afd2308dd57d7e3c35368a69",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm/YouTube.odex",
-          "asset": "a466f114347cdd32-YouTube.odex",
-          "sha256": "a466f114347cdd32cea21aa8e677fc62c6600f22ee1a2e6df491e17c8b285381",
-          "size": 303780,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm/YouTube.vdex",
-          "asset": "3d410e6800d30f61-YouTube.vdex",
-          "sha256": "3d410e6800d30f615958856f62817848e266f9b91d2546558a91648c135fec23",
-          "size": 970764,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm64/YouTube.art",
-          "asset": "3b6d19051c5ac45e-YouTube.art",
-          "sha256": "3b6d19051c5ac45e90f1dbdfebe4bff7d04fbbb894bd8fa8a06f20e6d7a8f61d",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm64/YouTube.odex",
-          "asset": "3f41d05c445037e2-YouTube.odex",
-          "sha256": "3f41d05c445037e28de578b416273ea964d935c4de01f65dbf95b9c4f6f036af",
-          "size": 304056,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTube/oat/arm64/YouTube.vdex",
-          "asset": "3d410e6800d30f61-YouTube.vdex",
-          "sha256": "3d410e6800d30f615958856f62817848e266f9b91d2546558a91648c135fec23",
-          "size": 970764,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
           "path": "product/app/YouTubeMusicPrebuilt/YouTubeMusicPrebuilt.apk",
           "asset": "e4f68ade726c7f8e-YouTubeMusicPrebuilt.apk",
           "sha256": "e4f68ade726c7f8e56ea451f09cf18cdb800caaaaf087bccf083e504ff19d99f",
@@ -1343,24 +612,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/YouTubeMusicPrebuilt/oat/arm64/YouTubeMusicPrebuilt.odex",
-          "asset": "1ec20fbb40380bb3-YouTubeMusicPrebuilt.odex",
-          "sha256": "1ec20fbb40380bb3e1a9fa452b93799af3e21d0f1c558fbac5b076fa651b7d08",
-          "size": 328632,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/YouTubeMusicPrebuilt/oat/arm64/YouTubeMusicPrebuilt.vdex",
-          "asset": "07f3d5eef5f26a21-YouTubeMusicPrebuilt.vdex",
-          "sha256": "07f3d5eef5f26a2166ca9fbd834d2d3ed9974107c6b66076b718d860d9c57775",
-          "size": 885008,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1382,24 +633,6 @@
           "kind": "apk"
         },
         {
-          "path": "system_ext/priv-app/NexusLauncherRelease/oat/arm64/NexusLauncherRelease.odex",
-          "asset": "758b4877d376a0b2-NexusLauncherRelease.odex",
-          "sha256": "758b4877d376a0b20137e84b2733856e67da1c4594e04679bec700610ea837ca",
-          "size": 66480,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/NexusLauncherRelease/oat/arm64/NexusLauncherRelease.vdex",
-          "asset": "680e8abee1babb25-NexusLauncherRelease.vdex",
-          "sha256": "680e8abee1babb25885a2b4f8379a76a76379c23bdd77dcbf3070a7aedf93ea4",
-          "size": 138696,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
           "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
           "asset": "3d584b3d9e39ef82-WallpaperPickerGoogleRelease.apk",
           "sha256": "3d584b3d9e39ef82d5426ccae89e5bf6bcc3dc5e9f8ea06731c9017e1f3fbc41",
@@ -1407,24 +640,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/oat/arm64/WallpaperPickerGoogleRelease.odex",
-          "asset": "2dccd5cc583ece41-WallpaperPickerGoogleRelease.odex",
-          "sha256": "2dccd5cc583ece4184d9289bdae2121f0180872912f353a683e7b83a49ea24ae",
-          "size": 66480,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/oat/arm64/WallpaperPickerGoogleRelease.vdex",
-          "asset": "897e68769f29dfc4-WallpaperPickerGoogleRelease.vdex",
-          "sha256": "897e68769f29dfc479e7463146241c019c72b1a040702d5df448e2d3c919e171",
-          "size": 125228,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Pixel home screen. Pair with gsa for the search bar.",
@@ -1470,6 +685,25 @@
       ]
     },
     {
+      "id": "recorder",
+      "name": "Pixel Recorder",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/priv-app/RecorderPrebuilt/RecorderPrebuilt.apk",
+          "asset": "a6c38f096ee8bd74-RecorderPrebuilt.apk",
+          "sha256": "a6c38f096ee8bd74c418561c2dd39f7f7521b6b4586a04c84bd80a855925dff3",
+          "size": 67120617,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "pixelcamera",
       "name": "Pixel Camera",
       "category": "pixel",
@@ -1482,40 +716,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk.prof",
-          "size": 0,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleCamera/oat/arm64/GoogleCamera.art",
-          "asset": "1b0804daae2b7c13-GoogleCamera.art",
-          "sha256": "1b0804daae2b7c13e355da65b5707175e284398f8647597c41419ea5fdde0e7f",
-          "size": 12288,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleCamera/oat/arm64/GoogleCamera.odex",
-          "asset": "22fc91641c132627-GoogleCamera.odex",
-          "sha256": "22fc91641c132627dd0509b5e6eb18f9fa39fb4c6da6970d2b131d47ec7439a9",
-          "size": 119736,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/GoogleCamera/oat/arm64/GoogleCamera.vdex",
-          "asset": "2ae851e14b63e036-GoogleCamera.vdex",
-          "sha256": "2ae851e14b63e036a62fdd3f46e9f72b85001073bd3240e5edb73c5228f339b8",
-          "size": 318524,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1535,24 +735,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/GoogleTTS/oat/arm64/GoogleTTS.odex",
-          "asset": "46b7bd9b98026d8e-GoogleTTS.odex",
-          "sha256": "46b7bd9b98026d8e45ff0e5f84ecbfefbbc07504ff71b3dd354c4b648a8a117c",
-          "size": 82872,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/GoogleTTS/oat/arm64/GoogleTTS.vdex",
-          "asset": "da2c3de66bc66a0a-GoogleTTS.vdex",
-          "sha256": "da2c3de66bc66a0a3f9f20d63ebd4cf55847076697f488cb487620b30f1b0542",
-          "size": 153472,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1572,24 +754,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/WellbeingPrebuilt/oat/arm64/WellbeingPrebuilt.odex",
-          "asset": "e9229288099ec0f2-WellbeingPrebuilt.odex",
-          "sha256": "e9229288099ec0f235f1d2568115c600c475d9ab627d1170d681b69ece8c0e8a",
-          "size": 103344,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/WellbeingPrebuilt/oat/arm64/WellbeingPrebuilt.vdex",
-          "asset": "db891d7e3da6d31b-WellbeingPrebuilt.vdex",
-          "sha256": "db891d7e3da6d31b25ec9bdae028542edad5a5001994e51103468b29bcf4ceec",
-          "size": 266276,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
@@ -1609,24 +773,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/EuiccGoogle/oat/arm64/EuiccGoogle.odex",
-          "asset": "5f97a6be05170356-EuiccGoogle.odex",
-          "sha256": "5f97a6be051703567dabf7e6ed12b59886f3da37755f11291ca405b109d02742",
-          "size": 74672,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/priv-app/EuiccGoogle/oat/arm64/EuiccGoogle.vdex",
-          "asset": "8ac8b0b60a2c7045-EuiccGoogle.vdex",
-          "sha256": "8ac8b0b60a2c7045f6729d83b940c8f28f2dd995b881432829422060c5a5c97b",
-          "size": 136860,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         },
         {
           "path": "system_ext/etc/permissions/com.google.euiccpixel.permissions.xml",
@@ -1656,24 +802,6 @@
           "kind": "apk"
         },
         {
-          "path": "system_ext/priv-app/EuiccGoogleOverlay/oat/arm64/EuiccGoogleOverlay.odex",
-          "asset": "de5e3e6fb74e6890-EuiccGoogleOverlay.odex",
-          "sha256": "de5e3e6fb74e68906a48b561039726f86af627088b1c2af9005b945583750239",
-          "size": 17328,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/EuiccGoogleOverlay/oat/arm64/EuiccGoogleOverlay.vdex",
-          "asset": "9e6a0020707a813f-EuiccGoogleOverlay.vdex",
-          "sha256": "9e6a0020707a813fa1d91a968d1a26317e8e4e8aac9c15d8f72d46e0dadd1005",
-          "size": 96,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
           "path": "system_ext/priv-app/EuiccSupportPixelPermissions/EuiccSupportPixelPermissions.apk",
           "asset": "b69a063eb90e2ff2-EuiccSupportPixelPermissions.apk",
           "sha256": "b69a063eb90e2ff2c8c702f5352c9403139230ca42687ce98cc9b3391f93e61d",
@@ -1681,24 +809,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/EuiccSupportPixelPermissions/oat/arm64/EuiccSupportPixelPermissions.odex",
-          "asset": "3114b4dd46aca82a-EuiccSupportPixelPermissions.odex",
-          "sha256": "3114b4dd46aca82a832d0e1882539753aafaf55b22af24207407e8dbdd9ec6e7",
-          "size": 17328,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/EuiccSupportPixelPermissions/oat/arm64/EuiccSupportPixelPermissions.vdex",
-          "asset": "6dc6d5b3de1923b5-EuiccSupportPixelPermissions.vdex",
-          "sha256": "6dc6d5b3de1923b5eaa45c520d70c528fe6ee73c3673a197f2dfe6f941b28aaa",
-          "size": 168,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "summary": "Needed for eSIM provisioning on most carriers.",
@@ -1719,42 +829,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/VoiceAccessPrebuilt/oat/arm64/VoiceAccessPrebuilt.odex",
-          "asset": "5bf4754a3b846963-VoiceAccessPrebuilt.odex",
-          "sha256": "5bf4754a3b846963efc51c1ff2154805c39b65d43fb8f26ec357dd9ddffb9fb7",
-          "size": 95152,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/VoiceAccessPrebuilt/oat/arm64/VoiceAccessPrebuilt.vdex",
-          "asset": "ba4b05c3446aeecb-VoiceAccessPrebuilt.vdex",
-          "sha256": "ba4b05c3446aeecbd61e43d35416a4cc61e4f2ae9a6ec40fcf88211f76526044",
-          "size": 230696,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/talkback/oat/arm64/talkback.odex",
-          "asset": "871d6251d877e959-talkback.odex",
-          "sha256": "871d6251d877e9592b262de7f5661e1fdf277a13ec182a4c47f03fe7d1485ad2",
-          "size": 74672,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/app/talkback/oat/arm64/talkback.vdex",
-          "asset": "40a2464668601951-talkback.vdex",
-          "sha256": "40a24646686019515b7ab448b7287829a921287acc7cb41abbccb087312bdf17",
-          "size": 148092,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         },
         {
           "path": "product/app/talkback/talkback.apk",
@@ -1783,24 +857,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/QuickAccessWallet/oat/arm64/QuickAccessWallet.odex",
-          "asset": "e81c6e1e42365043-QuickAccessWallet.odex",
-          "sha256": "e81c6e1e423650431f2cfc05bc400350deff66bbc181d1b150518b64c9b9af99",
-          "size": 21424,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "system_ext/priv-app/QuickAccessWallet/oat/arm64/QuickAccessWallet.vdex",
-          "asset": "435a2e0041f2bec8-QuickAccessWallet.vdex",
-          "sha256": "435a2e0041f2bec8f64de78493bdd1ee711e1f8eff61e103e8b27a94e2b9c2e6",
-          "size": 6456,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
         }
       ],
       "requires": [
