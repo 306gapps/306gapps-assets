@@ -1,0 +1,1045 @@
+{
+  "schema": 1,
+  "release": {
+    "id": "a15-bd4a.250505.003",
+    "android": {
+      "api": 35,
+      "version": "15",
+      "codename": "VanillaIceCream"
+    },
+    "source": {
+      "device": "tegu",
+      "build": "BD4A.250505.003",
+      "image": "https://dl.google.com/dl/android/aosp/tegu-ota-bd4a.250505.003-06eb56e8.zip",
+      "sha256": "06eb56e8bbaf4c593e730b74285519a82bcc5727ea309d1815c944e5f259d18d"
+    },
+    "created": "2026-09-24T18:08:00Z",
+    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
+  },
+  "packages": [
+    {
+      "id": "gmscore",
+      "name": "Google Play services",
+      "category": "core",
+      "files": [
+        {
+          "path": "product/etc/default-permissions/default-permissions.xml",
+          "asset": "41c620259c5a581f-default-permissions.xml",
+          "sha256": "41c620259c5a581fe58e5a4be5380bb60e96a038e6dced25e219efe67d67ea90",
+          "size": 8249,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-google-p.xml",
+          "asset": "8b2eb3cc3d1cf00e-privapp-permissions-google-p.xml",
+          "sha256": "8b2eb3cc3d1cf00e164f00c85e38ffd99f6c644acd1cf107ea46653be747a3fc",
+          "size": 55666,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-google-pearl.xml",
+          "asset": "5bbdc4590b0cb121-privapp-permissions-google-pearl.xml",
+          "sha256": "5bbdc4590b0cb1217bff23c69dbe1aae96ce3ada4dc885e3f528fe01f989d4ca",
+          "size": 1091,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/etc/sysconfig/google-hiddenapi-package-whitelist.xml",
+          "asset": "bcd8a5af2cfcb56a-google-hiddenapi-package-whitelist.xml",
+          "sha256": "bcd8a5af2cfcb56aea1d891f4eedd5dff6037043b440e772192a7422f39373b6",
+          "size": 7490,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-initial-package-stopped-states.xml",
+          "asset": "382df93f4b485853-google-initial-package-stopped-states.xml",
+          "sha256": "382df93f4b485853ee236b8f450e729d6d86d7d8ac20e1c2eae186370f4e32d6",
+          "size": 2953,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-install-constraints-package-allowlist.xml",
+          "asset": "f86c08c073098dde-google-install-constraints-package-allowlist.xml",
+          "sha256": "f86c08c073098ddee4c4d9d1ee82230157c8f0edf1b964e43c8b4f4cbf069dfe",
+          "size": 3201,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-staged-installer-whitelist.xml",
+          "asset": "c5c27d407dc5f321-google-staged-installer-whitelist.xml",
+          "sha256": "c5c27d407dc5f3219de77f94fc2b439195ab8f2d017feb68d4ec595aeb09203c",
+          "size": 393,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-system-apps-update-ownership.xml",
+          "asset": "4ae4c66c889a94cd-google-system-apps-update-ownership.xml",
+          "sha256": "4ae4c66c889a94cd35e6e21cd3dc2b01ff47843fc06fd2add3a289b390b849b1",
+          "size": 783,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google.xml",
+          "asset": "a44063fea3a1422e-google.xml",
+          "sha256": "a44063fea3a1422ea64d78e77347fd1ce155b33132933f4256aa5db8a54c20e2",
+          "size": 9404,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google_build.xml",
+          "asset": "724875dc95f7fb7e-google_build.xml",
+          "sha256": "724875dc95f7fb7eb950714f9a474a9a304e081626d9364647e02409e4bdae9c",
+          "size": 1106,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCoreVic.apk",
+          "asset": "9e0067f1c22d1de8-PrebuiltGmsCoreVic.apk",
+          "sha256": "9e0067f1c22d1de8f8ffdf09b647f48122b9c6e6c668cd3ec8eec5aede802802",
+          "size": 167684622,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_AdsDynamite.uncompressed.apk",
+          "asset": "4912de0aae6ff56f-PrebuiltGmsCoreVic_AdsDynamite.uncompressed.apk",
+          "sha256": "4912de0aae6ff56f3551afc718627d9e554abdf9f082115253f0e15f995ab054",
+          "size": 4261958,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_CronetDynamite.apk",
+          "asset": "e59a8c0ce5f2607c-PrebuiltGmsCoreVic_CronetDynamite.apk",
+          "sha256": "e59a8c0ce5f2607c895cd5453992e5fd73dac53e93221f1ec83a50dc4da61091",
+          "size": 10089680,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteLoader.uncompressed.apk",
+          "asset": "1a0af117317fea57-PrebuiltGmsCoreVic_DynamiteLoader.uncompressed.apk",
+          "sha256": "1a0af117317fea57ffdf677ea02694ecca520d0ad3e35854a19d2d27bed5a3f2",
+          "size": 193799,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteModulesA.apk",
+          "asset": "be10f1c4ef864812-PrebuiltGmsCoreVic_DynamiteModulesA.apk",
+          "sha256": "be10f1c4ef864812b28f579e0fecf60714a2d8d9184d7b33f2468a344bfcf7df",
+          "size": 1088488,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteModulesC.apk",
+          "asset": "cb5469fdd11aa2df-PrebuiltGmsCoreVic_DynamiteModulesC.apk",
+          "sha256": "cb5469fdd11aa2dfb02365788e285e88a8e15889777edcba37da42245c677d43",
+          "size": 2284546,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_GoogleCertificates.apk",
+          "asset": "91f9c99c5d67dcbd-PrebuiltGmsCoreVic_GoogleCertificates.apk",
+          "sha256": "91f9c99c5d67dcbd200a88e796ad1e39df3b17a7f31c66f3e78383a14c625844",
+          "size": 275724,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_MapsDynamite.apk",
+          "asset": "b600752a6741551e-PrebuiltGmsCoreVic_MapsDynamite.apk",
+          "sha256": "b600752a6741551ed3effc13e88651c4ff479c02b87d551415f25cbdbe078101",
+          "size": 2455389,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_MeasurementDynamite.apk",
+          "asset": "d8d45bda1175c777-PrebuiltGmsCoreVic_MeasurementDynamite.apk",
+          "sha256": "d8d45bda1175c77763820f60283d1472da3f18fc8b63f550c21d5e2c2f9eba03",
+          "size": 881931,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices.apk",
+          "asset": "e41c84c7981babf0-AndroidPlatformServices.apk",
+          "sha256": "e41c84c7981babf0338b61b4dcf406c9e274318f5ddda5b78f73fb0f4fe41f2e",
+          "size": 13841872,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk",
+          "asset": "7d1f12976a60d8fa-MlkitBarcodeUIPrebuilt.apk",
+          "sha256": "7d1f12976a60d8fa5ff49f2367364739ab445d34626dea236f360c19bd0a519d",
+          "size": 18122727,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk",
+          "asset": "895a1fa5a0742449-VisionBarcodePrebuilt.apk",
+          "sha256": "895a1fa5a07424494e17a53f5042e5dd182e46e02148d1ebf0f67260df3feaf8",
+          "size": 5268022,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
+      "required": true
+    },
+    {
+      "id": "gsf",
+      "name": "Google Services Framework",
+      "category": "core",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
+          "asset": "538d0dd1b7fbabe7-GoogleServicesFramework.apk",
+          "sha256": "538d0dd1b7fbabe7ecf87037ad5605b51ae2d3310a89296d90d00033dc79b68d",
+          "size": 5343862,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Device registration and push messaging.",
+      "required": true
+    },
+    {
+      "id": "vending",
+      "name": "Google Play Store",
+      "category": "core",
+      "files": [
+        {
+          "path": "product/priv-app/Phonesky/Phonesky.apk",
+          "asset": "3cb689feb5a3c688-Phonesky.apk",
+          "sha256": "3cb689feb5a3c688b7286986b4cc74b6ecf397db41f382d0278b8586e332b3cc",
+          "size": 85459106,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/Phonesky/Phonesky.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "summary": "App store and Play Protect.",
+      "default": true,
+      "requires": [
+        "gmscore",
+        "gsf"
+      ]
+    },
+    {
+      "id": "setupwizard",
+      "name": "Google Setup Wizard",
+      "category": "setup",
+      "files": [
+        {
+          "path": "product/etc/permissions/com.google.android.apps.setupwizard.searchselector.xml",
+          "asset": "0019058d97e7ce45-com.google.android.apps.setupwizard.searchselector.xml",
+          "sha256": "0019058d97e7ce452a3e726ea7fb91176972ab4f04060a29b02f01d3e8fc9b6c",
+          "size": 473,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlay2024.apk",
+          "asset": "6d836253d9a3e7bd-PixelSetupWizardOverlay2024.apk",
+          "sha256": "6d836253d9a3e7bd6cfff8e8bc05cab0ca1ae848ece08914102d97fc5083b25f",
+          "size": 248403,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlayTegu.apk",
+          "asset": "807455c6a16d2710-PixelSetupWizardOverlayTegu.apk",
+          "sha256": "807455c6a16d271094b2670d887b624f81bbee1c16e509adc827cd2687c24f40",
+          "size": 16797,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/priv-app/GoogleRestorePrebuilt-v603273/GoogleRestorePrebuilt-v603273.apk",
+          "asset": "399050cc195ce94c-GoogleRestorePrebuilt-v603273.apk",
+          "sha256": "399050cc195ce94ccb51283e6654f47f3e098d7f6ede7491ac3e1131ed049b7c",
+          "size": 15778474,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
+          "asset": "3e845b405a70ecac-PartnerSetupPrebuilt.apk",
+          "sha256": "3e845b405a70ecac406eaad7fe4a547dc78b630c4fd72049721af9a900a6a88c",
+          "size": 1452615,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/SearchSelectorPrebuilt/SearchSelectorPrebuilt.apk",
+          "asset": "83d02ad1f58cfeed-SearchSelectorPrebuilt.apk",
+          "sha256": "83d02ad1f58cfeedb4d71e6fbd676c356befb39cd822cd81aee88cb0c15b2e62",
+          "size": 4581061,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
+          "asset": "cdc25611f09bad4b-CarrierSetup.apk",
+          "sha256": "cdc25611f09bad4b44a7acb9906d8468c42c334cf68c8ba0365ad5bc59083dd1",
+          "size": 6767877,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Replaces the AOSP first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
+      "default": true,
+      "requires": [
+        "gmscore",
+        "vending"
+      ]
+    },
+    {
+      "id": "gsa",
+      "name": "Google app and Assistant",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/priv-app/Velvet/Velvet.apk",
+          "asset": "2c9291af65b7316e-Velvet.apk",
+          "sha256": "2c9291af65b7316ebe7ef3299a176c84fa5824ee3ad8579b706668c5c704142f",
+          "size": 437685953,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "dialer",
+      "name": "Google Phone",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/etc/permissions/com.google.android.dialer.support.xml",
+          "asset": "42c0ad27676d0b7d-com.google.android.dialer.support.xml",
+          "sha256": "42c0ad27676d0b7d21150d6586672b2567ac272f5f24657110914b090631bdb7",
+          "size": 564,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/framework/com.google.android.dialer.support.jar",
+          "asset": "9550f8e919a0db64-com.google.android.dialer.support.jar",
+          "sha256": "9550f8e919a0db64b8281ab828ca515ebad62f239ec79cc8a423127765b480c4",
+          "size": 942,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "product/priv-app/GoogleDialer/GoogleDialer.apk",
+          "asset": "9d45d7a96d1a620b-GoogleDialer.apk",
+          "sha256": "9d45d7a96d1a620b37d6b5e0981117ac0fe267d5a3c40adaf5d25f5175f56d44",
+          "size": 74309328,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/GoogleDialer/GoogleDialer.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "summary": "Call screening and spam protection.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/priv-app/Dialer"
+      ]
+    },
+    {
+      "id": "messages",
+      "name": "Google Messages",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/priv-app/PrebuiltBugle/PrebuiltBugle.apk",
+          "asset": "478b9cf7ea2150cb-PrebuiltBugle.apk",
+          "sha256": "478b9cf7ea2150cb6f8825b167672b6a0e418f8ab3b61f1c38d1783cca56933d",
+          "size": 141461353,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "RCS-capable SMS client.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/priv-app/messaging"
+      ]
+    },
+    {
+      "id": "contacts",
+      "name": "Google Contacts",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/GoogleContacts/GoogleContacts.apk",
+          "asset": "e54b52563205027b-GoogleContacts.apk",
+          "sha256": "e54b52563205027b8ed9271dc9ad9fd9fbb521ea509b5c3682f6df2d2c8a2d83",
+          "size": 30019916,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/GoogleContacts/GoogleContacts.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/priv-app/Contacts"
+      ]
+    },
+    {
+      "id": "gboard",
+      "name": "Gboard",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk",
+          "asset": "34ca333741891729-LatinIMEGooglePrebuilt.apk",
+          "sha256": "34ca333741891729481e1e14e2a237dca88d93d15040347545f25b845cf9ef5d",
+          "size": 80929582,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/app/LatinIME"
+      ]
+    },
+    {
+      "id": "photos",
+      "name": "Google Photos",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk",
+          "asset": "2438264bdfe8a4fa-MarkupGoogle_v2.apk",
+          "sha256": "2438264bdfe8a4fadd374ae8dd351d87c58baa67e690075b4f92508fcaf32978",
+          "size": 6558154,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/Photos/Photos.apk",
+          "asset": "b253f224b66047b1-Photos.apk",
+          "sha256": "b253f224b66047b13976f92beabb6a5f279a21cb29dcca2afad35691b11a4816",
+          "size": 151833257,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "calendar",
+      "name": "Google Calendar",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk",
+          "asset": "150eab70ba9468d4-CalendarGooglePrebuilt.apk",
+          "sha256": "150eab70ba9468d4486213dc1978e37e1d9841f2f9e604eedbf59b1e4a157fc7",
+          "size": 38119265,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "chrome",
+      "name": "Chrome",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/Chrome-Stub/Chrome-Stub.apk",
+          "asset": "a74da5a020733b91-Chrome-Stub.apk",
+          "sha256": "a74da5a020733b91adbdba38ec38598d39a9a9833f0876c9859c5a7925229ecd",
+          "size": 12701,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/Chrome/Chrome.apk.gz",
+          "asset": "369bad860000e471-Chrome.apk.gz",
+          "sha256": "369bad860000e47178a0f162ddf2b078cf64f36a6d94d0b90b827a4e20922c64",
+          "size": 17870698,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
+          "asset": "3cfdf8f44f9b2d52-TrichromeLibrary-Stub.apk",
+          "sha256": "3cfdf8f44f9b2d52f65348bd7dda7391306c03e88517e315f9df91784e6beb7f",
+          "size": 12701,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
+          "asset": "54787cd3d9ce92f6-TrichromeLibrary.apk.gz",
+          "sha256": "54787cd3d9ce92f6ee2a38e1f3adaccd349193a7f2dfb6d5e3e9e0efea6d8441",
+          "size": 64880181,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "summary": "Includes the Trichrome library Chrome and WebView share.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "webview",
+      "name": "Google WebView",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/WebViewGoogle-Stub/WebViewGoogle-Stub.apk",
+          "asset": "5516c9138eb3360f-WebViewGoogle-Stub.apk",
+          "sha256": "5516c9138eb3360fbb41a4b8f33e421bd372cdee042a5ffc1b11aa8c5a89fab1",
+          "size": 12701,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/WebViewGoogle/WebViewGoogle.apk.gz",
+          "asset": "d0bbcc0d2aa94a1b-WebViewGoogle.apk.gz",
+          "sha256": "d0bbcc0d2aa94a1b3cc75c2c34ddfe50e45be17763e4415c4299a2ee7882d2b8",
+          "size": 46239401,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ]
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk",
+          "asset": "3b3d16a761e5ea56-PrebuiltGmail.apk",
+          "sha256": "3b3d16a761e5ea56f6a41356b25c3bbf2a23a81c3cd1f8904a9d0a50ea3002df",
+          "size": 147801083,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/Maps/Maps.apk",
+          "asset": "7d0d69aee212f290-Maps.apk",
+          "sha256": "7d0d69aee212f290a61a361916186d1ca06cabc02da3a106d800666cfae0274d",
+          "size": 85157866,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/Maps/Maps.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/Drive/Drive.apk",
+          "asset": "15e9c027859fb26e-Drive.apk",
+          "sha256": "15e9c027859fb26e3dd2bfbbfe74b7a9fee0a1815c54dffd83c4afd0fc5b526e",
+          "size": 69046398,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/YouTube/YouTube.apk",
+          "asset": "70920f194dd3aee4-YouTube.apk",
+          "sha256": "70920f194dd3aee4fa56ae46e62e7c6b8b568de6ed1e377d4d7522b7f2e5a244",
+          "size": 130154591,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/YouTube/YouTube.apk.prof",
+          "size": 0,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/app/YouTubeMusicPrebuilt/YouTubeMusicPrebuilt.apk",
+          "asset": "8ddc39e2e6126de7-YouTubeMusicPrebuilt.apk",
+          "sha256": "8ddc39e2e6126de7e257112839498fd27a44be9d82181b48c82742da93e13e37",
+          "size": 73201166,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "meet",
+      "name": "Google Meet",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/MeetPrebuilt_20240414/MeetPrebuilt_20240414.apk",
+          "asset": "21a12c1c583472b7-MeetPrebuilt_20240414.apk",
+          "sha256": "21a12c1c583472b7e13ce6720134b252c821c4b92c7a492cb12e4a55129c7b9b",
+          "size": 58228567,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "pixellauncher",
+      "name": "Pixel Launcher",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
+          "asset": "de0bf6b458ae619e-NexusLauncherRelease.apk",
+          "sha256": "de0bf6b458ae619e0d14ed9a98a4ba8b7259b3393b6ff8bece2ad0cff2db5375",
+          "size": 14281966,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
+          "asset": "dc4d492f68bba5c3-WallpaperPickerGoogleRelease.apk",
+          "sha256": "dc4d492f68bba5c361ef9bfa4d1e46f9ea5961c4611ac76ff9cd5bcd170913bf",
+          "size": 8464532,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Pixel home screen. Pair with gsa for the search bar.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "system_ext/priv-app/Launcher3QuickStep"
+      ]
+    },
+    {
+      "id": "pixelsetup",
+      "name": "Pixel wallpapers and themes",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelThemesStub/PixelThemesStub.apk",
+          "asset": "6f1d678f26f760ee-PixelThemesStub.apk",
+          "sha256": "6f1d678f26f760eea66d79e1aa55ab60ab0585781f03e3ceb7056480076ab322",
+          "size": 94621,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
+          "asset": "9cdaa60673c6d632-PixelThemesStub2022_and_newer.apk",
+          "sha256": "9cdaa60673c6d632bf0a722117175a2734b145a0c936ce8f6036d30ecd8711bc",
+          "size": 90525,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/PixelWallpapers2024a/PixelWallpapers2024a.apk",
+          "asset": "9af81577a46a25e0-PixelWallpapers2024a.apk",
+          "sha256": "9af81577a46a25e0c88d2e28910a6728774075b411e1c236a4d9f6e8ad90524c",
+          "size": 89856489,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/WallpaperEmojiPrebuilt-v2804/WallpaperEmojiPrebuilt-v2804.apk",
+          "asset": "56f9cb9e799376b0-WallpaperEmojiPrebuilt-v2804.apk",
+          "sha256": "56f9cb9e799376b08cb9d4ffe678fcd7741e6327fb6a827d2cda7a9b62b51db8",
+          "size": 9901179,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ]
+    },
+    {
+      "id": "recorder",
+      "name": "Pixel Recorder",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/priv-app/RecorderPrebuilt_675788680/RecorderPrebuilt_675788680.apk",
+          "asset": "524b894c7a8921d8-RecorderPrebuilt_675788680.apk",
+          "sha256": "524b894c7a8921d8e9e7df633c3f5a801ad7d39c5e660b8d2a630400737c4b18",
+          "size": 80476536,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "pixelcamera",
+      "name": "Pixel Camera",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk",
+          "asset": "c4251ad571235158-GoogleCamera.apk",
+          "sha256": "c4251ad571235158a55f5aceb3541f07c4b32b78aba3cb83d9947392e5010df6",
+          "size": 621430662,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk.prof",
+          "asset": "6fd43388b9aca755-GoogleCamera.apk.prof",
+          "sha256": "6fd43388b9aca75565d62e752134e20dec6b647a391dbf3f9c587c6bf2766f75",
+          "size": 36718,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "tts",
+      "name": "Google Text-to-Speech",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/GoogleTTS/GoogleTTS.apk",
+          "asset": "e1c326cb32d6fb04-GoogleTTS.apk",
+          "sha256": "e1c326cb32d6fb0412363ece14407784f5e23aecbce6547f0b1bfc23c2aff9be",
+          "size": 73120358,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "name": "Digital Wellbeing",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
+          "asset": "9df9bfec0e5c9654-WellbeingPrebuilt.apk",
+          "sha256": "9df9bfec0e5c965410518f48ea6c4fdd3cc87a6c111b15714def0ffbfdac39a8",
+          "size": 21977327,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "euicc",
+      "name": "eSIM support",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/priv-app/EuiccGoogle/EuiccGoogle.apk",
+          "asset": "f511eba86772a2af-EuiccGoogle.apk",
+          "sha256": "f511eba86772a2af7c31237ec2a5b27387597ccd9b08f98a5e917d92ea5ade08",
+          "size": 13612396,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/etc/permissions/com.google.euiccpixel.permissions.xml",
+          "asset": "5b0c62ea593d8bac-com.google.euiccpixel.permissions.xml",
+          "sha256": "5b0c62ea593d8bac4240f6a34bfbfbfd3c40e7b6916d7242481a9ce5343c019b",
+          "size": 250,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/com.google.euiccpixel.xml",
+          "asset": "c02f6385022d7de4-com.google.euiccpixel.xml",
+          "sha256": "c02f6385022d7de4af325ec25ff0168b0a9b5969fae6f44a378072b9ef733830",
+          "size": 1078,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccGoogleOverlay/EuiccGoogleOverlay.apk",
+          "asset": "7e9f3909bf57bfa1-EuiccGoogleOverlay.apk",
+          "sha256": "7e9f3909bf57bfa1bdb40a94e50b76cdeb64850bdedff1ef2230e6c3ada5532c",
+          "size": 4097212,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/EuiccSupportPixel-P23.apk",
+          "asset": "ac37404211d8b0f0-EuiccSupportPixel-P23.apk",
+          "sha256": "ac37404211d8b0f03521bc0295af98accbd142dcb56ae125496489ae69c44946",
+          "size": 5257077,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/Felica_Tag_66_Changer.apdu",
+          "asset": "a448e1080c01f40c-Felica_Tag_66_Changer.apdu",
+          "sha256": "a448e1080c01f40ce536a4e11f1bbc602fd288d51b57a87d4e437944befebfb0",
+          "size": 5206,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img",
+          "asset": "041f2b08af5ba7ab-esim-full-v1.img",
+          "sha256": "041f2b08af5ba7ab17c0140a3ea9d94aeef67651219256cf3d2ecec3e1fef3ab",
+          "size": 19794,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixelPermissions/EuiccSupportPixelPermissions.apk",
+          "asset": "2e386c382a48fcdd-EuiccSupportPixelPermissions.apk",
+          "sha256": "2e386c382a48fcdd86a3b4bd7ce667a327b84ddd454c649f7214b78a44629c79",
+          "size": 20957,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Needed for eSIM provisioning on most carriers.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "talkback",
+      "name": "TalkBack and accessibility",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/SoundAmplifierPrebuilt_v4.7.638126989/SoundAmplifierPrebuilt_v4.7.638126989.apk",
+          "asset": "b5fb466caa7ff766-SoundAmplifierPrebuilt_v4.7.638126989.apk",
+          "sha256": "b5fb466caa7ff766474ae99ecb8e6ebf553928466a60e925e83a7cfa34660a07",
+          "size": 27030948,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/SwitchAccessPrebuilt_1.15.0.629986523/SwitchAccessPrebuilt_1.15.0.629986523.apk",
+          "asset": "508bc0bf84c5ba4f-SwitchAccessPrebuilt_1.15.0.629986523.apk",
+          "sha256": "508bc0bf84c5ba4fb2b55fef1881795651aff95c5f65fe9b4136c45dda8166ca",
+          "size": 13712180,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
+          "asset": "8afaf0b42797522d-VoiceAccessPrebuilt.apk",
+          "sha256": "8afaf0b42797522df7f07e7f01f7b3487b113cd406b8a030a6aea7028a1198c7",
+          "size": 18349670,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/talkback/talkback.apk",
+          "asset": "4a32ebfb0feeb4a5-talkback.apk",
+          "sha256": "4a32ebfb0feeb4a5c7498993fb4d6abc6400a25ee1b0cc5733ad309ee50606a7",
+          "size": 36354150,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "wallet",
+      "name": "Google Wallet quick access",
+      "category": "extras",
+      "files": [
+        {
+          "path": "system_ext/priv-app/QuickAccessWallet/QuickAccessWallet.apk",
+          "asset": "4af3899aba3904e6-QuickAccessWallet.apk",
+          "sha256": "4af3899aba3904e6b828ab5eef6b1bddeaba09a18edc12d0e30e76daeddf7843",
+          "size": 838426,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "requires": [
+        "gmscore"
+      ]
+    }
+  ]
+}
