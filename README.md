@@ -87,7 +87,11 @@ added Google app surfaces instead of silently going missing.
 2. Trigger `dump` manually with the new major version.
 3. It will fail if the definitions declare the wrong API level, and warn about
    every apk the definitions do not claim. Work through that list.
-4. Re-run until the warnings are ones you have decided to ignore.
+4. For anything that matched nothing, run `suggest_globs.py` against the dump's
+   manifest and `unclaimed.txt`. A package matches nothing for two very
+   different reasons -- the glob is wrong for this release, or the app is simply
+   not on this device -- and only the first is a bug.
+5. Re-run until the warnings are ones you have decided to ignore.
 
 ## Tools
 
@@ -100,6 +104,7 @@ added Google app surfaces instead of silently going missing.
 | `tools/build_manifest.py` | sort the tree into packages, emit `manifest.json` + payloads |
 | `tools/publish_index.py` | add a release to `index.json`, retire old ones |
 | `tools/rebuild_index.py` | reconstruct `index.json` from what is actually published |
+| `tools/suggest_globs.py` | for packages that matched nothing, say whether the glob is wrong or the app is absent |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
