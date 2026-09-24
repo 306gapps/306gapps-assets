@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-24T18:09:25Z",
+  "updated": "2026-09-24T18:16:55Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -44,6 +44,20 @@
       "created": "2026-09-24T18:08:00Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a15/releases/a15-bd4a.250505.003/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
+    },
+    {
+      "id": "a14-ad1a.240905.004",
+      "android": {
+        "api": 34,
+        "version": "14",
+        "codename": "UpsideDownCake"
+      },
+      "device": "comet",
+      "build": "AD1A.240905.004",
+      "branch": "a14",
+      "created": "2026-09-24T18:16:07Z",
+      "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a14/releases/a14-ad1a.240905.004/manifest.json",
+      "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004"
     }
   ],
   "tools": {
