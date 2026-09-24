@@ -52,3 +52,53 @@ class TestImageFormat(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestErofsVersionGuard(unittest.TestCase):
+    """The guard exists because erofs-utils 1.7.1 truncates large files and
+    still exits zero."""
+
+    def test_parses_the_reported_version(self):
+        import extract
+        real = extract.subprocess.run
+
+        def fake(cmd, **kw):
+            class R:
+                stdout = ("fsck.erofs (erofs-utils) 1.9.4\n"
+                          "available decompressors: lz4, lzma\n")
+            return R()
+
+        extract.subprocess.run = fake
+        try:
+            self.assertEqual(extract.erofs_version("fsck.erofs"), (1, 9, 4))
+        finally:
+            extract.subprocess.run = real
+
+    def test_rejects_a_version_known_to_corrupt(self):
+        import extract
+        real = extract.erofs_version
+        extract.erofs_version = lambda _: (1, 7, 1)
+        try:
+            with self.assertRaises(SystemExit) as cm:
+                extract.check_erofs("fsck.erofs")
+            self.assertIn("1.7.1", str(cm.exception))
+        finally:
+            extract.erofs_version = real
+
+    def test_accepts_a_good_version(self):
+        import extract
+        real = extract.erofs_version
+        extract.erofs_version = lambda _: (1, 8, 0)
+        try:
+            extract.check_erofs("fsck.erofs")
+        finally:
+            extract.erofs_version = real
+
+    def test_unreadable_version_warns_rather_than_blocks(self):
+        import extract
+        real = extract.erofs_version
+        extract.erofs_version = lambda _: None
+        try:
+            extract.check_erofs("fsck.erofs")
+        finally:
+            extract.erofs_version = real

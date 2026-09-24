@@ -67,6 +67,9 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
+    env:
+      # 1.7.1, which Ubuntu ships, corrupts large files silently.
+      EROFS_VERSION: "1.9.4"
     steps:
       - uses: actions/checkout@v4
 
@@ -91,9 +94,27 @@ jobs:
           sudo apt-get update -qq
           # liblzma-dev is not optional: payload-dumper-go depends on go-xz,
           # which is cgo and will not compile without lzma.h.
-          sudo apt-get install -y -qq erofs-utils e2fsprogs liblzma-dev
+          sudo apt-get install -y -qq e2fsprogs liblzma-dev liblz4-dev \
+            libzstd-dev zlib1g-dev uuid-dev autoconf automake libtool pkg-config
           go install github.com/ssut/payload-dumper-go@latest
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
+
+      # Ubuntu ships erofs-utils 1.7.1, which silently truncates large files
+      # during extraction and still exits zero -- it cut 24 KiB off a 148 MiB
+      # apex and reported success. Build a known-good version instead.
+      - name: Build erofs-utils ${{ env.EROFS_VERSION }}
+        run: |
+          curl -fsSL -o erofs.tar.gz \
+            "https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-${EROFS_VERSION}.tar.gz"
+          tar xzf erofs.tar.gz
+          cd "erofs-utils-${EROFS_VERSION}"
+          ./autogen.sh
+          ./configure --prefix="$HOME/.local" \
+            --enable-lz4 --enable-lzma --enable-zstd
+          make -j"$(nproc)"
+          make install
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/fsck.erofs" -V
 
       - name: Verify tools
         run: python3 tools/extract.py --check-tools

@@ -12,6 +12,7 @@ import hashlib
 import os
 import shutil
 import struct
+import re
 import subprocess
 import sys
 import urllib.request
@@ -26,6 +27,42 @@ EXT4_MAGIC = 0xEF53        # at offset 1080
 
 class MissingTool(Exception):
     pass
+
+
+# erofs-utils before 1.8 silently truncates large files during extraction and
+# still exits zero. That produced a 148 MiB apex short by 24 KiB, which passed
+# every check the dump made and would have shipped.
+MIN_EROFS = (1, 8)
+
+
+def erofs_version(tool: str) -> tuple[int, ...] | None:
+    """Parse the version fsck.erofs reports, or None if it cannot be read."""
+    try:
+        out = subprocess.run([tool, "-V"], capture_output=True, text=True,
+                             timeout=30).stdout
+    except (OSError, subprocess.SubprocessError):
+        return None
+    m = re.search(r"erofs-utils\)?\s+([0-9]+(?:\.[0-9]+)*)", out)
+    if not m:
+        return None
+    return tuple(int(x) for x in m.group(1).split("."))
+
+
+def check_erofs(tool: str) -> None:
+    """Refuse to extract with a version known to corrupt output."""
+    v = erofs_version(tool)
+    if v is None:
+        print("warning: could not determine the erofs-utils version; "
+              f"{MIN_EROFS[0]}.{MIN_EROFS[1]} or newer is required",
+              file=sys.stderr)
+        return
+    if v < MIN_EROFS:
+        raise SystemExit(
+            f"error: erofs-utils {'.'.join(map(str, v))} truncates large files "
+            f"during extraction and reports success.\n"
+            f"Install {MIN_EROFS[0]}.{MIN_EROFS[1]} or newer -- Ubuntu ships "
+            f"1.7.1, which is affected."
+        )
 
 
 def need(tool: str, hint: str) -> str:
@@ -172,6 +209,7 @@ def extract_image(img: Path, dest: Path, xattrs: bool = False) -> None:
 
     if fmt == "erofs":
         tool = need("fsck.erofs", "install erofs-utils")
+        check_erofs(tool)
         # --preserve-perms matters: run as an ordinary user, fsck.erofs applies
         # the umask to extracted files, which would record the wrong modes in
         # the manifest.
@@ -223,12 +261,22 @@ def check_tools() -> int:
         ("fsck.erofs", "extract EROFS partitions (Android 13+)"),
         ("debugfs", "extract ext4 partitions (older ROMs)"),
     ]
-    missing = 0
+    problems = 0
     for tool, why in wanted:
         path = shutil.which(tool)
-        print(f"{'ok  ' if path else 'MISS'}  {tool:20s} {path or why}")
-        missing += path is None
-    return 1 if missing else 0
+        note = path or why
+        if path and tool == "fsck.erofs":
+            v = erofs_version(path)
+            shown = ".".join(map(str, v)) if v else "unknown"
+            if v and v < MIN_EROFS:
+                print(f"BAD   {tool:20s} {path} (version {shown} corrupts "
+                      f"large files; need {MIN_EROFS[0]}.{MIN_EROFS[1]}+)")
+                problems += 1
+                continue
+            note = f"{path} (version {shown})"
+        print(f"{'ok  ' if path else 'MISS'}  {tool:20s} {note}")
+        problems += path is None
+    return 1 if problems else 0
 
 
 def main() -> int:
