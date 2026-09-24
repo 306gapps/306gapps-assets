@@ -153,9 +153,27 @@ def check_references(packages: list[dict]) -> list[str]:
     return problems
 
 
+# Payload kinds worth reporting when nothing claims them. Restricting this to
+# .apk once hid a 148 MiB GMS Core apex, which ships as an apex rather than an
+# apk on Android 17 -- the report has to cover every kind of code container.
+NOTABLE = (".apk", ".apex", ".capex", ".jar")
+
+# Directories that hold installable code, as opposed to data or resources.
+CODE_DIRS = ("app", "priv-app", "apex", "framework")
+
+
 def interesting(path: str) -> bool:
-    """Unclaimed noise is not worth reporting; an unclaimed app is."""
-    return path.endswith(".apk")
+    """Report unclaimed code that Google added, not the AOSP base.
+
+    /system is the stock platform and is full of unclaimed jars that are
+    nothing to do with gapps; drowning the report in those is how a real
+    omission gets missed.
+    """
+    if not path.endswith(NOTABLE):
+        return False
+    if path.startswith("system/"):
+        return False
+    return any(f"/{d}/" in f"/{path}" for d in CODE_DIRS)
 
 
 def asset_name(digest: str, path: str) -> str:
@@ -275,7 +293,8 @@ def build(args) -> int:
 
     notable = [f for f in unclaimed if interesting(f)]
     if notable:
-        print(f"\nwarning: {len(notable)} unclaimed apk(s) -- "
+        print(f"\nwarning: {len(notable)} unclaimed file(s) on "
+              f"{'/'.join(sorted({f.split('/')[0] for f in notable}))} -- "
               f"add them to {args.packages} or ignore them:", file=sys.stderr)
         for f in notable:
             print(f"  {f}", file=sys.stderr)
