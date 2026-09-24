@@ -158,20 +158,29 @@ packages:
     include:
       - product/app/CalendarGooglePrebuilt/**
 
+  - id: trichrome
+    name: Trichrome shared library
+    category: apps
+    summary: >-
+      Code Chrome and the Google WebView share. Both declare it with
+      uses-static-library and neither loads without it, so it is its own
+      package rather than living inside either one.
+    include:
+      - product/app/TrichromeLibrary/**
+      - product/app/TrichromeLibrary-Stub/**
+
   - id: chrome
     name: Chrome
     category: apps
-    requires: [gmscore]
-    summary: Includes the Trichrome library Chrome and WebView share.
+    requires: [gmscore, trichrome]
     include:
       - product/app/Chrome/**
       - product/app/Chrome-Stub/**
-      - product/app/TrichromeLibrary/**
-      - product/app/TrichromeLibrary-Stub/**
 
   - id: webview
     name: Google WebView
     category: apps
+    requires: [trichrome]
     include:
       - product/app/WebViewGoogle/**
       - product/app/WebViewGoogle-Stub/**
