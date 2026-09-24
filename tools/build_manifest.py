@@ -263,6 +263,19 @@ def build(args) -> int:
                 })
                 continue
 
+            mode = f"{full.stat().st_mode & 0o7777:04o}"
+
+            # A zero-length file carries no payload. There is nothing to store,
+            # and GitHub rejects a zero-length release asset outright
+            # ("HTTP 400: Bad Content-Length"), so publishing one is not an
+            # option even if we wanted to. The builders recreate it empty.
+            if full.stat().st_size == 0:
+                entries.append({
+                    "path": rel, "size": 0, "mode": mode,
+                    "context": selinux_context(full), "kind": classify(rel),
+                })
+                continue
+
             digest, size = sha256_of(full)
             name = asset_name(digest, rel)
             dest = assets / name
@@ -273,7 +286,7 @@ def build(args) -> int:
                 "asset": name,
                 "sha256": digest,
                 "size": size,
-                "mode": f"{full.stat().st_mode & 0o7777:04o}",
+                "mode": mode,
                 "context": selinux_context(full),
                 "kind": classify(rel),
             })
