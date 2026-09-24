@@ -1,0 +1,163 @@
+# Package definitions for Android 16.
+#
+# Each package claims files from the dumped partitions by glob. A file may be
+# claimed by exactly one package; anything left over is reported by the dumper
+# so a new Google app never silently goes missing from a release.
+
+android:
+  api: 36
+  version: "16"
+  codename: Baklava
+
+packages:
+  - id: gmscore
+    name: Google Play services
+    category: core
+    required: true
+    summary: Core Google services framework. Every other package depends on it.
+    include:
+      - product/priv-app/PrebuiltGmsCore/**
+      - product/etc/permissions/privapp-permissions-google-p.xml
+      - product/etc/sysconfig/google.xml
+      - product/etc/sysconfig/google_build.xml
+      - product/etc/sysconfig/google-hiddenapi-package-allowlist.xml
+      - product/etc/default-permissions/default-permissions-google.xml
+    props:
+      ro.com.google.gmsversion: "{gms_version}"
+
+  - id: gsf
+    name: Google Services Framework
+    category: core
+    required: true
+    summary: Device registration and push messaging plumbing.
+    include:
+      - product/priv-app/GoogleServicesFramework/**
+      - product/etc/permissions/com.google.android.gsf.xml
+
+  - id: vending
+    name: Google Play Store
+    category: core
+    default: true
+    requires: [gmscore, gsf]
+    summary: App store and Play Protect.
+    include:
+      - product/priv-app/Phonesky/**
+      - product/etc/permissions/com.android.vending.xml
+
+  - id: setupwizard
+    name: Google Setup Wizard
+    category: setup
+    default: true
+    requires: [gmscore, vending]
+    summary: >-
+      Replaces the AOSP first-boot flow. Needed to sign in during setup;
+      without it you sign in from Settings afterwards.
+    removes:
+      - system_ext/priv-app/Provision
+    include:
+      - product/priv-app/SetupWizardPrebuilt/**
+      - product/priv-app/AndroidMigratePrebuilt/**
+      - product/priv-app/GoogleRestore/**
+      - product/etc/permissions/com.google.android.setupwizard.xml
+
+  - id: gsa
+    name: Google Search and Assistant
+    category: apps
+    requires: [gmscore]
+    summary: Google app, Assistant, and the at-a-glance widget.
+    removes:
+      - product/app/QuickSearchBox
+    include:
+      - product/priv-app/Velvet/**
+      - product/etc/permissions/com.google.android.googlequicksearchbox.xml
+
+  - id: pixellauncher
+    name: Pixel Launcher
+    category: pixel
+    requires: [gmscore]
+    summary: Pixel home screen. Pulls in the search bar, so pair it with gsa.
+    removes:
+      - system_ext/priv-app/Launcher3QuickStep
+    include:
+      - product/priv-app/NexusLauncherRelease/**
+      - product/priv-app/WallpaperPickerGoogleRelease/**
+      - product/etc/permissions/privapp-permissions-com.google.android.apps.nexuslauncher.xml
+
+  - id: dialer
+    name: Google Phone
+    category: apps
+    requires: [gmscore]
+    summary: Google Dialer with call screening and spam protection.
+    removes:
+      - system_ext/priv-app/Dialer
+    include:
+      - product/priv-app/GoogleDialer/**
+      - product/etc/permissions/com.google.android.dialer.xml
+
+  - id: messages
+    name: Google Messages
+    category: apps
+    requires: [gmscore]
+    summary: RCS-capable SMS client.
+    removes:
+      - system_ext/priv-app/messaging
+    include:
+      - product/app/PrebuiltBugle/**
+      - product/priv-app/CarrierServices/**
+
+  - id: contacts
+    name: Google Contacts
+    category: apps
+    requires: [gmscore]
+    removes:
+      - system_ext/priv-app/Contacts
+    include:
+      - product/priv-app/GoogleContacts/**
+
+  - id: photos
+    name: Google Photos
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/Photos/**
+
+  - id: calendar
+    name: Google Calendar
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/app/CalendarGooglePrebuilt/**
+
+  - id: gboard
+    name: Gboard
+    category: apps
+    requires: [gmscore]
+    removes:
+      - system_ext/app/LatinIME
+      - product/app/LatinIME
+    include:
+      - product/app/LatinIMEGooglePrebuilt/**
+
+  - id: tts
+    name: Google Text-to-Speech
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/app/GoogleTTS/**
+
+  - id: wellbeing
+    name: Digital Wellbeing
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/priv-app/WellbeingPrebuilt/**
+      - product/etc/permissions/com.google.android.apps.wellbeing.xml
+
+  - id: euicc
+    name: Carrier services and eSIM
+    category: extras
+    requires: [gmscore]
+    summary: Needed for eSIM provisioning on most carriers.
+    include:
+      - product/priv-app/EuiccGoogle*/**
+      - product/app/EuiccSupportPixel/**
