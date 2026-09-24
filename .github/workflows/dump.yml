@@ -100,11 +100,14 @@ jobs:
 
       - name: Extract partitions
         run: |
+          # --reclaim drops the zip, the payload and each image the moment it
+          # has been consumed. Without it the peak is the OTA plus the payload
+          # plus every image plus the tree, all alive at once, which a runner
+          # does not have room for.
           python3 tools/extract.py \
             --url "${{ matrix.url }}" \
             --sha256 "${{ matrix.sha256 }}" \
-            --work work --tree work/tree
-          # The images and the payload are large and no longer needed.
+            --work work --tree work/tree --reclaim
           rm -rf work/images work/payload.bin work/ota.zip
           df -h /
 
