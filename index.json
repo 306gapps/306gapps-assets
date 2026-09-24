@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-24T19:12:23Z",
+  "updated": "2026-09-24T19:22:02Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -13,7 +13,7 @@
       "device": "cubs",
       "build": "CD1A.260905.001.B1",
       "branch": "a17",
-      "created": "2026-09-24T18:42:42Z",
+      "created": "2026-09-24T19:20:48Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cd1a.260905.001.b1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
     },
