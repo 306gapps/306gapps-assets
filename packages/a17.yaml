@@ -141,7 +141,7 @@ packages:
     removes:
       - system_ext/app/LatinIME
     include:
-      - product/app/LatinIMEGooglePrebuilt/**
+      - product/app/LatinIMEGooglePrebuilt*/**
 
   - id: photos
     name: Google Photos
@@ -253,7 +253,7 @@ packages:
     category: pixel
     requires: [gmscore]
     include:
-      - product/priv-app/RecorderPrebuilt_*/**
+      - product/priv-app/RecorderPrebuilt*/**
 
   - id: pixelcamera
     name: Pixel Camera
