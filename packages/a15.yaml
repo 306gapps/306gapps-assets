@@ -288,6 +288,8 @@ packages:
     name: Google Partner Setup
     group: partnersetup
     requires: [gmscore]
+    summary: >-
+      Carrier and retail setup hooks used during first boot.
     include:
       - product/priv-app/PartnerSetupPrebuilt/**
 
@@ -303,6 +305,8 @@ packages:
   - id: carriersetup
     name: Carrier Setup
     group: carrier
+    summary: >-
+      Carrier provisioning, including RCS and Wi-Fi calling setup.
     include:
       - system_ext/priv-app/CarrierSetup/**
 
@@ -321,6 +325,8 @@ packages:
     name: Gemini
     group: search
     requires: [gmscore]
+    summary: >-
+      Google's assistant. Replaces the older Assistant surface.
     include:
       - product/priv-app/GeminiShell_*/**
       - product/etc/sysconfig/gemini_experience.xml
@@ -356,6 +362,8 @@ packages:
     requires: [gmscore]
     removes:
       - Contacts
+    summary: >-
+      Google Contacts, with account sync and caller ID.
     include:
       - product/app/GoogleContacts/**
 
@@ -383,6 +391,8 @@ packages:
     removes:
       - Gallery2
       - Glimpse
+    summary: >-
+      Google Photos, with backup and the built-in editor.
     include:
       - product/app/Photos/**
 
@@ -400,6 +410,8 @@ packages:
     removes:
       - Calendar
       - Etar
+    summary: >-
+      Google Calendar.
     include:
       - product/app/CalendarGooglePrebuilt/**
 
@@ -422,6 +434,8 @@ packages:
     removes:
       - Browser
       - Jelly
+    summary: >-
+      Chrome. Needs the Trichrome library, which is pulled in for you.
     include:
       - product/app/Chrome/**
       - product/app/Chrome-Stub/**
@@ -432,6 +446,9 @@ packages:
     requires: [trichrome]
     removes:
       - webview
+    summary: >-
+      The system WebView every app uses to render web content. Also
+      needs Trichrome.
     include:
       - product/app/WebViewGoogle/**
       - product/app/WebViewGoogle-Stub/**
@@ -440,6 +457,8 @@ packages:
     name: Gmail
     group: gmail
     requires: [gmscore]
+    summary: >-
+      Gmail.
     include:
       - product/app/PrebuiltGmail/**
 
@@ -447,6 +466,8 @@ packages:
     name: Google Maps
     group: maps
     requires: [gmscore]
+    summary: >-
+      Google Maps, including navigation.
     include:
       - product/app/Maps/**
 
@@ -454,6 +475,8 @@ packages:
     name: Google Drive
     group: drive
     requires: [gmscore]
+    summary: >-
+      Google Drive.
     include:
       - product/app/Drive/**
 
@@ -461,6 +484,8 @@ packages:
     name: Google Keep
     group: keep
     requires: [gmscore]
+    summary: >-
+      Google Keep.
     include:
       - product/app/GoogleKeepPrebuilt/**
 
@@ -468,6 +493,8 @@ packages:
     name: Google Meet
     group: meet
     requires: [gmscore]
+    summary: >-
+      Google Meet.
     include:
       - product/app/MeetPrebuilt_*/**
 
@@ -488,18 +515,24 @@ packages:
   - id: wallpapers
     name: Pixel wallpapers
     group: pixel
+    summary: >-
+      The Pixel wallpaper collections and the picker for them.
     include:
       - product/app/PixelWallpapers*/**
 
   - id: emojiwallpaper
     name: Emoji wallpaper
     group: pixel
+    summary: >-
+      Emoji wallpaper. Builds a pattern from emoji you choose.
     include:
       - product/app/WallpaperEmojiPrebuilt*/**
 
   - id: pixelthemes
     name: Pixel themes
     group: pixel
+    summary: >-
+      Pixel icon packs and theming options for the launcher.
     include:
       - product/app/PixelThemesStub*/**
 
@@ -507,6 +540,9 @@ packages:
     name: Now Playing
     group: pixel
     requires: [gmscore]
+    summary: >-
+      Now Playing, which names music around you on the lock screen.
+      Works offline once its database downloads.
     include:
       - product/app/NowPlayingPrebuilt/**
       - product/etc/default-permissions/default-permissions_nowplaying.xml
@@ -517,6 +553,8 @@ packages:
     requires: [gmscore]
     removes:
       - Recorder
+    summary: >-
+      Pixel Recorder, with on-device transcription.
     include:
       - product/priv-app/RecorderPrebuilt*/**
 
@@ -560,6 +598,8 @@ packages:
     removes:
       - ExactCalculator
       - Calculator
+    summary: >-
+      Google Calculator.
     include:
       - product/app/CalculatorGooglePrebuilt*/**
 
@@ -568,6 +608,8 @@ packages:
     group: clock
     removes:
       - DeskClock
+    summary: >-
+      Google Clock, with alarms and timers.
     include:
       - product/priv-app/PrebuiltDeskClockGoogle*/**
 
@@ -575,6 +617,8 @@ packages:
     name: Files by Google
     group: files
     requires: [gmscore]
+    summary: >-
+      Files by Google, the file manager.
     include:
       - product/priv-app/FilesPrebuilt/**
 
@@ -594,6 +638,8 @@ packages:
     group: files
     removes:
       - StorageManager
+    summary: >-
+      The storage cleanup flow Settings opens when space runs low.
     include:
       - system_ext/priv-app/StorageManagerGoogle/**
 
@@ -601,6 +647,9 @@ packages:
     name: Location History
     group: locationhistory
     requires: [gmscore]
+    summary: >-
+      Timeline, which records where the phone has been. Off until you
+      turn it on.
     include:
       - product/app/LocationHistoryPrebuilt/**
 
@@ -657,6 +706,8 @@ packages:
     name: Digital Wellbeing
     group: wellbeing
     requires: [gmscore]
+    summary: >-
+      Digital Wellbeing, with screen time and bedtime mode.
     include:
       - product/priv-app/WellbeingPrebuilt/**
 
@@ -709,6 +760,8 @@ packages:
     name: Find My Device
     group: findmydevice
     requires: [gmscore]
+    summary: >-
+      Find My Device, for locating or wiping the phone remotely.
     include:
       - product/app/FindMyDevicePrebuilt-*/**
 
@@ -716,6 +769,8 @@ packages:
     name: Google Wallet quick access
     group: pixel
     requires: [gmscore]
+    summary: >-
+      The Wallet tile in quick settings, for cards and passes.
     include:
       - system_ext/priv-app/QuickAccessWallet/**
 
@@ -724,9 +779,9 @@ packages:
     group: digitalkey
     requires: [gmscore]
     summary: >-
-      Time sync for the Car Connectivity Consortium digital key, which is what
-      lets a phone unlock and start a car. Only on devices with ultra-wideband
-      hardware, so absent from a-series and base models.
+      Time sync for the digital car key, which lets a phone unlock and
+      start a car. Only on devices with ultra-wideband hardware, so
+      absent from a-series and base models.
     package: org.carconnectivity.android.digitalkey.timesync
     include:
       - system_ext/priv-app/CccDkTimeSyncService/**
