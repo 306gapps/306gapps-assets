@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-28T22:18:05Z",
+    "created": "2026-09-28T23:23:21Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "f481b50522724cc26d67b3b9f9384d62ab34ae213edeb57fa663c9eeec9927eb"
+    "definitions": "7832c599db217296d617930bd0de3926ce8d6b3aff8afd585c31527eac66ec2e"
   },
   "groups": [
     {
@@ -579,7 +579,7 @@
         "versionCode": "224619045",
         "versionName": "22.46.19 (190408-515739919)"
       },
-      "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
+      "summary": "Core Google services. Everything else depends on it. On Android 17 the bulk of it ships as an apex, and the priv-app directory holds only the Chimera modules.",
       "required": true
     },
     {
@@ -661,7 +661,7 @@
       "packages": [
         "com.google.android.verifier"
       ],
-      "summary": "Takes the com.google.android.verifier name with an empty apk signed by a key that was generated once and then destroyed. Android will not replace a package with one signed by a different key, so the real verifier can never be installed over it -- not by the Play Store, not by anything. The apk holds no code and does nothing. Mutually exclusive with shipping the verifier itself."
+      "summary": "Stops the verifier ever being installed. It claims the package name with an empty apk signed by a key that was generated once and destroyed, and Android will not replace a package with one signed by a different key. Holds no code. Mutually exclusive with the verifier itself."
     },
     {
       "id": "syncadapters",
@@ -691,7 +691,7 @@
         "com.google.android.syncadapters.contacts",
         "com.google.android.syncadapters.calendar"
       ],
-      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "summary": "Legacy account sync adapters, off by default. No Pixel image since Android 13 ships them because Play services handles sync itself; offered for ROMs that still expect them.",
       "requires": [
         "gmscore"
       ]
@@ -1457,7 +1457,7 @@
         "versionCode": "102451618",
         "versionName": "12.6.02.491625702-preload-arm64-v8a"
       },
-      "summary": "Includes the offline speech models and the CJK language models, which live outside the app directory. Without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
+      "summary": "Keyboard, including the offline speech and CJK models. Those live outside the app directory; without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
       "requires": [
         "gmscore"
       ],
@@ -1535,7 +1535,7 @@
         "versionCode": "210411861",
         "versionName": "googletts.google-speech-apk_20230123.02_p3.506463867"
       },
-      "summary": "Includes the offline voice data, which lives outside the app directory. Without it only the languages downloaded on demand will speak.",
+      "summary": "Text to speech, including the offline voice data. That lives outside the app directory; without it only languages downloaded on demand will speak.",
       "requires": [
         "gmscore"
       ]
@@ -1608,7 +1608,7 @@
         "versionCode": "541412334",
         "versionName": "109.0.5414.123"
       },
-      "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
+      "summary": "Shared code Chrome and the Google WebView both need. Each declares it with uses-static-library and neither loads without it, so it is its own package rather than living inside either."
     },
     {
       "id": "chrome",
@@ -1750,7 +1750,7 @@
         "versionCode": "330543000",
         "versionName": "t_frc_doc_330543000"
       },
-      "summary": "Replaces the AOSP picker, which is what every app opens when asking you to choose a file.",
+      "summary": "Replaces the AOSP file picker. This is what every app opens when it asks you to choose a file.",
       "removes": [
         "DocumentsUI"
       ]
@@ -2791,7 +2791,7 @@
         "versionCode": "30000182",
         "versionName": "3.0 (496815901)"
       },
-      "summary": "The Pixel ringtones, alarms and notification sounds, plus the picker that exposes them."
+      "summary": "Pixel ringtones, alarms and notification sounds. Includes the picker that exposes them."
     },
     {
       "id": "pixellauncher",
@@ -3013,7 +3013,7 @@
         "versionCode": "12526000",
         "versionName": "1.2.526000-stub"
       },
-      "summary": "The stub Google ships in the image. Play installs the real Android Auto over it on first use, which is how a Pixel does it -- the full app is not in the factory image to take.",
+      "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
       "requires": [
         "gmscore"
       ]
