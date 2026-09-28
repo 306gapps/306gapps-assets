@@ -3225,7 +3225,6 @@ system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc
 system_ext/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc
 system_ext/etc/launcher.quickstep.protolog.pb
 system_ext/etc/passwd
-system_ext/etc/permissions/CccDkTimeSyncService.xml
 system_ext/etc/permissions/android.software.freeform_window_management.xml
 system_ext/etc/permissions/androidx.window.extensions.xml
 system_ext/etc/permissions/androidx.window.sidecar.xml
@@ -3254,7 +3253,6 @@ system_ext/etc/permissions/com.shannon.rcsservice.xml
 system_ext/etc/permissions/computercontrol.extension.xml
 system_ext/etc/permissions/google-ril.xml
 system_ext/etc/permissions/oemrilhook.xml
-system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
 system_ext/etc/permissions/privapp-permissions-com.google.android.mosey.xml
 system_ext/etc/permissions/privapp-permissions-satellite.xml
 system_ext/etc/permissions/privapp-permlist_com.google.android.iwlan.xml
@@ -3314,8 +3312,6 @@ system_ext/framework/laguna-plugin-provider.jar
 system_ext/framework/laguna-plugin-provider.jar.fsv_meta
 system_ext/framework/oemrilhook.jar
 system_ext/framework/oemrilhook.jar.fsv_meta
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar.fsv_meta
 system_ext/lib64/com.google.edgetpu_app_service-V6-ndk.so
 system_ext/lib64/com.google.edgetpu_vendor_service-V2-ndk.so
 system_ext/lib64/libmediaadaptor.so
@@ -3327,7 +3323,6 @@ system_ext/lib64/vendor.google.whitechapel.audio.extension-V7-ndk.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so
 system_ext/priv-app/AvatarPickerGoogle/AvatarPickerGoogle.apk
-system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk
 system_ext/priv-app/ConnectivityThermalPowerManager/ConnectivityThermalPowerManager.apk
 system_ext/priv-app/DeviceConnectivityServicePrebuilt_26.01.00/DeviceConnectivityServicePrebuilt_26.01.00.apk
 system_ext/priv-app/FactoryOtaPrebuilt/FactoryOtaPrebuilt.apk
