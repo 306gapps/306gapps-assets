@@ -12,7 +12,9 @@ import json
 import os
 import re
 import gzip
+import io
 import shutil
+import struct
 import sys
 import zipfile
 from datetime import datetime, timezone
@@ -20,6 +22,7 @@ from pathlib import Path
 
 import yaml
 
+from axml import MalformedAXML, package_name
 from globmatch import matches
 
 SCHEMA = 1
@@ -101,6 +104,89 @@ def verify_container(path: Path) -> str:
     except (OSError, EOFError) as e:
         return f"cannot read ({e})"
     return ""
+
+
+def carried_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
+    """Build file records for payloads that do not come from the dump.
+
+    Everything else in a release is extracted from the image named in the
+    manifest and refreshed whenever that device gets a new build. A carried
+    file is not: Google no longer ships it, so there is no image to take it
+    from. Marking it says plainly which payloads cannot be refreshed.
+    """
+    out = []
+    for item in d.get("carry", []):
+        src = defs_dir / item["file"]
+        if not src.is_file():
+            raise SystemExit(f"error: {d['id']} carries {item['file']}, "
+                             f"which is not at {src}")
+        if problem := verify_container(src):
+            raise SystemExit(f"error: {d['id']} carries {item['file']}: {problem}")
+        digest, size = sha256_of(src)
+        name = asset_name(digest, item["path"])
+        dest = assets / name
+        if not dest.exists():
+            shutil.copy2(src, dest)
+        out.append({
+            "path": item["path"],
+            "asset": name,
+            "sha256": digest,
+            "size": size,
+            "mode": item.get("mode", "0644"),
+            "kind": classify(item["path"]),
+            "carried": True,
+        })
+    return out
+
+
+def read_package_id(root: Path, rel: str) -> str:
+    """Read the Android package id from an apk, inflating it if gzipped."""
+    full = root / rel
+    try:
+        if rel.endswith(".gz"):
+            data = gzip.open(full, "rb").read()
+            z = zipfile.ZipFile(io.BytesIO(data))
+        else:
+            z = zipfile.ZipFile(full)
+        with z:
+            return package_name(z.read("AndroidManifest.xml"))
+    except (OSError, KeyError, zipfile.BadZipFile, MalformedAXML, struct.error):
+        return ""
+
+
+def package_ids(root: Path, entries: list[dict], declared) -> list[str]:
+    """The Android package ids a package installs, for clearing app data.
+
+    Usually one, read from the principal apk: the shallowest path wins, since a
+    chimera submodule sits deeper than the apk that owns it and shares its data
+    directory. Declared ids win outright, which is how a package names several
+    -- the sync adapters are two apps in one selection -- and how anything
+    auto-detection cannot see is covered, whether it is inside an apex or
+    carried rather than dumped.
+    """
+    if declared:
+        return [declared] if isinstance(declared, str) else list(declared)
+    apks = [e for e in entries if e["path"].endswith((".apk", ".apk.gz"))]
+    if not apks:
+        return []
+    apks.sort(key=lambda e: (e["path"].count("/"), -e.get("size", 0)))
+    pid = read_package_id(root, apks[0]["path"])
+    return [pid] if pid else []
+
+
+def main_package_id(root: Path, entries: list[dict]) -> str:
+    """Pick the package id of a package's principal apk.
+
+    Shallowest path wins, then largest: a chimera submodule sits deeper than
+    the apk that owns it, and picking one of those would clean the wrong data
+    directory. Where even that is ambiguous -- GMS Core on Android 17 keeps its
+    real apk inside an apex -- the definition declares the id instead.
+    """
+    apks = [e for e in entries if e["path"].endswith((".apk", ".apk.gz"))]
+    if not apks:
+        return ""
+    apks.sort(key=lambda e: (e["path"].count("/"), -e.get("size", 0)))
+    return read_package_id(root, apks[0]["path"])
 
 
 def classify(path: str) -> str:
@@ -323,6 +409,7 @@ def build(args) -> int:
         print(f"error: no partition directories found under {root}", file=sys.stderr)
         return 1
 
+    excluded = defs_doc.get("exclude", [])
     try:
         by_package, unclaimed = assign(files, defs)
     except Conflict as e:
@@ -340,6 +427,7 @@ def build(args) -> int:
 
     packages = []
     empty = []
+    no_package: list[str] = []
     corrupt: list[str] = []
     for d in defs:
         entries = []
@@ -390,6 +478,8 @@ def build(args) -> int:
                 "kind": classify(rel),
             })
 
+        entries.extend(carried_entries(Path(args.packages).parent.parent, d, assets))
+
         if not entries:
             empty.append(d["id"])
             continue
@@ -400,6 +490,14 @@ def build(args) -> int:
             "category": d.get("category", "extras"),
             "files": sorted(entries, key=lambda e: e["path"]),
         }
+
+        # The Android package ids, so an uninstall can clear app data.
+        # Declared ones win: auto-detection cannot see inside an apex.
+        ids = package_ids(root, entries, d.get("package"))
+        if ids:
+            pkg["packages"] = ids
+        else:
+            no_package.append(d["id"])
         for key in ("summary", "required", "default"):
             if d.get(key):
                 pkg[key] = d[key]
@@ -467,6 +565,18 @@ def build(args) -> int:
     if empty:
         print(f"warning: {len(empty)} package(s) matched no files: "
               f"{', '.join(empty)}", file=sys.stderr)
+
+    if no_package:
+        print(f"warning: {len(no_package)} package(s) have no Android package id, "
+              f"so an uninstall cannot clear their data: "
+              f"{', '.join(no_package)}", file=sys.stderr)
+
+    if excluded:
+        before = len(unclaimed)
+        unclaimed = [f for f in unclaimed
+                     if not any(f"/{name}/" in f"/{f}" for name in excluded)]
+        print(f"  {before - len(unclaimed)} file(s) excluded by choice: "
+              f"{', '.join(excluded)}")
 
     notable = [f for f in unclaimed if interesting(f)]
     if notable:

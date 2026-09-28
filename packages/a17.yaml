@@ -11,6 +11,14 @@ android:
   version: "17"
   codename: CinnamonBun
 
+# Deliberately not shipped. These are reported as unclaimed otherwise, which
+# buries the apps we genuinely have not packaged yet.
+exclude:
+  # 890 MiB, needs the Pixel camera HAL, and cannot be shipped as a stub: a
+  # stub signed with our key cannot be updated by Play. Leaving it out is what
+  # lets Play install the build matching the device.
+  - GoogleCamera
+
 packages:
   # ---- core ----------------------------------------------------------------
   - id: gmscore
@@ -21,6 +29,7 @@ packages:
       Core Google services framework. Everything else depends on it. On
       Android 17 the bulk of it ships as an apex; the priv-app directory holds
       only the Chimera modules.
+    package: com.google.android.gms
     include:
       - product/apex/com.google.android.gmssystem*.apex
       # The directory has carried a release-codename suffix in the past
@@ -73,6 +82,10 @@ packages:
     summary: >-
       Replaces the AOSP first-boot flow. Needed to sign in during setup;
       without it you sign in from Settings afterwards.
+    removes:
+      - Provision
+      - SetupWizard
+      - LineageSetupWizard
     include:
       - product/priv-app/SetupWizardPrebuilt_*/**
       - system_ext/priv-app/SetupWizardPixelPrebuilt_*/**
@@ -89,6 +102,8 @@ packages:
     category: apps
     requires: [gmscore]
     summary: Search, Assistant and the at-a-glance widget. Large (~350 MB).
+    removes:
+      - QuickSearchBox
     include:
       - product/priv-app/Velvet/**
 
@@ -107,7 +122,7 @@ packages:
     requires: [gmscore]
     summary: Call screening and spam protection.
     removes:
-      - system_ext/priv-app/Dialer
+      - Dialer
     include:
       - product/priv-app/GoogleDialer/**
       - product/etc/permissions/com.google.android.dialer.support.xml
@@ -121,7 +136,8 @@ packages:
     requires: [gmscore]
     summary: RCS-capable SMS client.
     removes:
-      - system_ext/priv-app/messaging
+      - messaging
+      - Messaging
     include:
       - product/priv-app/PrebuiltBugle/**
 
@@ -130,7 +146,7 @@ packages:
     category: apps
     requires: [gmscore]
     removes:
-      - system_ext/priv-app/Contacts
+      - Contacts
     include:
       - product/app/GoogleContacts/**
 
@@ -139,7 +155,7 @@ packages:
     category: apps
     requires: [gmscore]
     removes:
-      - system_ext/app/LatinIME
+      - LatinIME
     include:
       - product/app/LatinIMEGooglePrebuilt*/**
 
@@ -147,6 +163,9 @@ packages:
     name: Google Photos
     category: apps
     requires: [gmscore]
+    removes:
+      - Gallery2
+      - Glimpse
     include:
       - product/app/Photos/**
       - product/app/MarkupGoogle_v*/**
@@ -155,6 +174,9 @@ packages:
     name: Google Calendar
     category: apps
     requires: [gmscore]
+    removes:
+      - Calendar
+      - Etar
     include:
       - product/app/CalendarGooglePrebuilt/**
 
@@ -165,6 +187,7 @@ packages:
       Code Chrome and the Google WebView share. Both declare it with
       uses-static-library and neither loads without it, so it is its own
       package rather than living inside either one.
+    package: com.google.android.trichromelibrary
     include:
       - product/app/TrichromeLibrary/**
       - product/app/TrichromeLibrary-Stub/**
@@ -173,6 +196,9 @@ packages:
     name: Chrome
     category: apps
     requires: [gmscore, trichrome]
+    removes:
+      - Browser
+      - Jelly
     include:
       - product/app/Chrome/**
       - product/app/Chrome-Stub/**
@@ -181,6 +207,8 @@ packages:
     name: Google WebView
     category: apps
     requires: [trichrome]
+    removes:
+      - webview
     include:
       - product/app/WebViewGoogle/**
       - product/app/WebViewGoogle-Stub/**
@@ -235,7 +263,9 @@ packages:
     requires: [gmscore]
     summary: Pixel home screen. Pair with gsa for the search bar.
     removes:
-      - system_ext/priv-app/Launcher3QuickStep
+      - Launcher3
+      - Launcher3QuickStep
+      - Trebuchet
     include:
       - system_ext/priv-app/NexusLauncherRelease/**
       - system_ext/priv-app/WallpaperPickerGoogleRelease/**
@@ -261,17 +291,30 @@ packages:
     name: Pixel Recorder
     category: pixel
     requires: [gmscore]
+    removes:
+      - Recorder
     include:
       - product/priv-app/RecorderPrebuilt*/**
 
-  - id: pixelcamera
-    name: Pixel Camera
-    category: pixel
+  - id: syncadapters
+    name: Contacts and Calendar sync adapters
+    category: extras
     requires: [gmscore]
-    include:
-      - product/priv-app/GoogleCamera/**
+    # Two apps in one selection, so both data directories must be cleared.
+    package:
+      - com.google.android.syncadapters.contacts
+      - com.google.android.syncadapters.calendar
+    summary: >-
+      The standalone sync adapters, carried rather than dumped: no Pixel image
+      from Android 13 on ships them, because modern Play services handles
+      account sync itself. Offered for ROMs that still expect them, and off by
+      default because on a Pixel they are redundant.
+    carry:
+      - path: product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
+        file: carried/GoogleContactsSyncAdapter.apk
+      - path: product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
+        file: carried/GoogleCalendarSyncAdapter.apk
 
-  # ---- extras --------------------------------------------------------------
   - id: tts
     name: Google Text-to-Speech
     category: extras

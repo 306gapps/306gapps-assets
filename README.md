@@ -72,7 +72,10 @@ from the dump by glob:
 | `include` | globs claiming files; `*` stops at `/`, `**` does not |
 | `requires` | packages pulled in automatically |
 | `conflicts` | packages that cannot be installed alongside |
-| `removes` | AOSP install paths the installer deletes (or masks, for modules) |
+| `carry` | payloads shipped that are not in the dump; see `carried/` |
+| `exclude` | top-level list of directories deliberately not shipped, so they stop being reported as unclaimed |
+| `package` | Android package id, or a list of them, for clearing app data on uninstall |
+| `removes` | install paths the installer deletes (or masks, for modules); list every partition an app may live on, since the installer skips whichever are absent |
 | `required` | always installed, cannot be deselected |
 | `default` | starts selected in the picker |
 | `props` | build properties to apply; `{gms_version}` is read from the dump |
