@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/stallion-ota-cp1a.260505.005-62eaa74b.zip",
       "sha256": "62eaa74b4cc60b0e3de4a064c8386dca11077f5174fdf65db2386f3192805a63"
     },
-    "created": "2026-09-28T16:18:08Z",
+    "created": "2026-09-28T21:56:04Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005",
-    "definitions": "60c382510212a188e425e8702356f652f193396d69782d223afe8adac61142a6"
+    "definitions": "a1b5771cb9a8c824d2143f14ee0e8e87448e638441aeec703d1f5dce2740fa17"
   },
   "groups": [
     {
@@ -626,6 +626,30 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "375b55fed34b2cf5-privapp-permissions-google.xml.gz",
+          "sha256": "375b55fed34b2cf59beddde03f84d18e93f3a8665350a1414da185f56252ac14",
+          "size": 3725,
+          "encoding": "gzip",
+          "asset_sha256": "296696bd25fd1e4edd7f9f20bf01bb0235d250571a386d8d5f631bebe9cde901",
+          "asset_size": 1208,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "5e7f57a115238459-privapp-permissions-google-se.xml.gz",
+          "sha256": "5e7f57a1152384596d9203c77788509551b7578e52e88474341df3d7dc7eae60",
+          "size": 16511,
+          "encoding": "gzip",
+          "asset_sha256": "7498b3bca9f2adf16d3cfcd5d374cc1482b823549df2180d8de677d69c9279d2",
+          "asset_size": 2556,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
         }
       ],
       "packages": [

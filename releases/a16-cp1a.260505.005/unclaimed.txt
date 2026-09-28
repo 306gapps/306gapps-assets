@@ -1516,7 +1516,6 @@ system/etc/permissions/com.android.nfc_extras.xml
 system/etc/permissions/javax.obex.xml
 system/etc/permissions/org.apache.http.legacy.xml
 system/etc/permissions/platform.xml
-system/etc/permissions/privapp-permissions-google.xml
 system/etc/permissions/privapp-permissions-platform.xml
 system/etc/preloaded-classes
 system/etc/preloaded-classes.fsv_meta
@@ -3236,7 +3235,6 @@ system_ext/etc/permissions/com.shannon.rcsservice.xml
 system_ext/etc/permissions/google-ril.xml
 system_ext/etc/permissions/oemrilhook.xml
 system_ext/etc/permissions/privapp-permissions-com.google.android.mosey.xml
-system_ext/etc/permissions/privapp-permissions-google-se.xml
 system_ext/etc/permissions/privapp-permissions-satellite.xml
 system_ext/etc/permissions/privapp-permlist_com.google.android.iwlan.xml
 system_ext/etc/permissions/vzw_mvs_permissions.xml
