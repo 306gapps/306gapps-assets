@@ -839,7 +839,6 @@ product/overlay/framework-res__stallion__auto_generated_rro_product.apk
 product/priv-app/ANGLE/ANGLE.apk
 product/priv-app/AdaptiveVPNPrebuilt-10435/AdaptiveVPNPrebuilt-10435.apk
 product/priv-app/AmbientStreaming/AmbientStreaming.apk
-product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk
 product/priv-app/AndroidGlassesCoreStub/AndroidGlassesCoreStub.apk
 product/priv-app/AppDirectedSMSService/AppDirectedSMSService.apk
 product/priv-app/BetterBugStub/BetterBugStub.apk
