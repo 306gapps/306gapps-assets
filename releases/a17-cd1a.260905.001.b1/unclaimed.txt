@@ -3364,7 +3364,6 @@ system_ext/etc/init/vendor.google.edgetpu_app_service@1.0-service.rc
 system_ext/etc/init/vendor.google.whitechapel.audio.hal.parserservice.rc
 system_ext/etc/launcher.quickstep.protolog.pb
 system_ext/etc/passwd
-system_ext/etc/permissions/CccDkTimeSyncService.xml
 system_ext/etc/permissions/ConnectivityThermalPowerManagerNextgen.xml
 system_ext/etc/permissions/android.software.freeform_window_management.xml
 system_ext/etc/permissions/androidx.window.extensions.xml
@@ -3389,7 +3388,6 @@ system_ext/etc/permissions/com.google.pixel.camera.services.cameraidremapper.xml
 system_ext/etc/permissions/com.google.pixel.camera.services.lyricconfigprovider.xml
 system_ext/etc/permissions/computercontrol.extension.xml
 system_ext/etc/permissions/google-ril.xml
-system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
 system_ext/etc/permissions/privapp-permissions-com.google.android.apps.pixel.tabby.xml
 system_ext/etc/permissions/privapp-permissions-com.google.android.mosey.xml
 system_ext/etc/permissions/privapp-permlist_com.google.android.grilservice.xml
@@ -3400,7 +3398,6 @@ system_ext/etc/security/fsverity/BuildManifestSystemExt.apk
 system_ext/etc/security/fsverity/BuildManifestSystemExt.apk.idsig
 system_ext/etc/sysconfig/android.telephony.satellite.xml
 system_ext/etc/sysconfig/com.android.imsstack.xml
-system_ext/etc/sysconfig/preinstalled-packages-cccdktimesync.xml
 system_ext/etc/sysconfig/preinstalled-packages-com.google.android.apps.pixel.tabby.xml
 system_ext/etc/sysconfig/preinstalled-packages-com.verizon.mips.services.xml
 system_ext/etc/sysconfig/preinstalled-packages-device-pixel.xml
@@ -3466,8 +3463,6 @@ system_ext/framework/google-ril.jar
 system_ext/framework/google-ril.jar.fsv_meta
 system_ext/framework/malibu-plugin-provider.jar
 system_ext/framework/malibu-plugin-provider.jar.fsv_meta
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar.fsv_meta
 system_ext/lib64/com.google.edgetpu_app_service-V10-ndk.so
 system_ext/lib64/com.google.edgetpu_vendor_service-V2-ndk.so
 system_ext/lib64/libMIPC-native.so
@@ -3483,7 +3478,6 @@ system_ext/lib64/libtrm.so
 system_ext/lib64/vendor.google.whitechapel.audio.audioext@4.0.so
 system_ext/lib64/vendor.google.whitechapel.audio.extension-V8-ndk.so
 system_ext/priv-app/AvatarPickerGoogle/AvatarPickerGoogle.apk
-system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk
 system_ext/priv-app/ConnectivityThermalPowerManagerNextgen/ConnectivityThermalPowerManagerNextgen.apk
 system_ext/priv-app/ConnectivityThermalPowerManagerNextgen/lib/arm64/libMIPC-native.so
 system_ext/priv-app/DeviceConnectivityServicePrebuilt_26.01.00/DeviceConnectivityServicePrebuilt_26.01.00.apk
