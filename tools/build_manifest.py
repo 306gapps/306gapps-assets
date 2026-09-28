@@ -534,6 +534,71 @@ def interesting(path: str) -> bool:
     return any(f"/{d}/" in f"/{path}" for d in CODE_DIRS)
 
 
+
+# Below this saving, compressing is not worth the CPU on either end -- an apk
+# that is already mostly deflated, or one Google shipped pre-gzipped.
+MIN_COMPRESSION_GAIN = 0.05
+
+
+def publish_asset(src: Path, digest: str, size: int, rel: str,
+                  assets: Path) -> dict:
+    """Copy a payload into the release, compressed when that actually helps.
+
+    GitHub serves release assets with no transfer encoding, so anything saved
+    has to be saved here. Modern apks are full of deliberately *uncompressed*
+    parts -- resources.arsc has to be uncompressed and aligned, and native
+    libraries are stored whole when extractNativeLibs is false -- so gzip
+    typically takes 50-60% off one, even though a zip is nominally compressed
+    already.
+
+    The recorded sha256 and size always describe the file as installed. The
+    artifact's own digest and size are recorded beside them when they differ.
+    """
+    name = asset_name(digest, rel)
+    packed = compress(src, assets / (name + ".gz"))
+    entry = {"path": rel, "asset": name, "sha256": digest, "size": size}
+
+    if packed is not None and packed[1] < size * (1 - MIN_COMPRESSION_GAIN):
+        entry["asset"] = name + ".gz"
+        entry["encoding"] = "gzip"
+        entry["asset_sha256"] = packed[0]
+        entry["asset_size"] = packed[1]
+        return entry
+
+    # Not worth it: keep the plain artifact and drop the compressed attempt.
+    (assets / (name + ".gz")).unlink(missing_ok=True)
+    dest = assets / name
+    if not dest.exists():
+        shutil.copy2(src, dest)
+    return entry
+
+
+def compress(src: Path, dest: Path) -> tuple[str, int] | None:
+    """Gzip src to dest, returning the artifact's digest and size."""
+    if dest.exists():
+        return sha256_of(dest)
+    h = hashlib.sha256()
+    n = 0
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    try:
+        # mtime=0 so the same input always produces the same artifact; a
+        # timestamp in the header would change the digest on every run.
+        with open(src, "rb") as fin, open(tmp, "wb") as raw:
+            with gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=6,
+                               mtime=0) as fout:
+                while chunk := fin.read(1 << 20):
+                    fout.write(chunk)
+        with open(tmp, "rb") as f:
+            while chunk := f.read(1 << 20):
+                h.update(chunk)
+                n += len(chunk)
+        tmp.replace(dest)
+    except OSError:
+        tmp.unlink(missing_ok=True)
+        return None
+    return h.hexdigest(), n
+
+
 def asset_name(digest: str, path: str) -> str:
     """Content-addressed but still readable in a release's asset list."""
     base = re.sub(r"[^A-Za-z0-9._-]", "_", os.path.basename(path))
@@ -659,19 +724,11 @@ def build(args) -> int:
                 continue
 
             digest, size = sha256_of(full)
-            name = asset_name(digest, rel)
-            dest = assets / name
-            if not dest.exists():
-                shutil.copy2(full, dest)
-            entries.append({
-                "path": rel,
-                "asset": name,
-                "sha256": digest,
-                "size": size,
-                "mode": mode,
-                "context": selinux_context(full),
-                "kind": classify(rel),
-            })
+            entry = publish_asset(full, digest, size, rel, assets)
+            entry["mode"] = mode
+            entry["context"] = selinux_context(full)
+            entry["kind"] = classify(rel)
+            entries.append(entry)
 
         entries.extend(kang_entries(Path(args.packages).parent.parent, d, assets))
 

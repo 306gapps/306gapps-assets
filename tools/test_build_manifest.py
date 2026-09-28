@@ -107,3 +107,62 @@ class TestCheckStubs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestPublishAsset(unittest.TestCase):
+    """GitHub serves assets uncompressed, so the saving has to happen here."""
+
+    def setUp(self):
+        import tempfile, pathlib
+        self.dir = pathlib.Path(tempfile.mkdtemp())
+        self.assets = self.dir / "assets"
+        self.assets.mkdir()
+
+    def write(self, name, data):
+        p = self.dir / name
+        p.write_bytes(data)
+        return p, *bm.sha256_of(p)
+
+    def test_compressible_payload_is_published_compressed(self):
+        src, digest, size = self.write("big.apk", b"A" * 200_000)
+        e = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        self.assertEqual(e["encoding"], "gzip")
+        self.assertTrue(e["asset"].endswith(".gz"))
+        self.assertLess(e["asset_size"], size)
+        # The file's own digest and size still describe what gets installed.
+        self.assertEqual(e["sha256"], digest)
+        self.assertEqual(e["size"], size)
+
+    def test_the_artifact_digest_matches_the_artifact(self):
+        src, digest, size = self.write("big.apk", b"B" * 200_000)
+        e = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        got = bm.sha256_of(self.assets / e["asset"])
+        self.assertEqual(got, (e["asset_sha256"], e["asset_size"]))
+
+    def test_the_artifact_decompresses_back_to_the_original(self):
+        import gzip as gz
+        data = bytes(range(256)) * 900
+        src, digest, size = self.write("x.apk", data)
+        e = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        self.assertEqual(gz.decompress((self.assets / e["asset"]).read_bytes()), data)
+
+    def test_incompressible_payload_is_published_as_is(self):
+        # Random bytes stand in for an already-compressed artifact.
+        import os as _os
+        src, digest, size = self.write("r.apk", _os.urandom(200_000))
+        e = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        self.assertNotIn("encoding", e)
+        self.assertFalse(e["asset"].endswith(".gz"))
+        self.assertTrue((self.assets / e["asset"]).exists())
+        # And the rejected attempt is not left lying in the release.
+        self.assertEqual(list(self.assets.glob("*.gz")), [])
+
+    def test_compression_is_deterministic(self):
+        # A timestamp in the gzip header would change the digest every run,
+        # and with it the asset every release.
+        src, digest, size = self.write("d.apk", b"C" * 200_000)
+        first = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        for f in self.assets.iterdir():
+            f.unlink()
+        second = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
+        self.assertEqual(first["asset_sha256"], second["asset_sha256"])

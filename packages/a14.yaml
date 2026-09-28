@@ -60,7 +60,7 @@ variants:
     name: Full
     includes: stock
     summary: Stock plus the rest of what NikGApps packages.
-    packages: [gmail, feedback, partnersetup, devicepolicy]
+    packages: [gmail, feedback, partnersetup, devicepolicy, androidauto]
 
   - id: everything
     name: Everything
@@ -129,6 +129,8 @@ groups:
     summary: The launcher, wallpapers, themes, and the on-device AI that backs them.
   - id: wellbeing
     name: Digital Wellbeing
+  - id: androidauto
+    name: Android Auto
   - id: partnersetup
     name: Google Partner Setup
   - id: carrier
@@ -172,6 +174,18 @@ packages:
       - product/etc/sysconfig/google-system-apps-update-ownership.xml
       - product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml
       - product/etc/default-permissions/default-permissions.xml
+
+  - id: androidauto
+    name: Android Auto
+    group: androidauto
+    requires: [gmscore]
+    summary: >-
+      The stub Google ships in the image. Play installs the real Android Auto
+      over it on first use, which is how a Pixel does it -- the full app is
+      not in the factory image to take.
+    package: com.google.android.projection.gearhead
+    include:
+      - product/priv-app/AndroidAutoStubPrebuilt/**
 
   - id: gsf
     name: Google Services Framework
