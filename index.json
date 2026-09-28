@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-28T16:51:28Z",
+  "updated": "2026-09-28T22:18:54Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -13,7 +13,7 @@
       "device": "cubs",
       "build": "CD1A.260905.001.B1",
       "branch": "a17",
-      "created": "2026-09-28T16:06:11Z",
+      "created": "2026-09-28T21:47:13Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cd1a.260905.001.b1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
     },
@@ -27,7 +27,7 @@
       "device": "stallion",
       "build": "CP1A.260505.005",
       "branch": "a16",
-      "created": "2026-09-28T16:18:08Z",
+      "created": "2026-09-28T21:56:04Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a16/releases/a16-cp1a.260505.005/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005"
     },
@@ -41,7 +41,7 @@
       "device": "tegu",
       "build": "BD4A.250505.003",
       "branch": "a15",
-      "created": "2026-09-28T16:28:51Z",
+      "created": "2026-09-28T22:04:54Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a15/releases/a15-bd4a.250505.003/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
     },
@@ -55,7 +55,7 @@
       "device": "comet",
       "build": "AD1A.240905.004",
       "branch": "a14",
-      "created": "2026-09-28T16:38:49Z",
+      "created": "2026-09-28T22:11:31Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a14/releases/a14-ad1a.240905.004/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004"
     },
@@ -69,7 +69,7 @@
       "device": "felix",
       "build": "TQ3C.230901.001.A1",
       "branch": "a13",
-      "created": "2026-09-28T16:48:43Z",
+      "created": "2026-09-28T22:18:05Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a13/releases/a13-tq3c.230901.001.a1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1"
     }

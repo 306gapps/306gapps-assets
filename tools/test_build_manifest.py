@@ -166,3 +166,64 @@ class TestPublishAsset(unittest.TestCase):
             f.unlink()
         second = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
         self.assertEqual(first["asset_sha256"], second["asset_sha256"])
+
+
+class TestPrivappAllowlists(unittest.TestCase):
+    """A privileged app with no allowlist entry bootloops the device."""
+
+    def setUp(self):
+        import tempfile, pathlib
+        self.root = pathlib.Path(tempfile.mkdtemp())
+        (self.root / "product/etc/permissions").mkdir(parents=True)
+        (self.root / "product/etc/permissions/privapp-permissions-google.xml").write_text(
+            '<permissions>\n'
+            '  <privapp-permissions package="com.google.android.gms">\n'
+            '    <permission name="android.permission.INSTALL_PACKAGES"/>\n'
+            '  </privapp-permissions>\n'
+            '</permissions>\n')
+        # read_package_id opens the apk, so the check has to tolerate one it
+        # cannot parse; those simply go unreported rather than crashing.
+        self.real_read = bm.read_package_id
+        bm.read_package_id = lambda root, rel: {
+            "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk": "com.google.android.gms",
+            "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk":
+                "com.google.android.gsf",
+        }.get(rel)
+
+    def tearDown(self):
+        bm.read_package_id = self.real_read
+
+    def pkgs(self, *paths):
+        return [{"id": "core", "files": [{"path": p} for p in paths]}]
+
+    def test_allowlisted_privapp_is_fine(self):
+        got = bm.check_privapp_allowlists(self.root, self.pkgs(
+            "product/etc/permissions/privapp-permissions-google.xml",
+            "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk"))
+        self.assertEqual(got, [])
+
+    def test_unallowlisted_privapp_is_reported(self):
+        # GoogleServicesFramework's allowlist lives in system_ext, which the
+        # definitions did not glob -- this is the bootloop that happened.
+        got = bm.check_privapp_allowlists(self.root, self.pkgs(
+            "product/etc/permissions/privapp-permissions-google.xml",
+            "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk"))
+        self.assertEqual(len(got), 1)
+        self.assertIn("com.google.android.gsf", got[0])
+
+    def test_shipping_the_missing_allowlist_settles_it(self):
+        (self.root / "system_ext/etc/permissions").mkdir(parents=True)
+        (self.root / "system_ext/etc/permissions/privapp-permissions-google-se.xml").write_text(
+            '<permissions><privapp-permissions package="com.google.android.gsf">'
+            '<permission name="android.permission.INSTALL_LOCATION_PROVIDER"/>'
+            '</privapp-permissions></permissions>')
+        got = bm.check_privapp_allowlists(self.root, self.pkgs(
+            "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+            "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk"))
+        self.assertEqual(got, [])
+
+    def test_chimera_modules_are_not_scanned_by_packagemanager(self):
+        got = bm.check_privapp_allowlists(self.root, self.pkgs(
+            "product/priv-app/PrebuiltGmsCore/app_chimera/m/X/X.apk",
+            "product/priv-app/PrebuiltGmsCore/m/optional/Y.apk"))
+        self.assertEqual(got, [])

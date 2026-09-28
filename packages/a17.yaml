@@ -151,8 +151,8 @@ packages:
     group: core
     required: true
     summary: >-
-      Core Google services framework. Everything else depends on it. On
-      Android 17 the bulk of it ships as an apex; the priv-app directory holds
+      Core Google services. Everything else depends on it. On Android 17
+      the bulk of it ships as an apex, and the priv-app directory holds
       only the Chimera modules.
     package: com.google.android.gms
     include:
@@ -162,6 +162,14 @@ packages:
       # (PrebuiltGmsCoreVic_* on Android 17), so match the family.
       - product/priv-app/PrebuiltGmsCore*/**
       - product/etc/permissions/privapp-permissions-google*.xml
+      # The privileged-permission allowlists do not all live on product. With
+      # ro.control_privapp_permissions=enforce -- which crDroid and most ROMs
+      # set -- a privileged app whose permissions are not allowlisted makes
+      # PackageManager throw during the boot scan, and the device bootloops.
+      # GoogleServicesFramework, CarrierSetup and the Pixel setup wizard are
+      # all allowlisted in the system_ext file, not the product one.
+      - system/etc/permissions/privapp-permissions-google.xml
+      - system_ext/etc/permissions/privapp-permissions-google-se.xml
       - product/etc/sysconfig/google.xml
       - product/etc/sysconfig/google_build.xml
       - product/etc/sysconfig/google-hiddenapi-package-whitelist.xml
@@ -177,9 +185,9 @@ packages:
     group: androidauto
     requires: [gmscore]
     summary: >-
-      The stub Google ships in the image. Play installs the real Android Auto
-      over it on first use, which is how a Pixel does it -- the full app is
-      not in the factory image to take.
+      A stub. Play installs the real Android Auto over it on first use,
+      which is how a Pixel does it; the full app is not in the factory
+      image to take.
     package: com.google.android.projection.gearhead
     include:
       - product/priv-app/AndroidAutoStubPrebuilt/**
@@ -206,9 +214,9 @@ packages:
     group: core
     requires: [gmscore]
     summary: >-
-      Scans apps as they install. This is also the component Google's developer
-      verification runs through. Leave it out to do without it, or take
-      verifier-block to make sure nothing installs it later.
+      Scans apps as they install. This is also the component Google's
+      developer verification runs through. Leave it out to do without
+      it, or take verifier-block to stop anything installing it later.
     include:
       - product/priv-app/VerifierPrebuiltClassic/**
       - product/etc/permissions/com.google.android.verifier.xml
@@ -219,12 +227,11 @@ packages:
     group: core
     conflicts: [verifier]
     summary: >-
-      Takes the com.google.android.verifier name with an empty apk signed by a
-      key that was generated once and then destroyed. Android will not replace
-      a package with one signed by a different key, so the real verifier can
-      never be installed over it -- not by the Play Store, not by anything.
-      The apk holds no code and does nothing. Mutually exclusive with shipping
-      the verifier itself.
+      Stops the verifier ever being installed. It claims the package
+      name with an empty apk signed by a key that was generated once and
+      destroyed, and Android will not replace a package with one signed
+      by a different key. Holds no code. Mutually exclusive with the
+      verifier itself.
     package: com.google.android.verifier
     kang:
       - file: synth/VerifierBlocker.apk
@@ -288,6 +295,7 @@ packages:
       - QuickSearchBox
     include:
       - product/priv-app/Velvet/**
+      - product/etc/permissions/velvet_app-privapp-permissions.xml
 
   - id: gemini
     name: Gemini
@@ -337,8 +345,8 @@ packages:
     group: gboard
     requires: [gmscore]
     summary: >-
-      Includes the offline speech models and the CJK language models, which
-      live outside the app directory. Without them voice typing only works
+      Keyboard, including the offline speech and CJK models. Those live
+      outside the app directory; without them voice typing only works
       online and Japanese, Korean and Chinese input is degraded.
     removes:
       - LatinIME
@@ -380,9 +388,9 @@ packages:
     name: Trichrome shared library
     group: chrome
     summary: >-
-      Code Chrome and the Google WebView share. Both declare it with
-      uses-static-library and neither loads without it, so it is its own
-      package rather than living inside either one.
+      Shared code Chrome and the Google WebView both need. Each declares
+      it with uses-static-library and neither loads without it, so it is
+      its own package rather than living inside either.
     package: com.google.android.trichromelibrary
     include:
       - product/app/TrichromeLibrary/**
@@ -498,8 +506,8 @@ packages:
     group: pixel
     requires: [gmscore]
     summary: >-
-      On-device personalisation: app suggestions, smart text selection, Now
-      Playing and Live Caption all route through it.
+      On-device personalisation. App suggestions, smart text selection,
+      Now Playing and Live Caption all route through it.
     include:
       - product/priv-app/DevicePersonalizationAiAiPrebuilt*/**
 
@@ -555,8 +563,8 @@ packages:
     name: Google document picker
     group: files
     summary: >-
-      Replaces the AOSP picker, which is what every app opens when asking you
-      to choose a file.
+      Replaces the AOSP file picker. This is what every app opens when
+      it asks you to choose a file.
     removes:
       - DocumentsUI
     include:
@@ -594,10 +602,9 @@ packages:
       - com.google.android.syncadapters.contacts
       - com.google.android.syncadapters.calendar
     summary: >-
-      The standalone sync adapters, kanged rather than dumped: no Pixel image
-      from Android 13 on ships them, because modern Play services handles
-      account sync itself. Offered for ROMs that still expect them, and off by
-      default because on a Pixel they are redundant.
+      Legacy account sync adapters, off by default. No Pixel image since
+      Android 13 ships them because Play services handles sync itself;
+      offered for ROMs that still expect them.
     kang:
       - path: product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
         file: kang/GoogleContactsSyncAdapter.apk
@@ -608,8 +615,8 @@ packages:
     name: Pixel sounds
     group: sounds
     summary: >-
-      The Pixel ringtones, alarms and notification sounds, plus the picker
-      that exposes them.
+      Pixel ringtones, alarms and notification sounds. Includes the
+      picker that exposes them.
     include:
       - product/media/audio/**
       - product/app/SoundPickerPrebuilt*/**
@@ -620,8 +627,9 @@ packages:
     group: tts
     requires: [gmscore]
     summary: >-
-      Includes the offline voice data, which lives outside the app directory.
-      Without it only the languages downloaded on demand will speak.
+      Text to speech, including the offline voice data. That lives
+      outside the app directory; without it only languages downloaded on
+      demand will speak.
     include:
       - product/app/GoogleTTS/**
       - product/tts/google/**

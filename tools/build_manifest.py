@@ -492,6 +492,53 @@ def prune_conflicts(packages: list[dict]) -> list[str]:
     return dropped
 
 
+def check_privapp_allowlists(root: Path, packages: list[dict]) -> list[str]:
+    """Warn about a privileged app whose permissions nothing allowlists.
+
+    Most ROMs set ro.control_privapp_permissions=enforce. Under it, a package
+    in priv-app that requests a signature|privileged permission not named in
+    some privapp-permissions XML makes PackageManager throw during the boot
+    scan, and the device bootloops with nothing useful on screen.
+
+    The allowlists are spread across partitions -- product, system and
+    system_ext all carry one -- and shipping the apps without them is the
+    mistake this catches. Not every privileged app needs an entry (one that
+    requests no privileged permission is fine), so this reports rather than
+    refuses.
+    """
+    allowed = set()
+    shipped = set()
+    for p in packages:
+        for f in p["files"]:
+            rel = f["path"]
+            shipped.add(rel)
+            if "etc/permissions/" not in rel or not rel.endswith(".xml"):
+                continue
+            try:
+                text = (root / rel).read_text(errors="replace")
+            except OSError:
+                continue
+            allowed.update(re.findall(r'privapp-permissions\s+package="([^"]+)"', text))
+
+    problems = []
+    for p in packages:
+        for f in p["files"]:
+            rel = f["path"]
+            if "/priv-app/" not in rel or not rel.endswith(".apk"):
+                continue
+            # Chimera modules live under priv-app but are loaded by GMS Core,
+            # not scanned by PackageManager.
+            if "/app_chimera/" in rel or "/PrebuiltGmsCore/m/" in rel:
+                continue
+            pid = read_package_id(root, rel)
+            if pid and pid not in allowed:
+                problems.append(
+                    f"{p['id']} installs {pid} to priv-app, and no allowlist we "
+                    f"ship names it; if it requests a privileged permission the "
+                    f"device will not boot")
+    return sorted(set(problems))
+
+
 def check_references(packages: list[dict]) -> list[str]:
     """Verify requires still resolves.
 
@@ -803,6 +850,9 @@ def build(args) -> int:
         for line in problems:
             print(f"error: {line}", file=sys.stderr)
         return 1
+
+    for line in check_privapp_allowlists(root, packages):
+        print(f"warning: {line}", file=sys.stderr)
 
     for line in check_symlink_targets(packages):
         print(f"warning: {line}", file=sys.stderr)
