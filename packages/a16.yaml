@@ -66,6 +66,30 @@ variants:
 
 # App families, in the order the picker shows them. A one-member family
 # renders as a single row, a larger one as a tickable header.
+  - id: crdroid
+    name: crDroid official
+    summary: >-
+      What crDroid ships as its official package. Maintained by the ROM.
+    packages: [aiai, aicore, androidauto, chrome, emojiwallpaper,
+               gemini, gmscore, gsa, gsf, markup, nowplaying,
+               pixellauncher, pixelthemes, restore, setupwizard,
+               sounds, syncadapters, trichrome, tts, vending, wallet,
+               wallpapers, webview, wellbeing]
+
+  - id: crdroid-full
+    name: crDroid official full
+    summary: >-
+      crDroid's full official selection, adding the everyday Google apps.
+    packages: [aiai, aicore, androidauto, calculator, calendar,
+               carriersetup, chrome, clock, contacts, devicepolicy,
+               dialer, documentsui, drive, emojiwallpaper, feedback,
+               files, gboard, gemini, gmail, gmscore, gsa, gsf, keep,
+               locationhistory, maps, markup, messages, nowplaying,
+               partnersetup, photos, pixellauncher, pixelthemes,
+               recorder, restore, setupwizard, sounds, storagemanager,
+               syncadapters, trichrome, tts, vending, wallet,
+               wallpapers, webview, wellbeing]
+
 groups:
   - id: core
     name: Core
@@ -125,6 +149,8 @@ groups:
     name: Digital Wellbeing
   - id: androidauto
     name: Android Auto
+  - id: digitalkey
+    name: Digital car key
   - id: partnersetup
     name: Google Partner Setup
   - id: carrier
@@ -692,3 +718,19 @@ packages:
     requires: [gmscore]
     include:
       - system_ext/priv-app/QuickAccessWallet/**
+
+  - id: digitalkey
+    name: Digital car key
+    group: digitalkey
+    requires: [gmscore]
+    summary: >-
+      Time sync for the Car Connectivity Consortium digital key, which is what
+      lets a phone unlock and start a car. Only on devices with ultra-wideband
+      hardware, so absent from a-series and base models.
+    package: org.carconnectivity.android.digitalkey.timesync
+    include:
+      - system_ext/priv-app/CccDkTimeSyncService/**
+      - system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar*
+      - system_ext/etc/permissions/CccDkTimeSyncService.xml
+      - system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
+      - system_ext/etc/sysconfig/preinstalled-packages-cccdktimesync.xml
