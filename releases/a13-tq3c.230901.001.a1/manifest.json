@@ -13,15 +13,305 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-28T14:11:05Z",
+    "created": "2026-09-28T15:25:51Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "fcd6df5b1e6f1bb2fc50eb915070ce91af1259bd969932522e4ffa6c31748ed3"
+    "definitions": "6b58c20b9658391ef25729970d211fc54562dd2a4d0d6e758efe64dd4a06eb42"
   },
+  "groups": [
+    {
+      "id": "core",
+      "name": "Core",
+      "summary": "Play services, the Store, and the framework everything else needs."
+    },
+    {
+      "id": "setup",
+      "name": "Setup Wizard",
+      "summary": "First-boot setup, restore, and the search engine chooser."
+    },
+    {
+      "id": "dialer",
+      "name": "Google Phone"
+    },
+    {
+      "id": "messages",
+      "name": "Google Messages"
+    },
+    {
+      "id": "contacts",
+      "name": "Google Contacts"
+    },
+    {
+      "id": "gboard",
+      "name": "Gboard"
+    },
+    {
+      "id": "tts",
+      "name": "Google Text-to-Speech"
+    },
+    {
+      "id": "search",
+      "name": "Google Search",
+      "summary": "The Google app, Assistant, and Gemini."
+    },
+    {
+      "id": "chrome",
+      "name": "Google Chrome",
+      "summary": "Chrome, the WebView, and the Trichrome library they share."
+    },
+    {
+      "id": "files",
+      "name": "Google Files",
+      "summary": "Files by Google and the document picker it replaces AOSP's with."
+    },
+    {
+      "id": "photos",
+      "name": "Google Photos"
+    },
+    {
+      "id": "markup",
+      "name": "Markup"
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail"
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps"
+    },
+    {
+      "id": "locationhistory",
+      "name": "Location History"
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive"
+    },
+    {
+      "id": "calendar",
+      "name": "Google Calendar"
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator"
+    },
+    {
+      "id": "recorder",
+      "name": "Pixel Recorder"
+    },
+    {
+      "id": "sounds",
+      "name": "Pixel Sounds"
+    },
+    {
+      "id": "pixel",
+      "name": "Pixel Specifics",
+      "summary": "The launcher, wallpapers, themes, and the on-device AI that backs them."
+    },
+    {
+      "id": "wellbeing",
+      "name": "Digital Wellbeing"
+    },
+    {
+      "id": "partnersetup",
+      "name": "Google Partner Setup"
+    },
+    {
+      "id": "carrier",
+      "name": "Carrier Services",
+      "summary": "Carrier provisioning and eSIM support."
+    },
+    {
+      "id": "devicepolicy",
+      "name": "Android Device Policy"
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback"
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility",
+      "summary": "TalkBack and the other Google accessibility services."
+    }
+  ],
+  "variants": [
+    {
+      "id": "core",
+      "name": "Core",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters"
+      ],
+      "summary": "Play services, the Store, and the framework. The smallest thing that signs in and installs apps."
+    },
+    {
+      "id": "basic",
+      "name": "Basic",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "dialer",
+        "messages",
+        "contacts",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "Core plus the phone, messaging and contacts apps."
+    },
+    {
+      "id": "omni",
+      "name": "Omni",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "photos",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "calculator",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "Basic plus setup, the keyboard, and the everyday Google apps."
+    },
+    {
+      "id": "stock",
+      "name": "Stock",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "calculator",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "What a Pixel ships with, near enough."
+    },
+    {
+      "id": "full",
+      "name": "Full",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "calculator",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wellbeing",
+        "partnersetup",
+        "carriersetup",
+        "devicepolicy",
+        "feedback"
+      ],
+      "summary": "Stock plus the rest of what NikGApps packages."
+    },
+    {
+      "id": "everything",
+      "name": "Everything",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "verifier-block",
+        "syncadapters",
+        "setupwizard",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "trichrome",
+        "chrome",
+        "webview",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "calculator",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wallpapers",
+        "emojiwallpaper",
+        "pixelthemes",
+        "wallet",
+        "wellbeing",
+        "partnersetup",
+        "carriersetup",
+        "euicc",
+        "devicepolicy",
+        "feedback",
+        "talkback",
+        "voiceaccess",
+        "soundamplifier"
+      ],
+      "summary": "Every package in the release. Where two cannot coexist the first is taken, so this is a starting point rather than literally everything."
+    }
+  ],
   "packages": [
     {
       "id": "gmscore",
       "name": "Google Play services",
-      "category": "core",
+      "group": "core",
       "files": [
         {
           "path": "product/etc/default-permissions/default-permissions.xml",
@@ -208,7 +498,7 @@
     {
       "id": "gsf",
       "name": "Google Services Framework",
-      "category": "core",
+      "group": "core",
       "files": [
         {
           "path": "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
@@ -233,7 +523,7 @@
     {
       "id": "vending",
       "name": "Google Play Store",
-      "category": "core",
+      "group": "core",
       "files": [
         {
           "path": "product/priv-app/Phonesky/Phonesky.apk",
@@ -260,9 +550,63 @@
       ]
     },
     {
+      "id": "verifier-block",
+      "name": "Block the developer verifier",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/priv-app/VerifierBlocker/VerifierBlocker.apk",
+          "asset": "85eff7f60ccdfc1e-VerifierBlocker.apk",
+          "sha256": "85eff7f60ccdfc1e825396198c0d1e02f86ca00e74571822d7cd5899f0b78edf",
+          "size": 3063,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "packages": [
+        "com.google.android.verifier"
+      ],
+      "summary": "Takes the com.google.android.verifier name with an empty apk signed by a key that was generated once and then destroyed. Android will not replace a package with one signed by a different key, so the real verifier can never be installed over it -- not by the Play Store, not by anything. The apk holds no code and does nothing. Mutually exclusive with shipping the verifier itself."
+    },
+    {
+      "id": "syncadapters",
+      "name": "Contacts and Calendar sync adapters",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
+          "asset": "044cc57bce2f6ae3-GoogleCalendarSyncAdapter.apk",
+          "sha256": "044cc57bce2f6ae3930c28fd784ae12a1781ff09d204db50e775093ecef12661",
+          "size": 2484539,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        },
+        {
+          "path": "product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
+          "asset": "b680052da895d9a1-GoogleContactsSyncAdapter.apk",
+          "sha256": "b680052da895d9a198b856162148de78bc5ad550e46d92239ee9c9308c86ee04",
+          "size": 1571497,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        }
+      ],
+      "packages": [
+        "com.google.android.syncadapters.contacts",
+        "com.google.android.syncadapters.calendar"
+      ],
+      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "setupwizard",
       "name": "Google Setup Wizard",
-      "category": "setup",
+      "group": "setup",
       "files": [
         {
           "path": "product/overlay/PixelSetupWizardOverlay.apk",
@@ -312,88 +656,9 @@
       ]
     },
     {
-      "id": "partnersetup",
-      "name": "Google Partner Setup",
-      "category": "setup",
-      "files": [
-        {
-          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
-          "asset": "96e5aa8ffd0098a3-PartnerSetupPrebuilt.apk",
-          "sha256": "96e5aa8ffd0098a37a9cba3aa3fdd5f0338f362bb2048dafb505232d673d2d38",
-          "size": 726118,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.partnersetup"
-      ],
-      "version": {
-        "versionCode": "1450",
-        "versionName": "100.448391512"
-      },
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "carriersetup",
-      "name": "Carrier Setup",
-      "category": "setup",
-      "files": [
-        {
-          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
-          "asset": "b15cdfe6ccdcc5ce-CarrierSetup.apk",
-          "sha256": "b15cdfe6ccdcc5ce442940a23584e3e0992f8062902330041ac8139a1bfb262f",
-          "size": 7425200,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.carriersetup"
-      ],
-      "version": {
-        "versionCode": "33",
-        "versionName": "13"
-      }
-    },
-    {
-      "id": "gsa",
-      "name": "Google app and Assistant",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/priv-app/Velvet/Velvet.apk",
-          "asset": "97861109ba37d9bd-Velvet.apk",
-          "sha256": "97861109ba37d9bda38af283f59df0a077ab0bff9718e2c57eaa9588b7ed64d7",
-          "size": 462847026,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.googlequicksearchbox"
-      ],
-      "version": {
-        "versionCode": "301224140",
-        "versionName": "14.3.13.29.arm64"
-      },
-      "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
-      "requires": [
-        "gmscore"
-      ],
-      "removes": [
-        "QuickSearchBox"
-      ]
-    },
-    {
       "id": "dialer",
       "name": "Google Phone",
-      "category": "apps",
+      "group": "dialer",
       "files": [
         {
           "path": "product/etc/permissions/com.google.android.dialer.support.xml",
@@ -441,7 +706,7 @@
     {
       "id": "messages",
       "name": "Google Messages",
-      "category": "apps",
+      "group": "messages",
       "files": [
         {
           "path": "product/priv-app/PrebuiltBugle/PrebuiltBugle.apk",
@@ -472,7 +737,7 @@
     {
       "id": "contacts",
       "name": "Google Contacts",
-      "category": "apps",
+      "group": "contacts",
       "files": [
         {
           "path": "product/app/GoogleContacts/GoogleContacts.apk",
@@ -501,7 +766,7 @@
     {
       "id": "gboard",
       "name": "Gboard",
-      "category": "apps",
+      "group": "gboard",
       "files": [
         {
           "path": "product/app/LatinIMEGooglePrebuilt2023Tablet/LatinIMEGooglePrebuilt2023Tablet.apk",
@@ -961,93 +1226,111 @@
       ]
     },
     {
-      "id": "photos",
-      "name": "Google Photos",
-      "category": "apps",
+      "id": "tts",
+      "name": "Google Text-to-Speech",
+      "group": "tts",
       "files": [
         {
-          "path": "product/app/Photos/Photos.apk",
-          "asset": "1cf2c229e25a4d13-Photos.apk",
-          "sha256": "1cf2c229e25a4d13bb15c26f440d15282a033d53116a6be1e7eb89e12e8b0e78",
-          "size": 132494145,
+          "path": "product/app/GoogleTTS/GoogleTTS.apk",
+          "asset": "557d4cc843cb4f21-GoogleTTS.apk",
+          "sha256": "557d4cc843cb4f21ebfdc19316c111334212f1de55a825022685ade4e7f4570f",
+          "size": 71144592,
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "product/tts/google/de-de/de-de-x-multi-r35.zvoice",
+          "asset": "3ef47c80ddd149af-de-de-x-multi-r35.zvoice",
+          "sha256": "3ef47c80ddd149afb2662c5dd97dd3f761ed62e66dd9fd3c844f8e84bcede812",
+          "size": 12934788,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/es-es/es-es-x-multi-r35.zvoice",
+          "asset": "c7910f65fa8bc503-es-es-x-multi-r35.zvoice",
+          "sha256": "c7910f65fa8bc50389256eee1d4079822eb43562dec3a517df5c5256cc054ec3",
+          "size": 6865768,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/fr-fr/fr-fr-x-multi-r35.zvoice",
+          "asset": "0e1cf65438412dc5-fr-fr-x-multi-r35.zvoice",
+          "sha256": "0e1cf65438412dc5ebc0a76c67f9be0217ebbe79786309e66d4df8d7aac47e8d",
+          "size": 15418397,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/it-it/it-it-x-multi-r32.zvoice",
+          "asset": "74bc60cb7626d6f5-it-it-x-multi-r32.zvoice",
+          "sha256": "74bc60cb7626d6f580a922ef2c3ad5cceb5279b9d107739654804822b1e60cd9",
+          "size": 9048760,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/ja-jp/ja-jp-x-multi-r34.zvoice",
+          "asset": "d93d7d31f717576a-ja-jp-x-multi-r34.zvoice",
+          "sha256": "d93d7d31f717576a8b1358314def5dfd3c35eaa605da40e26e5583ada0ee7023",
+          "size": 23868374,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
         }
       ],
       "packages": [
-        "com.google.android.apps.photos"
+        "com.google.android.tts"
       ],
       "version": {
-        "versionCode": "47595614",
-        "versionName": "6.29.0.519265844"
+        "versionCode": "210411861",
+        "versionName": "googletts.google-speech-apk_20230123.02_p3.506463867"
       },
+      "summary": "Includes the offline voice data, which lives outside the app directory. Without it only the languages downloaded on demand will speak.",
       "requires": [
         "gmscore"
-      ],
-      "removes": [
-        "Gallery2",
-        "Glimpse"
       ]
     },
     {
-      "id": "markup",
-      "name": "Markup",
-      "category": "apps",
+      "id": "gsa",
+      "name": "Google app and Assistant",
+      "group": "search",
       "files": [
         {
-          "path": "product/app/MarkupGoogle/MarkupGoogle.apk",
-          "asset": "d76617e57269ff77-MarkupGoogle.apk",
-          "sha256": "d76617e57269ff77b16b2e60276f65b205e88b4d10e15c87d16f899f37c77991",
-          "size": 5967103,
+          "path": "product/priv-app/Velvet/Velvet.apk",
+          "asset": "97861109ba37d9bd-Velvet.apk",
+          "sha256": "97861109ba37d9bda38af283f59df0a077ab0bff9718e2c57eaa9588b7ed64d7",
+          "size": 462847026,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         }
       ],
       "packages": [
-        "com.google.android.markup"
+        "com.google.android.googlequicksearchbox"
       ],
       "version": {
-        "versionCode": "152",
-        "versionName": "1.0"
+        "versionCode": "301224140",
+        "versionName": "14.3.13.29.arm64"
       },
-      "summary": "The annotation editor Photos and screenshots open."
-    },
-    {
-      "id": "calendar",
-      "name": "Google Calendar",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk",
-          "asset": "6c17837f7f9570d8-CalendarGooglePrebuilt.apk",
-          "sha256": "6c17837f7f9570d8bfd211cbee02502eab80716357de2eaac3b9420b77c00d9e",
-          "size": 37851596,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.calendar"
-      ],
-      "version": {
-        "versionCode": "2017095958",
-        "versionName": "2022.30.2-463576837-release"
-      },
+      "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "Calendar",
-        "Etar"
+        "QuickSearchBox"
       ]
     },
     {
       "id": "trichrome",
       "name": "Trichrome shared library",
-      "category": "apps",
+      "group": "chrome",
       "files": [
         {
           "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
@@ -1081,7 +1364,7 @@
     {
       "id": "chrome",
       "name": "Chrome",
-      "category": "apps",
+      "group": "chrome",
       "files": [
         {
           "path": "product/app/Chrome-Stub/Chrome-Stub.apk",
@@ -1122,7 +1405,7 @@
     {
       "id": "webview",
       "name": "Google WebView",
-      "category": "apps",
+      "group": "chrome",
       "files": [
         {
           "path": "product/app/WebViewGoogle-Stub/WebViewGoogle-Stub.apk",
@@ -1159,289 +1442,9 @@
       ]
     },
     {
-      "id": "gmail",
-      "name": "Gmail",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk",
-          "asset": "dfe3470b325c4db9-PrebuiltGmail.apk",
-          "sha256": "dfe3470b325c4db94d518a865259a2101c4edbd4ad732f469557ba17c92d4e26",
-          "size": 118792586,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.gm"
-      ],
-      "version": {
-        "versionCode": "63675156",
-        "versionName": "2023.01.08.501398065.Release"
-      },
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "maps",
-      "name": "Google Maps",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/Maps/Maps.apk",
-          "asset": "3fdfc107fd85e7e2-Maps.apk",
-          "sha256": "3fdfc107fd85e7e248167b99e28f2429742156bb8b657892a996472dfc1e2367",
-          "size": 73060975,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.maps"
-      ],
-      "version": {
-        "versionCode": "1066662178",
-        "versionName": "11.44.0905"
-      },
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "drive",
-      "name": "Google Drive",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/Drive/Drive.apk",
-          "asset": "ca72b27665daaccc-Drive.apk",
-          "sha256": "ca72b27665daaccc1ac381692e710e303e83a1f955a548a5b5bc5dc1b098d7f7",
-          "size": 57377823,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.docs"
-      ],
-      "version": {
-        "versionCode": "212806139",
-        "versionName": "2.22.297.0.arm64-v8a.alldpi"
-      },
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "pixellauncher",
-      "name": "Pixel Launcher",
-      "category": "pixel",
-      "files": [
-        {
-          "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
-          "asset": "6238c0b29414aac4-NexusLauncherRelease.apk",
-          "sha256": "6238c0b29414aac49deff0070e35b6179f65caacbeccfa2d45be29bb52abfa3f",
-          "size": 13622709,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
-          "asset": "3d584b3d9e39ef82-WallpaperPickerGoogleRelease.apk",
-          "sha256": "3d584b3d9e39ef82d5426ccae89e5bf6bcc3dc5e9f8ea06731c9017e1f3fbc41",
-          "size": 9383696,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.nexuslauncher"
-      ],
-      "version": {
-        "versionCode": "906",
-        "versionName": "13"
-      },
-      "summary": "Pixel home screen. Pair with gsa for the search bar.",
-      "requires": [
-        "gmscore"
-      ],
-      "removes": [
-        "Launcher3",
-        "Launcher3QuickStep",
-        "Trebuchet"
-      ]
-    },
-    {
-      "id": "wallpapers",
-      "name": "Pixel wallpapers",
-      "category": "pixel",
-      "files": [
-        {
-          "path": "product/app/PixelWallpapers2023Foldable/PixelWallpapers2023Foldable.apk",
-          "asset": "a7d4334f19c811ba-PixelWallpapers2023Foldable.apk",
-          "sha256": "a7d4334f19c811baa22576d4a7eeca1c3f2036d7bc082b9668834512cbdc2e55",
-          "size": 37345,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.wallpaper.pixel"
-      ],
-      "version": {
-        "versionCode": "18000005",
-        "versionName": "nexus_wallpapers_20220926"
-      }
-    },
-    {
-      "id": "emojiwallpaper",
-      "name": "Emoji wallpaper",
-      "category": "pixel",
-      "files": [
-        {
-          "path": "product/app/WallpaperEmojiPrebuilt/WallpaperEmojiPrebuilt.apk",
-          "asset": "6c07a1c585547f5e-WallpaperEmojiPrebuilt.apk",
-          "sha256": "6c07a1c585547f5e9720a46f9396a049b063feeec5031b2b540963a0cafc20d3",
-          "size": 6261156,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.emojiwallpaper"
-      ],
-      "version": {
-        "versionCode": "149",
-        "versionName": "1.0.518495248"
-      }
-    },
-    {
-      "id": "pixelthemes",
-      "name": "Pixel themes",
-      "category": "pixel",
-      "files": [
-        {
-          "path": "product/app/PixelThemesStub/PixelThemesStub.apk",
-          "asset": "a0b0b021d5c95ff0-PixelThemesStub.apk",
-          "sha256": "a0b0b021d5c95ff0736cb28988ead1270e3a7308d38da1e7de53e039aad509ca",
-          "size": 49565,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
-          "asset": "110327d8969f3aa9-PixelThemesStub2022_and_newer.apk",
-          "sha256": "110327d8969f3aa9e87ea81bfdb59f89e1e9a2b7adffb29e94402c9d2739aa0c",
-          "size": 49565,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.customization.pixel"
-      ],
-      "version": {
-        "versionCode": "2",
-        "versionName": "13"
-      }
-    },
-    {
-      "id": "recorder",
-      "name": "Pixel Recorder",
-      "category": "pixel",
-      "files": [
-        {
-          "path": "product/priv-app/RecorderPrebuilt/RecorderPrebuilt.apk",
-          "asset": "a6c38f096ee8bd74-RecorderPrebuilt.apk",
-          "sha256": "a6c38f096ee8bd74c418561c2dd39f7f7521b6b4586a04c84bd80a855925dff3",
-          "size": 67120617,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.recorder"
-      ],
-      "version": {
-        "versionCode": "42012013",
-        "versionName": "4.2.20230104.501478140"
-      },
-      "requires": [
-        "gmscore"
-      ],
-      "removes": [
-        "Recorder"
-      ]
-    },
-    {
-      "id": "devicepolicy",
-      "name": "Android Device Policy",
-      "category": "extras",
-      "files": [
-        {
-          "path": "product/app/DevicePolicyPrebuilt/DevicePolicyPrebuilt.apk",
-          "asset": "b2183812c07e04d8-DevicePolicyPrebuilt.apk",
-          "sha256": "b2183812c07e04d852203b7794fe6addf12a56d41c40fb79c45a09f0c7bcf7d2",
-          "size": 9995435,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.work.clouddpc"
-      ],
-      "version": {
-        "versionCode": "1677610",
-        "versionName": "64.39.4 (1677610)"
-      },
-      "summary": "Work profile and managed device support.",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "calculator",
-      "name": "Google Calculator",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/CalculatorGooglePrebuilt/CalculatorGooglePrebuilt.apk",
-          "asset": "3f3772b5ba14affb-CalculatorGooglePrebuilt.apk",
-          "sha256": "3f3772b5ba14affb0d44e26081a6012666a42a278219b2aaa8b337e58c9ac1a6",
-          "size": 4871105,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.calculator"
-      ],
-      "version": {
-        "versionCode": "84000598",
-        "versionName": "8.4 (503542421)"
-      },
-      "removes": [
-        "ExactCalculator",
-        "Calculator"
-      ]
-    },
-    {
       "id": "files",
       "name": "Files by Google",
-      "category": "apps",
+      "group": "files",
       "files": [
         {
           "path": "product/priv-app/FilesPrebuilt/FilesPrebuilt.apk",
@@ -1467,7 +1470,7 @@
     {
       "id": "documentsui",
       "name": "Google document picker",
-      "category": "apps",
+      "group": "files",
       "files": [
         {
           "path": "system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk",
@@ -1494,7 +1497,7 @@
     {
       "id": "storagemanager",
       "name": "Google storage manager",
-      "category": "apps",
+      "group": "files",
       "files": [
         {
           "path": "system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk",
@@ -1518,9 +1521,115 @@
       ]
     },
     {
+      "id": "photos",
+      "name": "Google Photos",
+      "group": "photos",
+      "files": [
+        {
+          "path": "product/app/Photos/Photos.apk",
+          "asset": "1cf2c229e25a4d13-Photos.apk",
+          "sha256": "1cf2c229e25a4d13bb15c26f440d15282a033d53116a6be1e7eb89e12e8b0e78",
+          "size": 132494145,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.photos"
+      ],
+      "version": {
+        "versionCode": "47595614",
+        "versionName": "6.29.0.519265844"
+      },
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Gallery2",
+        "Glimpse"
+      ]
+    },
+    {
+      "id": "markup",
+      "name": "Markup",
+      "group": "markup",
+      "files": [
+        {
+          "path": "product/app/MarkupGoogle/MarkupGoogle.apk",
+          "asset": "d76617e57269ff77-MarkupGoogle.apk",
+          "sha256": "d76617e57269ff77b16b2e60276f65b205e88b4d10e15c87d16f899f37c77991",
+          "size": 5967103,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.markup"
+      ],
+      "version": {
+        "versionCode": "152",
+        "versionName": "1.0"
+      },
+      "summary": "The annotation editor Photos and screenshots open."
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "group": "gmail",
+      "files": [
+        {
+          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk",
+          "asset": "dfe3470b325c4db9-PrebuiltGmail.apk",
+          "sha256": "dfe3470b325c4db94d518a865259a2101c4edbd4ad732f469557ba17c92d4e26",
+          "size": 118792586,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gm"
+      ],
+      "version": {
+        "versionCode": "63675156",
+        "versionName": "2023.01.08.501398065.Release"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps",
+      "group": "maps",
+      "files": [
+        {
+          "path": "product/app/Maps/Maps.apk",
+          "asset": "3fdfc107fd85e7e2-Maps.apk",
+          "sha256": "3fdfc107fd85e7e248167b99e28f2429742156bb8b657892a996472dfc1e2367",
+          "size": 73060975,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.maps"
+      ],
+      "version": {
+        "versionCode": "1066662178",
+        "versionName": "11.44.0905"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "locationhistory",
       "name": "Location History",
-      "category": "extras",
+      "group": "locationhistory",
       "files": [
         {
           "path": "product/app/LocationHistoryPrebuilt/LocationHistoryPrebuilt.apk",
@@ -1544,69 +1653,121 @@
       ]
     },
     {
-      "id": "feedback",
-      "name": "Google Feedback",
-      "category": "extras",
+      "id": "drive",
+      "name": "Google Drive",
+      "group": "drive",
       "files": [
         {
-          "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
-          "asset": "44fe04a944fe860c-GoogleFeedback.apk",
-          "sha256": "44fe04a944fe860c27b97eece0c24dc9ba28139ebc1f3c6d140df6a946db4fd0",
-          "size": 650425,
+          "path": "product/app/Drive/Drive.apk",
+          "asset": "ca72b27665daaccc-Drive.apk",
+          "sha256": "ca72b27665daaccc1ac381692e710e303e83a1f955a548a5b5bc5dc1b098d7f7",
+          "size": 57377823,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         }
       ],
       "packages": [
-        "com.google.android.feedback"
+        "com.google.android.apps.docs"
       ],
       "version": {
-        "versionCode": "33",
-        "versionName": "13"
+        "versionCode": "212806139",
+        "versionName": "2.22.297.0.arm64-v8a.alldpi"
       },
-      "summary": "Reports problems to Google. Harmless to leave out.",
       "requires": [
         "gmscore"
       ]
     },
     {
-      "id": "syncadapters",
-      "name": "Contacts and Calendar sync adapters",
-      "category": "extras",
+      "id": "calendar",
+      "name": "Google Calendar",
+      "group": "calendar",
       "files": [
         {
-          "path": "product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
-          "asset": "044cc57bce2f6ae3-GoogleCalendarSyncAdapter.apk",
-          "sha256": "044cc57bce2f6ae3930c28fd784ae12a1781ff09d204db50e775093ecef12661",
-          "size": 2484539,
+          "path": "product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk",
+          "asset": "6c17837f7f9570d8-CalendarGooglePrebuilt.apk",
+          "sha256": "6c17837f7f9570d8bfd211cbee02502eab80716357de2eaac3b9420b77c00d9e",
+          "size": 37851596,
           "mode": "0644",
-          "kind": "apk",
-          "kanged": true
-        },
-        {
-          "path": "product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
-          "asset": "b680052da895d9a1-GoogleContactsSyncAdapter.apk",
-          "sha256": "b680052da895d9a198b856162148de78bc5ad550e46d92239ee9c9308c86ee04",
-          "size": 1571497,
-          "mode": "0644",
-          "kind": "apk",
-          "kanged": true
+          "context": "",
+          "kind": "apk"
         }
       ],
       "packages": [
-        "com.google.android.syncadapters.contacts",
-        "com.google.android.syncadapters.calendar"
+        "com.google.android.calendar"
       ],
-      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "version": {
+        "versionCode": "2017095958",
+        "versionName": "2022.30.2-463576837-release"
+      },
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "Calendar",
+        "Etar"
+      ]
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator",
+      "group": "calculator",
+      "files": [
+        {
+          "path": "product/app/CalculatorGooglePrebuilt/CalculatorGooglePrebuilt.apk",
+          "asset": "3f3772b5ba14affb-CalculatorGooglePrebuilt.apk",
+          "sha256": "3f3772b5ba14affb0d44e26081a6012666a42a278219b2aaa8b337e58c9ac1a6",
+          "size": 4871105,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.calculator"
+      ],
+      "version": {
+        "versionCode": "84000598",
+        "versionName": "8.4 (503542421)"
+      },
+      "removes": [
+        "ExactCalculator",
+        "Calculator"
+      ]
+    },
+    {
+      "id": "recorder",
+      "name": "Pixel Recorder",
+      "group": "recorder",
+      "files": [
+        {
+          "path": "product/priv-app/RecorderPrebuilt/RecorderPrebuilt.apk",
+          "asset": "a6c38f096ee8bd74-RecorderPrebuilt.apk",
+          "sha256": "a6c38f096ee8bd74c418561c2dd39f7f7521b6b4586a04c84bd80a855925dff3",
+          "size": 67120617,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.recorder"
+      ],
+      "version": {
+        "versionCode": "42012013",
+        "versionName": "4.2.20230104.501478140"
+      },
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Recorder"
       ]
     },
     {
       "id": "sounds",
       "name": "Pixel sounds",
-      "category": "pixel",
+      "group": "sounds",
       "files": [
         {
           "path": "product/app/SoundPickerPrebuilt/SoundPickerPrebuilt.apk",
@@ -2267,73 +2428,146 @@
       "summary": "The Pixel ringtones, alarms and notification sounds, plus the picker that exposes them."
     },
     {
-      "id": "tts",
-      "name": "Google Text-to-Speech",
-      "category": "extras",
+      "id": "pixellauncher",
+      "name": "Pixel Launcher",
+      "group": "pixel",
       "files": [
         {
-          "path": "product/app/GoogleTTS/GoogleTTS.apk",
-          "asset": "557d4cc843cb4f21-GoogleTTS.apk",
-          "sha256": "557d4cc843cb4f21ebfdc19316c111334212f1de55a825022685ade4e7f4570f",
-          "size": 71144592,
+          "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
+          "asset": "6238c0b29414aac4-NexusLauncherRelease.apk",
+          "sha256": "6238c0b29414aac49deff0070e35b6179f65caacbeccfa2d45be29bb52abfa3f",
+          "size": 13622709,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
-          "path": "product/tts/google/de-de/de-de-x-multi-r35.zvoice",
-          "asset": "3ef47c80ddd149af-de-de-x-multi-r35.zvoice",
-          "sha256": "3ef47c80ddd149afb2662c5dd97dd3f761ed62e66dd9fd3c844f8e84bcede812",
-          "size": 12934788,
+          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
+          "asset": "3d584b3d9e39ef82-WallpaperPickerGoogleRelease.apk",
+          "sha256": "3d584b3d9e39ef82d5426ccae89e5bf6bcc3dc5e9f8ea06731c9017e1f3fbc41",
+          "size": 9383696,
           "mode": "0644",
           "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/tts/google/es-es/es-es-x-multi-r35.zvoice",
-          "asset": "c7910f65fa8bc503-es-es-x-multi-r35.zvoice",
-          "sha256": "c7910f65fa8bc50389256eee1d4079822eb43562dec3a517df5c5256cc054ec3",
-          "size": 6865768,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/tts/google/fr-fr/fr-fr-x-multi-r35.zvoice",
-          "asset": "0e1cf65438412dc5-fr-fr-x-multi-r35.zvoice",
-          "sha256": "0e1cf65438412dc5ebc0a76c67f9be0217ebbe79786309e66d4df8d7aac47e8d",
-          "size": 15418397,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/tts/google/it-it/it-it-x-multi-r32.zvoice",
-          "asset": "74bc60cb7626d6f5-it-it-x-multi-r32.zvoice",
-          "sha256": "74bc60cb7626d6f580a922ef2c3ad5cceb5279b9d107739654804822b1e60cd9",
-          "size": 9048760,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
-        },
-        {
-          "path": "product/tts/google/ja-jp/ja-jp-x-multi-r34.zvoice",
-          "asset": "d93d7d31f717576a-ja-jp-x-multi-r34.zvoice",
-          "sha256": "d93d7d31f717576a8b1358314def5dfd3c35eaa605da40e26e5583ada0ee7023",
-          "size": 23868374,
-          "mode": "0644",
-          "context": "",
-          "kind": "etc"
+          "kind": "apk"
         }
       ],
       "packages": [
-        "com.google.android.tts"
+        "com.google.android.apps.nexuslauncher"
       ],
       "version": {
-        "versionCode": "210411861",
-        "versionName": "googletts.google-speech-apk_20230123.02_p3.506463867"
+        "versionCode": "906",
+        "versionName": "13"
       },
-      "summary": "Includes the offline voice data, which lives outside the app directory. Without it only the languages downloaded on demand will speak.",
+      "summary": "Pixel home screen. Pair with gsa for the search bar.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Launcher3",
+        "Launcher3QuickStep",
+        "Trebuchet"
+      ]
+    },
+    {
+      "id": "wallpapers",
+      "name": "Pixel wallpapers",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelWallpapers2023Foldable/PixelWallpapers2023Foldable.apk",
+          "asset": "a7d4334f19c811ba-PixelWallpapers2023Foldable.apk",
+          "sha256": "a7d4334f19c811baa22576d4a7eeca1c3f2036d7bc082b9668834512cbdc2e55",
+          "size": 37345,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.wallpaper.pixel"
+      ],
+      "version": {
+        "versionCode": "18000005",
+        "versionName": "nexus_wallpapers_20220926"
+      }
+    },
+    {
+      "id": "emojiwallpaper",
+      "name": "Emoji wallpaper",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/WallpaperEmojiPrebuilt/WallpaperEmojiPrebuilt.apk",
+          "asset": "6c07a1c585547f5e-WallpaperEmojiPrebuilt.apk",
+          "sha256": "6c07a1c585547f5e9720a46f9396a049b063feeec5031b2b540963a0cafc20d3",
+          "size": 6261156,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.emojiwallpaper"
+      ],
+      "version": {
+        "versionCode": "149",
+        "versionName": "1.0.518495248"
+      }
+    },
+    {
+      "id": "pixelthemes",
+      "name": "Pixel themes",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelThemesStub/PixelThemesStub.apk",
+          "asset": "a0b0b021d5c95ff0-PixelThemesStub.apk",
+          "sha256": "a0b0b021d5c95ff0736cb28988ead1270e3a7308d38da1e7de53e039aad509ca",
+          "size": 49565,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
+          "asset": "110327d8969f3aa9-PixelThemesStub2022_and_newer.apk",
+          "sha256": "110327d8969f3aa9e87ea81bfdb59f89e1e9a2b7adffb29e94402c9d2739aa0c",
+          "size": 49565,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.customization.pixel"
+      ],
+      "version": {
+        "versionCode": "2",
+        "versionName": "13"
+      }
+    },
+    {
+      "id": "wallet",
+      "name": "Google Wallet quick access",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "system_ext/priv-app/QuickAccessWallet/QuickAccessWallet.apk",
+          "asset": "13754620e2eb192a-QuickAccessWallet.apk",
+          "sha256": "13754620e2eb192a1f5c0b59b1492d09e8834445075ec0d867d46692e06e3047",
+          "size": 461780,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.android.systemui.plugin.globalactions.wallet"
+      ],
+      "version": {
+        "versionCode": "10000000",
+        "versionName": "1.0.0.0"
+      },
       "requires": [
         "gmscore"
       ]
@@ -2341,7 +2575,7 @@
     {
       "id": "wellbeing",
       "name": "Digital Wellbeing",
-      "category": "extras",
+      "group": "wellbeing",
       "files": [
         {
           "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
@@ -2365,9 +2599,58 @@
       ]
     },
     {
+      "id": "partnersetup",
+      "name": "Google Partner Setup",
+      "group": "partnersetup",
+      "files": [
+        {
+          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
+          "asset": "96e5aa8ffd0098a3-PartnerSetupPrebuilt.apk",
+          "sha256": "96e5aa8ffd0098a37a9cba3aa3fdd5f0338f362bb2048dafb505232d673d2d38",
+          "size": 726118,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.partnersetup"
+      ],
+      "version": {
+        "versionCode": "1450",
+        "versionName": "100.448391512"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "carriersetup",
+      "name": "Carrier Setup",
+      "group": "carrier",
+      "files": [
+        {
+          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
+          "asset": "b15cdfe6ccdcc5ce-CarrierSetup.apk",
+          "sha256": "b15cdfe6ccdcc5ce442940a23584e3e0992f8062902330041ac8139a1bfb262f",
+          "size": 7425200,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.carriersetup"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      }
+    },
+    {
       "id": "euicc",
       "name": "eSIM support",
-      "category": "extras",
+      "group": "carrier",
       "files": [
         {
           "path": "product/priv-app/EuiccGoogle/EuiccGoogle.apk",
@@ -2428,9 +2711,63 @@
       ]
     },
     {
+      "id": "devicepolicy",
+      "name": "Android Device Policy",
+      "group": "devicepolicy",
+      "files": [
+        {
+          "path": "product/app/DevicePolicyPrebuilt/DevicePolicyPrebuilt.apk",
+          "asset": "b2183812c07e04d8-DevicePolicyPrebuilt.apk",
+          "sha256": "b2183812c07e04d852203b7794fe6addf12a56d41c40fb79c45a09f0c7bcf7d2",
+          "size": 9995435,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.work.clouddpc"
+      ],
+      "version": {
+        "versionCode": "1677610",
+        "versionName": "64.39.4 (1677610)"
+      },
+      "summary": "Work profile and managed device support.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback",
+      "group": "feedback",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
+          "asset": "44fe04a944fe860c-GoogleFeedback.apk",
+          "sha256": "44fe04a944fe860c27b97eece0c24dc9ba28139ebc1f3c6d140df6a946db4fd0",
+          "size": 650425,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.feedback"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "summary": "Reports problems to Google. Harmless to leave out.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "talkback",
       "name": "TalkBack",
-      "category": "accessibility",
+      "group": "accessibility",
       "files": [
         {
           "path": "product/app/talkback/talkback.apk",
@@ -2457,7 +2794,7 @@
     {
       "id": "voiceaccess",
       "name": "Voice Access",
-      "category": "accessibility",
+      "group": "accessibility",
       "files": [
         {
           "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
@@ -2484,7 +2821,7 @@
     {
       "id": "soundamplifier",
       "name": "Sound Amplifier",
-      "category": "accessibility",
+      "group": "accessibility",
       "files": [
         {
           "path": "product/app/SoundAmplifierPrebuilt/SoundAmplifierPrebuilt.apk",
@@ -2504,32 +2841,6 @@
         "versionName": "4.4.518458231"
       },
       "summary": "Amplifies and filters audio through headphones.",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "wallet",
-      "name": "Google Wallet quick access",
-      "category": "extras",
-      "files": [
-        {
-          "path": "system_ext/priv-app/QuickAccessWallet/QuickAccessWallet.apk",
-          "asset": "13754620e2eb192a-QuickAccessWallet.apk",
-          "sha256": "13754620e2eb192a1f5c0b59b1492d09e8834445075ec0d867d46692e06e3047",
-          "size": 461780,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.android.systemui.plugin.globalactions.wallet"
-      ],
-      "version": {
-        "versionCode": "10000000",
-        "versionName": "1.0.0.0"
-      },
       "requires": [
         "gmscore"
       ]
