@@ -990,7 +990,6 @@ system/etc/permissions/com.android.nfc_extras.xml
 system/etc/permissions/javax.obex.xml
 system/etc/permissions/org.apache.http.legacy.xml
 system/etc/permissions/platform.xml
-system/etc/permissions/privapp-permissions-google.xml
 system/etc/permissions/privapp-permissions-platform.xml
 system/etc/preloaded-classes
 system/etc/preloaded-classes.fsv_meta
@@ -2969,7 +2968,6 @@ system_ext/etc/permissions/com.verizon.llkagent.xml
 system_ext/etc/permissions/google-ril.xml
 system_ext/etc/permissions/oemrilhook.xml
 system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
-system_ext/etc/permissions/privapp-permissions-google-se.xml
 system_ext/etc/permissions/privapp-permissions-qorvo.xml
 system_ext/etc/permissions/vzw_mvs_permissions.xml
 system_ext/etc/vintf/manifest.xml

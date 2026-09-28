@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-28T16:48:43Z",
+    "created": "2026-09-28T22:18:05Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "99d3d14efe2f946afa4825125d5ccd70f7128256d2db2bfb3433bfd1b4f1f76c"
+    "definitions": "f481b50522724cc26d67b3b9f9384d62ab34ae213edeb57fa663c9eeec9927eb"
   },
   "groups": [
     {
@@ -546,6 +546,30 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "641eb5aa55a4bc9c-privapp-permissions-google.xml.gz",
+          "sha256": "641eb5aa55a4bc9cf0d8eb6d5faaafe464d85d53be445797655dcd0606992ea7",
+          "size": 3511,
+          "encoding": "gzip",
+          "asset_sha256": "5ebd7f52c925940f577073dbfb93b9e323f4716f6b57fcc847ccf49ce0ae5573",
+          "asset_size": 1164,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "792594bbb744b0c9-privapp-permissions-google-se.xml.gz",
+          "sha256": "792594bbb744b0c9599b70bc30ed217e5a4cd7c1cad9a059b9c1fe5bac8a4141",
+          "size": 12331,
+          "encoding": "gzip",
+          "asset_sha256": "a1124df8da928d5cdc7482e0a62a7fe102d92d8b6bd0b908535577a7e10f7f17",
+          "asset_size": 2048,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
         }
       ],
       "packages": [
