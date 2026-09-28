@@ -13,8 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/cubs-ota-cd1a.260905.001.b1-2c1865b8.zip",
       "sha256": "2c1865b8a09d2905bb217ad15a9862793ec42f913da930cc657355160b739860"
     },
-    "created": "2026-09-28T12:42:44Z",
-    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
+    "created": "2026-09-28T13:23:13Z",
+    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1",
+    "definitions": "269c4116266f36f3932c1fcdd3fa8ceff01efa38f6365a10fed5690d9b643317"
   },
   "packages": [
     {
@@ -257,7 +258,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gms",
+      "packages": [
+        "com.google.android.gms"
+      ],
+      "version": {
+        "versionCode": "261843025",
+        "versionName": "26.18.43 (100400-0)"
+      },
       "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
       "required": true
     },
@@ -276,7 +283,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gsf",
+      "packages": [
+        "com.google.android.gsf"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
       "summary": "Device registration and push messaging.",
       "required": true
     },
@@ -295,7 +308,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.android.vending",
+      "packages": [
+        "com.android.vending"
+      ],
+      "version": {
+        "versionCode": "85124430",
+        "versionName": "51.2.44-31 [0] [PR] 925419779"
+      },
       "summary": "App store and Play Protect.",
       "default": true,
       "requires": [
@@ -336,7 +355,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.verifier",
+      "packages": [
+        "com.google.android.verifier"
+      ],
+      "version": {
+        "versionCode": "48099",
+        "versionName": "1.0.866414232"
+      },
       "requires": [
         "gmscore"
       ]
@@ -446,7 +471,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.pixel.setupwizard.overlay.expressive",
+      "packages": [
+        "com.google.android.pixel.setupwizard.overlay.expressive"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
       "summary": "Replaces the AOSP first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
       "default": true,
       "requires": [
@@ -474,7 +505,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.googlequicksearchbox",
+      "packages": [
+        "com.google.android.googlequicksearchbox"
+      ],
+      "version": {
+        "versionCode": "301762407",
+        "versionName": "17.32.82.sa.arm64"
+      },
       "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
       "requires": [
         "gmscore"
@@ -516,7 +553,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.bard",
+      "packages": [
+        "com.google.android.apps.bard"
+      ],
+      "version": {
+        "versionCode": "227",
+        "versionName": "1.0.751104895"
+      },
       "requires": [
         "gmscore"
       ]
@@ -554,7 +597,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.dialer",
+      "packages": [
+        "com.google.android.dialer"
+      ],
+      "version": {
+        "versionCode": "19827468",
+        "versionName": "226.0.928208984"
+      },
       "summary": "Call screening and spam protection.",
       "requires": [
         "gmscore"
@@ -578,7 +627,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.messaging",
+      "packages": [
+        "com.google.android.apps.messaging"
+      ],
+      "version": {
+        "versionCode": "307085063",
+        "versionName": "messages.android_20260417_00_RC10.phone_dynamic"
+      },
       "summary": "RCS-capable SMS client.",
       "requires": [
         "gmscore"
@@ -603,7 +658,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.contacts",
+      "packages": [
+        "com.google.android.contacts"
+      ],
+      "version": {
+        "versionCode": "3266771",
+        "versionName": "4.74.28.876719826"
+      },
       "requires": [
         "gmscore"
       ],
@@ -626,7 +687,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.inputmethod.latin",
+      "packages": [
+        "com.google.android.inputmethod.latin"
+      ],
+      "version": {
+        "versionCode": "175753810",
+        "versionName": "17.2.3.895242737-preload-arm64-v8a"
+      },
       "requires": [
         "gmscore"
       ],
@@ -658,7 +725,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.photos",
+      "packages": [
+        "com.google.android.apps.photos"
+      ],
+      "version": {
+        "versionCode": "51413603",
+        "versionName": "7.67.0.882706237"
+      },
       "requires": [
         "gmscore"
       ],
@@ -682,7 +755,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.calendar",
+      "packages": [
+        "com.google.android.calendar"
+      ],
+      "version": {
+        "versionCode": "2018015783",
+        "versionName": "2026.03.0-857911644-release"
+      },
       "requires": [
         "gmscore"
       ],
@@ -703,7 +782,8 @@
           "size": 12701,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
@@ -715,7 +795,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.google.android.trichromelibrary",
+      "packages": [
+        "com.google.android.trichromelibrary"
+      ],
+      "version": {
+        "versionCode": "763221832",
+        "versionName": "145.0.7632.218"
+      },
       "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
     },
     {
@@ -730,7 +816,8 @@
           "size": 16797,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/Chrome/Chrome.apk.gz",
@@ -742,7 +829,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.android.chrome",
+      "packages": [
+        "com.android.chrome"
+      ],
+      "version": {
+        "versionCode": "763221832",
+        "versionName": "145.0.7632.218"
+      },
       "requires": [
         "gmscore",
         "trichrome"
@@ -764,7 +857,8 @@
           "size": 12701,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/WebViewGoogle/WebViewGoogle.apk.gz",
@@ -776,7 +870,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.google.android.webview",
+      "packages": [
+        "com.google.android.webview"
+      ],
+      "version": {
+        "versionCode": "763221804",
+        "versionName": "145.0.7632.218"
+      },
       "requires": [
         "trichrome"
       ],
@@ -799,7 +899,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gm",
+      "packages": [
+        "com.google.android.gm"
+      ],
+      "version": {
+        "versionCode": "65615106",
+        "versionName": "2026.02.23.876771157.Release"
+      },
       "requires": [
         "gmscore"
       ]
@@ -819,7 +925,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.maps",
+      "packages": [
+        "com.google.android.apps.maps"
+      ],
+      "version": {
+        "versionCode": "1068538231",
+        "versionName": "26.16.12.898594237"
+      },
       "requires": [
         "gmscore"
       ]
@@ -839,7 +951,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.docs",
+      "packages": [
+        "com.google.android.apps.docs"
+      ],
+      "version": {
+        "versionCode": "214380540",
+        "versionName": "2.26.107.3.arm64-v8a.alldpi"
+      },
       "requires": [
         "gmscore"
       ]
@@ -868,7 +986,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.youtube",
+      "packages": [
+        "com.google.android.youtube"
+      ],
+      "version": {
+        "versionCode": "1561179976",
+        "versionName": "21.25.523"
+      },
       "requires": [
         "gmscore"
       ]
@@ -888,7 +1012,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.keep",
+      "packages": [
+        "com.google.android.keep"
+      ],
+      "version": {
+        "versionCode": "220645310",
+        "versionName": "5.26.042.00.90"
+      },
       "requires": [
         "gmscore"
       ]
@@ -908,7 +1038,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.tachyon",
+      "packages": [
+        "com.google.android.apps.tachyon"
+      ],
+      "version": {
+        "versionCode": "6958709",
+        "versionName": "347.0.870744322.duo.android_20260216.01_p0"
+      },
       "requires": [
         "gmscore"
       ]
@@ -946,7 +1082,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.nexuslauncher",
+      "packages": [
+        "com.google.android.apps.nexuslauncher"
+      ],
+      "version": {
+        "versionCode": "907",
+        "versionName": "17"
+      },
       "summary": "Pixel home screen. Pair with gsa for the search bar.",
       "requires": [
         "gmscore"
@@ -990,7 +1132,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.wallpaper.pixel"
+      "packages": [
+        "com.google.android.apps.wallpaper.pixel"
+      ],
+      "version": {
+        "versionCode": "18000012",
+        "versionName": "nexus_wallpapers_20260316"
+      }
     },
     {
       "id": "nowplaying",
@@ -1016,7 +1164,13 @@
           "kind": "sysconfig"
         }
       ],
-      "package": "com.google.android.apps.pixel.nowplaying",
+      "packages": [
+        "com.google.android.apps.pixel.nowplaying"
+      ],
+      "version": {
+        "versionCode": "29437",
+        "versionName": "2026.04.19.919868054.1-release"
+      },
       "requires": [
         "gmscore"
       ]
@@ -1036,7 +1190,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.recorder",
+      "packages": [
+        "com.google.android.apps.recorder"
+      ],
+      "version": {
+        "versionCode": "42380313",
+        "versionName": "4.2.20251118.847964105"
+      },
       "requires": [
         "gmscore"
       ],
@@ -1045,29 +1205,299 @@
       ]
     },
     {
-      "id": "pixelcamera",
-      "name": "Pixel Camera",
-      "category": "pixel",
+      "id": "aiai",
+      "name": "Device Personalization Services",
+      "category": "extras",
       "files": [
         {
-          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk",
-          "asset": "e25bc8c3504b5377-GoogleCamera.apk",
-          "sha256": "e25bc8c3504b53770b75d57b1bae4f45963ce7073031ce9616ea1bb69fed8a78",
-          "size": 932767785,
+          "path": "product/priv-app/DevicePersonalizationAiAiPrebuiltPixel2026/DevicePersonalizationAiAiPrebuiltPixel2026.apk",
+          "asset": "0305afcf6b06da43-DevicePersonalizationAiAiPrebuiltPixel2026.apk",
+          "sha256": "0305afcf6b06da43a031c56fff88a8cce934017d9c24b654014cc98f407ba7a6",
+          "size": 106906376,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.GoogleCamera",
-      "summary": "Only useful on a Pixel: it needs the Pixel camera HAL and will not start on other hardware. Since it also replaces the ROM's camera, selecting it on a non-Pixel leaves you with none.",
+      "packages": [
+        "com.google.android.as"
+      ],
+      "version": {
+        "versionCode": "16911941",
+        "versionName": "C.4.playstore.pixel11.940155965"
+      },
+      "summary": "On-device personalisation: app suggestions, smart text selection, Now Playing and Live Caption all route through it.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "aicore",
+      "name": "AICore",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/priv-app/AICorePrebuilt-aicore_20260302.01_RC00/AICorePrebuilt-aicore_20260302.01_RC00.apk",
+          "asset": "fc0e0af158204129-AICorePrebuilt-aicore_20260302.01_RC00.apk",
+          "sha256": "fc0e0af158204129f6541f4c32611084425f43e91be807d6a293bbceb7c8eed5",
+          "size": 1447374,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.aicore"
+      ],
+      "version": {
+        "versionCode": "395592",
+        "versionName": "0.stub.stub_aicore_20260302.01_RC00.877448964"
+      },
+      "summary": "On-device foundation models the newer Pixel features build on.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "devicepolicy",
+      "name": "Android Device Policy",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/DevicePolicyPrebuilt-v10572820/DevicePolicyPrebuilt-v10572820.apk",
+          "asset": "f8a6fe36c9f8beaa-DevicePolicyPrebuilt-v10572820.apk",
+          "sha256": "f8a6fe36c9f8beaa6b2c37800919e018998b591e1201c2ece8fb67b2828f3f0e",
+          "size": 24180421,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.work.clouddpc"
+      ],
+      "version": {
+        "versionCode": "10572820",
+        "versionName": "149.81.4 (10572820)"
+      },
+      "summary": "Work profile and managed device support.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "credentialmanager",
+      "name": "Credential Manager",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0/CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0.apk",
+          "asset": "810aacf629d92918-CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0.apk",
+          "sha256": "810aacf629d92918e791b4139fda4ee0dfec320c44b938cfc6ffc85a1e6c6043",
+          "size": 5652933,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.credentialmanager"
+      ],
+      "version": {
+        "versionCode": "1765",
+        "versionName": "2026.05.20.918286961.0-release"
+      },
+      "summary": "Passkey and password autofill support.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/CalculatorGooglePrebuilt_85011599/CalculatorGooglePrebuilt_85011599.apk",
+          "asset": "cc778d1f276d7219-CalculatorGooglePrebuilt_85011599.apk",
+          "sha256": "cc778d1f276d721913b882581a0ab999dd106bfdb2323929789fc1181df75d7f",
+          "size": 8299061,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.calculator"
+      ],
+      "version": {
+        "versionCode": "85011599",
+        "versionName": "9.1 (886477075)"
+      },
+      "removes": [
+        "ExactCalculator",
+        "Calculator"
+      ]
+    },
+    {
+      "id": "clock",
+      "name": "Google Clock",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/priv-app/PrebuiltDeskClockGoogle_76060331/PrebuiltDeskClockGoogle_76060331.apk",
+          "asset": "b1d5d61535b86482-PrebuiltDeskClockGoogle_76060331.apk",
+          "sha256": "b1d5d61535b86482f31808035cf95414a7e05f48e54c26b34b2a868c0868eb9e",
+          "size": 18642912,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.deskclock"
+      ],
+      "version": {
+        "versionCode": "76060331",
+        "versionName": "8.7 (881990392)"
+      },
+      "removes": [
+        "DeskClock"
+      ]
+    },
+    {
+      "id": "files",
+      "name": "Files by Google",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/priv-app/FilesPrebuilt/FilesPrebuilt.apk",
+          "asset": "f10877206e5496c7-FilesPrebuilt.apk",
+          "sha256": "f10877206e5496c7ef2070393b4a1fc473e51ae13ab64c51d2a9d4f4c4980d66",
+          "size": 27853326,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk",
+          "asset": "747f042ef2db0358-DocumentsUIGoogle.apk",
+          "sha256": "747f042ef2db03589f771bf0fb9dc862153db3ec2fb3f83518cd6b72ba461b98",
+          "size": 10078462,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk",
+          "asset": "e704d26daf4befb0-StorageManagerGoogle.apk",
+          "sha256": "e704d26daf4befb0b82539d455749ff1217276f7dac6acc0e836ac3d44e05827",
+          "size": 4645693,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.nbu.files"
+      ],
+      "version": {
+        "versionCode": "1613555",
+        "versionName": "1.9456.838368644.0-release"
+      },
+      "summary": "Includes the Google document picker and storage manager, which replace the AOSP ones and are what other apps open when asking for a file.",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "Camera2",
-        "Aperture",
-        "Snap"
+        "DocumentsUI",
+        "StorageManager"
+      ]
+    },
+    {
+      "id": "locationhistory",
+      "name": "Location History",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/LocationHistoryPrebuilt/LocationHistoryPrebuilt.apk",
+          "asset": "bd569288da97977e-LocationHistoryPrebuilt.apk",
+          "sha256": "bd569288da97977ec04965dd1879f884a5a8db46d4c56fed18486e4050fb88d7",
+          "size": 2700122,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gms.location.history"
+      ],
+      "version": {
+        "versionCode": "3",
+        "versionName": "1.2"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback",
+      "category": "extras",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
+          "asset": "3639ca7f2d2c4eca-GoogleFeedback.apk",
+          "sha256": "3639ca7f2d2c4ecab2033c200fa15a49cc7f42c6b33d3249f02d28361d5e97da",
+          "size": 544588,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.feedback"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Reports problems to Google. Harmless to leave out.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "syncadapters",
+      "name": "Contacts and Calendar sync adapters",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
+          "asset": "044cc57bce2f6ae3-GoogleCalendarSyncAdapter.apk",
+          "sha256": "044cc57bce2f6ae3930c28fd784ae12a1781ff09d204db50e775093ecef12661",
+          "size": 2484539,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        },
+        {
+          "path": "product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
+          "asset": "b680052da895d9a1-GoogleContactsSyncAdapter.apk",
+          "sha256": "b680052da895d9a198b856162148de78bc5ad550e46d92239ee9c9308c86ee04",
+          "size": 1571497,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        }
+      ],
+      "packages": [
+        "com.google.android.syncadapters.contacts",
+        "com.google.android.syncadapters.calendar"
+      ],
+      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "requires": [
+        "gmscore"
       ]
     },
     {
@@ -1085,7 +1515,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.tts",
+      "packages": [
+        "com.google.android.tts"
+      ],
+      "version": {
+        "versionCode": "210598194",
+        "versionName": "googletts.google-speech-apk_20251028.02_p2.827711934"
+      },
       "requires": [
         "gmscore"
       ]
@@ -1105,7 +1541,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.wellbeing",
+      "packages": [
+        "com.google.android.apps.wellbeing"
+      ],
+      "version": {
+        "versionCode": "814547",
+        "versionName": "1.39.902988200 (814547)"
+      },
       "requires": [
         "gmscore"
       ]
@@ -1188,7 +1630,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.euicc",
+      "packages": [
+        "com.google.android.euicc"
+      ],
+      "version": {
+        "versionCode": "236971",
+        "versionName": "D.2.1.948592891-google"
+      },
       "summary": "Needed for eSIM provisioning on most carriers.",
       "requires": [
         "gmscore"
@@ -1245,7 +1693,13 @@
           "kind": "sysconfig"
         }
       ],
-      "package": "com.google.android.marvin.talkback",
+      "packages": [
+        "com.google.android.marvin.talkback"
+      ],
+      "version": {
+        "versionCode": "60201234",
+        "versionName": "17.0.0.889642762"
+      },
       "requires": [
         "gmscore"
       ]
@@ -1265,7 +1719,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.adm",
+      "packages": [
+        "com.google.android.apps.adm"
+      ],
+      "version": {
+        "versionCode": "1",
+        "versionName": "3.1.621-1_stub"
+      },
       "requires": [
         "gmscore"
       ]
@@ -1285,7 +1745,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.android.systemui.plugin.globalactions.wallet",
+      "packages": [
+        "com.android.systemui.plugin.globalactions.wallet"
+      ],
+      "version": {
+        "versionCode": "10000000",
+        "versionName": "1.0.0.0"
+      },
       "requires": [
         "gmscore"
       ]
