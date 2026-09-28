@@ -13,8 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-28T13:12:40Z",
-    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1"
+    "created": "2026-09-28T14:11:05Z",
+    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
+    "definitions": "fcd6df5b1e6f1bb2fc50eb915070ce91af1259bd969932522e4ffa6c31748ed3"
   },
   "packages": [
     {
@@ -194,7 +195,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gms",
+      "packages": [
+        "com.google.android.gms"
+      ],
+      "version": {
+        "versionCode": "224619045",
+        "versionName": "22.46.19 (190408-515739919)"
+      },
       "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
       "required": true
     },
@@ -213,7 +220,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gsf",
+      "packages": [
+        "com.google.android.gsf"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
       "summary": "Device registration and push messaging.",
       "required": true
     },
@@ -232,7 +245,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.android.vending",
+      "packages": [
+        "com.android.vending"
+      ],
+      "version": {
+        "versionCode": "83421310",
+        "versionName": "34.2.13-21 [0] [PR] 503494674"
+      },
       "summary": "App store and Play Protect.",
       "default": true,
       "requires": [
@@ -271,28 +290,16 @@
           "mode": "0644",
           "context": "",
           "kind": "overlay"
-        },
-        {
-          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
-          "asset": "96e5aa8ffd0098a3-PartnerSetupPrebuilt.apk",
-          "sha256": "96e5aa8ffd0098a37a9cba3aa3fdd5f0338f362bb2048dafb505232d673d2d38",
-          "size": 726118,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
-          "asset": "b15cdfe6ccdcc5ce-CarrierSetup.apk",
-          "sha256": "b15cdfe6ccdcc5ce442940a23584e3e0992f8062902330041ac8139a1bfb262f",
-          "size": 7425200,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
         }
       ],
-      "package": "com.google.android.pixel.setupwizard.overlay",
-      "summary": "Replaces the AOSP first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
+      "packages": [
+        "com.google.android.pixel.setupwizard.overlay"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "summary": "Replaces the ROM's first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
       "default": true,
       "requires": [
         "gmscore",
@@ -303,6 +310,55 @@
         "SetupWizard",
         "LineageSetupWizard"
       ]
+    },
+    {
+      "id": "partnersetup",
+      "name": "Google Partner Setup",
+      "category": "setup",
+      "files": [
+        {
+          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
+          "asset": "96e5aa8ffd0098a3-PartnerSetupPrebuilt.apk",
+          "sha256": "96e5aa8ffd0098a37a9cba3aa3fdd5f0338f362bb2048dafb505232d673d2d38",
+          "size": 726118,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.partnersetup"
+      ],
+      "version": {
+        "versionCode": "1450",
+        "versionName": "100.448391512"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "carriersetup",
+      "name": "Carrier Setup",
+      "category": "setup",
+      "files": [
+        {
+          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
+          "asset": "b15cdfe6ccdcc5ce-CarrierSetup.apk",
+          "sha256": "b15cdfe6ccdcc5ce442940a23584e3e0992f8062902330041ac8139a1bfb262f",
+          "size": 7425200,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.carriersetup"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      }
     },
     {
       "id": "gsa",
@@ -319,7 +375,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.googlequicksearchbox",
+      "packages": [
+        "com.google.android.googlequicksearchbox"
+      ],
+      "version": {
+        "versionCode": "301224140",
+        "versionName": "14.3.13.29.arm64"
+      },
       "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
       "requires": [
         "gmscore"
@@ -361,7 +423,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.dialer",
+      "packages": [
+        "com.google.android.dialer"
+      ],
+      "version": {
+        "versionCode": "11348628",
+        "versionName": "100.0.512999549"
+      },
       "summary": "Call screening and spam protection.",
       "requires": [
         "gmscore"
@@ -385,7 +453,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.messaging",
+      "packages": [
+        "com.google.android.apps.messaging"
+      ],
+      "version": {
+        "versionCode": "163204840",
+        "versionName": "messages.android_20221208_01_RC02_alldpi.arm64-v8a.phone"
+      },
       "summary": "RCS-capable SMS client.",
       "requires": [
         "gmscore"
@@ -410,7 +484,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.contacts",
+      "packages": [
+        "com.google.android.contacts"
+      ],
+      "version": {
+        "versionCode": "2960682",
+        "versionName": "4.1.17.505591926"
+      },
       "requires": [
         "gmscore"
       ],
@@ -431,9 +511,448 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/ko_2018030706.zip",
+          "asset": "f5f7a2f5a9ce24b6-ko_2018030706.zip",
+          "sha256": "f5f7a2f5a9ce24b676dcaf5591811a23ff3da40127abd571443bac9b99a27d60",
+          "size": 4488386,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/mozc.data",
+          "asset": "02e29eab8bc2b125-mozc.data",
+          "sha256": "02e29eab8bc2b125060c990a70e2557950dd97a2b5138566b2acae7bc4c24df3",
+          "size": 9020702,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/zh_CN_2018030706.zip",
+          "asset": "a02b08c7589f0ca9-zh_CN_2018030706.zip",
+          "sha256": "a02b08c7589f0ca9c0fcf3c573e53b04287e62ff8c2b086a2c4d3041ebb84fa5",
+          "size": 8674897,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/SODA_punctuation_config.pb",
+          "asset": "d9f970e45f503118-SODA_punctuation_config.pb",
+          "sha256": "d9f970e45f5031182cf212ec8c2847b66449b4cc7ceeb20385f8fd63a1363e82",
+          "size": 32,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/SODA_punctuation_model.tflite",
+          "asset": "a8d841673c8b5df0-SODA_punctuation_model.tflite",
+          "sha256": "a8d841673c8b5df032dffa579931181c5cdbce104454e05a49bf76d2fa5d6046",
+          "size": 2322992,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_DICTATION_EP.endpointer_portable_lstm_mean_stddev",
+          "asset": "89732317b5090c12-MARBLE_DICTATION_EP.endpointer_portable_lstm_mean_stddev",
+          "sha256": "89732317b5090c125990a2b796f6c7e0109a8ffb9176bd81b8cd6b5ce17523a1",
+          "size": 326,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_DICTATION_EP.endpointer_portable_lstm_model",
+          "asset": "4690866d3dbc5fb3-MARBLE_DICTATION_EP.endpointer_portable_lstm_model",
+          "sha256": "4690866d3dbc5fb3868f3b1341a9a93b0bdea55663b80fe0ffe65e9b1f0c8982",
+          "size": 125088,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_VOICE_ACTIONS_EP.endpointer_portable_lstm_mean_stddev",
+          "asset": "b0ccb4bc0b962b91-MARBLE_VOICE_ACTIONS_EP.endpointer_portable_lstm_mean_stddev",
+          "sha256": "b0ccb4bc0b962b917839efa39fd847c426305cd74266c473417d1fc524a766f7",
+          "size": 334,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_VOICE_ACTIONS_EP.endpointer_portable_lstm_model",
+          "asset": "ddc99f9d83426367-MARBLE_VOICE_ACTIONS_EP.endpointer_portable_lstm_model",
+          "sha256": "ddc99f9d83426367f2aa126a3cc68e2b88d7a1a62fcbaf27ec5601fbdbb9e425",
+          "size": 339168,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/config.pumpkin",
+          "asset": "a7a41a2c6705342f-config.pumpkin",
+          "sha256": "a7a41a2c6705342f9ab6321430048f6acc9001151fff009223b8a8cfe7caf345",
+          "size": 463745,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_CONTINUOUS.config",
+          "asset": "657fded887ce841c-ONDEVICE_MEDIUM_CONTINUOUS.config",
+          "sha256": "657fded887ce841cc485c15a1892a41221f85a41ad31ca95f11a96abc023187f",
+          "size": 13137,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_SHORT.config",
+          "asset": "bbc0573f70bbdc1d-ONDEVICE_MEDIUM_SHORT.config",
+          "sha256": "bbc0573f70bbdc1dc32d4aef101c95b3e82e81f02d4f22fed2bc3f1e3926a5af",
+          "size": 13754,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_SHORT_compiler.config",
+          "asset": "c0418107c9dd361f-ONDEVICE_MEDIUM_SHORT_compiler.config",
+          "sha256": "c0418107c9dd361f718c35850cae0a7ae9c11fc0d0f8ea5c73feba7b580544a7",
+          "size": 271,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/apps.txt",
+          "asset": "d41fa0dfc9601a6d-apps.txt",
+          "sha256": "d41fa0dfc9601a6de1957b3cbbc03132debb9d391386e58d72e927f2d8c3f971",
+          "size": 3128,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/contacts.txt",
+          "asset": "f3c4071e8e14813d-contacts.txt",
+          "sha256": "f3c4071e8e14813dc6cb4f5bb1365f3f4e341890bb9e52548da514f688340ec0",
+          "size": 20902,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_car_automation.action.union_STD_FST.fst",
+          "asset": "34630789dc1728d1-en-US_android-auto_car_automation.action.union_STD_FST.fst",
+          "sha256": "34630789dc1728d1614b6f77bdc2f290c8b4fdb1311199519f6c010260bcc6ec",
+          "size": 2916307,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_manual_fixes_STD_FST.fst",
+          "asset": "3dcf7ebae463f81a-en-US_android-auto_manual_fixes_STD_FST.fst",
+          "sha256": "3dcf7ebae463f81a3637fc7ea90a1b50fd24c4893c831866a86ca48adca401b3",
+          "size": 2625,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_top_radio_station_frequencies_STD_FST.fst",
+          "asset": "037e4919610ffb95-en-US_android-auto_top_radio_station_frequencies_STD_FST.fst",
+          "sha256": "037e4919610ffb951a0c17825244f043dc1ee189b959ca3a243dbe9f7891dcfa",
+          "size": 7170,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/songs.txt",
+          "asset": "ed962607a8daa02e-songs.txt",
+          "sha256": "ed962607a8daa02efe195e9475668ee46a39980add31d4b1ad6a71f845902dcc",
+          "size": 308,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_class_denorm.mfar",
+          "asset": "99b70d6c1aba5ae1-embedded_class_denorm.mfar",
+          "sha256": "99b70d6c1aba5ae140580ec58adf8088fa37b3f3a2ecd85787b522f9b06ebec2",
+          "size": 312176,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_covid_19.mfar",
+          "asset": "c0be3c2f4d205b58-embedded_covid_19.mfar",
+          "sha256": "c0be3c2f4d205b581516cd22367baabdff384d4ba1fce90abdb287eaf95aa756",
+          "size": 269472,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_fix_ampm.mfar",
+          "asset": "46c6796b98e1a332-embedded_fix_ampm.mfar",
+          "sha256": "46c6796b98e1a3322aed6385d57c39111c6cf0833c65e30784d0e2c941f53775",
+          "size": 15664,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_normalizer.mfar",
+          "asset": "9d65e874757c6e7c-embedded_normalizer.mfar",
+          "sha256": "9d65e874757c6e7cbe005522857fb12abce6494b9626ec3fa8b56c3f0e734bc6",
+          "size": 2761440,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_replace_annotated_punct_words_dash.mfar",
+          "asset": "7998e57ccc59e452-embedded_replace_annotated_punct_words_dash.mfar",
+          "sha256": "7998e57ccc59e452caab1d89943dd8419b107cd1f934cc1e758026e1f386a247",
+          "size": 1410080,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/porn_normalizer_on_device.mfar",
+          "asset": "c3868eef9ae404fa-porn_normalizer_on_device.mfar",
+          "sha256": "c3868eef9ae404fa1262ac922111d7d9d165be080654556bdae1a48dbcc1ce9f",
+          "size": 552848,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_dictation_frontend_params.mean_stddev",
+          "asset": "5b1f0aa2f020dd85-marble_rnnt_dictation_frontend_params.mean_stddev",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model-encoder.part_0.tflite",
+          "asset": "688f4ed89d882536-marble_rnnt_model-encoder.part_0.tflite",
+          "sha256": "688f4ed89d8825367299169731eb320dbd34589faf3f795d36bb11f738abcacd",
+          "size": 7641728,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model-encoder.part_1.tflite",
+          "asset": "75cdd139f4ca3b72-marble_rnnt_model-encoder.part_1.tflite",
+          "sha256": "75cdd139f4ca3b724f446c03d70ec0446463dfdea1b6e509ad09344a08f499f2",
+          "size": 25885536,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model-rnnt.decoder.tflite",
+          "asset": "cb51e6b70050ba05-marble_rnnt_model-rnnt.decoder.tflite",
+          "sha256": "cb51e6b70050ba05e8da92dfc5f479f54a21fb94d1181ccfd1eee85a8ff39db8",
+          "size": 7534448,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model-rnnt.joint.tflite",
+          "asset": "cc7d9a0591eaadc5-marble_rnnt_model-rnnt.joint.tflite",
+          "sha256": "cc7d9a0591eaadc5c06d70313bb7e9c5637fc92befd448ef68cb26678b4ffd82",
+          "size": 2638656,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model.syms.compact",
+          "asset": "f2c3b3e1c7f1ffc7-marble_rnnt_model.syms.compact",
+          "sha256": "f2c3b3e1c7f1ffc79dc1ca66b58769b13a0dd29c4f22999ce6cc602ec70a2caf",
+          "size": 22176,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model.word_classifier",
+          "asset": "8ea847aa87919c34-marble_rnnt_model.word_classifier",
+          "sha256": "8ea847aa87919c34c552e27661feebb60e3c1a7630a05a52ecc4817a01ec4ad0",
+          "size": 72,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_model.wpm.portable",
+          "asset": "a89f7c9ab8628305-marble_rnnt_model.wpm.portable",
+          "sha256": "a89f7c9ab862830574d3460d144c1f727bd7943d1b9bfc660e4166a37432a336",
+          "size": 167725,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/marble_rnnt_voice_actions_frontend_params.mean_stddev",
+          "asset": "5b1f0aa2f020dd85-marble_rnnt_voice_actions_frontend_params.mean_stddev",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p",
+          "asset": "ad4af5a982cbe1ff-g2p",
+          "sha256": "ad4af5a982cbe1ff31ca2c8b9ad85d641aa7adf790d8fa8b9bf55bb1abd12f8a",
+          "size": 227648,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p.syms",
+          "asset": "38bf709f6b52fac2-g2p.syms",
+          "sha256": "38bf709f6b52fac2ef255bf441881e498f7b5e2f9b884ba62deb86651477cc93",
+          "size": 4304,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p_phonemes.syms",
+          "asset": "0632905bc6dc8ee0-g2p_phonemes.syms",
+          "sha256": "0632905bc6dc8ee04e5bd3072b9a42e9998c8dbb4df04f427d33d1c40b30253a",
+          "size": 4352,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/hotword.data",
+          "asset": "d868d4c4144c6ddb-hotword.data",
+          "sha256": "d868d4c4144c6ddb4064b2544cf63e0e1093648d4d324e470f658950104bc950",
+          "size": 444839,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_acoustic_meanstddev_vector",
+          "asset": "4226ee82fd2ea700-MARBLE_V2_acoustic_meanstddev_vector",
+          "sha256": "4226ee82fd2ea7000e4a5e8eb80db8436844fa2f8d45426de00caf43f7df7e69",
+          "size": 326,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_acoustic_model.int8.tflite",
+          "asset": "8a226cd2f9cdf7a3-MARBLE_V2_acoustic_model.int8.tflite",
+          "sha256": "8a226cd2f9cdf7a32ab44a626265bf5618442cf19b833c3ef928794032762352",
+          "size": 243204,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_model.int8.tflite",
+          "asset": "ca91351ee6ae5602-MARBLE_V2_model.int8.tflite",
+          "sha256": "ca91351ee6ae5602f072a4acbdb9d245df64f620192d34448a120f0d9aa58487",
+          "size": 2223788,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_vocabulary.syms",
+          "asset": "4d13325054020b1d-MARBLE_V2_vocabulary.syms",
+          "sha256": "4d13325054020b1de047ae02d8db06ba59e7870e8db06b266c3f38db9f229ea1",
+          "size": 179926,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/metadata",
+          "asset": "1ff2a449388860e1-metadata",
+          "sha256": "1ff2a449388860e1eae2ca59888bf96f522f5b30bdc99577d2fdc837b297172c",
+          "size": 3102,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/monastery_config.pumpkin",
+          "asset": "a145cd597fb232a6-monastery_config.pumpkin",
+          "sha256": "a145cd597fb232a6fbfb9fff9ef4a0d8ec8388af8d956ea9e13e9279d7fb214f",
+          "size": 1051,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/offline_action_data.pb",
+          "asset": "7d281cc00605396b-offline_action_data.pb",
+          "sha256": "7d281cc00605396b03831b70eae7f46d5a3bacdd6adcbe819b78c9d460f6707a",
+          "size": 56334,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/pumpkin.mmap",
+          "asset": "1b6e88a6915c1213-pumpkin.mmap",
+          "sha256": "1b6e88a6915c121378229ff8b8a33bf41ec17a41d3bebfa3187fbeb6e67a762c",
+          "size": 13942288,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/semantics.pumpkin",
+          "asset": "d19cc31b577d6337-semantics.pumpkin",
+          "sha256": "d19cc31b577d6337262636867b29c0e0428d06c46002c169d7d62345a8600663",
+          "size": 394219,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/voice_match/MARBLE_speakerid.tflite",
+          "asset": "f4cb4993bc690db9-MARBLE_speakerid.tflite",
+          "sha256": "f4cb4993bc690db9926a6b25456fd6559238d84b1ff2755113c234bdc39859f6",
+          "size": 6245296,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
         }
       ],
-      "package": "com.google.android.inputmethod.latin",
+      "packages": [
+        "com.google.android.inputmethod.latin"
+      ],
+      "version": {
+        "versionCode": "102451618",
+        "versionName": "12.6.02.491625702-preload-arm64-v8a"
+      },
+      "summary": "Includes the offline speech models and the CJK language models, which live outside the app directory. Without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
       "requires": [
         "gmscore"
       ],
@@ -456,7 +975,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.photos",
+      "packages": [
+        "com.google.android.apps.photos"
+      ],
+      "version": {
+        "versionCode": "47595614",
+        "versionName": "6.29.0.519265844"
+      },
       "requires": [
         "gmscore"
       ],
@@ -464,6 +989,30 @@
         "Gallery2",
         "Glimpse"
       ]
+    },
+    {
+      "id": "markup",
+      "name": "Markup",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/MarkupGoogle/MarkupGoogle.apk",
+          "asset": "d76617e57269ff77-MarkupGoogle.apk",
+          "sha256": "d76617e57269ff77b16b2e60276f65b205e88b4d10e15c87d16f899f37c77991",
+          "size": 5967103,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.markup"
+      ],
+      "version": {
+        "versionCode": "152",
+        "versionName": "1.0"
+      },
+      "summary": "The annotation editor Photos and screenshots open."
     },
     {
       "id": "calendar",
@@ -480,7 +1029,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.calendar",
+      "packages": [
+        "com.google.android.calendar"
+      ],
+      "version": {
+        "versionCode": "2017095958",
+        "versionName": "2022.30.2-463576837-release"
+      },
       "requires": [
         "gmscore"
       ],
@@ -501,7 +1056,8 @@
           "size": 12701,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
@@ -513,7 +1069,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.google.android.trichromelibrary",
+      "packages": [
+        "com.google.android.trichromelibrary"
+      ],
+      "version": {
+        "versionCode": "541412334",
+        "versionName": "109.0.5414.123"
+      },
       "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
     },
     {
@@ -528,7 +1090,8 @@
           "size": 12701,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/Chrome/Chrome.apk.gz",
@@ -540,7 +1103,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.android.chrome",
+      "packages": [
+        "com.android.chrome"
+      ],
+      "version": {
+        "versionCode": "541412334",
+        "versionName": "109.0.5414.123"
+      },
       "requires": [
         "gmscore",
         "trichrome"
@@ -562,7 +1131,8 @@
           "size": 12701,
           "mode": "0644",
           "context": "",
-          "kind": "apk"
+          "kind": "apk",
+          "stub": true
         },
         {
           "path": "product/app/WebViewGoogle/WebViewGoogle.apk.gz",
@@ -574,7 +1144,13 @@
           "kind": "etc"
         }
       ],
-      "package": "com.google.android.webview",
+      "packages": [
+        "com.google.android.webview"
+      ],
+      "version": {
+        "versionCode": "541412334",
+        "versionName": "109.0.5414.123"
+      },
       "requires": [
         "trichrome"
       ],
@@ -597,7 +1173,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.gm",
+      "packages": [
+        "com.google.android.gm"
+      ],
+      "version": {
+        "versionCode": "63675156",
+        "versionName": "2023.01.08.501398065.Release"
+      },
       "requires": [
         "gmscore"
       ]
@@ -617,7 +1199,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.maps",
+      "packages": [
+        "com.google.android.apps.maps"
+      ],
+      "version": {
+        "versionCode": "1066662178",
+        "versionName": "11.44.0905"
+      },
       "requires": [
         "gmscore"
       ]
@@ -637,36 +1225,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.docs",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "youtube",
-      "name": "YouTube",
-      "category": "apps",
-      "files": [
-        {
-          "path": "product/app/YouTube/YouTube.apk",
-          "asset": "93949f289cdc9a4e-YouTube.apk",
-          "sha256": "93949f289cdc9a4e4220d977c5d20d5d4948c22f966f35619b6cd46ef07a294b",
-          "size": 124491981,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/app/YouTubeMusicPrebuilt/YouTubeMusicPrebuilt.apk",
-          "asset": "e4f68ade726c7f8e-YouTubeMusicPrebuilt.apk",
-          "sha256": "e4f68ade726c7f8e56ea451f09cf18cdb800caaaaf087bccf083e504ff19d99f",
-          "size": 58451061,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
+      "packages": [
+        "com.google.android.apps.docs"
       ],
-      "package": "com.google.android.youtube",
+      "version": {
+        "versionCode": "212806139",
+        "versionName": "2.22.297.0.arm64-v8a.alldpi"
+      },
       "requires": [
         "gmscore"
       ]
@@ -695,7 +1260,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.nexuslauncher",
+      "packages": [
+        "com.google.android.apps.nexuslauncher"
+      ],
+      "version": {
+        "versionCode": "906",
+        "versionName": "13"
+      },
       "summary": "Pixel home screen. Pair with gsa for the search bar.",
       "requires": [
         "gmscore"
@@ -707,8 +1278,54 @@
       ]
     },
     {
-      "id": "pixelsetup",
-      "name": "Pixel wallpapers and themes",
+      "id": "wallpapers",
+      "name": "Pixel wallpapers",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelWallpapers2023Foldable/PixelWallpapers2023Foldable.apk",
+          "asset": "a7d4334f19c811ba-PixelWallpapers2023Foldable.apk",
+          "sha256": "a7d4334f19c811baa22576d4a7eeca1c3f2036d7bc082b9668834512cbdc2e55",
+          "size": 37345,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.wallpaper.pixel"
+      ],
+      "version": {
+        "versionCode": "18000005",
+        "versionName": "nexus_wallpapers_20220926"
+      }
+    },
+    {
+      "id": "emojiwallpaper",
+      "name": "Emoji wallpaper",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/app/WallpaperEmojiPrebuilt/WallpaperEmojiPrebuilt.apk",
+          "asset": "6c07a1c585547f5e-WallpaperEmojiPrebuilt.apk",
+          "sha256": "6c07a1c585547f5e9720a46f9396a049b063feeec5031b2b540963a0cafc20d3",
+          "size": 6261156,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.emojiwallpaper"
+      ],
+      "version": {
+        "versionCode": "149",
+        "versionName": "1.0.518495248"
+      }
+    },
+    {
+      "id": "pixelthemes",
+      "name": "Pixel themes",
       "category": "pixel",
       "files": [
         {
@@ -728,18 +1345,15 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/PixelWallpapers2023Foldable/PixelWallpapers2023Foldable.apk",
-          "asset": "a7d4334f19c811ba-PixelWallpapers2023Foldable.apk",
-          "sha256": "a7d4334f19c811baa22576d4a7eeca1c3f2036d7bc082b9668834512cbdc2e55",
-          "size": 37345,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.customization.pixel"
+      "packages": [
+        "com.google.android.apps.customization.pixel"
+      ],
+      "version": {
+        "versionCode": "2",
+        "versionName": "13"
+      }
     },
     {
       "id": "recorder",
@@ -756,7 +1370,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.recorder",
+      "packages": [
+        "com.google.android.apps.recorder"
+      ],
+      "version": {
+        "versionCode": "42012013",
+        "versionName": "4.2.20230104.501478140"
+      },
       "requires": [
         "gmscore"
       ],
@@ -765,30 +1385,886 @@
       ]
     },
     {
-      "id": "pixelcamera",
-      "name": "Pixel Camera",
-      "category": "pixel",
+      "id": "devicepolicy",
+      "name": "Android Device Policy",
+      "category": "extras",
       "files": [
         {
-          "path": "product/priv-app/GoogleCamera/GoogleCamera.apk",
-          "asset": "305f8ecfdd8aac62-GoogleCamera.apk",
-          "sha256": "305f8ecfdd8aac623390b490759f6935c274231dd6e9b77376643b49b4695321",
-          "size": 273273399,
+          "path": "product/app/DevicePolicyPrebuilt/DevicePolicyPrebuilt.apk",
+          "asset": "b2183812c07e04d8-DevicePolicyPrebuilt.apk",
+          "sha256": "b2183812c07e04d852203b7794fe6addf12a56d41c40fb79c45a09f0c7bcf7d2",
+          "size": 9995435,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.GoogleCamera",
-      "summary": "Only useful on a Pixel: it needs the Pixel camera HAL and will not start on other hardware. Since it also replaces the ROM's camera, selecting it on a non-Pixel leaves you with none.",
+      "packages": [
+        "com.google.android.apps.work.clouddpc"
+      ],
+      "version": {
+        "versionCode": "1677610",
+        "versionName": "64.39.4 (1677610)"
+      },
+      "summary": "Work profile and managed device support.",
       "requires": [
         "gmscore"
-      ],
-      "removes": [
-        "Camera2",
-        "Aperture",
-        "Snap"
       ]
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/app/CalculatorGooglePrebuilt/CalculatorGooglePrebuilt.apk",
+          "asset": "3f3772b5ba14affb-CalculatorGooglePrebuilt.apk",
+          "sha256": "3f3772b5ba14affb0d44e26081a6012666a42a278219b2aaa8b337e58c9ac1a6",
+          "size": 4871105,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.calculator"
+      ],
+      "version": {
+        "versionCode": "84000598",
+        "versionName": "8.4 (503542421)"
+      },
+      "removes": [
+        "ExactCalculator",
+        "Calculator"
+      ]
+    },
+    {
+      "id": "files",
+      "name": "Files by Google",
+      "category": "apps",
+      "files": [
+        {
+          "path": "product/priv-app/FilesPrebuilt/FilesPrebuilt.apk",
+          "asset": "333ecfbf7ad4ce11-FilesPrebuilt.apk",
+          "sha256": "333ecfbf7ad4ce11bc4f9edbb4f37db8976073b36228771cecd11977a868df10",
+          "size": 21054691,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.nbu.files"
+      ],
+      "version": {
+        "versionCode": "388739",
+        "versionName": "1.0.459878599"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "documentsui",
+      "name": "Google document picker",
+      "category": "apps",
+      "files": [
+        {
+          "path": "system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk",
+          "asset": "cc681d88529e3396-DocumentsUIGoogle.apk",
+          "sha256": "cc681d88529e33969d08665422e80a62628963075c86c72735ef1f53b6714ffd",
+          "size": 6539419,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.documentsui"
+      ],
+      "version": {
+        "versionCode": "330543000",
+        "versionName": "t_frc_doc_330543000"
+      },
+      "summary": "Replaces the AOSP picker, which is what every app opens when asking you to choose a file.",
+      "removes": [
+        "DocumentsUI"
+      ]
+    },
+    {
+      "id": "storagemanager",
+      "name": "Google storage manager",
+      "category": "apps",
+      "files": [
+        {
+          "path": "system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk",
+          "asset": "0a0c70c8fd52f3f1-StorageManagerGoogle.apk",
+          "sha256": "0a0c70c8fd52f3f1c94260b38ecba323b8f228b4abaa90a6a96ab61c14ba6967",
+          "size": 11697922,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.storagemanager"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "removes": [
+        "StorageManager"
+      ]
+    },
+    {
+      "id": "locationhistory",
+      "name": "Location History",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/LocationHistoryPrebuilt/LocationHistoryPrebuilt.apk",
+          "asset": "67efcd27b051db1f-LocationHistoryPrebuilt.apk",
+          "sha256": "67efcd27b051db1f81cfa991f8f92c3a758f209a51f3913417ca99e60cf2daf3",
+          "size": 49939,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gms.location.history"
+      ],
+      "version": {
+        "versionCode": "3",
+        "versionName": "1.2"
+      },
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback",
+      "category": "extras",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
+          "asset": "44fe04a944fe860c-GoogleFeedback.apk",
+          "sha256": "44fe04a944fe860c27b97eece0c24dc9ba28139ebc1f3c6d140df6a946db4fd0",
+          "size": 650425,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.feedback"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "summary": "Reports problems to Google. Harmless to leave out.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "syncadapters",
+      "name": "Contacts and Calendar sync adapters",
+      "category": "extras",
+      "files": [
+        {
+          "path": "product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
+          "asset": "044cc57bce2f6ae3-GoogleCalendarSyncAdapter.apk",
+          "sha256": "044cc57bce2f6ae3930c28fd784ae12a1781ff09d204db50e775093ecef12661",
+          "size": 2484539,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        },
+        {
+          "path": "product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
+          "asset": "b680052da895d9a1-GoogleContactsSyncAdapter.apk",
+          "sha256": "b680052da895d9a198b856162148de78bc5ad550e46d92239ee9c9308c86ee04",
+          "size": 1571497,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        }
+      ],
+      "packages": [
+        "com.google.android.syncadapters.contacts",
+        "com.google.android.syncadapters.calendar"
+      ],
+      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "sounds",
+      "name": "Pixel sounds",
+      "category": "pixel",
+      "files": [
+        {
+          "path": "product/app/SoundPickerPrebuilt/SoundPickerPrebuilt.apk",
+          "asset": "724f65f21fd1cd6b-SoundPickerPrebuilt.apk",
+          "sha256": "724f65f21fd1cd6b9d8b3c601df98b61237b2e4464e9cf47b8ec1c199d20cdd5",
+          "size": 5948686,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/media/audio/alarms/A_real_hoot.ogg",
+          "asset": "dd59715b4e56e035-A_real_hoot.ogg",
+          "sha256": "dd59715b4e56e0357a14945cd03d61f3a4a0a2b210c6a88a871cd6ad4020c5ce",
+          "size": 42523,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Bright_morning.ogg",
+          "asset": "d44ac2e5470d5085-Bright_morning.ogg",
+          "sha256": "d44ac2e5470d5085c372df27c32abcaa5a8203993faaebacc05903541bd82026",
+          "size": 230610,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Cuckoo_clock.ogg",
+          "asset": "f740118421fc1746-Cuckoo_clock.ogg",
+          "sha256": "f740118421fc1746ce76798f75fdb0725f9ad3164d45659f5a8515efb504c6db",
+          "size": 97406,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Early_twilight.ogg",
+          "asset": "73f021cfb105c6b5-Early_twilight.ogg",
+          "sha256": "73f021cfb105c6b5ed583cac60a6dd49b62a7ffa150667cee35da3a4b816e03f",
+          "size": 294022,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Fresh_start.ogg",
+          "asset": "5cceb458d054e5ca-Fresh_start.ogg",
+          "sha256": "5cceb458d054e5ca941c5d092a35ae8cee2513bc403e7b234cb26c468f6beb02",
+          "size": 662017,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Full_of_wonder.ogg",
+          "asset": "14c3e991b4ffea68-Full_of_wonder.ogg",
+          "sha256": "14c3e991b4ffea68c82db9ae8cc56a0f4f86577550b2d5bb1daf806b12528015",
+          "size": 432688,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Gentle_breeze.ogg",
+          "asset": "8bac5b99167ae9cb-Gentle_breeze.ogg",
+          "sha256": "8bac5b99167ae9cb366f89163fc6332a47707e74ef31ae49c523c51e7b7278ee",
+          "size": 259892,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Icicles.ogg",
+          "asset": "84a6842613b93cc1-Icicles.ogg",
+          "sha256": "84a6842613b93cc18cab6bcc4a6a1ae3e1103e5969af8292c0eb17985e505d18",
+          "size": 163148,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Jump_start.ogg",
+          "asset": "d32bf2d749bac528-Jump_start.ogg",
+          "sha256": "d32bf2d749bac52876e69c8db262489c2fbaefcf3d163e654c3c8c9d82a4cc56",
+          "size": 227757,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Loose_change.ogg",
+          "asset": "4feac7f4881edd56-Loose_change.ogg",
+          "sha256": "4feac7f4881edd561db3e9ef67485d2ca30c7935f659944225b555b9364228b7",
+          "size": 93514,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Rolling_fog.ogg",
+          "asset": "7de8ccdf0cbd8687-Rolling_fog.ogg",
+          "sha256": "7de8ccdf0cbd86871acb4675beb92554690c889da4ca1dae72e8adf1b96d5803",
+          "size": 267998,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Spokes.ogg",
+          "asset": "182b5f4a7bb432cd-Spokes.ogg",
+          "sha256": "182b5f4a7bb432cd8517849da1ac6e79319f7c95fb6287e462b8299d3cea0e63",
+          "size": 54605,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Sunshower.ogg",
+          "asset": "f20ea7496d774329-Sunshower.ogg",
+          "sha256": "f20ea7496d77432970707b83609b470ba0a7c93f3aefb39fcec290d643eef6c9",
+          "size": 519038,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Beginning.ogg",
+          "asset": "333e01cfa968e5db-Beginning.ogg",
+          "sha256": "333e01cfa968e5dbceb830ae082fc53fe54c26d33b539b1f0d82d22a6e9cd281",
+          "size": 29000,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Coconuts.ogg",
+          "asset": "be453377733aa11c-Coconuts.ogg",
+          "sha256": "be453377733aa11c28f1298384be04929ca9f5e003d46d036b52eb39896a2e25",
+          "size": 16064,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Duet.ogg",
+          "asset": "825decd417c05661-Duet.ogg",
+          "sha256": "825decd417c05661593538323a31bf9562766b412acb64f10fcd496f71c1edb7",
+          "size": 19638,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/End_note.ogg",
+          "asset": "762af2dc33c85948-End_note.ogg",
+          "sha256": "762af2dc33c8594889743976ddf358b02723247431d7d27d8b2aaee8db1f916e",
+          "size": 20158,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Eureka.ogg",
+          "asset": "5c4d30c02648ca12-Eureka.ogg",
+          "sha256": "5c4d30c02648ca121c78d24bba91e9e40ef632e2c28caee95c2f8f044b540b10",
+          "size": 10112,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Gentle_gong.ogg",
+          "asset": "d9618b2a252b4ca0-Gentle_gong.ogg",
+          "sha256": "d9618b2a252b4ca07b5a805d9dcabafc80c79a1a073ff793be006fe92575b581",
+          "size": 35405,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Mallet.ogg",
+          "asset": "87d2486ad67273fa-Mallet.ogg",
+          "sha256": "87d2486ad67273fa348433a5c0a0f181b9427938e6aaf3ccf2049fbe22def3ab",
+          "size": 20706,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Orders_up.ogg",
+          "asset": "ca2bba67bfdc81b2-Orders_up.ogg",
+          "sha256": "ca2bba67bfdc81b20d15565cd89b6fb998b7ced94934dec33c5513d612498515",
+          "size": 14266,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Ping.ogg",
+          "asset": "c8236004a51cdcf7-Ping.ogg",
+          "sha256": "c8236004a51cdcf7310555aade59fa53e99fa402401f09ea2aa22e04ee3067b2",
+          "size": 6749,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Pipes.ogg",
+          "asset": "461de04c9b3f2857-Pipes.ogg",
+          "sha256": "461de04c9b3f285739d34c4c2bbf204ec8447e9b4beb309595fa66508e328472",
+          "size": 10466,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Popcorn.ogg",
+          "asset": "624267ac31d50c81-Popcorn.ogg",
+          "sha256": "624267ac31d50c81660f4a4b05acfd47f261a41ff9fbb9328726f9ef59c62f22",
+          "size": 20332,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Shopkeeper.ogg",
+          "asset": "ab5ffd78bd204e7c-Shopkeeper.ogg",
+          "sha256": "ab5ffd78bd204e7c18c36bfa19900fb6bc59763eb0590c5d7c081ff2b4398fb5",
+          "size": 23319,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Sticks_and_stones.ogg",
+          "asset": "3186ab0da4ee963a-Sticks_and_stones.ogg",
+          "sha256": "3186ab0da4ee963a2c96219415c5e2627bac04696141c19e3a852ee1a6fad86d",
+          "size": 15665,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Tuneup.ogg",
+          "asset": "1ce7b22a9632fcfd-Tuneup.ogg",
+          "sha256": "1ce7b22a9632fcfd04310e3c8d29e1a8ef42a99de44d85f90d7d54f842881513",
+          "size": 48307,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Tweeter.ogg",
+          "asset": "224eb43f8ef6dd68-Tweeter.ogg",
+          "sha256": "224eb43f8ef6dd684c414803f0f826774f7407034edfa0aea5da28e65866a7ac",
+          "size": 15814,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Twinkle.ogg",
+          "asset": "dc36402ff095794a-Twinkle.ogg",
+          "sha256": "dc36402ff095794a0171fcb14a027802a87b9cb913b83f91bd81c021cd29419a",
+          "size": 34033,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Copycat.ogg",
+          "asset": "c1ad0c9371e5d1f5-Copycat.ogg",
+          "sha256": "c1ad0c9371e5d1f555f92741367c73c6d315931f2c3743dd2e929701f098fe1f",
+          "size": 585416,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Crackle.ogg",
+          "asset": "232f3c5f8ebb1129-Crackle.ogg",
+          "sha256": "232f3c5f8ebb11298f2fd51c45b5f45c45ef31b4520b460e9be4de469094344b",
+          "size": 229665,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Flutterby.ogg",
+          "asset": "86f6a491ab82a8f4-Flutterby.ogg",
+          "sha256": "86f6a491ab82a8f47cec30ac4f44428a503bff2c5bbdc3f40510ccaa7e767272",
+          "size": 81983,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Hotline.ogg",
+          "asset": "d90247b5d02336d0-Hotline.ogg",
+          "sha256": "d90247b5d02336d0d0894f3e2750968fc422d0d5ea763f03e9d6affa77d1e323",
+          "size": 332018,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Leaps_and_bounds.ogg",
+          "asset": "ad3313639a1db606-Leaps_and_bounds.ogg",
+          "sha256": "ad3313639a1db6067c5e7e849a3e2dee78e845a9c668bcbc18ae62eaf0d65550",
+          "size": 1113609,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Lollipop.ogg",
+          "asset": "65c9855b3f2251f6-Lollipop.ogg",
+          "sha256": "65c9855b3f2251f6b14de5db41f528f8f943c7906d6c7d068862d9bea0185739",
+          "size": 239564,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Lost_and_found.ogg",
+          "asset": "4289bfe98f2bc4de-Lost_and_found.ogg",
+          "sha256": "4289bfe98f2bc4de096211086526b78e3268cc59e9c680f8639e7c51da49ebc7",
+          "size": 555786,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Mash_up.ogg",
+          "asset": "efa06e3095251223-Mash_up.ogg",
+          "sha256": "efa06e309525122308b5602b816102791a2bdf634a644ef65e2001f7638a20f7",
+          "size": 431912,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Monkey_around.ogg",
+          "asset": "10d8b1ae0ae78fc3-Monkey_around.ogg",
+          "sha256": "10d8b1ae0ae78fc322c0bddc2d1d521639e607c5e37b89fcce0b21f0ff35134c",
+          "size": 277682,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Schools_out.ogg",
+          "asset": "82325018bc09f5f6-Schools_out.ogg",
+          "sha256": "82325018bc09f5f63641e3aff175d3f7c176ec226dd2aa03961e67377af241a1",
+          "size": 216941,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/The_big_adventure.ogg",
+          "asset": "20b6a79e1d8d4351-The_big_adventure.ogg",
+          "sha256": "20b6a79e1d8d43511c500bb796ca8c58a4927b26c673c836f9d992857e9c9394",
+          "size": 255608,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Your_new_adventure.ogg",
+          "asset": "b64d3a3680a52c5c-Your_new_adventure.ogg",
+          "sha256": "b64d3a3680a52c5cc4b9990bf8b4a51b53f796b2e393ea86ef2e658a0fe86473",
+          "size": 530842,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Zen_too.ogg",
+          "asset": "0fa6d4db5da7d2b6-Zen_too.ogg",
+          "sha256": "0fa6d4db5da7d2b673cf19aa2cf38effe767c8767bba6ef2a02f5e54a88f29cf",
+          "size": 344563,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/AttentionalHaptics.ogg",
+          "asset": "eb46e21649be108d-AttentionalHaptics.ogg",
+          "sha256": "eb46e21649be108d3cf468b50f90c35ef66e0f6a4555052a3be697c48db3c7dd",
+          "size": 90316,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/ChargingStarted.ogg",
+          "asset": "99675f07a622264b-ChargingStarted.ogg",
+          "sha256": "99675f07a622264b1943a2faa87e8aba8a38ebf94b9e9987a25708e3a6b18eb2",
+          "size": 33162,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Dock.ogg",
+          "asset": "8de5e62d50784ef6-Dock.ogg",
+          "sha256": "8de5e62d50784ef68a8f35d03747961a4bda5f84f91f6a4d8a3a032c39e7891d",
+          "size": 18542,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Effect_Tick.ogg",
+          "asset": "79d285afc408e528-Effect_Tick.ogg",
+          "sha256": "79d285afc408e528dbd630a37caaf16c618ecfdbf2d670fce604d18bd6929f1b",
+          "size": 6498,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/InCallNotification.ogg",
+          "asset": "1ed24a6403f321e7-InCallNotification.ogg",
+          "sha256": "1ed24a6403f321e749ea2f43676b47346b2955605d83cc1ceb193d012ce4e42a",
+          "size": 6275,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressDelete.ogg",
+          "asset": "9d5dc8164a6c052c-KeypressDelete.ogg",
+          "sha256": "9d5dc8164a6c052c2a0d5183669883e610d35af68175bb3b2c837eb96f228f8d",
+          "size": 8623,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressInvalid.ogg",
+          "asset": "97751bf53b791039-KeypressInvalid.ogg",
+          "sha256": "97751bf53b791039a51cfe100d22478173b5fa4bd38dd7126ae860e542529c04",
+          "size": 5466,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressReturn.ogg",
+          "asset": "659e8e31310646f0-KeypressReturn.ogg",
+          "sha256": "659e8e31310646f0c974f32af7ebb1757e021a4d6c51792d1ce6510d642d8e41",
+          "size": 11209,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressSpacebar.ogg",
+          "asset": "c486b984f0fe2a2b-KeypressSpacebar.ogg",
+          "sha256": "c486b984f0fe2a2b71d32407ad409ac0a39e96107c3054a78e1b96eb205a60c0",
+          "size": 8278,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressStandard.ogg",
+          "asset": "0c9aa1fcda40f121-KeypressStandard.ogg",
+          "sha256": "0c9aa1fcda40f12169bda3423bf7023644e89c10dd4575264546a31bd887a59b",
+          "size": 7780,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Lock.ogg",
+          "asset": "35b63fc1f50a55f6-Lock.ogg",
+          "sha256": "35b63fc1f50a55f6da88fe2ef7cf48ce98f6fbde887e317810d64dd1cf1bc8f2",
+          "size": 5779,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/LowBattery.ogg",
+          "asset": "bf6e0d2b9a6c128c-LowBattery.ogg",
+          "sha256": "bf6e0d2b9a6c128c76fc5f8d59a83864d6e41fbf3223a7b624824c449c6c6add",
+          "size": 41688,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCFailure.ogg",
+          "asset": "4b9e527667d41472-NFCFailure.ogg",
+          "sha256": "4b9e527667d414728deb5dbf93b2a7ea57c0c168194bf6c28653060595e2d4ff",
+          "size": 31870,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCInitiated.ogg",
+          "asset": "76531db9b3c04fbe-NFCInitiated.ogg",
+          "sha256": "76531db9b3c04fbe84a8b6dac4a346464215bd5c0fa9b9d4578773a467fef68b",
+          "size": 25194,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCSuccess.ogg",
+          "asset": "70ebe31acfc8c5e0-NFCSuccess.ogg",
+          "sha256": "70ebe31acfc8c5e0157fa46efc62fcf3d04bc2572d38f1fe923d1eefb5c2fe05",
+          "size": 27201,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCTransferComplete.ogg",
+          "asset": "3044823afc947abb-NFCTransferComplete.ogg",
+          "sha256": "3044823afc947abb220105f25848a43ced8ded1df41da0e6d48b0e84aacc453f",
+          "size": 33297,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCTransferInitiated.ogg",
+          "asset": "f47c2b5815dd7ce8-NFCTransferInitiated.ogg",
+          "sha256": "f47c2b5815dd7ce8e7b5839a9d8dec305b20391f08796fb12cfe2579283f8f26",
+          "size": 28204,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Trusted.ogg",
+          "asset": "fcc0e6f376b1d098-Trusted.ogg",
+          "sha256": "fcc0e6f376b1d0984e6f43cc2fa34f0f19ed5a4ca70f80bc7ec52aa29b41f9e7",
+          "size": 5713,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Undock.ogg",
+          "asset": "10861a4affc68aac-Undock.ogg",
+          "sha256": "10861a4affc68aac1f8e68673c2015e39cb2abe886dabd91af94e0052d643365",
+          "size": 17136,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Unlock.ogg",
+          "asset": "ee0612b991bace31-Unlock.ogg",
+          "sha256": "ee0612b991bace31b411bb2c4d12cf73b0dcea3109dce9a959eb63d3b742ee20",
+          "size": 5725,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/VideoRecord.ogg",
+          "asset": "1610eb56d0e61486-VideoRecord.ogg",
+          "sha256": "1610eb56d0e61486206a2bd285b3a8d1c1a2531c5867eae11e01241c0142f965",
+          "size": 12323,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/VideoStop.ogg",
+          "asset": "56b2c1bd4a6e13a0-VideoStop.ogg",
+          "sha256": "56b2c1bd4a6e13a0d68ebdbf7e774c952760bc77d5b553f24f55746e28db25dc",
+          "size": 12438,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/WirelessChargingStarted.ogg",
+          "asset": "d8a667775ab3d231-WirelessChargingStarted.ogg",
+          "sha256": "d8a667775ab3d231b4e8a525d516d72b6bc17716ee4f31a658376dc2af19f9d7",
+          "size": 36005,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/audio_end.ogg",
+          "asset": "ab6496d860739691-audio_end.ogg",
+          "sha256": "ab6496d8607396910c46d15830b6e424d834f5816cb92348eb8bafd95f1eb081",
+          "size": 10388,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/audio_initiate.ogg",
+          "asset": "ae2be3474f4a688f-audio_initiate.ogg",
+          "sha256": "ae2be3474f4a688fcd5a0ade30c642756b2fdd901ce9c68190c166db5a7b84c8",
+          "size": 11177,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/camera_click.ogg",
+          "asset": "18fef0ad4b60f731-camera_click.ogg",
+          "sha256": "18fef0ad4b60f73103dfde70d31854b07d4a404b3489c5ffdc4481a7d05b313e",
+          "size": 15527,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/camera_focus.ogg",
+          "asset": "85c3d0ec79346997-camera_focus.ogg",
+          "sha256": "85c3d0ec79346997de4ae783868059c5967ccc92f44c28390933f711efe50c8c",
+          "size": 11259,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/reverse_charging_end.ogg",
+          "asset": "6fe88f1674c41783-reverse_charging_end.ogg",
+          "sha256": "6fe88f1674c41783305ae7fea11ae73b2b31a13ed805629d5db7d1bcd373721b",
+          "size": 24496,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/reverse_charging_start.ogg",
+          "asset": "c4ca9a41a661f4c3-reverse_charging_start.ogg",
+          "sha256": "c4ca9a41a661f4c30e9e5d9c6bc8044f1cae71e5dfae753c843cb7194c7490db",
+          "size": 32440,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "packages": [
+        "com.google.android.soundpicker"
+      ],
+      "version": {
+        "versionCode": "30000182",
+        "versionName": "3.0 (496815901)"
+      },
+      "summary": "The Pixel ringtones, alarms and notification sounds, plus the picker that exposes them."
     },
     {
       "id": "tts",
@@ -803,9 +2279,61 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "product/tts/google/de-de/de-de-x-multi-r35.zvoice",
+          "asset": "3ef47c80ddd149af-de-de-x-multi-r35.zvoice",
+          "sha256": "3ef47c80ddd149afb2662c5dd97dd3f761ed62e66dd9fd3c844f8e84bcede812",
+          "size": 12934788,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/es-es/es-es-x-multi-r35.zvoice",
+          "asset": "c7910f65fa8bc503-es-es-x-multi-r35.zvoice",
+          "sha256": "c7910f65fa8bc50389256eee1d4079822eb43562dec3a517df5c5256cc054ec3",
+          "size": 6865768,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/fr-fr/fr-fr-x-multi-r35.zvoice",
+          "asset": "0e1cf65438412dc5-fr-fr-x-multi-r35.zvoice",
+          "sha256": "0e1cf65438412dc5ebc0a76c67f9be0217ebbe79786309e66d4df8d7aac47e8d",
+          "size": 15418397,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/it-it/it-it-x-multi-r32.zvoice",
+          "asset": "74bc60cb7626d6f5-it-it-x-multi-r32.zvoice",
+          "sha256": "74bc60cb7626d6f580a922ef2c3ad5cceb5279b9d107739654804822b1e60cd9",
+          "size": 9048760,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/ja-jp/ja-jp-x-multi-r34.zvoice",
+          "asset": "d93d7d31f717576a-ja-jp-x-multi-r34.zvoice",
+          "sha256": "d93d7d31f717576a8b1358314def5dfd3c35eaa605da40e26e5583ada0ee7023",
+          "size": 23868374,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
         }
       ],
-      "package": "com.google.android.tts",
+      "packages": [
+        "com.google.android.tts"
+      ],
+      "version": {
+        "versionCode": "210411861",
+        "versionName": "googletts.google-speech-apk_20230123.02_p3.506463867"
+      },
+      "summary": "Includes the offline voice data, which lives outside the app directory. Without it only the languages downloaded on demand will speak.",
       "requires": [
         "gmscore"
       ]
@@ -825,7 +2353,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.apps.wellbeing",
+      "packages": [
+        "com.google.android.apps.wellbeing"
+      ],
+      "version": {
+        "versionCode": "452937",
+        "versionName": "1.4.489941911 (452937)"
+      },
       "requires": [
         "gmscore"
       ]
@@ -881,7 +2415,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.euicc",
+      "packages": [
+        "com.google.android.euicc"
+      ],
+      "version": {
+        "versionCode": "211319",
+        "versionName": "D.2.1.506955134-google"
+      },
       "summary": "Needed for eSIM provisioning on most carriers.",
       "requires": [
         "gmscore"
@@ -889,18 +2429,9 @@
     },
     {
       "id": "talkback",
-      "name": "TalkBack and accessibility",
-      "category": "extras",
+      "name": "TalkBack",
+      "category": "accessibility",
       "files": [
-        {
-          "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
-          "asset": "f1c2536a909293b2-VoiceAccessPrebuilt.apk",
-          "sha256": "f1c2536a909293b22f229e39584ab5da437b1890946053e95907593855cb1d3e",
-          "size": 13668899,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
         {
           "path": "product/app/talkback/talkback.apk",
           "asset": "b57861d45e5b9b19-talkback.apk",
@@ -911,7 +2442,68 @@
           "kind": "apk"
         }
       ],
-      "package": "com.google.android.marvin.talkback",
+      "packages": [
+        "com.google.android.marvin.talkback"
+      ],
+      "version": {
+        "versionCode": "60130207",
+        "versionName": "13.1.0.520576362"
+      },
+      "summary": "Screen reader. The one accessibility service most users need.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "voiceaccess",
+      "name": "Voice Access",
+      "category": "accessibility",
+      "files": [
+        {
+          "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
+          "asset": "f1c2536a909293b2-VoiceAccessPrebuilt.apk",
+          "sha256": "f1c2536a909293b22f229e39584ab5da437b1890946053e95907593855cb1d3e",
+          "size": 13668899,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.accessibility.voiceaccess"
+      ],
+      "version": {
+        "versionCode": "78219",
+        "versionName": "6.0.506366159"
+      },
+      "summary": "Control the device by voice.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "soundamplifier",
+      "name": "Sound Amplifier",
+      "category": "accessibility",
+      "files": [
+        {
+          "path": "product/app/SoundAmplifierPrebuilt/SoundAmplifierPrebuilt.apk",
+          "asset": "dbb8d7ab8ec258fa-SoundAmplifierPrebuilt.apk",
+          "sha256": "dbb8d7ab8ec258facc593fe050accfb02c073b9133dca14f607924efcbd6f993",
+          "size": 27308610,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.accessibility.soundamplifier"
+      ],
+      "version": {
+        "versionCode": "187740",
+        "versionName": "4.4.518458231"
+      },
+      "summary": "Amplifies and filters audio through headphones.",
       "requires": [
         "gmscore"
       ]
@@ -931,7 +2523,13 @@
           "kind": "apk"
         }
       ],
-      "package": "com.android.systemui.plugin.globalactions.wallet",
+      "packages": [
+        "com.android.systemui.plugin.globalactions.wallet"
+      ],
+      "version": {
+        "versionCode": "10000000",
+        "versionName": "1.0.0.0"
+      },
       "requires": [
         "gmscore"
       ]
