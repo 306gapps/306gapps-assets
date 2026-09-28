@@ -22,7 +22,7 @@ from pathlib import Path
 
 import yaml
 
-from axml import MalformedAXML, package_name
+from axml import MalformedAXML, manifest_attributes, package_name
 from globmatch import matches
 
 SCHEMA = 1
@@ -106,22 +106,23 @@ def verify_container(path: Path) -> str:
     return ""
 
 
-def carried_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
-    """Build file records for payloads that do not come from the dump.
+def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
+    """Build file records for kanged payloads -- ones taken from elsewhere.
 
     Everything else in a release is extracted from the image named in the
-    manifest and refreshed whenever that device gets a new build. A carried
-    file is not: Google no longer ships it, so there is no image to take it
-    from. Marking it says plainly which payloads cannot be refreshed.
+    manifest and refreshed whenever that device gets a new build. A kanged file
+    is not: it came from another distribution or an older image, because Google
+    no longer ships it, and nothing will refresh it. Marking it says plainly
+    which payloads are frozen.
     """
     out = []
-    for item in d.get("carry", []):
+    for item in d.get("kang", []):
         src = defs_dir / item["file"]
         if not src.is_file():
-            raise SystemExit(f"error: {d['id']} carries {item['file']}, "
+            raise SystemExit(f"error: {d['id']} kangs {item['file']}, "
                              f"which is not at {src}")
         if problem := verify_container(src):
-            raise SystemExit(f"error: {d['id']} carries {item['file']}: {problem}")
+            raise SystemExit(f"error: {d['id']} kangs {item['file']}: {problem}")
         digest, size = sha256_of(src)
         name = asset_name(digest, item["path"])
         dest = assets / name
@@ -134,7 +135,7 @@ def carried_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
             "size": size,
             "mode": item.get("mode", "0644"),
             "kind": classify(item["path"]),
-            "carried": True,
+            "kanged": True,
         })
     return out
 
@@ -152,6 +153,74 @@ def read_package_id(root: Path, rel: str) -> str:
             return package_name(z.read("AndroidManifest.xml"))
     except (OSError, KeyError, zipfile.BadZipFile, MalformedAXML, struct.error):
         return ""
+
+
+# A stub is a placeholder apk Google ships beside the real one so the app has a
+# system entry Play can update in place. They are a few tens of kilobytes; the
+# app they stand in for is megabytes.
+STUB_MAX_BYTES = 1 << 20
+
+
+def read_manifest_attrs(root: Path, rel: str) -> dict:
+    """Read package, versionCode and versionName from an apk in the tree."""
+    full = root / rel
+    try:
+        if rel.endswith(".gz"):
+            z = zipfile.ZipFile(io.BytesIO(gzip.open(full, "rb").read()))
+        else:
+            z = zipfile.ZipFile(full)
+        with z:
+            return manifest_attributes(z.read("AndroidManifest.xml"))
+    except (OSError, KeyError, zipfile.BadZipFile, MalformedAXML, struct.error):
+        return {}
+
+
+def mark_stubs(root: Path, all_files: list[str], packages: list[dict]) -> int:
+    """Flag the stub apks, and report how many were found.
+
+    A stub is recognised by declaring the same package id as a much larger apk.
+    The comparison is against every apk in the dump, not only the claimed ones:
+    a package that claims the stub and leaves its counterpart behind is exactly
+    the case worth catching, and within a single selection there would be
+    nothing larger to compare it to.
+    """
+    sizes: dict[str, int] = {}
+    ids: dict[str, str] = {}
+    for rel in all_files:
+        if not rel.endswith((".apk", ".apk.gz")):
+            continue
+        pid = read_manifest_attrs(root, rel).get("package")
+        if not pid:
+            continue
+        ids[rel] = pid
+        size = (root / rel).stat().st_size
+        sizes[pid] = max(sizes.get(pid, 0), size)
+
+    marked = 0
+    for p in packages:
+        for f in p["files"]:
+            pid = ids.get(f["path"])
+            if not pid:
+                continue
+            if f["size"] <= STUB_MAX_BYTES and f["size"] < sizes.get(pid, 0):
+                f["stub"] = True
+                marked += 1
+    return marked
+
+
+def check_stubs(packages: list[dict]) -> list[str]:
+    """A stub without the apk it stands in for installs a dead system entry."""
+    problems = []
+    for p in packages:
+        stubs = [f for f in p["files"] if f.get("stub")]
+        real = [f for f in p["files"]
+                if f["path"].endswith((".apk", ".apk.gz")) and not f.get("stub")]
+        if stubs and not real:
+            problems.append(
+                f"{p['id']} ships only stubs ({', '.join(f['path'].split('/')[-1] for f in stubs)}); "
+                f"a stub without the app it stands in for leaves a system entry "
+                f"that cannot start")
+    return problems
 
 
 def package_ids(root: Path, entries: list[dict], declared) -> list[str]:
@@ -322,6 +391,41 @@ def check_declared_libraries(root: Path, packages: list[dict]) -> list[str]:
     return problems
 
 
+# Configuration that belongs to an app but lives outside its directory.
+CONFIG_DIRS = ("etc/permissions", "etc/sysconfig", "etc/default-permissions")
+
+
+def check_orphaned_config(root: Path, packages: list[dict],
+                          unclaimed: list[str]) -> list[str]:
+    """Warn when config naming an app we ship is left unclaimed.
+
+    An app's permissions and sysconfig entries live outside its directory, so a
+    glob that covers the app directory misses them and nothing else notices.
+    The app installs, and then silently lacks a privileged permission or an
+    allowlist entry it was granted on the Pixel.
+    """
+    shipped = {pid for p in packages for pid in p.get("packages", [])}
+    if not shipped:
+        return []
+
+    problems = []
+    for rel in unclaimed:
+        if not rel.endswith(".xml") or not any(d in rel for d in CONFIG_DIRS):
+            continue
+        try:
+            text = (root / rel).read_text(errors="replace")
+        except OSError:
+            continue
+        for pid in shipped:
+            # Match the id as a whole token, so com.google.android.gms does not
+            # claim every file mentioning com.google.android.gms.something.
+            if f'"{pid}"' in text or f"'{pid}'" in text:
+                problems.append(f"{rel} configures {pid}, which we ship, "
+                                f"but no package claims it")
+                break
+    return problems
+
+
 def check_symlink_targets(packages: list[dict]) -> list[str]:
     """Warn when a package ships a link whose target it does not also ship.
 
@@ -478,7 +582,7 @@ def build(args) -> int:
                 "kind": classify(rel),
             })
 
-        entries.extend(carried_entries(Path(args.packages).parent.parent, d, assets))
+        entries.extend(kang_entries(Path(args.packages).parent.parent, d, assets))
 
         if not entries:
             empty.append(d["id"])
@@ -498,6 +602,16 @@ def build(args) -> int:
             pkg["packages"] = ids
         else:
             no_package.append(d["id"])
+
+        # The version of the principal apk, so a release can be compared
+        # against the one before it without diffing digests.
+        apks = sorted((e for e in entries if e["path"].endswith((".apk", ".apk.gz"))),
+                      key=lambda e: (e["path"].count("/"), -e["size"]))
+        if apks:
+            attrs = read_manifest_attrs(root, apks[0]["path"])
+            version = {k: attrs[k] for k in ("versionCode", "versionName") if k in attrs}
+            if version:
+                pkg["version"] = version
         for key in ("summary", "required", "default"):
             if d.get(key):
                 pkg[key] = d[key]
@@ -521,6 +635,14 @@ def build(args) -> int:
               "still exit zero.", file=sys.stderr)
         return 1
 
+    stub_count = mark_stubs(root, files, packages)
+    if stub_count:
+        print(f"  {stub_count} stub apk(s) identified")
+    if problems := check_stubs(packages):
+        for line in problems:
+            print(f"error: {line}", file=sys.stderr)
+        return 1
+
     if problems := check_references(packages):
         for line in problems:
             print(f"error: {line}", file=sys.stderr)
@@ -530,6 +652,9 @@ def build(args) -> int:
         print(f"warning: {line}", file=sys.stderr)
 
     for line in check_declared_libraries(root, packages):
+        print(f"warning: {line}", file=sys.stderr)
+
+    for line in check_orphaned_config(root, packages, unclaimed):
         print(f"warning: {line}", file=sys.stderr)
 
     release_id = args.release or f"a{android['version']}-{args.build.lower()}"
@@ -550,6 +675,11 @@ def build(args) -> int:
             },
             "created": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "asset_base": args.asset_base,
+            # The definitions this was built from. Editing packages/aN.yaml
+            # without re-dumping leaves a release that silently predates the
+            # change, which is not otherwise detectable from the outside.
+            "definitions": hashlib.sha256(
+                Path(args.packages).read_bytes()).hexdigest(),
         },
         "packages": packages,
     }

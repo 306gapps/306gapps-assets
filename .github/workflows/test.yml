@@ -16,6 +16,13 @@ jobs:
       - name: Unit tests
         working-directory: tools
         run: python3 -m unittest discover -p 'test_*.py' -v
+      # Editing a definition does not change anything already published, and a
+      # stale release is invisible from the outside.
+      - name: Published releases match the current definitions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/check_fresh.py --repo "${{ github.repository }}"
+
       - name: Package definitions parse
         run: |
           for f in packages/*.yaml; do

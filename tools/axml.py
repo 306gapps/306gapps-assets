@@ -10,6 +10,7 @@ import struct
 
 CHUNK_STRING_POOL = 0x0001
 CHUNK_START_ELEMENT = 0x0102
+CHUNK_RESOURCE_MAP = 0x0180
 FLAG_UTF8 = 1 << 8
 
 
@@ -49,6 +50,76 @@ def _string_pool(data: bytes, off: int) -> list[str]:
                 p += 2
             out.append(data[p:p + n * 2].decode("utf-16-le", "replace"))
     return out
+
+
+# Android's own attributes carry resource ids rather than names, so the string
+# pool does not always hold "versionCode". These are the stable ids.
+ATTR_VERSION_CODE = 0x0101021B
+ATTR_VERSION_NAME = 0x0101021C
+
+TYPE_STRING = 0x03
+
+
+def manifest_attributes(manifest: bytes) -> dict[str, str]:
+    """Return package, versionCode and versionName from a compiled manifest.
+
+    Attribute names in the manifest element are a mix of plain strings
+    (package) and framework resource ids (versionCode, versionName), so both
+    lookups are needed.
+    """
+    strings = _string_pool(manifest, 8)
+    res_ids = _resource_map(manifest)
+
+    off = 8
+    while off + 8 <= len(manifest):
+        kind, _header_size, size = struct.unpack_from("<HHI", manifest, off)
+        if size == 0:
+            raise MalformedAXML("zero-length chunk")
+        if kind == CHUNK_START_ELEMENT:
+            ext = off + 16
+            attr_start, attr_size, attr_count = struct.unpack_from("<HHH", manifest, ext + 8)
+            base = ext + attr_start
+            out = {}
+            for i in range(attr_count):
+                a = base + i * attr_size
+                if a + 20 > len(manifest):
+                    break
+                _ns, name_idx, raw_idx = struct.unpack_from("<III", manifest, a)
+                _size, _pad, val_type = struct.unpack_from("<HBB", manifest, a + 12)
+                val = struct.unpack_from("<I", manifest, a + 16)[0]
+
+                key = strings[name_idx] if name_idx < len(strings) else ""
+                res = res_ids[name_idx] if name_idx < len(res_ids) else 0
+                if res == ATTR_VERSION_CODE:
+                    key = "versionCode"
+                elif res == ATTR_VERSION_NAME:
+                    key = "versionName"
+                if key not in ("package", "versionCode", "versionName"):
+                    continue
+
+                if raw_idx != 0xFFFFFFFF and raw_idx < len(strings):
+                    out[key] = strings[raw_idx]
+                elif val_type == TYPE_STRING and val < len(strings):
+                    out[key] = strings[val]
+                else:
+                    out[key] = str(val)
+            return out
+        off += size
+    raise MalformedAXML("no start element found")
+
+
+def _resource_map(manifest: bytes) -> list[int]:
+    """The resource ids parallel to the string pool, if the chunk is present."""
+    off = 8
+    while off + 8 <= len(manifest):
+        kind, _header_size, size = struct.unpack_from("<HHI", manifest, off)
+        if size == 0:
+            return []
+        if kind == CHUNK_RESOURCE_MAP:
+            count = (size - 8) // 4
+            return list(struct.unpack_from(f"<{count}I", manifest, off + 8))
+        off += size
+    return []
 
 
 def package_name(manifest: bytes) -> str:

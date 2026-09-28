@@ -71,3 +71,30 @@ class TestIgnoreRules(unittest.TestCase):
     def test_drops_rom_metadata(self):
         for p in ("product/etc/build.prop", "product/etc/selinux/x_file_contexts"):
             self.assertTrue(self.ignored(p), p)
+
+
+class TestStubRules(unittest.TestCase):
+    """A stub is a placeholder Google ships beside the real apk."""
+
+    def test_a_package_shipping_only_stubs_is_rejected(self):
+        from build_manifest import check_stubs
+        pkgs = [{"id": "x", "files": [
+            {"path": "product/app/Chrome-Stub/Chrome-Stub.apk", "stub": True}]}]
+        self.assertTrue(check_stubs(pkgs))
+
+    def test_a_stub_alongside_its_app_is_fine(self):
+        from build_manifest import check_stubs
+        pkgs = [{"id": "x", "files": [
+            {"path": "product/app/Chrome-Stub/Chrome-Stub.apk", "stub": True},
+            {"path": "product/app/Chrome/Chrome.apk.gz"}]}]
+        self.assertEqual(check_stubs(pkgs), [])
+
+    def test_a_package_with_no_stubs_is_fine(self):
+        from build_manifest import check_stubs
+        pkgs = [{"id": "x", "files": [{"path": "product/app/A/A.apk"}]}]
+        self.assertEqual(check_stubs(pkgs), [])
+
+    def test_the_size_threshold_is_a_megabyte(self):
+        from build_manifest import STUB_MAX_BYTES
+        # Google's are 12-16 KiB; the apps they stand in for are tens of MiB.
+        self.assertEqual(STUB_MAX_BYTES, 1 << 20)

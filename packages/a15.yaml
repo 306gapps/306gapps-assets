@@ -83,7 +83,7 @@ packages:
     default: true
     requires: [gmscore, vending]
     summary: >-
-      Replaces the AOSP first-boot flow. Needed to sign in during setup;
+      Replaces the ROM's first-boot flow. Needed to sign in during setup;
       without it you sign in from Settings afterwards.
     removes:
       - Provision
@@ -92,14 +92,39 @@ packages:
     include:
       - product/priv-app/SetupWizardPrebuilt_*/**
       - system_ext/priv-app/SetupWizardPixelPrebuilt_*/**
-      - product/priv-app/PartnerSetupPrebuilt/**
+      - product/overlay/PixelSetupWizardOverlay*.apk
+
+  - id: restore
+    name: Google Restore
+    category: setup
+    requires: [gmscore, setupwizard]
+    summary: Restores apps and settings from a previous device during setup.
+    include:
       - product/priv-app/GoogleRestorePrebuilt-*/**
+      - product/priv-app/AndroidMigratePrebuilt/**
+
+  - id: partnersetup
+    name: Google Partner Setup
+    category: setup
+    requires: [gmscore]
+    include:
+      - product/priv-app/PartnerSetupPrebuilt/**
+
+  - id: searchselector
+    name: Search engine selector
+    category: setup
+    requires: [gmscore]
+    summary: The search engine choice screen shown during setup in the EEA.
+    include:
       - product/priv-app/SearchSelectorPrebuilt/**
       - product/etc/permissions/com.google.android.apps.setupwizard.searchselector.xml
-      - product/overlay/PixelSetupWizardOverlay*.apk
+
+  - id: carriersetup
+    name: Carrier Setup
+    category: setup
+    include:
       - system_ext/priv-app/CarrierSetup/**
 
-  # ---- apps ----------------------------------------------------------------
   - id: gsa
     name: Google app and Assistant
     category: apps
@@ -157,10 +182,18 @@ packages:
     name: Gboard
     category: apps
     requires: [gmscore]
+    summary: >-
+      Includes the offline speech models and the CJK language models, which
+      live outside the app directory. Without them voice typing only works
+      online and Japanese, Korean and Chinese input is degraded.
     removes:
       - LatinIME
     include:
       - product/app/LatinIMEGooglePrebuilt*/**
+      - product/usr/srec/**
+      - product/usr/share/ime/**
+      - product/lib/libjni_latinimegoogle.so
+      - product/lib64/libjni_latinimegoogle.so
 
   - id: photos
     name: Google Photos
@@ -171,7 +204,13 @@ packages:
       - Glimpse
     include:
       - product/app/Photos/**
-      - product/app/MarkupGoogle_v*/**
+
+  - id: markup
+    name: Markup
+    category: apps
+    summary: The annotation editor Photos and screenshots open.
+    include:
+      - product/app/MarkupGoogle*/**
 
   - id: calendar
     name: Google Calendar
@@ -237,14 +276,6 @@ packages:
     include:
       - product/app/Drive/**
 
-  - id: youtube
-    name: YouTube
-    category: apps
-    requires: [gmscore]
-    include:
-      - product/app/YouTube/**
-      - product/app/YouTubeMusicPrebuilt/**
-
   - id: keep
     name: Google Keep
     category: apps
@@ -274,13 +305,23 @@ packages:
       - system_ext/priv-app/WallpaperPickerGoogleRelease/**
       - system_ext/etc/permissions/com.google.android.apps.pixel.launcherconnector.xml
 
-  - id: pixelsetup
-    name: Pixel wallpapers and themes
+  - id: wallpapers
+    name: Pixel wallpapers
+    category: pixel
+    include:
+      - product/app/PixelWallpapers*/**
+
+  - id: emojiwallpaper
+    name: Emoji wallpaper
+    category: pixel
+    include:
+      - product/app/WallpaperEmojiPrebuilt*/**
+
+  - id: pixelthemes
+    name: Pixel themes
     category: pixel
     include:
       - product/app/PixelThemesStub*/**
-      - product/app/PixelWallpapers*/**
-      - product/app/WallpaperEmojiPrebuilt-*/**
 
   - id: nowplaying
     name: Now Playing
@@ -299,6 +340,98 @@ packages:
     include:
       - product/priv-app/RecorderPrebuilt*/**
 
+  - id: aiai
+    name: Device Personalization Services
+    category: extras
+    requires: [gmscore]
+    summary: >-
+      On-device personalisation: app suggestions, smart text selection, Now
+      Playing and Live Caption all route through it.
+    include:
+      - product/priv-app/DevicePersonalizationAiAiPrebuilt*/**
+
+  - id: aicore
+    name: AICore
+    category: extras
+    requires: [gmscore]
+    summary: On-device foundation models the newer Pixel features build on.
+    include:
+      - product/priv-app/AICorePrebuilt*/**
+
+  - id: devicepolicy
+    name: Android Device Policy
+    category: extras
+    requires: [gmscore]
+    summary: Work profile and managed device support.
+    include:
+      - product/app/DevicePolicyPrebuilt*/**
+
+  - id: credentialmanager
+    name: Credential Manager
+    category: extras
+    requires: [gmscore]
+    summary: Passkey and password autofill support.
+    include:
+      - product/app/CredentialManagerPrebuilt*/**
+
+  - id: calculator
+    name: Google Calculator
+    category: apps
+    removes:
+      - ExactCalculator
+      - Calculator
+    include:
+      - product/app/CalculatorGooglePrebuilt*/**
+
+  - id: clock
+    name: Google Clock
+    category: apps
+    removes:
+      - DeskClock
+    include:
+      - product/priv-app/PrebuiltDeskClockGoogle*/**
+
+  - id: files
+    name: Files by Google
+    category: apps
+    requires: [gmscore]
+    include:
+      - product/priv-app/FilesPrebuilt/**
+
+  - id: documentsui
+    name: Google document picker
+    category: apps
+    summary: >-
+      Replaces the AOSP picker, which is what every app opens when asking you
+      to choose a file.
+    removes:
+      - DocumentsUI
+    include:
+      - system/priv-app/DocumentsUIGoogle/**
+
+  - id: storagemanager
+    name: Google storage manager
+    category: apps
+    removes:
+      - StorageManager
+    include:
+      - system_ext/priv-app/StorageManagerGoogle/**
+
+  - id: locationhistory
+    name: Location History
+    category: extras
+    requires: [gmscore]
+    include:
+      - product/app/LocationHistoryPrebuilt/**
+
+  - id: feedback
+    name: Google Feedback
+    category: extras
+    requires: [gmscore]
+    summary: Reports problems to Google. Harmless to leave out.
+    include:
+      - system_ext/priv-app/GoogleFeedback/**
+
   - id: syncadapters
     name: Contacts and Calendar sync adapters
     category: extras
@@ -308,22 +441,37 @@ packages:
       - com.google.android.syncadapters.contacts
       - com.google.android.syncadapters.calendar
     summary: >-
-      The standalone sync adapters, carried rather than dumped: no Pixel image
+      The standalone sync adapters, kanged rather than dumped: no Pixel image
       from Android 13 on ships them, because modern Play services handles
       account sync itself. Offered for ROMs that still expect them, and off by
       default because on a Pixel they are redundant.
-    carry:
+    kang:
       - path: product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
-        file: carried/GoogleContactsSyncAdapter.apk
+        file: kang/GoogleContactsSyncAdapter.apk
       - path: product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
-        file: carried/GoogleCalendarSyncAdapter.apk
+        file: kang/GoogleCalendarSyncAdapter.apk
+
+  - id: sounds
+    name: Pixel sounds
+    category: pixel
+    summary: >-
+      The Pixel ringtones, alarms and notification sounds, plus the picker
+      that exposes them.
+    include:
+      - product/media/audio/**
+      - product/app/SoundPickerPrebuilt*/**
+      - product/overlay/GoogleSounds*.apk
 
   - id: tts
     name: Google Text-to-Speech
     category: extras
     requires: [gmscore]
+    summary: >-
+      Includes the offline voice data, which lives outside the app directory.
+      Without it only the languages downloaded on demand will speak.
     include:
       - product/app/GoogleTTS/**
+      - product/tts/google/**
 
   - id: wellbeing
     name: Digital Wellbeing
@@ -345,15 +493,37 @@ packages:
       - system_ext/etc/permissions/com.google.euiccpixel*.xml
 
   - id: talkback
-    name: TalkBack and accessibility
-    category: extras
+    name: TalkBack
+    category: accessibility
     requires: [gmscore]
+    summary: Screen reader. The one accessibility service most users need.
     include:
       - product/app/talkback/**
-      - product/app/SwitchAccessPrebuilt_*/**
-      - product/app/VoiceAccessPrebuilt/**
-      - product/app/SoundAmplifierPrebuilt_*/**
       - product/etc/default-permissions/default-permissions_talkback.xml
+
+  - id: switchaccess
+    name: Switch Access
+    category: accessibility
+    requires: [gmscore]
+    summary: Control the device with switches rather than the touchscreen.
+    include:
+      - product/app/SwitchAccessPrebuilt*/**
+
+  - id: voiceaccess
+    name: Voice Access
+    category: accessibility
+    requires: [gmscore]
+    summary: Control the device by voice.
+    include:
+      - product/app/VoiceAccessPrebuilt/**
+
+  - id: soundamplifier
+    name: Sound Amplifier
+    category: accessibility
+    requires: [gmscore]
+    summary: Amplifies and filters audio through headphones.
+    include:
+      - product/app/SoundAmplifierPrebuilt*/**
 
   - id: findmydevice
     name: Find My Device

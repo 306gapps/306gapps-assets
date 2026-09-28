@@ -93,6 +93,18 @@ A file may be claimed by exactly one package. Anything left unclaimed is
 reported, and unclaimed **apks** raise a workflow warning — that is how a newly
 added Google app surfaces instead of silently going missing.
 
+## Granularity
+
+A package is one app, not one theme. Bundling Switch Access with the screen
+reader, or the document picker with Files, forces someone who wants one to take
+the other -- and the second is often the more invasive of the two. Where several
+files genuinely belong to one app, they stay together: an app's permissions
+file, its native libraries and its offline data are not separately useful.
+
+Apps that Play installs on any device, in the right variant, are not shipped at
+all. The camera is the clearest case -- 890 MiB, Pixel-only, and Play has the
+build matching the model -- and YouTube is the same argument at 243 MiB.
+
 ## Adding a new Android version
 
 1. Copy the previous `packages/aN.yaml` to the new version and update `android:`.
@@ -118,6 +130,8 @@ added Google app surfaces instead of silently going missing.
 | `tools/rebuild_index.py` | reconstruct `index.json` from what is actually published |
 | `tools/suggest_globs.py` | for packages that matched nothing, say whether the glob is wrong or the app is absent |
 | `tools/prune_release.py` | remove release assets no manifest references |
+| `tools/check_fresh.py` | report releases built from definitions since edited |
+| `tools/axml.py` | read package id and version from a compiled AndroidManifest |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
@@ -160,6 +174,27 @@ cd tools && python3 -m unittest discover -p 'test_*.py'
 The glob matcher and the OTA parser are both covered. The extraction step is
 exercised by the workflow rather than by unit tests, since it needs multi-gigabyte
 inputs.
+
+## Staying in step with the definitions
+
+Editing `packages/a<N>.yaml` changes nothing already published: the release keeps
+serving the removals, package ids and globs it was built with, and nothing about
+it looks stale from outside. Each manifest therefore records the digest of the
+definitions it came from, and `tools/check_fresh.py` compares that against the
+files as they stand. CI runs it on every push, so an edit that needs a re-dump
+says so rather than sitting unnoticed.
+
+## Stubs
+
+Google ships a few apps as a stub beside the real apk -- Chrome, WebView and the
+Trichrome library -- so the app has a system entry Play can update in place. The
+dumper marks them: an apk declaring the same package id as a much larger one in
+the same release is a stub. Shipping a stub without the apk it stands in for
+would leave a system entry that cannot start, so that is an error rather than a
+warning.
+
+A stub cannot be manufactured. Play will only install over one signed with the
+same key, and Google's are signed with Google's.
 
 ## busybox
 
