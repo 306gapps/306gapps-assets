@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/comet-ota-ad1a.240905.004-ba016cd3.zip",
       "sha256": "ba016cd3026a91fc1189f6f249e7f414058a4067e544fb25b1f534d61bce92ec"
     },
-    "created": "2026-09-28T16:38:49Z",
+    "created": "2026-09-28T22:11:31Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004",
-    "definitions": "7535d099692280b079ac33d3391047896969a72639bfe80bfd2ca6dfe0555f9d"
+    "definitions": "5bf744910d5457d76c1412ff7915208fc957a6e829cd95760547e0d80d55386f"
   },
   "groups": [
     {
@@ -594,6 +594,30 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "16da1a8691528bca-privapp-permissions-google.xml.gz",
+          "sha256": "16da1a8691528bca32796aa2931e2c93e7885cc45387769ff02f470556916fa0",
+          "size": 3572,
+          "encoding": "gzip",
+          "asset_sha256": "05e7eb5a1d24e144984240a672615ae67b32b5c961a6b3a3440079efa67e782b",
+          "asset_size": 1167,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "a647f4b709c0515d-privapp-permissions-google-se.xml.gz",
+          "sha256": "a647f4b709c0515d41133c08ea3c95b043e413a17a07475ef07135df614ea405",
+          "size": 14130,
+          "encoding": "gzip",
+          "asset_sha256": "8d822690e987b22384b57885ca15819fb9afee6990530bc5750da08a34d87ebc",
+          "asset_size": 2360,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
         }
       ],
       "packages": [
