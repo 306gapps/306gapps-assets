@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/cubs-ota-cd1a.260905.001.b1-2c1865b8.zip",
       "sha256": "2c1865b8a09d2905bb217ad15a9862793ec42f913da930cc657355160b739860"
     },
-    "created": "2026-09-28T16:06:11Z",
+    "created": "2026-09-28T20:50:21Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1",
-    "definitions": "e7ddde4a6a1fc021de757a42b5c54f9a917e945b40210c86807bad0153729af8"
+    "definitions": "f4fccffc8c8879fc06b1cde073a417418d85220891d46b05b991b21751e3d1fd"
   },
   "groups": [
     {
@@ -672,6 +672,30 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "146ae07132101775-privapp-permissions-google.xml.gz",
+          "sha256": "146ae071321017758a019643f639c3399341c8d373308b151706469ed73b0617",
+          "size": 2865,
+          "encoding": "gzip",
+          "asset_sha256": "8447491295e95fb56e485321d70a9aef102d2e3abeedfb587467231f08cbc3db",
+          "asset_size": 1079,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "adca246afec05520-privapp-permissions-google-se.xml.gz",
+          "sha256": "adca246afec05520f4af7b6e91f7521d47359fddfb5e5676ce7189ca0fefa58c",
+          "size": 17367,
+          "encoding": "gzip",
+          "asset_sha256": "cbcd37ebd221a447f51cd16b2bad5ab0f2d117dcd5ba09cbe6d25dff04b20e74",
+          "asset_size": 2701,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
         }
       ],
       "packages": [
@@ -2062,6 +2086,18 @@
       "name": "Google app and Assistant",
       "group": "search",
       "files": [
+        {
+          "path": "product/etc/permissions/velvet_app-privapp-permissions.xml",
+          "asset": "c3e2cfd8572dec9e-velvet_app-privapp-permissions.xml.gz",
+          "sha256": "c3e2cfd8572dec9edc898ce6918a2fd60920300c52aa7aec6c052ab7a63558f9",
+          "size": 308,
+          "encoding": "gzip",
+          "asset_sha256": "cd5d187c10a0f9e6bd66da1fdcda0abfe4035db32ff78ce615649fb12fd00c46",
+          "asset_size": 257,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
         {
           "path": "product/priv-app/Velvet/Velvet.apk",
           "asset": "25a5196cb2d253ca-Velvet.apk.gz",
