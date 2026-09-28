@@ -22,11 +22,134 @@ exclude:
   # lets Play install the build matching the device.
   - GoogleCamera
 
+# Preset selections, following NikGApps' editions so a package built here is
+# comparable to one built there. Each builds on the one before it.
+#
+# A variant names packages, not families: the tiers cut across families (stock
+# takes the Pixel launcher but not the wallpapers) and a family is a display
+# grouping, not a unit of choice.
+variants:
+  - id: core
+    name: Core
+    summary: >-
+      Play services, the Store, and the framework. The smallest thing that
+      signs in and installs apps.
+    packages: [gmscore, gsf, vending, syncadapters]
+
+  - id: basic
+    name: Basic
+    includes: core
+    summary: Core plus the phone, messaging and contacts apps.
+    packages: [dialer, messages, contacts, carriersetup, clock, wellbeing]
+
+  - id: omni
+    name: Omni
+    includes: basic
+    summary: Basic plus setup, the keyboard, and the everyday Google apps.
+    packages: [setupwizard, restore, gboard, calendar, keep, calculator,
+               drive, maps, locationhistory, photos]
+
+  - id: stock
+    name: Stock
+    includes: omni
+    summary: What a Pixel ships with, near enough.
+    packages: [gsa, gemini, pixellauncher, files, documentsui, storagemanager,
+               recorder, markup, tts, sounds]
+
+  - id: full
+    name: Full
+    includes: stock
+    summary: Stock plus the rest of what NikGApps packages.
+    packages: [gmail, feedback, partnersetup, devicepolicy]
+
+  - id: everything
+    name: Everything
+    summary: >-
+      Every package in the release. Where two cannot coexist the first is
+      taken, so this is a starting point rather than literally everything.
+    all: true
+
+# App families, in the order the picker shows them. A family with one
+# member renders as a single row; one with several renders as a header you
+# can tick to take the whole set.
+groups:
+  - id: core
+    name: Core
+    summary: Play services, the Store, and the framework everything else needs.
+  - id: setup
+    name: Setup Wizard
+    summary: First-boot setup, restore, and the search engine chooser.
+  - id: dialer
+    name: Google Phone
+  - id: messages
+    name: Google Messages
+  - id: contacts
+    name: Google Contacts
+  - id: gboard
+    name: Gboard
+  - id: tts
+    name: Google Text-to-Speech
+  - id: search
+    name: Google Search
+    summary: The Google app, Assistant, and Gemini.
+  - id: chrome
+    name: Google Chrome
+    summary: Chrome, the WebView, and the Trichrome library they share.
+  - id: files
+    name: Google Files
+    summary: Files by Google and the document picker it replaces AOSP's with.
+  - id: photos
+    name: Google Photos
+  - id: markup
+    name: Markup
+  - id: gmail
+    name: Gmail
+  - id: maps
+    name: Google Maps
+  - id: locationhistory
+    name: Location History
+  - id: drive
+    name: Google Drive
+  - id: calendar
+    name: Google Calendar
+  - id: keep
+    name: Google Keep
+  - id: meet
+    name: Google Meet
+  - id: calculator
+    name: Google Calculator
+  - id: clock
+    name: Google Clock
+  - id: recorder
+    name: Pixel Recorder
+  - id: sounds
+    name: Pixel Sounds
+  - id: pixel
+    name: Pixel Specifics
+    summary: The launcher, wallpapers, themes, and the on-device AI that backs them.
+  - id: wellbeing
+    name: Digital Wellbeing
+  - id: partnersetup
+    name: Google Partner Setup
+  - id: carrier
+    name: Carrier Services
+    summary: Carrier provisioning and eSIM support.
+  - id: devicepolicy
+    name: Android Device Policy
+  - id: feedback
+    name: Google Feedback
+  - id: credentialmanager
+    name: Credential Manager
+  - id: findmydevice
+    name: Find My Device
+  - id: accessibility
+    name: Accessibility
+    summary: TalkBack and the other Google accessibility services.
+
 packages:
-  # ---- core ----------------------------------------------------------------
   - id: gmscore
     name: Google Play services
-    category: core
+    group: core
     required: true
     summary: >-
       Core Google services framework. Everything else depends on it. On
@@ -52,7 +175,7 @@ packages:
 
   - id: gsf
     name: Google Services Framework
-    category: core
+    group: core
     required: true
     summary: Device registration and push messaging.
     include:
@@ -60,7 +183,7 @@ packages:
 
   - id: vending
     name: Google Play Store
-    category: core
+    group: core
     default: true
     requires: [gmscore, gsf]
     summary: App store and Play Protect.
@@ -69,17 +192,37 @@ packages:
 
   - id: verifier
     name: Play Protect verifier
-    category: core
+    group: core
     requires: [gmscore]
+    summary: >-
+      Scans apps as they install. This is also the component Google's developer
+      verification runs through. Leave it out to do without it, or take
+      verifier-block to make sure nothing installs it later.
     include:
       - product/priv-app/VerifierPrebuiltClassic/**
       - product/etc/permissions/com.google.android.verifier.xml
       - product/etc/default-permissions/default-permissions-verifier.xml
 
-  # ---- setup ---------------------------------------------------------------
+  - id: verifier-block
+    name: Block the developer verifier
+    group: core
+    conflicts: [verifier]
+    summary: >-
+      Takes the com.google.android.verifier name with an empty apk signed by a
+      key that was generated once and then destroyed. Android will not replace
+      a package with one signed by a different key, so the real verifier can
+      never be installed over it -- not by the Play Store, not by anything.
+      The apk holds no code and does nothing. Mutually exclusive with shipping
+      the verifier itself.
+    package: com.google.android.verifier
+    kang:
+      - file: synth/VerifierBlocker.apk
+        path: product/priv-app/VerifierBlocker/VerifierBlocker.apk
+        synthetic: true
+
   - id: setupwizard
     name: Google Setup Wizard
-    category: setup
+    group: setup
     default: true
     requires: [gmscore, vending]
     summary: >-
@@ -96,7 +239,7 @@ packages:
 
   - id: restore
     name: Google Restore
-    category: setup
+    group: setup
     requires: [gmscore, setupwizard]
     summary: Restores apps and settings from a previous device during setup.
     include:
@@ -105,14 +248,14 @@ packages:
 
   - id: partnersetup
     name: Google Partner Setup
-    category: setup
+    group: partnersetup
     requires: [gmscore]
     include:
       - product/priv-app/PartnerSetupPrebuilt/**
 
   - id: searchselector
     name: Search engine selector
-    category: setup
+    group: setup
     requires: [gmscore]
     summary: The search engine choice screen shown during setup in the EEA.
     include:
@@ -121,13 +264,13 @@ packages:
 
   - id: carriersetup
     name: Carrier Setup
-    category: setup
+    group: carrier
     include:
       - system_ext/priv-app/CarrierSetup/**
 
   - id: gsa
     name: Google app and Assistant
-    category: apps
+    group: search
     requires: [gmscore]
     summary: Search, Assistant and the at-a-glance widget. Large (~350 MB).
     removes:
@@ -137,7 +280,7 @@ packages:
 
   - id: gemini
     name: Gemini
-    category: apps
+    group: search
     requires: [gmscore]
     include:
       - product/priv-app/GeminiShell_*/**
@@ -146,7 +289,7 @@ packages:
 
   - id: dialer
     name: Google Phone
-    category: apps
+    group: dialer
     requires: [gmscore]
     summary: Call screening and spam protection.
     removes:
@@ -160,7 +303,7 @@ packages:
 
   - id: messages
     name: Google Messages
-    category: apps
+    group: messages
     requires: [gmscore]
     summary: RCS-capable SMS client.
     removes:
@@ -171,7 +314,7 @@ packages:
 
   - id: contacts
     name: Google Contacts
-    category: apps
+    group: contacts
     requires: [gmscore]
     removes:
       - Contacts
@@ -180,7 +323,7 @@ packages:
 
   - id: gboard
     name: Gboard
-    category: apps
+    group: gboard
     requires: [gmscore]
     summary: >-
       Includes the offline speech models and the CJK language models, which
@@ -197,7 +340,7 @@ packages:
 
   - id: photos
     name: Google Photos
-    category: apps
+    group: photos
     requires: [gmscore]
     removes:
       - Gallery2
@@ -207,14 +350,14 @@ packages:
 
   - id: markup
     name: Markup
-    category: apps
+    group: markup
     summary: The annotation editor Photos and screenshots open.
     include:
       - product/app/MarkupGoogle*/**
 
   - id: calendar
     name: Google Calendar
-    category: apps
+    group: calendar
     requires: [gmscore]
     removes:
       - Calendar
@@ -224,7 +367,7 @@ packages:
 
   - id: trichrome
     name: Trichrome shared library
-    category: apps
+    group: chrome
     summary: >-
       Code Chrome and the Google WebView share. Both declare it with
       uses-static-library and neither loads without it, so it is its own
@@ -236,7 +379,7 @@ packages:
 
   - id: chrome
     name: Chrome
-    category: apps
+    group: chrome
     requires: [gmscore, trichrome]
     removes:
       - Browser
@@ -247,7 +390,7 @@ packages:
 
   - id: webview
     name: Google WebView
-    category: apps
+    group: chrome
     requires: [trichrome]
     removes:
       - webview
@@ -257,43 +400,42 @@ packages:
 
   - id: gmail
     name: Gmail
-    category: apps
+    group: gmail
     requires: [gmscore]
     include:
       - product/app/PrebuiltGmail/**
 
   - id: maps
     name: Google Maps
-    category: apps
+    group: maps
     requires: [gmscore]
     include:
       - product/app/Maps/**
 
   - id: drive
     name: Google Drive
-    category: apps
+    group: drive
     requires: [gmscore]
     include:
       - product/app/Drive/**
 
   - id: keep
     name: Google Keep
-    category: apps
+    group: keep
     requires: [gmscore]
     include:
       - product/app/GoogleKeepPrebuilt/**
 
   - id: meet
     name: Google Meet
-    category: apps
+    group: meet
     requires: [gmscore]
     include:
       - product/app/MeetPrebuilt_*/**
 
-  # ---- pixel ---------------------------------------------------------------
   - id: pixellauncher
     name: Pixel Launcher
-    category: pixel
+    group: pixel
     requires: [gmscore]
     summary: Pixel home screen. Pair with gsa for the search bar.
     removes:
@@ -307,25 +449,25 @@ packages:
 
   - id: wallpapers
     name: Pixel wallpapers
-    category: pixel
+    group: pixel
     include:
       - product/app/PixelWallpapers*/**
 
   - id: emojiwallpaper
     name: Emoji wallpaper
-    category: pixel
+    group: pixel
     include:
       - product/app/WallpaperEmojiPrebuilt*/**
 
   - id: pixelthemes
     name: Pixel themes
-    category: pixel
+    group: pixel
     include:
       - product/app/PixelThemesStub*/**
 
   - id: nowplaying
     name: Now Playing
-    category: pixel
+    group: pixel
     requires: [gmscore]
     include:
       - product/app/NowPlayingPrebuilt/**
@@ -333,7 +475,7 @@ packages:
 
   - id: recorder
     name: Pixel Recorder
-    category: pixel
+    group: recorder
     requires: [gmscore]
     removes:
       - Recorder
@@ -342,7 +484,7 @@ packages:
 
   - id: aiai
     name: Device Personalization Services
-    category: extras
+    group: pixel
     requires: [gmscore]
     summary: >-
       On-device personalisation: app suggestions, smart text selection, Now
@@ -352,7 +494,7 @@ packages:
 
   - id: aicore
     name: AICore
-    category: extras
+    group: pixel
     requires: [gmscore]
     summary: On-device foundation models the newer Pixel features build on.
     include:
@@ -360,7 +502,7 @@ packages:
 
   - id: devicepolicy
     name: Android Device Policy
-    category: extras
+    group: devicepolicy
     requires: [gmscore]
     summary: Work profile and managed device support.
     include:
@@ -368,7 +510,7 @@ packages:
 
   - id: credentialmanager
     name: Credential Manager
-    category: extras
+    group: credentialmanager
     requires: [gmscore]
     summary: Passkey and password autofill support.
     include:
@@ -376,7 +518,7 @@ packages:
 
   - id: calculator
     name: Google Calculator
-    category: apps
+    group: calculator
     removes:
       - ExactCalculator
       - Calculator
@@ -385,7 +527,7 @@ packages:
 
   - id: clock
     name: Google Clock
-    category: apps
+    group: clock
     removes:
       - DeskClock
     include:
@@ -393,14 +535,14 @@ packages:
 
   - id: files
     name: Files by Google
-    category: apps
+    group: files
     requires: [gmscore]
     include:
       - product/priv-app/FilesPrebuilt/**
 
   - id: documentsui
     name: Google document picker
-    category: apps
+    group: files
     summary: >-
       Replaces the AOSP picker, which is what every app opens when asking you
       to choose a file.
@@ -411,7 +553,7 @@ packages:
 
   - id: storagemanager
     name: Google storage manager
-    category: apps
+    group: files
     removes:
       - StorageManager
     include:
@@ -419,14 +561,14 @@ packages:
 
   - id: locationhistory
     name: Location History
-    category: extras
+    group: locationhistory
     requires: [gmscore]
     include:
       - product/app/LocationHistoryPrebuilt/**
 
   - id: feedback
     name: Google Feedback
-    category: extras
+    group: feedback
     requires: [gmscore]
     summary: Reports problems to Google. Harmless to leave out.
     include:
@@ -434,7 +576,7 @@ packages:
 
   - id: syncadapters
     name: Contacts and Calendar sync adapters
-    category: extras
+    group: core
     requires: [gmscore]
     # Two apps in one selection, so both data directories must be cleared.
     package:
@@ -453,7 +595,7 @@ packages:
 
   - id: sounds
     name: Pixel sounds
-    category: pixel
+    group: sounds
     summary: >-
       The Pixel ringtones, alarms and notification sounds, plus the picker
       that exposes them.
@@ -464,7 +606,7 @@ packages:
 
   - id: tts
     name: Google Text-to-Speech
-    category: extras
+    group: tts
     requires: [gmscore]
     summary: >-
       Includes the offline voice data, which lives outside the app directory.
@@ -475,14 +617,14 @@ packages:
 
   - id: wellbeing
     name: Digital Wellbeing
-    category: extras
+    group: wellbeing
     requires: [gmscore]
     include:
       - product/priv-app/WellbeingPrebuilt/**
 
   - id: euicc
     name: eSIM support
-    category: extras
+    group: carrier
     requires: [gmscore]
     summary: Needed for eSIM provisioning on most carriers.
     include:
@@ -494,7 +636,7 @@ packages:
 
   - id: talkback
     name: TalkBack
-    category: accessibility
+    group: accessibility
     requires: [gmscore]
     summary: Screen reader. The one accessibility service most users need.
     include:
@@ -503,7 +645,7 @@ packages:
 
   - id: switchaccess
     name: Switch Access
-    category: accessibility
+    group: accessibility
     requires: [gmscore]
     summary: Control the device with switches rather than the touchscreen.
     include:
@@ -511,7 +653,7 @@ packages:
 
   - id: voiceaccess
     name: Voice Access
-    category: accessibility
+    group: accessibility
     requires: [gmscore]
     summary: Control the device by voice.
     include:
@@ -519,7 +661,7 @@ packages:
 
   - id: soundamplifier
     name: Sound Amplifier
-    category: accessibility
+    group: accessibility
     requires: [gmscore]
     summary: Amplifies and filters audio through headphones.
     include:
@@ -527,14 +669,14 @@ packages:
 
   - id: findmydevice
     name: Find My Device
-    category: extras
+    group: findmydevice
     requires: [gmscore]
     include:
       - product/app/FindMyDevicePrebuilt-*/**
 
   - id: wallet
     name: Google Wallet quick access
-    category: extras
+    group: pixel
     requires: [gmscore]
     include:
       - system_ext/priv-app/QuickAccessWallet/**

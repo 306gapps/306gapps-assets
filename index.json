@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-28T14:11:55Z",
+  "updated": "2026-09-28T15:02:34Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -13,7 +13,7 @@
       "device": "cubs",
       "build": "CD1A.260905.001.B1",
       "branch": "a17",
-      "created": "2026-09-28T13:46:53Z",
+      "created": "2026-09-28T14:53:35Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cd1a.260905.001.b1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1"
     },
@@ -27,7 +27,7 @@
       "device": "stallion",
       "build": "CP1A.260505.005",
       "branch": "a16",
-      "created": "2026-09-28T13:53:20Z",
+      "created": "2026-09-28T15:01:13Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a16/releases/a16-cp1a.260505.005/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005"
     },

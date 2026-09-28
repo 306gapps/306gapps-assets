@@ -128,7 +128,7 @@ def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
         dest = assets / name
         if not dest.exists():
             shutil.copy2(src, dest)
-        out.append({
+        entry = {
             "path": item["path"],
             "asset": name,
             "sha256": digest,
@@ -136,7 +136,13 @@ def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
             "mode": item.get("mode", "0644"),
             "kind": classify(item["path"]),
             "kanged": True,
-        })
+        }
+        # Generated here rather than taken from someone else's package. Worth
+        # saying apart: a kanged file is somebody's build, a synthetic one is
+        # ours and is reproducible from tools/.
+        if item.get("synthetic"):
+            entry["synthetic"] = True
+        out.append(entry)
     return out
 
 
@@ -199,6 +205,11 @@ def mark_stubs(root: Path, all_files: list[str], packages: list[dict]) -> int:
     marked = 0
     for p in packages:
         for f in p["files"]:
+            # A blocker is the inverse of a stub -- deliberately unupdatable --
+            # and marking it as one would fail the check below for the wrong
+            # reason.
+            if f.get("synthetic"):
+                continue
             pid = ids.get(f["path"])
             if not pid:
                 continue
@@ -502,11 +513,64 @@ def asset_name(digest: str, path: str) -> str:
     return f"{digest[:16]}-{base}"
 
 
+def resolve_variants(declared: list[dict], packages: list[dict]) -> list[dict]:
+    """Flatten the variant tiers into explicit package lists.
+
+    Each tier names only what it adds; `includes` pulls in the one below. Ids
+    are filtered to what this release actually ships, because an older image
+    genuinely has no Gemini and a variant naming it is not an error.
+    """
+    shipped = {p["id"] for p in packages}
+    order = [p["id"] for p in packages]
+    by_id = {v["id"]: v for v in declared}
+
+    def members(vid: str, seen: frozenset) -> list[str]:
+        if vid in seen:
+            raise SystemExit(f"error: variant {vid} includes itself")
+        v = by_id[vid]
+        if v.get("all"):
+            return list(order)
+        out = []
+        if base := v.get("includes"):
+            if base not in by_id:
+                raise SystemExit(f"error: variant {vid} includes unknown {base}")
+            out += members(base, seen | {vid})
+        out += v.get("packages", [])
+        return out
+
+    out = []
+    for v in declared:
+        ids = [i for i in dict.fromkeys(members(v["id"], frozenset())) if i in shipped]
+        # Manifest order, so a variant reads the same way the picker does.
+        ids.sort(key=order.index)
+        entry = {"id": v["id"], "name": v["name"], "packages": ids}
+        if v.get("summary"):
+            entry["summary"] = v["summary"]
+        out.append(entry)
+    return out
+
+
 def build(args) -> int:
     root = Path(args.tree)
     defs_doc = yaml.safe_load(Path(args.packages).read_text())
     defs = defs_doc["packages"]
     android = defs_doc["android"]
+    groups = defs_doc["groups"]
+    declared_variants = defs_doc.get("variants", [])
+
+    known_pkgs = {d["id"] for d in defs}
+    for v in declared_variants:
+        if bad := [i for i in v.get("packages", []) if i not in known_pkgs]:
+            print(f"error: variant {v['id']} names unknown packages: "
+                  f"{', '.join(sorted(bad))}", file=sys.stderr)
+            return 1
+
+    known = {g["id"] for g in groups}
+    stray = sorted({d.get("group") for d in defs} - known)
+    if stray:
+        print(f"error: packages name groups that do not exist: {', '.join(map(str, stray))}",
+              file=sys.stderr)
+        return 1
 
     files = walk_tree(root)
     if not files:
@@ -591,7 +655,7 @@ def build(args) -> int:
         pkg = {
             "id": d["id"],
             "name": d["name"],
-            "category": d.get("category", "extras"),
+            "group": d["group"],
             "files": sorted(entries, key=lambda e: e["path"]),
         }
 
@@ -624,6 +688,11 @@ def build(args) -> int:
                 for k, v in d["props"].items()
             }
         packages.append(pkg)
+
+    # Group order decides the picker's order, so bake it into the manifest
+    # rather than leaving every consumer to re-derive it.
+    rank = {g["id"]: i for i, g in enumerate(groups)}
+    packages.sort(key=lambda p: (rank[p["group"]], [d["id"] for d in defs].index(p["id"])))
 
     if corrupt:
         print(f"\nerror: {len(corrupt)} payload(s) did not survive extraction:",
@@ -681,6 +750,8 @@ def build(args) -> int:
             "definitions": hashlib.sha256(
                 Path(args.packages).read_bytes()).hexdigest(),
         },
+        "groups": [g for g in groups if g["id"] in {p["group"] for p in packages}],
+        "variants": resolve_variants(declared_variants, packages),
         "packages": packages,
     }
 
