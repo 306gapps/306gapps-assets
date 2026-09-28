@@ -600,7 +600,6 @@ product/overlay/framework-res__tegu__auto_generated_rro_product.apk
 product/priv-app/ANGLE/ANGLE.apk
 product/priv-app/AdaptiveVPNPrebuilt-10307/AdaptiveVPNPrebuilt-10307.apk
 product/priv-app/AmbientStreaming/AmbientStreaming.apk
-product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk
 product/priv-app/AppDirectedSMSService/AppDirectedSMSService.apk
 product/priv-app/BetterBugStub/BetterBugStub.apk
 product/priv-app/CarrierLocation/CarrierLocation.apk
