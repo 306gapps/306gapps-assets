@@ -1,8 +1,4 @@
 product/app/AiIconsPrebuilt_20251106/AiIconsPrebuilt_20251106.apk
-product/app/CalculatorGooglePrebuilt_85006267/CalculatorGooglePrebuilt_85006267.apk
-product/app/CredentialManagerPrebuilt_credentialmanager.android_20250404.06_p0/CredentialManagerPrebuilt_credentialmanager.android_20250404.06_p0.apk
-product/app/DevicePolicyPrebuilt-v10334460/DevicePolicyPrebuilt-v10334460.apk
-product/app/LocationHistoryPrebuilt/LocationHistoryPrebuilt.apk
 product/app/ModuleMetadataGoogle/ModuleMetadataGoogle.apk
 product/app/NgaResources/NgaResources.apk
 product/app/PlayAutoInstallConfig/PlayAutoInstallConfig.apk
@@ -911,7 +907,6 @@ product/overlay/WildlifeSettingsVpnOverlay2022.apk
 product/overlay/WildlifeSysuiVpnOverlay2022.apk
 product/overlay/framework-res__nosdcard__auto_generated_characteristics_rro.apk
 product/overlay/framework-res__stallion__auto_generated_rro_product.apk
-product/priv-app/AICorePrebuilt-aicore_20250905.00_RC00/AICorePrebuilt-aicore_20250905.00_RC00.apk
 product/priv-app/ANGLE/ANGLE.apk
 product/priv-app/AdaptiveVPNPrebuilt-10435/AdaptiveVPNPrebuilt-10435.apk
 product/priv-app/AmbientStreaming/AmbientStreaming.apk
@@ -933,14 +928,12 @@ product/priv-app/DMService/DMService.apk
 product/priv-app/DMService/lib/arm64/libdmengine.so
 product/priv-app/DMService/lib/arm64/libdmjavaplugin.so
 product/priv-app/DeviceIntelligenceNetworkPrebuiltAstrea/DeviceIntelligenceNetworkPrebuiltAstrea.apk
-product/priv-app/DevicePersonalizationAiAiPrebuiltPixel2025/DevicePersonalizationAiAiPrebuiltPixel2025.apk
 product/priv-app/DiagMon/DiagMon.apk
 product/priv-app/DiagnosticsToolPrebuilt/DiagnosticsToolPrebuilt.apk
 product/priv-app/DreamlinerDreamsPrebuilt_100894/DreamlinerDreamsPrebuilt_100894.apk
 product/priv-app/DreamlinerPrebuilt_22000020/DreamlinerPrebuilt_22000020.apk
 product/priv-app/DreamlinerUpdater/DreamlinerUpdater.apk
 product/priv-app/FamilySpacePrebuilt-v484/FamilySpacePrebuilt-v484.apk
-product/priv-app/FilesPrebuilt/FilesPrebuilt.apk
 product/priv-app/HotwordEnrollmentOKGoogleFUSIONPro/HotwordEnrollmentOKGoogleFUSIONPro.apk
 product/priv-app/HotwordEnrollmentXGoogleFUSIONPro/HotwordEnrollmentXGoogleFUSIONPro.apk
 product/priv-app/ImsServiceEntitlement/ImsServiceEntitlement.apk
@@ -952,7 +945,6 @@ product/priv-app/OemDmTrigger/OemDmTrigger.apk
 product/priv-app/PixelCameraServicesConnectivityClient/PixelCameraServicesConnectivityClient.apk
 product/priv-app/PixelLiveWallpaperPrebuilt-26000013/PixelLiveWallpaperPrebuilt-26000013.apk
 product/priv-app/PixelSupportPrebuilt/PixelSupportPrebuilt.apk
-product/priv-app/PrebuiltDeskClockGoogle_76008261/PrebuiltDeskClockGoogle_76008261.apk
 product/priv-app/PrebuiltPixelCoreServices/PrebuiltPixelCoreServices.apk
 product/priv-app/RelationshipsPrebuilt-301/RelationshipsPrebuilt-301.apk
 product/priv-app/RetailCorePrebuilt/RetailCorePrebuilt.apk
@@ -2976,7 +2968,6 @@ system/priv-app/CredentialManager/CredentialManager.apk
 system/priv-app/DeviceAsWebcam/DeviceAsWebcam.apk
 system/priv-app/DeviceAsWebcam/lib/arm64/libjni_deviceAsWebcam.so
 system/priv-app/DeviceDiagnostics/DeviceDiagnostics.apk
-system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk
 system/priv-app/DownloadProvider/DownloadProvider.apk
 system/priv-app/DownloadProviderUi/DownloadProviderUi.apk
 system/priv-app/DynamicSystemInstallationService/DynamicSystemInstallationService.apk
@@ -3461,7 +3452,6 @@ system_ext/priv-app/AvatarPickerGoogle/AvatarPickerGoogle.apk
 system_ext/priv-app/ConnectivityThermalPowerManager/ConnectivityThermalPowerManager.apk
 system_ext/priv-app/DeviceConnectivityServicePrebuilt_26.01.00/DeviceConnectivityServicePrebuilt_26.01.00.apk
 system_ext/priv-app/FactoryOtaPrebuilt/FactoryOtaPrebuilt.apk
-system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk
 system_ext/priv-app/Iwlan/Iwlan.apk
 system_ext/priv-app/MagicPortraitWallpapers/MagicPortraitWallpapers.apk
 system_ext/priv-app/MoseyApp/MoseyApp.apk
@@ -3481,7 +3471,6 @@ system_ext/priv-app/SettingsGoogle/SettingsGoogle.apk
 system_ext/priv-app/SettingsGoogleFutureFaceEnroll/SettingsGoogleFutureFaceEnroll.apk
 system_ext/priv-app/ShannonIms/ShannonIms.apk
 system_ext/priv-app/ShannonRcs/ShannonRcs.apk
-system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk
 system_ext/priv-app/SystemUIClocks-BigNum/SystemUIClocks-BigNum.apk
 system_ext/priv-app/SystemUIClocks-Calligraphy/SystemUIClocks-Calligraphy.apk
 system_ext/priv-app/SystemUIClocks-Growth/SystemUIClocks-Growth.apk
