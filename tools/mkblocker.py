@@ -1,15 +1,8 @@
-"""Build a signed APK that claims a package name and holds it forever.
+"""Build an empty signed APK that permanently claims a package name.
 
-Android will not replace an installed package with one signed by a different
-key. An apk that declares a package name, contains no code, and is signed with
-a key nobody has is therefore a permanent lock on that name: the real app can
-never be installed over it, by the Play Store or anything else.
-
-This is how the developer-verification component is kept off a device that
-does not want it. The apk is generated once, committed, and never regenerated
--- the private key is discarded at the end of this script and is not recorded
-anywhere, which is the point. Regenerating it would produce a different key
-and a package that is no longer the one people have installed.
+Android will not replace a package signed by a different key, and the key here
+is generated and thrown away on purpose, so nothing can install over it.
+Generate once and commit the result; never regenerate.
 
 Usage: mkblocker.py <package-name> <label> <out.apk>
 """
@@ -39,8 +32,7 @@ TYPE_INT_BOOLEAN = 0x12
 
 ANDROID_NS = "http://schemas.android.com/apk/res/android"
 
-# Framework attribute ids. These never change; that is the whole reason
-# attributes are referenced by id rather than by name.
+# Framework attribute ids, which never change.
 ATTRS = [
     ("versionCode", 0x0101021B),
     ("versionName", 0x0101021C),
@@ -54,7 +46,7 @@ NO_ENTRY = 0xFFFFFFFF
 
 class Pool:
     """String pool. Attribute names come first: the resource map is indexed by
-    pool position, so the two have to line up."""
+    pool position, so the two must line up."""
 
     def __init__(self):
         self.items = []
@@ -125,8 +117,7 @@ def manifest_xml(package: str, label: str, version_code: int,
         attribute(ns_uri, i["versionName"], v_version, TYPE_STRING, v_version),
         attribute(NO_ENTRY, s_package, v_package, TYPE_STRING, v_package),
     ]
-    # Staying under API 28 keeps a v1 signature sufficient. Nothing here runs,
-    # so the target level costs nothing.
+    # Under API 28 a v1 signature is still sufficient, and nothing here runs.
     sdk_attrs = [
         attribute(ns_uri, i["minSdkVersion"], NO_ENTRY, TYPE_INT_DEC, 21),
         attribute(ns_uri, i["targetSdkVersion"], NO_ENTRY, TYPE_INT_DEC, 27),
@@ -164,7 +155,7 @@ def jar_sections(entries: dict[str, bytes]) -> tuple[bytes, bytes]:
     for name, data in entries.items():
         section = f"Name: {name}\r\nSHA-256-Digest: {digest(data)}\r\n\r\n".encode()
         manifest += section
-        # The signature file attests to each manifest section, not to the file.
+        # CERT.SF digests the manifest section, not the file itself.
         sf_sections += (f"Name: {name}\r\n"
                         f"SHA-256-Digest: {digest(section)}\r\n\r\n").encode()
 
@@ -178,8 +169,8 @@ def jar_sections(entries: dict[str, bytes]) -> tuple[bytes, bytes]:
 def sign(sf: bytes, subject: str):
     """Sign with a throwaway key and return (pkcs7, certificate_pem).
 
-    The key is created here and never leaves this function. Discarding it is
-    deliberate: a key nobody holds is a package name nobody can take back.
+    Discarding the key is the point: a key nobody holds is a package name
+    nobody can take back.
     """
     from cryptography import x509
     from cryptography.hazmat.primitives import hashes, serialization
@@ -237,8 +228,7 @@ def main(argv: list[str]) -> int:
     cert_pem = write_apk(out, {"AndroidManifest.xml": xml}, package)
     out.with_suffix(".pem").write_bytes(cert_pem)
 
-    # Read it back with the same parser the manifest builder uses. A blocker
-    # that does not parse is a blocker that does not block.
+    # A blocker that does not parse is a blocker that does not block.
     sys.path.insert(0, str(Path(__file__).parent))
     from axml import manifest_attributes
     with zipfile.ZipFile(out) as z:

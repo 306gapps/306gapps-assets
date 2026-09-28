@@ -11,9 +11,8 @@ class TestPruneConflicts(unittest.TestCase):
     """The definitions cover every Android version; a release ships a subset."""
 
     def test_conflict_with_a_package_the_release_lacks_is_dropped(self):
-        # com.google.android.verifier only exists from Android 16, so on older
-        # releases the blocker's conflict points at nothing. That is satisfied
-        # by definition, not a broken manifest.
+        # The verifier only exists from Android 16, so the conflict points at
+        # nothing on older releases.
         pkgs = [pkg("gmscore"), pkg("verifier-block", conflicts=["verifier"])]
         dropped = bm.prune_conflicts(pkgs)
         self.assertEqual(len(dropped), 1)
@@ -158,8 +157,7 @@ class TestPublishAsset(unittest.TestCase):
         self.assertEqual(list(self.assets.glob("*.gz")), [])
 
     def test_compression_is_deterministic(self):
-        # A timestamp in the gzip header would change the digest every run,
-        # and with it the asset every release.
+        # A gzip header timestamp would change the digest on every run.
         src, digest, size = self.write("d.apk", b"C" * 200_000)
         first = bm.publish_asset(src, digest, size, "product/app/X/X.apk", self.assets)
         for f in self.assets.iterdir():
@@ -181,8 +179,7 @@ class TestPrivappAllowlists(unittest.TestCase):
             '    <permission name="android.permission.INSTALL_PACKAGES"/>\n'
             '  </privapp-permissions>\n'
             '</permissions>\n')
-        # read_package_id opens the apk, so the check has to tolerate one it
-        # cannot parse; those simply go unreported rather than crashing.
+        # An apk that will not parse goes unreported rather than crashing.
         self.real_read = bm.read_package_id
         bm.read_package_id = lambda root, rel: {
             "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk": "com.google.android.gms",
@@ -203,8 +200,8 @@ class TestPrivappAllowlists(unittest.TestCase):
         self.assertEqual(got, [])
 
     def test_unallowlisted_privapp_is_reported(self):
-        # GoogleServicesFramework's allowlist lives in system_ext, which the
-        # definitions did not glob -- this is the bootloop that happened.
+        # GoogleServicesFramework's allowlist is in system_ext, which the
+        # definitions did not glob: this is the bootloop that happened.
         got = bm.check_privapp_allowlists(self.root, self.pkgs(
             "product/etc/permissions/privapp-permissions-google.xml",
             "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk"))

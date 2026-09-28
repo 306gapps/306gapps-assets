@@ -1,9 +1,7 @@
-"""Read the package name out of an Android binary XML manifest.
+"""Read the package name out of a compiled AndroidManifest.xml.
 
-An apk's AndroidManifest.xml is compiled, so the package id cannot be grepped
-out reliably -- the string pool holds plenty of other things that look like
-package names. This walks the chunks far enough to read the `package`
-attribute of the manifest element, which is all we need.
+Grepping the string pool is unreliable -- it holds plenty of things shaped like
+package names -- so this walks the chunks to the manifest element.
 """
 
 import struct
@@ -32,7 +30,7 @@ def _string_pool(data: bytes, off: int) -> list[str]:
     for o in offsets:
         p = base + o
         if utf8:
-            # Two lengths (characters, then bytes), each 1 or 2 bytes.
+            # Two lengths, characters then bytes, each 1 or 2 bytes wide.
             n = data[p]
             p += 2 if n & 0x80 else 1
             n = data[p]
@@ -52,8 +50,8 @@ def _string_pool(data: bytes, off: int) -> list[str]:
     return out
 
 
-# Android's own attributes carry resource ids rather than names, so the string
-# pool does not always hold "versionCode". These are the stable ids.
+# Framework attributes carry resource ids rather than names, so the string pool
+# does not always hold "versionCode".
 ATTR_VERSION_CODE = 0x0101021B
 ATTR_VERSION_NAME = 0x0101021C
 
@@ -63,9 +61,7 @@ TYPE_STRING = 0x03
 def manifest_attributes(manifest: bytes) -> dict[str, str]:
     """Return package, versionCode and versionName from a compiled manifest.
 
-    Attribute names in the manifest element are a mix of plain strings
-    (package) and framework resource ids (versionCode, versionName), so both
-    lookups are needed.
+    package is a plain string, the versions are resource ids: both are looked up.
     """
     strings = _string_pool(manifest, 8)
     res_ids = _resource_map(manifest)
@@ -136,9 +132,8 @@ def package_name(manifest: bytes) -> str:
         if size == 0:
             raise MalformedAXML("zero-length chunk")
         if kind == CHUNK_START_ELEMENT:
-            # A node is: chunk header (8) + lineNumber (4) + comment (4).
-            # The attribute extension follows, and attributeStart is measured
-            # from the start of that extension, not from the chunk.
+            # attributeStart is measured from the attribute extension, which
+            # follows the 16-byte node header, not from the chunk.
             ext = off + 16
             attr_start, attr_size, attr_count = struct.unpack_from("<HHH", manifest, ext + 8)
             base = ext + attr_start

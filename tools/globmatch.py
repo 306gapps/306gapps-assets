@@ -11,7 +11,7 @@ def compile_glob(pattern: str) -> re.Pattern:
     out = ["(?s)\\A"]
     for tok in _TOKEN.findall(pattern):
         if tok == "**/":
-            # Match any number of leading directories, including none.
+            # Any number of leading directories, including none.
             out.append("(?:[^/]+/)*")
         elif tok == "**":
             out.append(".*")
@@ -33,8 +33,7 @@ def compile_glob(pattern: str) -> re.Pattern:
 def matches(pattern: str, path: str) -> bool:
     """Report whether path matches pattern.
 
-    A pattern ending in ``/**`` also matches the directory itself, so
-    ``product/app/Foo/**`` covers ``product/app/Foo``.
+    ``foo/**`` also matches ``foo`` itself, so a glob covers its own directory.
     """
     if compile_glob(pattern).match(path):
         return True

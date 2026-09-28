@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Turn a dumped partition tree into a release manifest plus an asset bundle.
 
-Walks the extracted partitions, assigns every file to exactly one package by
-glob, and reports anything left unclaimed -- which is how a newly added Google
-app surfaces instead of silently going missing.
+Every file goes to exactly one package by glob; whatever is left over is
+reported, which is how a newly added Google app surfaces.
 """
 
 import argparse
@@ -35,15 +34,8 @@ IGNORE = (
     "**/etc/selinux/**",
     "**/etc/fs_config_*",
 
-    # Every compilation artifact. An odex records the checksums of the boot
-    # classpath it was compiled against, and every custom ROM has a different
-    # one, so ART rejects it and compiles the apk itself regardless. A profile
-    # would survive the move, but its only benefit is compiling hot methods
-    # sooner, and a slow first boot is expected after flashing anyway.
-    #
-    # None of these change what is installed, only how quickly it warms up, and
-    # ART regenerates whatever it wants. For the ota target they are worse than
-    # useless: the ROM build runs its own dexpreopt.
+    # Tied to the boot classpath they were built against, so ART rejects them
+    # on any other ROM and recompiles regardless.
     "**/oat/**",
     "**/*.odex",
     "**/*.vdex",
@@ -66,23 +58,15 @@ KIND_BY_PATH = (
 )
 
 
-# Every one of these is a zip underneath, so a truncated or mangled extraction
-# shows up as an unreadable archive.
+# All zips underneath, so a bad extraction shows up as an unreadable archive.
 ZIP_KINDS = (".apk", ".apex", ".capex", ".jar")
 
 
 def verify_container(path: Path) -> str:
-    """Return an error string if a zip-shaped payload is not readable.
+    """Return an error string if a zip-shaped payload will not open.
 
-    An extractor that silently truncates a file and exits zero is not
-    hypothetical: erofs-utils 1.7.1 cut 24 KiB off a 148 MiB apex and reported
-    success, which would have shipped a package that cannot install. Reading
-    the central directory is cheap and catches exactly that.
-
-    Chrome, the WebView and the Trichrome library ship gzipped -- Android
-    inflates compressed system apps on first boot -- and they are among the
-    largest payloads here, so they are unpacked and checked too rather than
-    skipped for want of a matching suffix.
+    erofs-utils 1.7.1 cut 24 KiB off a 148 MiB apex and exited zero, so the
+    extractor's own success means nothing. .gz payloads are inflated first.
     """
     name = str(path)
     opener = open
@@ -107,14 +91,7 @@ def verify_container(path: Path) -> str:
 
 
 def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
-    """Build file records for kanged payloads -- ones taken from elsewhere.
-
-    Everything else in a release is extracted from the image named in the
-    manifest and refreshed whenever that device gets a new build. A kanged file
-    is not: it came from another distribution or an older image, because Google
-    no longer ships it, and nothing will refresh it. Marking it says plainly
-    which payloads are frozen.
-    """
+    """Build file records for kanged payloads: files no new dump refreshes."""
     out = []
     for item in d.get("kang", []):
         src = defs_dir / item["file"]
@@ -137,9 +114,7 @@ def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
             "kind": classify(item["path"]),
             "kanged": True,
         }
-        # Generated here rather than taken from someone else's package. Worth
-        # saying apart: a kanged file is somebody's build, a synthetic one is
-        # ours and is reproducible from tools/.
+        # Synthetic means we generated it; kanged alone means someone else did.
         if item.get("synthetic"):
             entry["synthetic"] = True
         out.append(entry)
@@ -161,9 +136,7 @@ def read_package_id(root: Path, rel: str) -> str:
         return ""
 
 
-# A stub is a placeholder apk Google ships beside the real one so the app has a
-# system entry Play can update in place. They are a few tens of kilobytes; the
-# app they stand in for is megabytes.
+# A stub is a placeholder apk, tens of KiB against the real app's megabytes.
 STUB_MAX_BYTES = 1 << 20
 
 
@@ -182,13 +155,11 @@ def read_manifest_attrs(root: Path, rel: str) -> dict:
 
 
 def mark_stubs(root: Path, all_files: list[str], packages: list[dict]) -> int:
-    """Flag the stub apks, and report how many were found.
+    """Flag stub apks and return how many were found.
 
-    A stub is recognised by declaring the same package id as a much larger apk.
-    The comparison is against every apk in the dump, not only the claimed ones:
-    a package that claims the stub and leaves its counterpart behind is exactly
-    the case worth catching, and within a single selection there would be
-    nothing larger to compare it to.
+    A stub declares the same package id as a much larger apk. Compared against
+    the whole dump: a package claiming only the stub has nothing else to weigh
+    it against and would pass.
     """
     sizes: dict[str, int] = {}
     ids: dict[str, str] = {}
@@ -205,9 +176,7 @@ def mark_stubs(root: Path, all_files: list[str], packages: list[dict]) -> int:
     marked = 0
     for p in packages:
         for f in p["files"]:
-            # A blocker is the inverse of a stub -- deliberately unupdatable --
-            # and marking it as one would fail the check below for the wrong
-            # reason.
+            # Blockers are small on purpose; check_stubs would reject one.
             if f.get("synthetic"):
                 continue
             pid = ids.get(f["path"])
@@ -237,12 +206,9 @@ def check_stubs(packages: list[dict]) -> list[str]:
 def package_ids(root: Path, entries: list[dict], declared) -> list[str]:
     """The Android package ids a package installs, for clearing app data.
 
-    Usually one, read from the principal apk: the shallowest path wins, since a
-    chimera submodule sits deeper than the apk that owns it and shares its data
-    directory. Declared ids win outright, which is how a package names several
-    -- the sync adapters are two apps in one selection -- and how anything
-    auto-detection cannot see is covered, whether it is inside an apex or
-    carried rather than dumped.
+    Declared ids win: one selection can hold several apps, and auto-detection
+    cannot see inside an apex. Otherwise the shallowest apk wins, since a
+    chimera submodule sits deeper than the apk whose data directory it shares.
     """
     if declared:
         return [declared] if isinstance(declared, str) else list(declared)
@@ -255,13 +221,7 @@ def package_ids(root: Path, entries: list[dict], declared) -> list[str]:
 
 
 def main_package_id(root: Path, entries: list[dict]) -> str:
-    """Pick the package id of a package's principal apk.
-
-    Shallowest path wins, then largest: a chimera submodule sits deeper than
-    the apk that owns it, and picking one of those would clean the wrong data
-    directory. Where even that is ambiguous -- GMS Core on Android 17 keeps its
-    real apk inside an apex -- the definition declares the id instead.
-    """
+    """Pick the package id of the principal apk: shallowest path, then largest."""
     apks = [e for e in entries if e["path"].endswith((".apk", ".apk.gz"))]
     if not apks:
         return ""
@@ -297,8 +257,7 @@ def sha256_of(path: Path) -> tuple[str, int]:
 def walk_tree(root: Path) -> list[str]:
     """Return every regular file and symlink under root, partition-relative.
 
-    Symlinks are included rather than skipped: apps whose native libraries are
-    linked in from elsewhere on the partition break silently without them.
+    Symlinks count: native libraries are often linked in from the partition.
     """
     out = []
     for part in PARTITIONS:
@@ -340,11 +299,7 @@ class Conflict(Exception):
 
 
 def assign(files: list[str], defs: list[dict]) -> tuple[dict[str, list[str]], list[str]]:
-    """Map each file to at most one package.
-
-    Raises Conflict when two packages claim the same file, because the builder
-    refuses such a manifest and the ambiguity should be fixed in the defs.
-    """
+    """Map each file to at most one package, raising Conflict on an overlap."""
     claimed: dict[str, str] = {}
     by_package: dict[str, list[str]] = {d["id"]: [] for d in defs}
 
@@ -366,17 +321,14 @@ def assign(files: list[str], defs: list[dict]) -> tuple[dict[str, list[str]], li
     return by_package, unclaimed
 
 
-# <library name="..." file="/system/framework/foo.jar"/> in a permissions xml
-# declares a shared library an app links against at runtime.
+# <library file="/system/framework/foo.jar"/> in a permissions xml.
 LIBRARY_REF = re.compile(r'file="(/[^"]+\.jar)"')
 
 
 def check_declared_libraries(root: Path, packages: list[dict]) -> list[str]:
     """Warn when a claimed permissions xml declares a jar no package ships.
 
-    An app whose permissions file names a shared library that is not installed
-    fails to start, and nothing else in the pipeline would notice: the xml is
-    present, the apk is present, and only the jar between them is missing.
+    The app will not start, and nothing else notices: only the jar is missing.
     """
     provided = {f["path"] for p in packages for f in p["files"]}
     problems = []
@@ -393,7 +345,7 @@ def check_declared_libraries(root: Path, packages: list[dict]) -> list[str]:
                 want = ref.lstrip("/")
                 if want in provided:
                     continue
-                # A jar the ROM itself provides is not ours to ship.
+                # Only jars in the dump; anything else is the ROM's to provide.
                 if (root / want).exists():
                     problems.append(
                         f"{p['id']}: {f['path']} declares {ref}, which is in "
@@ -410,10 +362,8 @@ def check_orphaned_config(root: Path, packages: list[dict],
                           unclaimed: list[str]) -> list[str]:
     """Warn when config naming an app we ship is left unclaimed.
 
-    An app's permissions and sysconfig entries live outside its directory, so a
-    glob that covers the app directory misses them and nothing else notices.
-    The app installs, and then silently lacks a privileged permission or an
-    allowlist entry it was granted on the Pixel.
+    Permissions and sysconfig entries live outside the app's directory, so a
+    glob over that directory misses them and the app installs without them.
     """
     shipped = {pid for p in packages for pid in p.get("packages", [])}
     if not shipped:
@@ -428,8 +378,7 @@ def check_orphaned_config(root: Path, packages: list[dict],
         except OSError:
             continue
         for pid in shipped:
-            # Match the id as a whole token, so com.google.android.gms does not
-            # claim every file mentioning com.google.android.gms.something.
+            # Quoted, so com.google.android.gms does not match ...gms.foo.
             if f'"{pid}"' in text or f"'{pid}'" in text:
                 problems.append(f"{rel} configures {pid}, which we ship, "
                                 f"but no package claims it")
@@ -440,9 +389,8 @@ def check_orphaned_config(root: Path, packages: list[dict],
 def check_symlink_targets(packages: list[dict]) -> list[str]:
     """Warn when a package ships a link whose target it does not also ship.
 
-    Apps whose native libraries live in the partition's lib64 are linked in
-    rather than copied. Claiming the app without its libraries produces a
-    dangling link and an app that will not start.
+    Native libraries are linked in from the partition's lib64; a dangling link
+    is an app that will not start.
     """
     provided = {f["path"] for p in packages for f in p["files"]}
     problems = []
@@ -452,8 +400,7 @@ def check_symlink_targets(packages: list[dict]) -> list[str]:
                 continue
             target = f["target"]
             if not target.startswith("/"):
-                # Relative targets resolve next to the link and are normally
-                # within the same directory tree we already ship.
+                # Relative targets resolve inside the tree we already ship.
                 continue
             claimed = target.lstrip("/")
             if claimed not in provided:
@@ -465,15 +412,9 @@ def check_symlink_targets(packages: list[dict]) -> list[str]:
 
 
 def prune_conflicts(packages: list[dict]) -> list[str]:
-    """Drop conflicts with packages this release does not ship.
+    """Drop conflicts naming packages this release does not ship.
 
-    The definitions cover every Android version, so a package can name one that
-    a particular image has no trace of -- verifier-block conflicts with the
-    verifier, and the verifier only exists from Android 16. A conflict with
-    something that is not there is satisfied by definition, so the reference is
-    dropped rather than treated as a broken manifest. A missing *requires* is
-    not the same thing and is still an error: that package genuinely cannot
-    work without what it depends on.
+    A conflict with something absent is satisfied; a missing requires is not.
     """
     present = {p["id"] for p in packages}
     dropped = []
@@ -493,18 +434,11 @@ def prune_conflicts(packages: list[dict]) -> list[str]:
 
 
 def check_privapp_allowlists(root: Path, packages: list[dict]) -> list[str]:
-    """Warn about a privileged app whose permissions nothing allowlists.
+    """Warn about a priv-app no allowlist covers.
 
-    Most ROMs set ro.control_privapp_permissions=enforce. Under it, a package
-    in priv-app that requests a signature|privileged permission not named in
-    some privapp-permissions XML makes PackageManager throw during the boot
-    scan, and the device bootloops with nothing useful on screen.
-
-    The allowlists are spread across partitions -- product, system and
-    system_ext all carry one -- and shipping the apps without them is the
-    mistake this catches. Not every privileged app needs an entry (one that
-    requests no privileged permission is fine), so this reports rather than
-    refuses.
+    Under ro.control_privapp_permissions=enforce an unallowlisted privileged
+    permission bootloops the device. The allowlists are spread across product,
+    system and system_ext. A warning, not an error: an app may request none.
     """
     allowed = set()
     shipped = set()
@@ -542,9 +476,8 @@ def check_privapp_allowlists(root: Path, packages: list[dict]) -> list[str]:
 def check_references(packages: list[dict]) -> list[str]:
     """Verify requires still resolves.
 
-    A package that matched no files is dropped from the manifest, which can
-    leave a dangling reference behind -- the builder rejects that, so catch it
-    here where the fix is obvious.
+    A package that matched no files is dropped, leaving a dangling reference
+    that the builder would reject far from where it can be fixed.
     """
     present = {p["id"] for p in packages}
     problems = []
@@ -558,9 +491,7 @@ def check_references(packages: list[dict]) -> list[str]:
     return problems
 
 
-# Payload kinds worth reporting when nothing claims them. Restricting this to
-# .apk once hid a 148 MiB GMS Core apex, which ships as an apex rather than an
-# apk on Android 17 -- the report has to cover every kind of code container.
+# .apk alone once hid a 148 MiB GMS Core apex on Android 17.
 NOTABLE = (".apk", ".apex", ".capex", ".jar")
 
 # Directories that hold installable code, as opposed to data or resources.
@@ -568,11 +499,9 @@ CODE_DIRS = ("app", "priv-app", "apex", "framework")
 
 
 def interesting(path: str) -> bool:
-    """Report unclaimed code that Google added, not the AOSP base.
+    """Report unclaimed code Google added, not the AOSP base.
 
-    /system is the stock platform and is full of unclaimed jars that are
-    nothing to do with gapps; drowning the report in those is how a real
-    omission gets missed.
+    /system is full of unclaimed jars; drowning the report hides real gaps.
     """
     if not path.endswith(NOTABLE):
         return False
@@ -582,24 +511,17 @@ def interesting(path: str) -> bool:
 
 
 
-# Below this saving, compressing is not worth the CPU on either end -- an apk
-# that is already mostly deflated, or one Google shipped pre-gzipped.
+# Below this, the CPU on both ends costs more than the bytes saved.
 MIN_COMPRESSION_GAIN = 0.05
 
 
 def publish_asset(src: Path, digest: str, size: int, rel: str,
                   assets: Path) -> dict:
-    """Copy a payload into the release, compressed when that actually helps.
+    """Copy a payload into the release, gzipped when that saves anything.
 
-    GitHub serves release assets with no transfer encoding, so anything saved
-    has to be saved here. Modern apks are full of deliberately *uncompressed*
-    parts -- resources.arsc has to be uncompressed and aligned, and native
-    libraries are stored whole when extractNativeLibs is false -- so gzip
-    typically takes 50-60% off one, even though a zip is nominally compressed
-    already.
-
-    The recorded sha256 and size always describe the file as installed. The
-    artifact's own digest and size are recorded beside them when they differ.
+    GitHub serves release assets with no transfer compression, and apks still
+    gzip 50-60% because resources.arsc is stored uncompressed inside them.
+    sha256 and size describe the installed file, asset_* the download.
     """
     name = asset_name(digest, rel)
     packed = compress(src, assets / (name + ".gz"))
@@ -612,7 +534,6 @@ def publish_asset(src: Path, digest: str, size: int, rel: str,
         entry["asset_size"] = packed[1]
         return entry
 
-    # Not worth it: keep the plain artifact and drop the compressed attempt.
     (assets / (name + ".gz")).unlink(missing_ok=True)
     dest = assets / name
     if not dest.exists():
@@ -628,8 +549,7 @@ def compress(src: Path, dest: Path) -> tuple[str, int] | None:
     n = 0
     tmp = dest.with_suffix(dest.suffix + ".part")
     try:
-        # mtime=0 so the same input always produces the same artifact; a
-        # timestamp in the header would change the digest on every run.
+        # mtime=0, or the header timestamp changes the digest on every run.
         with open(src, "rb") as fin, open(tmp, "wb") as raw:
             with gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=6,
                                mtime=0) as fout:
@@ -655,9 +575,8 @@ def asset_name(digest: str, path: str) -> str:
 def resolve_variants(declared: list[dict], packages: list[dict]) -> list[dict]:
     """Flatten the variant tiers into explicit package lists.
 
-    Each tier names only what it adds; `includes` pulls in the one below. Ids
-    are filtered to what this release actually ships, because an older image
-    genuinely has no Gemini and a variant naming it is not an error.
+    Each tier names only what it adds. Ids this release does not ship are
+    dropped rather than treated as errors.
     """
     shipped = {p["id"] for p in packages}
     order = [p["id"] for p in packages]
@@ -741,8 +660,7 @@ def build(args) -> int:
         for rel in by_package[d["id"]]:
             full = root / rel
 
-            # A symlink is recorded by its target; there is no payload to copy
-            # and nothing to hash.
+            # Recorded by target; there is no payload to copy or hash.
             if full.is_symlink():
                 entries.append({
                     "path": rel,
@@ -755,10 +673,8 @@ def build(args) -> int:
 
             mode = f"{full.stat().st_mode & 0o7777:04o}"
 
-            # A zero-length file carries no payload. There is nothing to store,
-            # and GitHub rejects a zero-length release asset outright
-            # ("HTTP 400: Bad Content-Length"), so publishing one is not an
-            # option even if we wanted to. The builders recreate it empty.
+            # GitHub rejects a zero-length release asset (HTTP 400: Bad
+            # Content-Length), so record it and let the builder recreate it.
             if full.stat().st_size == 0:
                 entries.append({
                     "path": rel, "size": 0, "mode": mode,
@@ -790,16 +706,13 @@ def build(args) -> int:
             "files": sorted(entries, key=lambda e: e["path"]),
         }
 
-        # The Android package ids, so an uninstall can clear app data.
-        # Declared ones win: auto-detection cannot see inside an apex.
         ids = package_ids(root, entries, d.get("package"))
         if ids:
             pkg["packages"] = ids
         else:
             no_package.append(d["id"])
 
-        # The version of the principal apk, so a release can be compared
-        # against the one before it without diffing digests.
+        # So two releases can be compared without diffing digests.
         apks = sorted((e for e in entries if e["path"].endswith((".apk", ".apk.gz"))),
                       key=lambda e: (e["path"].count("/"), -e["size"]))
         if apks:
@@ -820,8 +733,7 @@ def build(args) -> int:
             }
         packages.append(pkg)
 
-    # Group order decides the picker's order, so bake it into the manifest
-    # rather than leaving every consumer to re-derive it.
+    # Group order is the picker's order; bake it in rather than re-derive it.
     rank = {g["id"]: i for i, g in enumerate(groups)}
     packages.sort(key=lambda p: (rank[p["group"]], [d["id"] for d in defs].index(p["id"])))
 
@@ -881,9 +793,7 @@ def build(args) -> int:
             },
             "created": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "asset_base": args.asset_base,
-            # The definitions this was built from. Editing packages/aN.yaml
-            # without re-dumping leaves a release that silently predates the
-            # change, which is not otherwise detectable from the outside.
+            # Catches a release built before a later edit to packages/aN.yaml.
             "definitions": hashlib.sha256(
                 Path(args.packages).read_bytes()).hexdigest(),
         },

@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 """Publish the static busybox the recovery installer bundles.
 
-Recovery environments differ wildly in which applets they ship and how those
-applets behave, so the installer carries its own. Magisk builds a static
-busybox for every Android ABI and ships it inside its apk; that build is
-well-tested across exactly the devices and recoveries we care about, so it is
-what we republish.
-
-BusyBox is GPLv2. Republishing the binary carries the obligation to offer the
-corresponding source, which the emitted NOTICE does.
+Recoveries vary in which applets they ship, so the installer carries its own,
+taken from Magisk's apk. GPLv2: the emitted NOTICE carries the source offer.
 """
 
 import argparse
@@ -21,7 +15,7 @@ from pathlib import Path
 
 MAGISK_RELEASES = "https://api.github.com/repos/topjohnwu/Magisk/releases/latest"
 
-# Android ABI inside the apk -> the architecture name a release manifest uses.
+# apk ABI -> the architecture name a release manifest uses.
 ABIS = {
     "arm64-v8a": "arm64",
     "armeabi-v7a": "arm",

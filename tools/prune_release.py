@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Remove release assets that no manifest references.
 
-Uploading with --clobber replaces and adds but never removes, so a re-dump
+gh release upload --clobber replaces and adds but never removes, so a re-dump
 that drops files leaves the old payloads behind forever. The dump workflow
-prunes as it goes; this is for releases published before it did, and for
-checking by hand.
+prunes as it goes; this is for older releases and for checking by hand.
 """
 
 import argparse
@@ -46,8 +45,7 @@ def main() -> int:
     print(f"{args.release}: manifest needs {len(want)}, release has {len(have)}")
 
     if missing:
-        # Never prune when something is already absent: the release is broken
-        # in a way deleting more cannot fix.
+        # The release is already broken; deleting more cannot fix it.
         print(f"error: {len(missing)} payload(s) missing from the release; "
               f"re-run the dump rather than pruning", file=sys.stderr)
         for n in sorted(missing)[:10]:

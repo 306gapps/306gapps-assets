@@ -1,10 +1,8 @@
 name: dump
 
 # Watches Google's OTA listing and publishes a release for every supported
-# Android version that has a build we have not dumped yet.
-#
-# The support window is whichever packages/a<N>.yaml files exist. Add a
-# definition file and that version is covered; remove it and it is not.
+# Android version with a build we have not dumped. The support window is
+# whichever packages/a<N>.yaml files exist.
 on:
   schedule:
     - cron: "17 6 * * *"
@@ -61,20 +59,18 @@ jobs:
     if: needs.plan.outputs.any == 'true'
     runs-on: ubuntu-latest
     strategy:
-      # One release at a time: each needs ~30 GB of scratch, and they all push
-      # to the same index and branch.
+      # One at a time: each needs ~30 GB of scratch and they share a branch.
       max-parallel: 1
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
     env:
-      # 1.7.1, which Ubuntu ships, corrupts large files silently.
+      # Ubuntu's 1.7.1 corrupts large files silently.
       EROFS_VERSION: "1.9.4"
     steps:
       - uses: actions/checkout@v4
 
-      # An OTA zip plus its extracted images needs far more room than the
-      # runner has by default.
+      # An OTA plus its images needs more room than a runner has by default.
       - name: Free up disk space
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
@@ -92,16 +88,14 @@ jobs:
         run: |
           pip install --quiet pyyaml
           sudo apt-get update -qq
-          # liblzma-dev is not optional: payload-dumper-go depends on go-xz,
-          # which is cgo and will not compile without lzma.h.
+          # payload-dumper-go pulls in go-xz, which is cgo and needs lzma.h.
           sudo apt-get install -y -qq e2fsprogs liblzma-dev liblz4-dev \
             libzstd-dev zlib1g-dev uuid-dev autoconf automake libtool pkg-config
           go install github.com/ssut/payload-dumper-go@latest
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
 
-      # Ubuntu ships erofs-utils 1.7.1, which silently truncates large files
-      # during extraction and still exits zero -- it cut 24 KiB off a 148 MiB
-      # apex and reported success. Build a known-good version instead.
+      # Ubuntu ships erofs-utils 1.7.1, which truncates large files and still
+      # exits zero -- it cut 24 KiB off a 148 MiB apex. Build 1.8 instead.
       - name: Build erofs-utils ${{ env.EROFS_VERSION }}
         run: |
           curl -fsSL -o erofs.tar.gz \
@@ -121,10 +115,8 @@ jobs:
 
       - name: Extract partitions
         run: |
-          # --reclaim drops the zip, the payload and each image the moment it
-          # has been consumed. Without it the peak is the OTA plus the payload
-          # plus every image plus the tree, all alive at once, which a runner
-          # does not have room for.
+          # Without --reclaim the OTA, the payload, every image and the tree
+          # are all alive at once, which does not fit on a runner.
           python3 tools/extract.py \
             --url "${{ matrix.url }}" \
             --sha256 "${{ matrix.sha256 }}" \
@@ -182,9 +174,8 @@ jobs:
           Source: ${{ matrix.url }}" \
             || echo "release exists, uploading into it"
 
-          # Several gigabytes across a hundred-odd assets: a single transient
-          # failure should not cost the whole dump. --clobber makes a retry
-          # pick up where the last attempt stopped.
+          # Gigabytes across a hundred-odd assets; --clobber lets a retry pick
+          # up where a transient failure stopped.
           for attempt in 1 2 3; do
             if gh release upload "$RELEASE" out/assets/* --clobber; then
               echo "uploaded on attempt $attempt"
@@ -198,8 +189,7 @@ jobs:
             sleep 30
           done
 
-          # Every payload the manifest names must actually be on the release,
-          # or the builder will fail for users rather than here.
+          # A payload missing here fails for users instead.
           python3 - <<'CHECK'
           import json, subprocess, sys
           m = json.load(open("out/releases/${{ matrix.release_id }}/manifest.json"))
@@ -217,10 +207,8 @@ jobs:
                   print(f"  {name}", file=sys.stderr)
               sys.exit(1)
 
-          # Only once every needed payload is confirmed present: drop the ones
-          # nothing references. A re-dump that drops files -- as removing the
-          # compilation artifacts did -- otherwise leaves them on the release
-          # forever, and they accumulate with every rebuild.
+          # Only after the payloads above are confirmed present. A re-dump
+          # that drops files otherwise leaves them on the release forever.
           stale = have - want
           for name in sorted(stale):
               print(f"pruning unreferenced asset {name}")
@@ -236,9 +224,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # The version branches are orphans holding only manifests. Creating
-          # one leaves main's files in the working tree as untracked, so every
-          # switch afterwards needs -f or git refuses to overwrite them.
+          # The version branches are orphans, so main's files linger untracked
+          # and every switch afterwards needs -f.
           if git fetch origin "$BRANCH" 2>/dev/null; then
             git checkout -f "$BRANCH"
           else

@@ -51,8 +51,7 @@ class TestIgnoreRules(unittest.TestCase):
         return any(matches(i, path) for i in IGNORE)
 
     def test_drops_every_compilation_artifact(self):
-        # None of these change what is installed, only how quickly it warms up,
-        # and ART regenerates whatever it wants.
+        # These change only how fast the ROM warms up; ART regenerates them.
         for p in ("product/priv-app/GmsCore/oat/arm64/GmsCore.odex",
                   "product/priv-app/GmsCore/oat/arm64/GmsCore.vdex",
                   "product/app/Photos/oat/arm/Photos.odex",

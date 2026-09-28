@@ -1,7 +1,7 @@
 name: busybox
 
-# Republishes the static busybox the recovery installer bundles, so a new
-# Magisk build does not require a new release of the builder.
+# Republishes the busybox the installer bundles, so picking up a new Magisk
+# build does not need a new builder release.
 on:
   schedule:
     - cron: "40 5 * * 1"

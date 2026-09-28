@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Decide which releases need dumping.
 
-The support window is defined by which packages/a<N>.yaml files exist: add a
-definition file and that Android version is supported, remove it and it is not.
-For each supported version this finds the newest generic Pixel build and
-reports whether the index already has it.
+The support window is whichever packages/a<N>.yaml files exist. For each, finds
+the newest generic Pixel build and reports whether the index already has it.
 """
 
 import argparse

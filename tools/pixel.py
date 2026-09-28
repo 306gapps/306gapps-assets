@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Discover Pixel OTA images from Google's published list.
 
-The full OTA zip carries payload.bin with every partition, which is a smaller
-and simpler download than the factory image for our purposes.
+The OTA zip carries payload.bin with every partition and is a smaller download
+than the factory image.
 """
 
 import argparse
@@ -13,8 +13,7 @@ import urllib.request
 from dataclasses import dataclass, asdict
 
 OTA_URL = "https://developers.google.com/android/ota"
-# The download pages sit behind a terms-of-service interstitial; this is the
-# cookie the page itself sets once you accept.
+# The cookie the terms-of-service interstitial sets once you accept.
 TOS_COOKIE = "devsite_wall_acks=nexus-ota-tos"
 
 MONTHS = {m: i for i, m in enumerate(
@@ -63,8 +62,7 @@ class Build:
 
 
 def parse(html: str) -> list[Build]:
-    """Parse the OTA listing. Devices appear newest-first on the page, and that
-    order is preserved in the result."""
+    """Parse the OTA listing, keeping the page's newest-first device order."""
     builds: list[Build] = []
     marks = [(m.start(), m.group("codename"), m.group("name"))
              for m in _DEVICE.finditer(html)]
@@ -92,8 +90,10 @@ def parse(html: str) -> list[Build]:
 
 
 def newest(builds: list[Build], device: str = "", major: int = 0) -> Build | None:
-    """Pick the newest generic build, preferring the device that appears first
-    on the page -- Google lists the current flagship at the top."""
+    """Pick the newest generic build, preferring the device listed first.
+
+    Google puts the current flagship at the top of the page.
+    """
     order = {b.device: i for i, b in enumerate(builds)}
     pool = [b for b in builds if b.generic]
     if device:

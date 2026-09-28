@@ -16,7 +16,7 @@ jobs:
       - name: Unit tests
         working-directory: tools
         run: python3 -m unittest discover -p 'test_*.py' -v
-      # Editing a definition does not change anything already published, and a
+      # Editing a definition does not touch what is already published, and a
       # stale release is invisible from the outside.
       - name: Published releases match the current definitions
         env:
@@ -29,15 +29,14 @@ jobs:
             python3 -c "import yaml,sys;yaml.safe_load(open('$f'))" && echo "ok $f"
           done
 
-      # A malformed workflow fails as a zero-second run with no useful log, so
-      # catch it here instead.
+      # A malformed workflow fails as a zero-second run with no useful log.
       - name: Workflows are valid
         uses: docker://rhysd/actionlint:latest
         with:
           args: -color
 
-  # The dump job spends 40 minutes downloading before it would notice a broken
-  # toolchain, so prove the install works here in two.
+  # The dump job downloads for 40 minutes before it would notice a broken
+  # toolchain; prove the install works here in two.
   toolchain:
     runs-on: ubuntu-latest
     env:
@@ -71,7 +70,7 @@ jobs:
           make install
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      # --check-tools fails on a version known to corrupt output, so this also
-      # proves the build produced something new enough.
+      # --check-tools rejects a version known to corrupt output, so this also
+      # proves the build is new enough.
       - name: Every tool the dump needs is present and good enough
         run: python3 tools/extract.py --check-tools

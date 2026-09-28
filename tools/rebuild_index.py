@@ -2,9 +2,8 @@
 """Rebuild index.json from what is actually published.
 
 The index is written last in a dump, so a failure after the payloads are up
-leaves releases that exist but are not listed. This reconstructs the index from
-the published releases and the manifests on the version branches, which are the
-real record.
+leaves releases that exist but are unlisted. The manifests on the version
+branches are the real record.
 """
 
 import argparse

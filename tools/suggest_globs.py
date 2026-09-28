@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Suggest fixes for package definitions that matched nothing.
 
-A package can match nothing for two very different reasons: the glob is wrong
-for this release, or the app genuinely is not in this dump. Grepping by hand
-does not distinguish them reliably, so this pairs each empty package against
-the unclaimed paths and reports the closest candidates.
+Either the glob is wrong for this release or the app is not in the dump at all.
+Pairs each empty package against the unclaimed paths to tell the two apart.
 """
 
 import argparse
@@ -17,8 +15,8 @@ from pathlib import Path
 import yaml
 
 
-# Words that appear in half the directory names in a dump and so carry no
-# information: matching on them pairs GoogleKeepPrebuilt with FilesPrebuilt.
+# Words in half the directory names in a dump; matching on them would pair
+# GoogleKeepPrebuilt with FilesPrebuilt.
 NOISE = re.compile(r"(Prebuilt|Release|Stub|Google|Pixel|Android|com\.google\.android\.)",
                    re.IGNORECASE)
 VERSIONED = re.compile(r"[-_]v?[0-9][0-9._]*$")
@@ -74,8 +72,7 @@ def main() -> int:
         print(f"{d['id']} ({d['name']})")
         hits: dict[str, str] = {}
         for glob in d.get("include", []):
-            # Only globs naming an app directory are worth pairing against
-            # directories; a permissions xml shares no vocabulary with one.
+            # A permissions xml shares no vocabulary with a directory name.
             if not APP_DIR.search(glob):
                 continue
             want = core(stem(glob))
@@ -84,8 +81,7 @@ def main() -> int:
             for match in difflib.get_close_matches(want, cores, n=3, cutoff=args.cutoff):
                 hits[dirs[cores[match]]] = glob
             for c, name in cores.items():
-                # Substring both ways, but only for names long enough that a
-                # coincidental overlap is unlikely.
+                # Long enough that a coincidental overlap is unlikely.
                 if len(c) >= 5 and (want.lower() in c.lower() or c.lower() in want.lower()):
                     hits[dirs[name]] = glob
 

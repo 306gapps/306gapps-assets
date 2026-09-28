@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Report releases built from definitions that have since been edited.
 
-Editing packages/a<N>.yaml does not change anything already published. The
-release keeps serving the old removals, package ids and globs, and nothing
-about it looks stale from the outside. This compares the digest each release
+Editing packages/a<N>.yaml changes nothing already published, and a stale
+release looks no different from the outside. Compares the digest each release
 recorded against the definitions as they stand now.
 """
 

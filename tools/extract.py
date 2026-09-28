@@ -3,8 +3,7 @@
 
     OTA zip -> payload.bin -> {product,system,system_ext}.img -> tree/<partition>/
 
-Partition images are EROFS on recent Pixels and ext4 on older ones; both are
-unpacked without root or loopback mounts.
+Images are EROFS on recent Pixels and ext4 on older ones; neither needs root.
 """
 
 import argparse
@@ -29,9 +28,8 @@ class MissingTool(Exception):
     pass
 
 
-# erofs-utils before 1.8 silently truncates large files during extraction and
-# still exits zero. That produced a 148 MiB apex short by 24 KiB, which passed
-# every check the dump made and would have shipped.
+# erofs-utils below 1.8 truncates large files and still exits zero: it cut
+# 24 KiB off a 148 MiB apex, which would have shipped.
 MIN_EROFS = (1, 8)
 
 
@@ -121,9 +119,8 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS,
                    reclaim: bool = False) -> dict[str, Path]:
     """Pull payload.bin out of the OTA and split it into partition images.
 
-    With reclaim set, each intermediate is deleted as soon as it has been
-    consumed. The OTA, the payload and the images are each several gigabytes
-    and CI runners do not have room for all of them at once.
+    reclaim deletes each intermediate once consumed; all of them at once will
+    not fit on a CI runner.
     """
     payload = work / "payload.bin"
     if not payload.exists():
@@ -136,14 +133,12 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS,
             with z.open(names[0]) as src, open(payload, "wb") as dst:
                 shutil.copyfileobj(src, dst, 1 << 22)
         if reclaim:
-            # The payload is out; the zip around it is dead weight from here.
             drop(ota)
 
     out = work / "images"
     out.mkdir(exist_ok=True)
 
-    # Splitting a 4 GB payload takes minutes; skip it when every image we need
-    # is already sitting there from a previous run.
+    # Splitting a 4 GB payload takes minutes; reuse a previous run's images.
     missing = [p for p in partitions if not (out / f"{p}.img").exists()]
     if missing:
         dumper = need("payload-dumper-go",
@@ -151,7 +146,6 @@ def unpack_payload(ota: Path, work: Path, partitions=PARTITIONS,
         print(f"  splitting payload into {', '.join(missing)}")
         run([dumper, "-o", str(out), "-p", ",".join(missing), str(payload)])
         if reclaim:
-            # The images are split; nothing reads the payload again.
             drop(payload)
     else:
         print(f"  reusing images already split from the payload")
@@ -195,13 +189,9 @@ def image_format(img: Path) -> str:
 def extract_image(img: Path, dest: Path, xattrs: bool = False) -> None:
     """Unpack a partition image into dest, preserving modes.
 
-    SELinux labels are not captured. Writing a security.selinux xattr needs
-    CAP_SYS_ADMIN, so an unprivileged extraction -- which is what CI does --
-    fails outright with --xattrs. The labels are not missed: every path a gapps
-    package installs to falls under the generic file_contexts rules that
-    resolve to system_file, which is exactly what the installer applies by
-    default per partition. Pass --xattrs when extracting as root if you want
-    them recorded anyway.
+    No SELinux labels: writing security.selinux needs CAP_SYS_ADMIN and CI runs
+    unprivileged. The installer applies system_file per partition anyway; pass
+    xattrs when extracting as root to record them regardless.
     """
     dest.mkdir(parents=True, exist_ok=True)
     fmt = image_format(img)
@@ -210,9 +200,8 @@ def extract_image(img: Path, dest: Path, xattrs: bool = False) -> None:
     if fmt == "erofs":
         tool = need("fsck.erofs", "install erofs-utils")
         check_erofs(tool)
-        # --preserve-perms matters: run as an ordinary user, fsck.erofs applies
-        # the umask to extracted files, which would record the wrong modes in
-        # the manifest.
+        # Without --preserve-perms fsck.erofs applies the umask and the
+        # manifest records the wrong modes.
         cmd = [tool, f"--extract={dest}", "--preserve-perms", "--overwrite"]
         if xattrs:
             cmd.append("--xattrs")
@@ -229,16 +218,11 @@ def extract_image(img: Path, dest: Path, xattrs: bool = False) -> None:
 
 
 def flatten(tree: Path) -> None:
-    """Reduce a system-as-root image to just the partition's own content.
+    """Reduce a system-as-root image to the partition's own content.
 
-    system.img on modern devices is extracted at the *device* root: alongside
-    the real /system content (in a nested system/ directory) sit mount points
-    like dev/, proc/ and mnt/ that belong to no partition. product.img and
-    system_ext.img have no such wrapper and are left alone.
-
-    The nested directory replaces the base rather than merging into it -- the
-    two overlap (both carry bin/, etc/) and merging silently mixes mount points
-    into the partition.
+    system.img unpacks at the device root, so the real content sits in a nested
+    system/ beside mount points like dev/. The nested directory replaces the
+    base rather than merging: both carry bin/ and etc/.
     """
     for part in PARTITIONS:
         base = tree / part
@@ -311,15 +295,14 @@ def main() -> int:
             ota = download(args.url, work / "ota.zip", args.sha256)
 
         parts = tuple(x.strip() for x in args.partitions.split(",") if x.strip())
-        # Only reclaim an OTA we downloaded ourselves; one the caller supplied
-        # is theirs to keep.
+        # An OTA the caller supplied is theirs to keep.
         images = unpack_payload(ota, work, parts,
                                 reclaim=args.reclaim and not args.ota)
 
         if tree.exists():
             shutil.rmtree(tree)
-        # Largest first: extracting product before system means the biggest
-        # image is freed earliest, which is when headroom is tightest.
+        # Largest first, so the biggest image is freed while headroom is
+        # tightest.
         order = sorted(images, key=lambda p: images[p].stat().st_size, reverse=True)
         for part in order:
             extract_image(images[part], tree / part, args.xattrs)
