@@ -464,8 +464,36 @@ def check_symlink_targets(packages: list[dict]) -> list[str]:
     return problems
 
 
+def prune_conflicts(packages: list[dict]) -> list[str]:
+    """Drop conflicts with packages this release does not ship.
+
+    The definitions cover every Android version, so a package can name one that
+    a particular image has no trace of -- verifier-block conflicts with the
+    verifier, and the verifier only exists from Android 16. A conflict with
+    something that is not there is satisfied by definition, so the reference is
+    dropped rather than treated as a broken manifest. A missing *requires* is
+    not the same thing and is still an error: that package genuinely cannot
+    work without what it depends on.
+    """
+    present = {p["id"] for p in packages}
+    dropped = []
+    for p in packages:
+        if not p.get("conflicts"):
+            continue
+        keep = [c for c in p["conflicts"] if c in present]
+        if len(keep) != len(p["conflicts"]):
+            for gone in sorted(set(p["conflicts"]) - present):
+                dropped.append(f"{p['id']} conflicts {gone!r}, "
+                               f"which this release does not ship")
+        if keep:
+            p["conflicts"] = keep
+        else:
+            del p["conflicts"]
+    return dropped
+
+
 def check_references(packages: list[dict]) -> list[str]:
-    """Verify requires/conflicts still resolve.
+    """Verify requires still resolves.
 
     A package that matched no files is dropped from the manifest, which can
     leave a dangling reference behind -- the builder rejects that, so catch it
@@ -474,13 +502,12 @@ def check_references(packages: list[dict]) -> list[str]:
     present = {p["id"] for p in packages}
     problems = []
     for p in packages:
-        for key in ("requires", "conflicts"):
-            for ref in p.get(key, []):
-                if ref not in present:
-                    problems.append(
-                        f"{p['id']} {key} {ref!r}, which is not in this release "
-                        f"(missing from the defs, or it matched no files)"
-                    )
+        for ref in p.get("requires", []):
+            if ref not in present:
+                problems.append(
+                    f"{p['id']} requires {ref!r}, which is not in this release "
+                    f"(missing from the defs, or it matched no files)"
+                )
     return problems
 
 
@@ -711,6 +738,9 @@ def build(args) -> int:
         for line in problems:
             print(f"error: {line}", file=sys.stderr)
         return 1
+
+    for line in prune_conflicts(packages):
+        print(f"  note: {line}", file=sys.stderr)
 
     if problems := check_references(packages):
         for line in problems:

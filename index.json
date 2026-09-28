@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-28T15:02:34Z",
+  "updated": "2026-09-28T15:37:07Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -41,7 +41,7 @@
       "device": "tegu",
       "build": "BD4A.250505.003",
       "branch": "a15",
-      "created": "2026-09-28T13:59:19Z",
+      "created": "2026-09-28T15:18:42Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a15/releases/a15-bd4a.250505.003/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003"
     },
@@ -55,7 +55,7 @@
       "device": "comet",
       "build": "AD1A.240905.004",
       "branch": "a14",
-      "created": "2026-09-28T14:05:57Z",
+      "created": "2026-09-28T15:35:28Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a14/releases/a14-ad1a.240905.004/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004"
     },
@@ -69,7 +69,7 @@
       "device": "felix",
       "build": "TQ3C.230901.001.A1",
       "branch": "a13",
-      "created": "2026-09-28T14:11:05Z",
+      "created": "2026-09-28T15:25:51Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a13/releases/a13-tq3c.230901.001.a1/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1"
     }
