@@ -6,6 +6,9 @@
 # nothing: a wrong glob and an app this device does not ship look alike.
 
 android:
+  # Dumped from the Pro XL of the generation: the a-series and base models
+  # leave out hardware-gated apps such as the digital car key service.
+  device: komodo
   api: 34
   version: "14"
   codename: UpsideDownCake

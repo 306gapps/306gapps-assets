@@ -5,6 +5,9 @@
 # change every release (RecorderPrebuilt_847964105, SetupWizardPrebuilt_cd1a).
 
 android:
+  # Dumped from the Pro XL of the generation: the a-series and base models
+  # leave out hardware-gated apps such as the digital car key service.
+  device: kodiak
   api: 37
   version: "17"
   codename: CinnamonBun

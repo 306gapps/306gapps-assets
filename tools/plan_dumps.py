@@ -28,6 +28,15 @@ def supported_versions(defs_dir: Path) -> dict[int, Path]:
     return out
 
 
+def preferred_device(defs_path: Path) -> str:
+    """The device a version's definitions ask to be dumped from."""
+    try:
+        doc = yaml.safe_load(defs_path.read_text())
+    except (OSError, yaml.YAMLError):
+        return ""
+    return (doc.get("android") or {}).get("device", "")
+
+
 def published(index_path: Path) -> set[str]:
     if not index_path.exists():
         return set()
@@ -66,7 +75,13 @@ def main() -> int:
     have = published(Path(args.index))
     plan = []
     for major in sorted(versions, reverse=True):
-        build = newest(builds, major=major)
+        want = preferred_device(versions[major])
+        build = newest(builds, device=want, major=major) if want else None
+        if want and not build:
+            print(f"  a{major}: {want} has no build listed, using the newest device",
+                  file=sys.stderr)
+        if not build:
+            build = newest(builds, major=major)
         if not build:
             print(f"  a{major}: no generic build listed", file=sys.stderr)
             continue
