@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/cubs-ota-cd1a.260905.001.b1-2c1865b8.zip",
       "sha256": "2c1865b8a09d2905bb217ad15a9862793ec42f913da930cc657355160b739860"
     },
-    "created": "2026-09-28T20:50:21Z",
+    "created": "2026-09-28T21:47:13Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1",
     "definitions": "f4fccffc8c8879fc06b1cde073a417418d85220891d46b05b991b21751e3d1fd"
   },
