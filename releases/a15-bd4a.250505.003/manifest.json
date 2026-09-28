@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/tegu-ota-bd4a.250505.003-06eb56e8.zip",
       "sha256": "06eb56e8bbaf4c593e730b74285519a82bcc5727ea309d1815c944e5f259d18d"
     },
-    "created": "2026-09-28T16:28:51Z",
+    "created": "2026-09-28T22:04:54Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bd4a.250505.003",
-    "definitions": "987c119c1aa7ac97834dfcddf972122961d2bb230cc01654a7a4a484032a7c57"
+    "definitions": "a381b4d069941bfecad6aeecb30efb1ef587c600350c57792a7665b9e6f60d8c"
   },
   "groups": [
     {
@@ -594,6 +594,30 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "92f82f9530adf9f6-privapp-permissions-google.xml.gz",
+          "sha256": "92f82f9530adf9f6e1cf13ef1eb9700ba72bc3cd8b3d9eccd54af9a1afc7e564",
+          "size": 3651,
+          "encoding": "gzip",
+          "asset_sha256": "9eab65b31181249885a595297a09a57ca1a5c8855580b52476cb3ad0ed548be0",
+          "asset_size": 1190,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "f2aa6c8dad97762d-privapp-permissions-google-se.xml.gz",
+          "sha256": "f2aa6c8dad97762deafc2fb9fa7716d19a98fb58251ba3d49914cea81f5bf5c9",
+          "size": 14615,
+          "encoding": "gzip",
+          "asset_sha256": "bcc23ba437d6e068c38502745470875acc52939db5ac24531831a062d3fb24fa",
+          "asset_size": 2432,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
         }
       ],
       "packages": [
