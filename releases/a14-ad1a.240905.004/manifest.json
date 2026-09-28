@@ -8,14 +8,14 @@
       "codename": "UpsideDownCake"
     },
     "source": {
-      "device": "comet",
+      "device": "komodo",
       "build": "AD1A.240905.004",
-      "image": "https://dl.google.com/dl/android/aosp/comet-ota-ad1a.240905.004-ba016cd3.zip",
-      "sha256": "ba016cd3026a91fc1189f6f249e7f414058a4067e544fb25b1f534d61bce92ec"
+      "image": "https://dl.google.com/dl/android/aosp/komodo-ota-ad1a.240905.004-323f7f98.zip",
+      "sha256": "323f7f981f90e717260356a2ffa7a5c996a3d913235e6ae3cb121a28f40af010"
     },
-    "created": "2026-09-28T22:11:31Z",
+    "created": "2026-09-28T23:14:07Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004",
-    "definitions": "5bf744910d5457d76c1412ff7915208fc957a6e829cd95760547e0d80d55386f"
+    "definitions": "7266ee48833f8fddf91c05cd555cf9baabe8c262d96d3adb49aae27c3a179933"
   },
   "groups": [
     {
@@ -453,83 +453,83 @@
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCoreSc.apk",
-          "asset": "fc053ca974201884-PrebuiltGmsCoreSc.apk.gz",
-          "sha256": "fc053ca974201884f8f032bef83d40c2f2cdcace34f352d103586fffe1bcb2d3",
+          "asset": "4b352273f010dd3d-PrebuiltGmsCoreSc.apk.gz",
+          "sha256": "4b352273f010dd3d5aaec9d151f195b9c62f829312d5bdf20e1015bbd218d9bd",
           "size": 220802082,
           "encoding": "gzip",
-          "asset_sha256": "bf3bce9392a4b501e8557a3d8d7688cebdeb1b2f95acb27475e01fc993f3bd7a",
-          "asset_size": 93593878,
+          "asset_sha256": "20277ba3f93f277c4b1f9fd6c9be7b4093ea19dc3be20f950c48318b560428e2",
+          "asset_size": 93593911,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_AdsDynamite.uncompressed.apk",
-          "asset": "30b73815b7dbdb95-PrebuiltGmsCoreSc_AdsDynamite.uncompressed.apk.gz",
-          "sha256": "30b73815b7dbdb9501cfd4c90e519899c7d257080cc5d951fab3f801eb5bb6c2",
+          "asset": "6d9105f369e1f0f5-PrebuiltGmsCoreSc_AdsDynamite.uncompressed.apk.gz",
+          "sha256": "6d9105f369e1f0f5e9c968f4f7c6c9339216a4268ca6e4e7a338a8033b1b8cae",
           "size": 3938759,
           "encoding": "gzip",
-          "asset_sha256": "ce8031fe386edd98e95ae593f485bef63366933d11259bc0737f9e5998913382",
-          "asset_size": 1699577,
+          "asset_sha256": "f372d1541730005a0dd034dafddfb4441c9857c1e84f742075cf0bc1d6efcaa5",
+          "asset_size": 1699575,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_CronetDynamite.uncompressed.apk",
-          "asset": "6f952d39658fc9f4-PrebuiltGmsCoreSc_CronetDynamite.uncompressed.apk.gz",
-          "sha256": "6f952d39658fc9f4b29bfb08044e04d445493eb2658077137c4512f0cb992b7e",
+          "asset": "e3ce1d9a3a0ff41a-PrebuiltGmsCoreSc_CronetDynamite.uncompressed.apk.gz",
+          "sha256": "e3ce1d9a3a0ff41a192797d4fdf4e59712fbbec6e9265077ea40663feef14313",
           "size": 9357919,
           "encoding": "gzip",
-          "asset_sha256": "5c9294148ccaf7f248d2d2d1e4e5c186f5694974d5d135a1adf0a70ae40d679d",
-          "asset_size": 4965427,
+          "asset_sha256": "b7fb43b13f5f1f652c36973f7ccca565907d2e02f9f8654d81c76e4a09be119a",
+          "asset_size": 4965425,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteLoader.uncompressed.apk",
-          "asset": "dd27eae4b5e67738-PrebuiltGmsCoreSc_DynamiteLoader.uncompressed.apk.gz",
-          "sha256": "dd27eae4b5e67738cbc97546b4b9e2496ca1290a98d15b83dbaa770d0fdc5355",
+          "asset": "74e9ad0f049d545b-PrebuiltGmsCoreSc_DynamiteLoader.uncompressed.apk.gz",
+          "sha256": "74e9ad0f049d545b48563e3a17acca2d56104450b63971edbc62c7932db225ac",
           "size": 206155,
           "encoding": "gzip",
-          "asset_sha256": "76a1a59fa0928cd2ded4f9de9195600cf7e342ef7cd09fd5c8b5a94ab6488ae9",
-          "asset_size": 100437,
+          "asset_sha256": "7306b4397b229f7239cdbf7b11484a8279eecf17a8b4eca1d6430bd0d09eccb6",
+          "asset_size": 100435,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesA.apk",
-          "asset": "93045a80633184a2-PrebuiltGmsCoreSc_DynamiteModulesA.apk.gz",
-          "sha256": "93045a80633184a2dadeb5c61362ccc74e8d1d906f79e653194e9085c07a139c",
+          "asset": "a325db79c0ab2a30-PrebuiltGmsCoreSc_DynamiteModulesA.apk.gz",
+          "sha256": "a325db79c0ab2a304cd003c0a41f12abf2e9cf47a1a4b61d5d117afd30ed4150",
           "size": 1092650,
           "encoding": "gzip",
-          "asset_sha256": "79be21dae84bfd29e58f8105211b67ce3c7703424193411ef568baa034e91605",
-          "asset_size": 471757,
+          "asset_sha256": "2247debdb9a454bbf858e68eb6e6f9bed655a4ce17c7a837b87a62e7d746c879",
+          "asset_size": 471756,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_DynamiteModulesC.apk",
-          "asset": "a7dee3faf28993c4-PrebuiltGmsCoreSc_DynamiteModulesC.apk.gz",
-          "sha256": "a7dee3faf28993c49df810ffc41aa15ed79407b894945aeea483a9027254dfb2",
+          "asset": "8da798805fff21d0-PrebuiltGmsCoreSc_DynamiteModulesC.apk.gz",
+          "sha256": "8da798805fff21d0e4a8a513e4418145e7d3b9e4da55907516c274cf94f97344",
           "size": 2288712,
           "encoding": "gzip",
-          "asset_sha256": "a00f2aa302e061ad1f5dc3a1a50c7cfdbbece420c32ffb19b6b88e0c3d135405",
-          "asset_size": 1005310,
+          "asset_sha256": "f8c64a470f750a709f01111a99ed16a0d678fee55b69474424d4b1f1eeeee083",
+          "asset_size": 1005311,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_GoogleCertificates.apk",
-          "asset": "6e473cbf6b419d45-PrebuiltGmsCoreSc_GoogleCertificates.apk.gz",
-          "sha256": "6e473cbf6b419d452ffe7536122c21b31f7b7851b8d1bb311494864c078f09ad",
+          "asset": "50202a3c75e50cdf-PrebuiltGmsCoreSc_GoogleCertificates.apk.gz",
+          "sha256": "50202a3c75e50cdf83e4bb4a14a4878d47f658756f4dcdadba5b4e7eaaea7ef7",
           "size": 283911,
           "encoding": "gzip",
-          "asset_sha256": "1636ebfa7bac062c3d6c4e9d87354c6aa55eb39e1f2921accece4d176ca19dd5",
+          "asset_sha256": "5f63814ad4176bfe8623eb1e2ac6187c64ea6336ff62075069bbec5a5c9d42a4",
           "asset_size": 163106,
           "mode": "0644",
           "context": "",
@@ -537,24 +537,24 @@
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MapsDynamite.apk",
-          "asset": "bf355b2aa3a87543-PrebuiltGmsCoreSc_MapsDynamite.apk.gz",
-          "sha256": "bf355b2aa3a87543bb05cc2cd75724b65002947ebee5342dd5316e2220b25e8a",
+          "asset": "c0c18d84ecf3acb0-PrebuiltGmsCoreSc_MapsDynamite.apk.gz",
+          "sha256": "c0c18d84ecf3acb036ceb0125a9bc1b61097c7ba75287d8ace5b979177855004",
           "size": 2377636,
           "encoding": "gzip",
-          "asset_sha256": "e8d256130f5d0aff4845b7a062bcb5a6eb3e1dab5c6c844507753118f55b961f",
-          "asset_size": 1065617,
+          "asset_sha256": "f4b4063a4238874bd3cff0fea93f3c58548d4c76c786fe9a9e432764e250c039",
+          "asset_size": 1065616,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreSc_MeasurementDynamite.apk",
-          "asset": "0f426c31a2a28f96-PrebuiltGmsCoreSc_MeasurementDynamite.apk.gz",
-          "sha256": "0f426c31a2a28f96e4271ea2168289f7c26b991a3f5b6d77c553a2a5dd95845b",
+          "asset": "512fdb4c129863a5-PrebuiltGmsCoreSc_MeasurementDynamite.apk.gz",
+          "sha256": "512fdb4c129863a5dce6d6bd191c36249ef612243084124bc358ac9786df8d88",
           "size": 541962,
           "encoding": "gzip",
-          "asset_sha256": "a7e096e4e31e4a91b1cc1b1c63de22aebe02c4266b4f507eb37ef54ac2f6cae0",
-          "asset_size": 235839,
+          "asset_sha256": "fef0cf00de5f70b8ef147c9e051b4585c750169ee7850f13e8f44315f4d1119a",
+          "asset_size": 235835,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -627,7 +627,7 @@
         "versionCode": "241617039",
         "versionName": "24.16.17 (190408-631107583)"
       },
-      "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
+      "summary": "Core Google services. Everything else depends on it. On Android 17 the bulk of it ships as an apex, and the priv-app directory holds only the Chimera modules.",
       "required": true
     },
     {
@@ -637,12 +637,12 @@
       "files": [
         {
           "path": "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
-          "asset": "94cc928fa0a54d0a-GoogleServicesFramework.apk.gz",
-          "sha256": "94cc928fa0a54d0aef127422a54fad537831cba3a5a27d270d95c2cbec8df9f2",
+          "asset": "cec3a8e3d71b8178-GoogleServicesFramework.apk.gz",
+          "sha256": "cec3a8e3d71b8178dc25670070ff94c516b5eab0cd612eb80d2b9b9a80c9d12a",
           "size": 5281826,
           "encoding": "gzip",
-          "asset_sha256": "2c151a80600f853ebedaaab1f7fbd038e0c829f843b6a4cd7f2b142456de0969",
-          "asset_size": 2373311,
+          "asset_sha256": "2e912cc607bdf0a2a704b0b212dcc6dd939c8bf6d111c5e2d20037140b7b9362",
+          "asset_size": 2373309,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -665,11 +665,11 @@
       "files": [
         {
           "path": "product/priv-app/Phonesky/Phonesky.apk",
-          "asset": "7641239df3bc3173-Phonesky.apk.gz",
-          "sha256": "7641239df3bc31737e612c8e2c332df3e3a95c298cf52c201af19ae2d09e04af",
+          "asset": "64fbb13705a0c949-Phonesky.apk.gz",
+          "sha256": "64fbb13705a0c949873d8de86fa7fda343d7f20b162586bb4f0ec022fd63221d",
           "size": 77328224,
           "encoding": "gzip",
-          "asset_sha256": "9a20a8a7c0b9a1391682c7c9ad8f119ffcedabf6e962186b9cd5598d71f100ad",
+          "asset_sha256": "38983dbd0ab4aa0ff6117f737fc6925a9967fa2a031bbf7a13e91c2ee53e9a69",
           "asset_size": 29173641,
           "mode": "0644",
           "context": "",
@@ -709,7 +709,7 @@
       "packages": [
         "com.google.android.verifier"
       ],
-      "summary": "Takes the com.google.android.verifier name with an empty apk signed by a key that was generated once and then destroyed. Android will not replace a package with one signed by a different key, so the real verifier can never be installed over it -- not by the Play Store, not by anything. The apk holds no code and does nothing. Mutually exclusive with shipping the verifier itself."
+      "summary": "Stops the verifier ever being installed. It claims the package name with an empty apk signed by a key that was generated once and destroyed, and Android will not replace a package with one signed by a different key. Holds no code. Mutually exclusive with the verifier itself."
     },
     {
       "id": "syncadapters",
@@ -739,7 +739,7 @@
         "com.google.android.syncadapters.contacts",
         "com.google.android.syncadapters.calendar"
       ],
-      "summary": "The standalone sync adapters, kanged rather than dumped: no Pixel image from Android 13 on ships them, because modern Play services handles account sync itself. Offered for ROMs that still expect them, and off by default because on a Pixel they are redundant.",
+      "summary": "Legacy account sync adapters, off by default. No Pixel image since Android 13 ships them because Play services handles sync itself; offered for ROMs that still expect them.",
       "requires": [
         "gmscore"
       ]
@@ -751,24 +751,12 @@
       "files": [
         {
           "path": "product/overlay/PixelSetupWizardOverlay2024.apk",
-          "asset": "15cb66df49a5f13c-PixelSetupWizardOverlay2024.apk.gz",
-          "sha256": "15cb66df49a5f13cdbfb6814c01788dc29217ae04828149f03b415ca2f84ab8c",
+          "asset": "b9c95034f2a9ff1a-PixelSetupWizardOverlay2024.apk.gz",
+          "sha256": "b9c95034f2a9ff1a6658a24c9442c2d5dafff2a8602496d5bdf999dc8f891072",
           "size": 248403,
           "encoding": "gzip",
-          "asset_sha256": "058b58cdaf3dd06761139778d8cf0ed62b2fa7876311c6ea2c6e964a26db9fbe",
+          "asset_sha256": "0cc142f9a7a3e9c8850ee2ad3b0b037e0f7ea76c571ee4619b70dfadcb21a875",
           "asset_size": 147146,
-          "mode": "0644",
-          "context": "",
-          "kind": "overlay"
-        },
-        {
-          "path": "product/overlay/PixelSetupWizardOverlayPixelFoldable2024.apk",
-          "asset": "4679e9c0f5729f3d-PixelSetupWizardOverlayPixelFoldable2024.apk.gz",
-          "sha256": "4679e9c0f5729f3d88e36fd64728db4f303ee00eef58c3d30628d80864033482",
-          "size": 162399,
-          "encoding": "gzip",
-          "asset_sha256": "c384995cd1fcc3b862df89ede3870698e4c64ff62625794ed06a367d371bf558",
-          "asset_size": 114195,
           "mode": "0644",
           "context": "",
           "kind": "overlay"
@@ -800,12 +788,12 @@
       "files": [
         {
           "path": "product/priv-app/GoogleRestorePrebuilt-v509024/GoogleRestorePrebuilt-v509024.apk",
-          "asset": "83d6a4099cb26c6e-GoogleRestorePrebuilt-v509024.apk.gz",
-          "sha256": "83d6a4099cb26c6e70a79509bdb146a356424284995328806409f0ea01726adf",
+          "asset": "0be024182f41a754-GoogleRestorePrebuilt-v509024.apk.gz",
+          "sha256": "0be024182f41a754d8f246793233df4e19a59e51bbdfa0e4b6642ccf0d25ed16",
           "size": 14862066,
           "encoding": "gzip",
-          "asset_sha256": "c46264b76f113023ddcf3668e531a2111906eb29bc636077f9343d2b7e5afd5a",
-          "asset_size": 5932698,
+          "asset_sha256": "19b47e86dd3e8b2c002124f80b17fd84ae52c3b328a321a187c24a2a2b0bb485",
+          "asset_size": 5932701,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -843,12 +831,12 @@
         },
         {
           "path": "product/priv-app/SearchSelectorPrebuilt/SearchSelectorPrebuilt.apk",
-          "asset": "4e9ad6fc894784b5-SearchSelectorPrebuilt.apk.gz",
-          "sha256": "4e9ad6fc894784b5fcf39e18361dde6b4ad610d165c035eba38626c218028310",
+          "asset": "359d39fac43910cc-SearchSelectorPrebuilt.apk.gz",
+          "sha256": "359d39fac43910cc8d48c4c19a5bf9b4d17ff4fdf3fe0be06e264edc6759b487",
           "size": 3684446,
           "encoding": "gzip",
-          "asset_sha256": "9050fc511d10bad54e20e9ed36cfa7fda85ac0239b43211e7b519c53f70c6eb1",
-          "asset_size": 1592151,
+          "asset_sha256": "060f5e0ec10b602c4c88edd9e5a053cf492fc8d9e73574a71da2f2be390fe21e",
+          "asset_size": 1592148,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -897,12 +885,12 @@
         },
         {
           "path": "product/priv-app/GoogleDialer/GoogleDialer.apk",
-          "asset": "7ce9f386e6519ac6-GoogleDialer.apk.gz",
-          "sha256": "7ce9f386e6519ac66a9b6f0ae8f3638c5354fdd0bc804af4a7c215bd47253da7",
+          "asset": "7d229bd88c6c4568-GoogleDialer.apk.gz",
+          "sha256": "7d229bd88c6c456893f9bd75c0bedf72176ee9b0e8cbf4a968f9963a66a5ec08",
           "size": 68550037,
           "encoding": "gzip",
-          "asset_sha256": "e1f24cce47c819a32de164dab62200fae5e719b4b35a7c31b22229413a57ae77",
-          "asset_size": 30648985,
+          "asset_sha256": "02eacd63bf03e19dfc1e537001d69c6287636e9c008fddd27e9a7e66738d0702",
+          "asset_size": 30648986,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -930,12 +918,12 @@
       "files": [
         {
           "path": "product/priv-app/PrebuiltBugle/PrebuiltBugle.apk",
-          "asset": "4c80b80e3a72fc66-PrebuiltBugle.apk.gz",
-          "sha256": "4c80b80e3a72fc66d4777e034997ce737c1d2df3f9f7cc73dfc48253b11c7226",
+          "asset": "4152a94bd321be53-PrebuiltBugle.apk.gz",
+          "sha256": "4152a94bd321be5339e711980738c59393dd24261074255cd47e7f917dea180b",
           "size": 123802689,
           "encoding": "gzip",
-          "asset_sha256": "b8347a0accd7c4afd69275d11c0c5fc446a27c8fdaaaa17243011d006a7e9bb7",
-          "asset_size": 48643446,
+          "asset_sha256": "9d5f9ca2e953777effc1f075ada32dda243560f47ad81f33ef0dda02a8c3ae36",
+          "asset_size": 48643445,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -964,11 +952,11 @@
       "files": [
         {
           "path": "product/app/GoogleContacts/GoogleContacts.apk",
-          "asset": "a227814009727cd2-GoogleContacts.apk.gz",
-          "sha256": "a227814009727cd2691cfed899b93321bcc3bd9f904791713807de5a68e17958",
+          "asset": "ad3a48c7fa8d4235-GoogleContacts.apk.gz",
+          "sha256": "ad3a48c7fa8d423513131780de93e9b77a3b2aab78c5c3c7b9d53a079e496691",
           "size": 27587095,
           "encoding": "gzip",
-          "asset_sha256": "aa0112fd3dc99e67ef0b740007f41df72d9d9ef67c803fdf1d3b6f0bb0a70774",
+          "asset_sha256": "b917355477ac42ea50a46d1fab99390e6215d51f4a2da2ca41a084a434951525",
           "asset_size": 11398558,
           "mode": "0644",
           "context": "",
@@ -996,12 +984,12 @@
       "files": [
         {
           "path": "product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk",
-          "asset": "8c562ceb97d71a44-LatinIMEGooglePrebuilt.apk.gz",
-          "sha256": "8c562ceb97d71a4482c27fa8f100d1c567baa72df4e8507d8245cc6d75cc5402",
+          "asset": "63c518898bb79695-LatinIMEGooglePrebuilt.apk.gz",
+          "sha256": "63c518898bb796950f658ac4c2d90db378d9035b7d165414229732ded4369acd",
           "size": 82794224,
           "encoding": "gzip",
-          "asset_sha256": "13e833332c0be87c2e93e204b4866be8fcacb378930128eeca310a60c26aec18",
-          "asset_size": 40141375,
+          "asset_sha256": "688c3d9088b2124509140b06a4befa28a698b005c8860d52f7bf5e21da08d1e1",
+          "asset_size": 40141376,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -1815,7 +1803,7 @@
         "versionCode": "143544270",
         "versionName": "14.2.09.629370537-preload-arm64-v8a"
       },
-      "summary": "Includes the offline speech models and the CJK language models, which live outside the app directory. Without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
+      "summary": "Keyboard, including the offline speech and CJK models. Those live outside the app directory; without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
       "requires": [
         "gmscore"
       ],
@@ -1830,12 +1818,12 @@
       "files": [
         {
           "path": "product/app/GoogleTTS/GoogleTTS.apk",
-          "asset": "f03f2f3b1a1f1da9-GoogleTTS.apk.gz",
-          "sha256": "f03f2f3b1a1f1da9fc5c709121f4de2846aebecabc353f463221d40906358def",
+          "asset": "eaeccfa31ca055d9-GoogleTTS.apk.gz",
+          "sha256": "eaeccfa31ca055d918f8637adab6388457bfb93d0bcd351ee35d11003b83ddba",
           "size": 72153170,
           "encoding": "gzip",
-          "asset_sha256": "17c057b928d325166c360136e4b64a31110614c930c5e6d25882ab27bdc98845",
-          "asset_size": 38102980,
+          "asset_sha256": "259c801659eadddf5b1a67c4187bf8195d679815ab849ba71fa3d949d081dc8f",
+          "asset_size": 38102979,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -1893,7 +1881,7 @@
         "versionCode": "210476565",
         "versionName": "googletts.google-speech-apk_20240319.00_p0.617183227"
       },
-      "summary": "Includes the offline voice data, which lives outside the app directory. Without it only the languages downloaded on demand will speak.",
+      "summary": "Text to speech, including the offline voice data. That lives outside the app directory; without it only languages downloaded on demand will speak.",
       "requires": [
         "gmscore"
       ]
@@ -1905,12 +1893,12 @@
       "files": [
         {
           "path": "product/priv-app/Velvet/Velvet.apk",
-          "asset": "2e0049d4e5bc732a-Velvet.apk.gz",
-          "sha256": "2e0049d4e5bc732a3422dbbcdacee3bb55849334d2a5d2d3a73d7e8131b91ee8",
+          "asset": "c15e7b2387787f19-Velvet.apk.gz",
+          "sha256": "c15e7b2387787f19068304eeb4cc4c6e606408fe2d6ce13da4c2749d7d877ff6",
           "size": 459766888,
           "encoding": "gzip",
-          "asset_sha256": "b6a3d97fa0d38370ac9d9705c7dea8e957ca64b8d9f78aad7b4ecc83260d3dce",
-          "asset_size": 187754573,
+          "asset_sha256": "5b15caed049cf38cf0fba525c11783c7f9d8fa8aa654d0af98e2fbda9216c00a",
+          "asset_size": 187754572,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -1966,7 +1954,7 @@
         "versionCode": "636758232",
         "versionName": "124.0.6367.82"
       },
-      "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
+      "summary": "Shared code Chrome and the Google WebView both need. Each declares it with uses-static-library and neither loads without it, so it is its own package rather than living inside either."
     },
     {
       "id": "chrome",
@@ -2061,12 +2049,12 @@
       "files": [
         {
           "path": "product/priv-app/FilesPrebuilt/FilesPrebuilt.apk",
-          "asset": "4c321c5c56e63b8e-FilesPrebuilt.apk.gz",
-          "sha256": "4c321c5c56e63b8e3e2cd06e4d758268f2b20d41b1ad34f38950653f9e983620",
+          "asset": "2b3e290d648e1383-FilesPrebuilt.apk.gz",
+          "sha256": "2b3e290d648e138310276a39cc1152fb241c5cc90dbb8b459711792f405cc968",
           "size": 24849859,
           "encoding": "gzip",
-          "asset_sha256": "d49d48b479a9e21ea0bdb0f020873c1aaa17f6b90c0bedab80a8a696c5a74744",
-          "asset_size": 11132920,
+          "asset_sha256": "7831af81dbcab74c388a16b80544442cad65961bb9e0866fe04cf31a0f39e99b",
+          "asset_size": 11132921,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2090,12 +2078,12 @@
       "files": [
         {
           "path": "system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk",
-          "asset": "07a86fa8a7c793cc-DocumentsUIGoogle.apk.gz",
-          "sha256": "07a86fa8a7c793cc6a72004f710d259f54cd37ac9bfba840d136a0cc2dcb06f9",
+          "asset": "1544a972c3762c17-DocumentsUIGoogle.apk.gz",
+          "sha256": "1544a972c3762c17e47bffffd6f4e5ab34f36bc384e0c62b0e1bc90abe9173a5",
           "size": 6864647,
           "encoding": "gzip",
-          "asset_sha256": "1c26210e2d9073c2ad4a2ee4a0a99e6d31979e68ef3a2feca623a51a9262e5fa",
-          "asset_size": 2959418,
+          "asset_sha256": "fd9ffe66827780d912b3985ec7e400df951ec5b0008154e68d6486e3d24cdf77",
+          "asset_size": 2959422,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2108,7 +2096,7 @@
         "versionCode": "341510050",
         "versionName": "14-11467625"
       },
-      "summary": "Replaces the AOSP picker, which is what every app opens when asking you to choose a file.",
+      "summary": "Replaces the AOSP file picker. This is what every app opens when it asks you to choose a file.",
       "removes": [
         "DocumentsUI"
       ]
@@ -2120,12 +2108,12 @@
       "files": [
         {
           "path": "system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk",
-          "asset": "bac0306474905b00-StorageManagerGoogle.apk.gz",
-          "sha256": "bac0306474905b006cdf88e645738b8ea670f26859a9b4b9904d56b1e83dd87a",
+          "asset": "0782ac5ebec4f17a-StorageManagerGoogle.apk.gz",
+          "sha256": "0782ac5ebec4f17ae4de799fe0d740ebfc5ac5ab04f478cb98d16c1a3739f653",
           "size": 4712179,
           "encoding": "gzip",
-          "asset_sha256": "0b93b3b7e53da1e47957ad96f7b90ba32b211d83cfe24202e05d83e34cc55970",
-          "asset_size": 2070620,
+          "asset_sha256": "fde32f9cbb52b35a2be57204b84bcde3a8e060e8e2ff7cb42e3a7139b6a2cf33",
+          "asset_size": 2070621,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2149,12 +2137,12 @@
       "files": [
         {
           "path": "product/app/Photos/Photos.apk",
-          "asset": "1e821ba21f03e6f3-Photos.apk.gz",
-          "sha256": "1e821ba21f03e6f3e414c58ff4fadbd6b7b79b00d05166e17c79890bfb0bde16",
+          "asset": "ef9e21ebb13c5b1d-Photos.apk.gz",
+          "sha256": "ef9e21ebb13c5b1d23f8370cc7333ff99d49f237eb62894ba22621e77fbedd4a",
           "size": 133860049,
           "encoding": "gzip",
-          "asset_sha256": "1fd3d964864d51220fc813ef1345a475353f0dabddcd0e7263fb775ac09376a0",
-          "asset_size": 52723615,
+          "asset_sha256": "beef8eeace783a34f2e0c1178ac69e39dcde807e6532dc2218ece20e7277a742",
+          "asset_size": 52723613,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2182,12 +2170,12 @@
       "files": [
         {
           "path": "product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk",
-          "asset": "e0bf1909e8cdc4cf-MarkupGoogle_v2.apk.gz",
-          "sha256": "e0bf1909e8cdc4cfb8ef1916d26f460da97e87055532be889ec82d627a718333",
+          "asset": "2e1cc1fa6eadc55f-MarkupGoogle_v2.apk.gz",
+          "sha256": "2e1cc1fa6eadc55f0f3fde5058d67d6ad9a4d7a6d474c340d85e958c08150cce",
           "size": 6558154,
           "encoding": "gzip",
-          "asset_sha256": "a5432f2d62110de628d65dc523e2b52480a85be866aa8d46c951f8e775c14a3f",
-          "asset_size": 3025996,
+          "asset_sha256": "cf566e8469dc03f7221f65d7d952bf707bf1a8c330e4bed0f002cab9e1fe323d",
+          "asset_size": 3025994,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2209,12 +2197,12 @@
       "files": [
         {
           "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk",
-          "asset": "d30c73266cb4d319-PrebuiltGmail.apk.gz",
-          "sha256": "d30c73266cb4d319529b906d715a819a8d27ae56cb60ef512fac53a90947e8b5",
+          "asset": "96997e9308dc81f7-PrebuiltGmail.apk.gz",
+          "sha256": "96997e9308dc81f79a467a7e3d6430f8e1d7c568086e76689dc7d608a1eb5f78",
           "size": 124091441,
           "encoding": "gzip",
-          "asset_sha256": "f6d10e0e41ac8f20a48a20a2f52534617c536bf8abd33142271e321dba7cdb1f",
-          "asset_size": 48629640,
+          "asset_sha256": "5811416735bfb412a90c02412ff1a05fdb89abbd34b735c07eb8032cace3f63c",
+          "asset_size": 48629641,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2238,12 +2226,12 @@
       "files": [
         {
           "path": "product/app/Maps/Maps.apk",
-          "asset": "45d76df113dd19a6-Maps.apk.gz",
-          "sha256": "45d76df113dd19a646863efb48f7fda313005724a061c6d7450784edc42bde83",
+          "asset": "07f2861e96668ba7-Maps.apk.gz",
+          "sha256": "07f2861e96668ba7abd5715e00667405edcd168922ff0df8fbdae8d19ecd435e",
           "size": 84609579,
           "encoding": "gzip",
-          "asset_sha256": "2acacb4f46d78b2606f7f4e031b4ad94dd6c30655451349b5223f20432781373",
-          "asset_size": 38663402,
+          "asset_sha256": "454019a08b4d5160c9272648b1ea89de63138dadf7f529cf110ecade9fedf17d",
+          "asset_size": 38663404,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2296,12 +2284,12 @@
       "files": [
         {
           "path": "product/app/Drive/Drive.apk",
-          "asset": "6146c2afc417c652-Drive.apk.gz",
-          "sha256": "6146c2afc417c65298ba2c50b362a0e94e0c5936f011ce66e33135846db66d88",
+          "asset": "623367af832bd185-Drive.apk.gz",
+          "sha256": "623367af832bd185133ecb4702023b6edc04e1f366fc2b68b393a4d44f601b07",
           "size": 65530202,
           "encoding": "gzip",
-          "asset_sha256": "2136d1ffb803f44b40ba3af10ddea11ee39f0ce43751d1908777d4e11cae2f0f",
-          "asset_size": 29719217,
+          "asset_sha256": "cd8029832d0d7a3ccbf8a17d9b70c3d60b43224df216fc4c23c61fbc5c4acc34",
+          "asset_size": 29719215,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2325,12 +2313,12 @@
       "files": [
         {
           "path": "product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk",
-          "asset": "83c0f7a20a268b17-CalendarGooglePrebuilt.apk.gz",
-          "sha256": "83c0f7a20a268b17d988ab959cf0973d77213327fa62dee984d9980c4852b637",
+          "asset": "44cd5e2e11a5b75d-CalendarGooglePrebuilt.apk.gz",
+          "sha256": "44cd5e2e11a5b75d02b0cb0078c9ec8aba389cc61a72d327aee854bfc75e8838",
           "size": 39155535,
           "encoding": "gzip",
-          "asset_sha256": "918c281b668ed23b800021996543fa083e20edddbb69add78f00a1b8c4fb9d6d",
-          "asset_size": 16997457,
+          "asset_sha256": "2cd4f82c9998ec3c55c83403db9a4172841018e8db3236d7de33fc4945959ba7",
+          "asset_size": 16997454,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2387,12 +2375,12 @@
       "files": [
         {
           "path": "product/app/CalculatorGooglePrebuilt_85005407/CalculatorGooglePrebuilt_85005407.apk",
-          "asset": "847c45be30d484ba-CalculatorGooglePrebuilt_85005407.apk.gz",
-          "sha256": "847c45be30d484ba84b9891ec96be63f5fc8e76bebf705dfb6cf986be3e78a34",
+          "asset": "07a502fb9dd359b1-CalculatorGooglePrebuilt_85005407.apk.gz",
+          "sha256": "07a502fb9dd359b150d0f529614f9fdea545cdbae0eba98fc1e53a7a4c4800a3",
           "size": 5355655,
           "encoding": "gzip",
-          "asset_sha256": "28347cbf4c744fca6869731fcf83413f35092dd9c59db2de50d88e4b4d6d505e",
-          "asset_size": 2333862,
+          "asset_sha256": "537325c06ec5fbdafe33c97bce49afa4bc70fe75c34a1aa897c4c6fdb1d805fd",
+          "asset_size": 2333865,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2417,12 +2405,12 @@
       "files": [
         {
           "path": "product/priv-app/RecorderPrebuilt_619037745/RecorderPrebuilt_619037745.apk",
-          "asset": "5b4e8ce6b93d9689-RecorderPrebuilt_619037745.apk.gz",
-          "sha256": "5b4e8ce6b93d968936a021a3485d8c4f53197c0cc23a1607d5383d11924ca49a",
+          "asset": "e0fcf6acee5f3acc-RecorderPrebuilt_619037745.apk.gz",
+          "sha256": "e0fcf6acee5f3acce2cb1f3791bb356ac29cfd2d51ca33e9eaae2ed08ba051f9",
           "size": 72696697,
           "encoding": "gzip",
-          "asset_sha256": "01f1fe4fef892eb0a15f38fe41ab68611c9c66ddbb5545900531a17ed91742fe",
-          "asset_size": 41898693,
+          "asset_sha256": "32ac11b149ed8e0bb440785cfbaa2e0926d5ccb6d820585deb9bcbc87043da3e",
+          "asset_size": 41898695,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -2449,12 +2437,12 @@
       "files": [
         {
           "path": "product/app/SoundPickerPrebuilt/SoundPickerPrebuilt.apk",
-          "asset": "b44b434dbf3847d4-SoundPickerPrebuilt.apk.gz",
-          "sha256": "b44b434dbf3847d478cb165956e766aa5fd1c9471f07c82da0b2002f56be72cf",
+          "asset": "13568c09a406f07e-SoundPickerPrebuilt.apk.gz",
+          "sha256": "13568c09a406f07e2aa6541f8efebca5419a6db349851f437203c45fea1f38e9",
           "size": 6326325,
           "encoding": "gzip",
-          "asset_sha256": "d1034944f5e126f83619b670c9ef19bdd147edbe90ee7a70c276f1bc25fe8c42",
-          "asset_size": 3005083,
+          "asset_sha256": "c36eced94ce5257563ef0958c60093483dda20bd5a4f84d93524140cdc70071a",
+          "asset_size": 3005087,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3178,7 +3166,7 @@
         "versionCode": "31000072",
         "versionName": "3.1 (567492877)"
       },
-      "summary": "The Pixel ringtones, alarms and notification sounds, plus the picker that exposes them."
+      "summary": "Pixel ringtones, alarms and notification sounds. Includes the picker that exposes them."
     },
     {
       "id": "pixellauncher",
@@ -3187,24 +3175,24 @@
       "files": [
         {
           "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
-          "asset": "b20bc5c88a382b28-NexusLauncherRelease.apk.gz",
-          "sha256": "b20bc5c88a382b285af65ceb423cdcebe5f04ec665ba8753bb6190ff6c8b2c7b",
+          "asset": "a560faebcb632682-NexusLauncherRelease.apk.gz",
+          "sha256": "a560faebcb63268225f03c7dcdc0d188b1f19bedf00b67a6031ffd77f688e2e2",
           "size": 14648801,
           "encoding": "gzip",
-          "asset_sha256": "44833037cf6f17a940b5e82c12c84e04d2ccb584725f829f9b1ac395eca6191e",
-          "asset_size": 7795605,
+          "asset_sha256": "cca37d2dc7e9c56f83de405836f0474802cc67eec346bbb4f1606a56768ee3ec",
+          "asset_size": 7795606,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
-          "asset": "33533c99e1d945ba-WallpaperPickerGoogleRelease.apk.gz",
-          "sha256": "33533c99e1d945bae63799f3e4aba411e472c96508eb245bd1da1960d6a09e53",
+          "asset": "6a82aa614c6e7846-WallpaperPickerGoogleRelease.apk.gz",
+          "sha256": "6a82aa614c6e7846a4d08403409f53ca1a25e11a4f84c0bb64be4d52caa3637d",
           "size": 7315002,
           "encoding": "gzip",
-          "asset_sha256": "7236d616c3e0d26d97808a7a793298fb0d7c15c65135767104266dd8c2d03487",
-          "asset_size": 2904869,
+          "asset_sha256": "dba8471439eeba6e856ca5f4536c8835f679c3163e975dfed6c470b0271741d5",
+          "asset_size": 2904871,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3233,13 +3221,10 @@
       "group": "pixel",
       "files": [
         {
-          "path": "product/app/PixelWallpapers2024Foldable/PixelWallpapers2024Foldable.apk",
-          "asset": "b7cea311af546281-PixelWallpapers2024Foldable.apk.gz",
-          "sha256": "b7cea311af54628158d33718c4dee09551fdffbf2eb6726080105335c37b9730",
-          "size": 1946798,
-          "encoding": "gzip",
-          "asset_sha256": "9f7cb6ec612f00ddc160835ec0a1cc12e389826347f55de643b2a4186f2a4f74",
-          "asset_size": 1775729,
+          "path": "product/app/PixelWallpapers2024/PixelWallpapers2024.apk",
+          "asset": "d94d3afed2114f3c-PixelWallpapers2024.apk",
+          "sha256": "d94d3afed2114f3c69cf4f4ebc2ddfbebd74a933e520a6958870a9e800b62d4a",
+          "size": 14689085,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3260,12 +3245,12 @@
       "files": [
         {
           "path": "product/app/WallpaperEmojiPrebuilt-v470/WallpaperEmojiPrebuilt-v470.apk",
-          "asset": "b2a395419c241a34-WallpaperEmojiPrebuilt-v470.apk.gz",
-          "sha256": "b2a395419c241a34806968b262cfbc44046959f6fd294177f2d273fae17eb81b",
+          "asset": "02508f396ebabc80-WallpaperEmojiPrebuilt-v470.apk.gz",
+          "sha256": "02508f396ebabc802bf27e688fb59915918a4ea8c170c19ff831cdfa33cf69e3",
           "size": 9467993,
           "encoding": "gzip",
-          "asset_sha256": "128b2d6cf0c9816739a09932999ecd124ea6893f2f99d22796c0275450d4f1de",
-          "asset_size": 4807293,
+          "asset_sha256": "1cad58ec492b6d58ce53e94965598022e2b98225e93a09daec53e4d3a6558458",
+          "asset_size": 4807294,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3286,11 +3271,11 @@
       "files": [
         {
           "path": "product/app/PixelThemesStub/PixelThemesStub.apk",
-          "asset": "deff3bbb36fa4662-PixelThemesStub.apk.gz",
-          "sha256": "deff3bbb36fa4662962da36dc4da32f50d10393b285f7e6182f321f899802c04",
+          "asset": "5fbd06cf4b623677-PixelThemesStub.apk.gz",
+          "sha256": "5fbd06cf4b623677ce3282eaf134db63099f55b0d9157a8ea6281f0bd7d178fc",
           "size": 115101,
           "encoding": "gzip",
-          "asset_sha256": "5f3046352093e7e149f67b4bfce290cf6251502c33d02564cbf775d65ce4e4f3",
+          "asset_sha256": "8aefe90f73d4a426af00e6947bbc4b0e020f79c16011edab76b476d4b5096110",
           "asset_size": 30667,
           "mode": "0644",
           "context": "",
@@ -3298,12 +3283,12 @@
         },
         {
           "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
-          "asset": "e55c0e484414e231-PixelThemesStub2022_and_newer.apk.gz",
-          "sha256": "e55c0e484414e231f87332dc2f45a0a647315361522240eed2f6bc2a44984f35",
+          "asset": "b451ecac6ef64601-PixelThemesStub2022_and_newer.apk.gz",
+          "sha256": "b451ecac6ef64601f1bc45aa30a98e5ebf5d37d8b9436c00e065e7edd9032e97",
           "size": 115101,
           "encoding": "gzip",
-          "asset_sha256": "f5479cc5655e9c426ec1f4c0964ee5999fcb63382b509733ee8e343b9ee3ea9c",
-          "asset_size": 30644,
+          "asset_sha256": "4c030b073c999811f5eacb58b153de4bb721570af8914baf01fcfd9e8c349088",
+          "asset_size": 30645,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3324,12 +3309,12 @@
       "files": [
         {
           "path": "product/priv-app/AICorePrebuilt-aicore_20240509.01_RC02/AICorePrebuilt-aicore_20240509.01_RC02.apk",
-          "asset": "5ced00f48fceb93f-AICorePrebuilt-aicore_20240509.01_RC02.apk.gz",
-          "sha256": "5ced00f48fceb93f3f64bfafd5a75911e09ef2d4ff58f0264d60fbb42f1d03b8",
+          "asset": "12b0486541334ae1-AICorePrebuilt-aicore_20240509.01_RC02.apk.gz",
+          "sha256": "12b0486541334ae16aa09cf44cd07bd394481edfd70eb04b66798065b1ec96bc",
           "size": 1824673,
           "encoding": "gzip",
-          "asset_sha256": "861190941c53670b6b707ed64edad6a42de7f497f77f9af971e9dc3b006d09d9",
-          "asset_size": 833739,
+          "asset_sha256": "bc8906bd4330e7aace3e9437f497aec9882137a96a078678a7507727d33a261f",
+          "asset_size": 833736,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3354,12 +3339,12 @@
       "files": [
         {
           "path": "system_ext/priv-app/QuickAccessWallet/QuickAccessWallet.apk",
-          "asset": "1ceb470d78a6a7d4-QuickAccessWallet.apk.gz",
-          "sha256": "1ceb470d78a6a7d43f5673bd2385ddd519d14a618d6c007b1be747b8344eb176",
+          "asset": "d66bc2f9674dc219-QuickAccessWallet.apk.gz",
+          "sha256": "d66bc2f9674dc2192dcf1508429c7d71e944fee6eeb763895aabe664a0f4dff0",
           "size": 778614,
           "encoding": "gzip",
-          "asset_sha256": "563e6c95da7981ff54a177d11b298365a9772db9991c3074dd9ced290dc9cb37",
-          "asset_size": 366410,
+          "asset_sha256": "baafbf3419fdfe1ba11029aa2aaeaf4a9756722ad1697d2bb99b5fdd641c25d9",
+          "asset_size": 366414,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3383,12 +3368,12 @@
       "files": [
         {
           "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
-          "asset": "2d91fa26b610aa35-WellbeingPrebuilt.apk.gz",
-          "sha256": "2d91fa26b610aa354a0939487f531f1e092d8443c475dbd7cff314c908a08f8d",
+          "asset": "f5111b9418c637be-WellbeingPrebuilt.apk.gz",
+          "sha256": "f5111b9418c637be2f8daf63d10d89fb3cfe3614e477c056dba19794cf16e73b",
           "size": 21095786,
           "encoding": "gzip",
-          "asset_sha256": "7ee0aca56845565c803879b5f8cc3b80c205a2ec7dc5a745d364d95f6029320e",
-          "asset_size": 7630972,
+          "asset_sha256": "81e66c851bfd6a9b0a81b36b9996953b5786dab137ff5f2658b664950d444f3f",
+          "asset_size": 7630971,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3430,7 +3415,7 @@
         "versionCode": "12535050",
         "versionName": "1.2.535050-stub"
       },
-      "summary": "The stub Google ships in the image. Play installs the real Android Auto over it on first use, which is how a Pixel does it -- the full app is not in the factory image to take.",
+      "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
       "requires": [
         "gmscore"
       ]
@@ -3442,12 +3427,12 @@
       "files": [
         {
           "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
-          "asset": "5c4c133abc0486c4-PartnerSetupPrebuilt.apk.gz",
-          "sha256": "5c4c133abc0486c40e38f50c8ec67ba3a7a96c62f6ed2f4aad14f60d1a8810b2",
+          "asset": "bd39fca38ec0d801-PartnerSetupPrebuilt.apk.gz",
+          "sha256": "bd39fca38ec0d8010b87e62363fdb2599805053b1cd4cd526f22c8348d43e0f4",
           "size": 726118,
           "encoding": "gzip",
-          "asset_sha256": "06ae0cc24a91b56726c29d88b2a39174b3c4217181e16c5af9a1fd8ddbdc3ace",
-          "asset_size": 303680,
+          "asset_sha256": "090cb2ecd8ec261faa2dd0f8678b431f94593fc7c44daa0f8c8013a3eef5cc79",
+          "asset_size": 303681,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3471,12 +3456,12 @@
       "files": [
         {
           "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
-          "asset": "fb4742872d179807-CarrierSetup.apk.gz",
-          "sha256": "fb4742872d179807e16204c2c9309275e88c977f707c280d05b486be761cb30d",
+          "asset": "1e96a70217723ea0-CarrierSetup.apk.gz",
+          "sha256": "1e96a70217723ea00f69b7e99090c2c5c033f47a0b62b0101c5fd0a1f61bb4bb",
           "size": 6528636,
           "encoding": "gzip",
-          "asset_sha256": "53dc9c2bd18cc73cf9fbdc6e300b1dc1e65bf28902345064c5725988864aa854",
-          "asset_size": 3652499,
+          "asset_sha256": "80d2e43f8063de40216e89d4dbbade2a7f20a25f82e78b29d39fdb8a71f5430d",
+          "asset_size": 3652501,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3497,11 +3482,11 @@
       "files": [
         {
           "path": "product/priv-app/EuiccGoogle/EuiccGoogle.apk",
-          "asset": "3a1b9e021ddec562-EuiccGoogle.apk.gz",
-          "sha256": "3a1b9e021ddec56272678b989f561f4f723be81f9f591497774402a2e11b221f",
+          "asset": "0001ef7927fa0d55-EuiccGoogle.apk.gz",
+          "sha256": "0001ef7927fa0d55517f699e746a45020af479d0013d2ddef9c112b0f2dbb246",
           "size": 12963322,
           "encoding": "gzip",
-          "asset_sha256": "ada8401ea2fa102a9fd5123b73473c4c6df6730a9b0d864b43285099cd80a8a7",
+          "asset_sha256": "7280d638cd734406380e802fbc763aade013137d5a6fff9b9a71106427a7f403",
           "asset_size": 4355701,
           "mode": "0644",
           "context": "",
@@ -3530,24 +3515,24 @@
         },
         {
           "path": "system_ext/priv-app/EuiccGoogleOverlay/EuiccGoogleOverlay.apk",
-          "asset": "3bf16e9176987936-EuiccGoogleOverlay.apk.gz",
-          "sha256": "3bf16e91769879369185ecf684ba8491167d69dfd4f47edcd846653e857cc68b",
+          "asset": "76fad4c71793ce73-EuiccGoogleOverlay.apk.gz",
+          "sha256": "76fad4c71793ce735828ce5cecdd2bc5a89cdcf8f0df9f4d11a77b0410c1b744",
           "size": 3721500,
           "encoding": "gzip",
-          "asset_sha256": "8908ec875040fcb7adbbf4365faa830ae88bb65f294dfe49c568664f4ec2a5b9",
-          "asset_size": 1741040,
+          "asset_sha256": "dd2c9973016b6213de2a3d39e80128f9daaf0a96cfae97e52f10a2cf2acd18b6",
+          "asset_size": 1741038,
           "mode": "0644",
           "context": "",
           "kind": "apk"
         },
         {
           "path": "system_ext/priv-app/EuiccSupportPixel-P23/EuiccSupportPixel-P23.apk",
-          "asset": "b4375b86be7a2f0d-EuiccSupportPixel-P23.apk.gz",
-          "sha256": "b4375b86be7a2f0dad7a2efb457fd23c218e334465ebaeb8211ebcdc134db6d4",
+          "asset": "0ca80c7b824b8459-EuiccSupportPixel-P23.apk.gz",
+          "sha256": "0ca80c7b824b8459c42f64bf1e20e5240b4618c94ae4ad842d3fcb17fe788a23",
           "size": 5231521,
           "encoding": "gzip",
-          "asset_sha256": "ac56306caaec902a4acf425a8f631ce0168ef728ab608fd64b3d5a88f6fc1c61",
-          "asset_size": 2122867,
+          "asset_sha256": "73c51cb3c841549b980c2226a8b2bab05f56fa7487e7a9d25d66c77ce1724889",
+          "asset_size": 2122869,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3578,11 +3563,11 @@
         },
         {
           "path": "system_ext/priv-app/EuiccSupportPixelPermissions/EuiccSupportPixelPermissions.apk",
-          "asset": "545673d25ef1e3c8-EuiccSupportPixelPermissions.apk.gz",
-          "sha256": "545673d25ef1e3c819754d17ecf7f0e5ce9bf575caabc6c834a496d07ef7a556",
+          "asset": "13dd574e9213041b-EuiccSupportPixelPermissions.apk.gz",
+          "sha256": "13dd574e9213041bd2cc9149bdcf68a7ae79f072090d459f86d29e2a5bb0370b",
           "size": 20957,
           "encoding": "gzip",
-          "asset_sha256": "a6beb82fffb4a32130c2f0d8ba03578395724e93cfe110801a5d75c4225388f5",
+          "asset_sha256": "1a9fb7730cb78a81e716396cd19237d18e0e4ef67d5f85cd46c2f4fe2c190665",
           "asset_size": 10543,
           "mode": "0644",
           "context": "",
@@ -3638,12 +3623,12 @@
       "files": [
         {
           "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
-          "asset": "eecd9c5ba6fc707e-GoogleFeedback.apk.gz",
-          "sha256": "eecd9c5ba6fc707ec5724bf30d72b4feddb3ced370545f07eccb975843e59e8b",
+          "asset": "75da49f7d289546b-GoogleFeedback.apk.gz",
+          "sha256": "75da49f7d289546be83d14424b9f6782d0c12cc6608ffb74a5cf0745da27120d",
           "size": 502735,
           "encoding": "gzip",
-          "asset_sha256": "dda73787dd2a2d654f372aabb675f7962fe93504b493532d140d7c1662fc96ee",
-          "asset_size": 203967,
+          "asset_sha256": "3d7fac1abaa4230701a15f2e0f68d53a396a4f9fbb19e02fc0d99667cc4a3cb4",
+          "asset_size": 203968,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3668,11 +3653,11 @@
       "files": [
         {
           "path": "product/app/talkback/talkback.apk",
-          "asset": "aa58ef4052d246d9-talkback.apk.gz",
-          "sha256": "aa58ef4052d246d9d39e69de27ac15c7e3fa1c8c6b3f74257911b4aa677f0078",
+          "asset": "a3e7dcc0219ce914-talkback.apk.gz",
+          "sha256": "a3e7dcc0219ce914ef739450ab3a90e32953ab28142aafc217efa8fa5174e5d3",
           "size": 37387749,
           "encoding": "gzip",
-          "asset_sha256": "d616bf2cb427fa60e2f882fc5dfe4958ece748e70872214133618741e272bc87",
+          "asset_sha256": "54607f7bbc97d0147ce3eb40573122415bd57025f393f492d199e4b32df05075",
           "asset_size": 14396081,
           "mode": "0644",
           "context": "",
@@ -3698,12 +3683,12 @@
       "files": [
         {
           "path": "product/app/SwitchAccessPrebuilt/SwitchAccessPrebuilt.apk",
-          "asset": "e0e3ac9f6d2e2152-SwitchAccessPrebuilt.apk.gz",
-          "sha256": "e0e3ac9f6d2e215280229e66ad85f192cb039a170af1aa57c01cc125aa563ad7",
+          "asset": "b5af6d9d2e10a88a-SwitchAccessPrebuilt.apk.gz",
+          "sha256": "b5af6d9d2e10a88aad57da737af59f2e13e258c0312b9bbb3e324ad967d1a7a4",
           "size": 12767249,
           "encoding": "gzip",
-          "asset_sha256": "b0f904be9cad726dcb30a89dd790e238f56a02bec3e101dd11cda99ef5591e02",
-          "asset_size": 4672614,
+          "asset_sha256": "b61b5f4b39898732431a2c196624c9da7ba6485714a65116047a33dba06a268a",
+          "asset_size": 4672615,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -3728,11 +3713,11 @@
       "files": [
         {
           "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
-          "asset": "4a890f33f8100ada-VoiceAccessPrebuilt.apk.gz",
-          "sha256": "4a890f33f8100ada39c86ff857f39209ed4160ed661dddc82c9ebc99d5a38a6b",
+          "asset": "92c84a3b7085712c-VoiceAccessPrebuilt.apk.gz",
+          "sha256": "92c84a3b7085712c3365fb58461f341f865e217121e4db2b5e5afbc4e67dc5f4",
           "size": 15532834,
           "encoding": "gzip",
-          "asset_sha256": "9c9847648f54e5bf56dc911efb37dce588fb1f6332b6d3ea357422ef77ad76e1",
+          "asset_sha256": "4f1ca195587c98c268f3e0543673e9d281cda9012dc73c82b65caa411c036230",
           "asset_size": 6831829,
           "mode": "0644",
           "context": "",
@@ -3758,12 +3743,12 @@
       "files": [
         {
           "path": "product/app/SoundAmplifierPrebuilt/SoundAmplifierPrebuilt.apk",
-          "asset": "4cf9f9ae82c93097-SoundAmplifierPrebuilt.apk.gz",
-          "sha256": "4cf9f9ae82c930975ce4988f4f679cf08ce79147b2eb7c19d226c66c876f2f02",
+          "asset": "49466b6c8e8ad5b8-SoundAmplifierPrebuilt.apk.gz",
+          "sha256": "49466b6c8e8ad5b82c74a8deba6f06fc2d2b32d4e91d73d8d947a3998ec5d0ba",
           "size": 27431306,
           "encoding": "gzip",
-          "asset_sha256": "57d880ede4d7445f3c2dcd8df217eea337fefebd0e4ddd8ad44aa48d94f04a19",
-          "asset_size": 16261475,
+          "asset_sha256": "e7a172a71f481fa53a8af533ae2c1db66564a6fa8197899bf72bb4c2cffc7350",
+          "asset_size": 16261478,
           "mode": "0644",
           "context": "",
           "kind": "apk"
