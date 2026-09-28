@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/stallion-ota-cp1a.260505.005-62eaa74b.zip",
       "sha256": "62eaa74b4cc60b0e3de4a064c8386dca11077f5174fdf65db2386f3192805a63"
     },
-    "created": "2026-09-24T19:28:07Z",
+    "created": "2026-09-28T12:51:14Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005"
   },
   "packages": [
@@ -230,6 +230,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.gms",
       "summary": "Core Google services framework. Everything else depends on it. On Android 17 the bulk of it ships as an apex; the priv-app directory holds only the Chimera modules.",
       "required": true
     },
@@ -248,6 +249,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.gsf",
       "summary": "Device registration and push messaging.",
       "required": true
     },
@@ -266,6 +268,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.android.vending",
       "summary": "App store and Play Protect.",
       "default": true,
       "requires": [
@@ -297,6 +300,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.verifier",
       "requires": [
         "gmscore"
       ]
@@ -406,11 +410,17 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.pixel.setupwizard.overlay.expressive",
       "summary": "Replaces the AOSP first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
       "default": true,
       "requires": [
         "gmscore",
         "vending"
+      ],
+      "removes": [
+        "Provision",
+        "SetupWizard",
+        "LineageSetupWizard"
       ]
     },
     {
@@ -428,9 +438,13 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.googlequicksearchbox",
       "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "QuickSearchBox"
       ]
     },
     {
@@ -457,6 +471,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.bard",
       "requires": [
         "gmscore"
       ]
@@ -494,12 +509,13 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.dialer",
       "summary": "Call screening and spam protection.",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "system_ext/priv-app/Dialer"
+        "Dialer"
       ]
     },
     {
@@ -517,12 +533,14 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.messaging",
       "summary": "RCS-capable SMS client.",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "system_ext/priv-app/messaging"
+        "messaging",
+        "Messaging"
       ]
     },
     {
@@ -540,11 +558,12 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.contacts",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "system_ext/priv-app/Contacts"
+        "Contacts"
       ]
     },
     {
@@ -562,11 +581,12 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.inputmethod.latin",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "system_ext/app/LatinIME"
+        "LatinIME"
       ]
     },
     {
@@ -593,8 +613,13 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.photos",
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "Gallery2",
+        "Glimpse"
       ]
     },
     {
@@ -612,8 +637,13 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.calendar",
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "Calendar",
+        "Etar"
       ]
     },
     {
@@ -640,6 +670,7 @@
           "kind": "etc"
         }
       ],
+      "package": "com.google.android.trichromelibrary",
       "summary": "Code Chrome and the Google WebView share. Both declare it with uses-static-library and neither loads without it, so it is its own package rather than living inside either one."
     },
     {
@@ -666,9 +697,14 @@
           "kind": "etc"
         }
       ],
+      "package": "com.android.chrome",
       "requires": [
         "gmscore",
         "trichrome"
+      ],
+      "removes": [
+        "Browser",
+        "Jelly"
       ]
     },
     {
@@ -695,8 +731,12 @@
           "kind": "etc"
         }
       ],
+      "package": "com.google.android.webview",
       "requires": [
         "trichrome"
+      ],
+      "removes": [
+        "webview"
       ]
     },
     {
@@ -714,6 +754,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.gm",
       "requires": [
         "gmscore"
       ]
@@ -733,6 +774,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.maps",
       "requires": [
         "gmscore"
       ]
@@ -752,6 +794,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.docs",
       "requires": [
         "gmscore"
       ]
@@ -780,6 +823,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.youtube",
       "requires": [
         "gmscore"
       ]
@@ -799,6 +843,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.tachyon",
       "requires": [
         "gmscore"
       ]
@@ -827,12 +872,15 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.nexuslauncher",
       "summary": "Pixel home screen. Pair with gsa for the search bar.",
       "requires": [
         "gmscore"
       ],
       "removes": [
-        "system_ext/priv-app/Launcher3QuickStep"
+        "Launcher3",
+        "Launcher3QuickStep",
+        "Trebuchet"
       ]
     },
     {
@@ -867,7 +915,8 @@
           "context": "",
           "kind": "apk"
         }
-      ]
+      ],
+      "package": "com.google.android.apps.wallpaper.pixel"
     },
     {
       "id": "nowplaying",
@@ -884,6 +933,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.pixel.nowplaying",
       "requires": [
         "gmscore"
       ]
@@ -903,8 +953,12 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.recorder",
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "Recorder"
       ]
     },
     {
@@ -922,8 +976,15 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.GoogleCamera",
+      "summary": "Only useful on a Pixel: it needs the Pixel camera HAL and will not start on other hardware. Since it also replaces the ROM's camera, selecting it on a non-Pixel leaves you with none.",
       "requires": [
         "gmscore"
+      ],
+      "removes": [
+        "Camera2",
+        "Aperture",
+        "Snap"
       ]
     },
     {
@@ -941,6 +1002,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.tts",
       "requires": [
         "gmscore"
       ]
@@ -960,6 +1022,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.apps.wellbeing",
       "requires": [
         "gmscore"
       ]
@@ -1051,6 +1114,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.google.android.euicc",
       "summary": "Needed for eSIM provisioning on most carriers.",
       "requires": [
         "gmscore"
@@ -1107,6 +1171,7 @@
           "kind": "sysconfig"
         }
       ],
+      "package": "com.google.android.marvin.talkback",
       "requires": [
         "gmscore"
       ]
@@ -1126,6 +1191,7 @@
           "kind": "apk"
         }
       ],
+      "package": "com.android.systemui.plugin.globalactions.wallet",
       "requires": [
         "gmscore"
       ]
