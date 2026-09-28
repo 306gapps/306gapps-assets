@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-28T22:48:12Z",
+  "updated": "2026-09-28T22:58:11Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -24,10 +24,10 @@
         "version": "16",
         "codename": "Baklava"
       },
-      "device": "stallion",
+      "device": "mustang",
       "build": "CP1A.260505.005",
       "branch": "a16",
-      "created": "2026-09-28T21:56:04Z",
+      "created": "2026-09-28T22:56:23Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a16/releases/a16-cp1a.260505.005/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005"
     },
