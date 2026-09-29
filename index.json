@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-29T00:57:23Z",
+  "updated": "2026-09-29T01:07:05Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -41,7 +41,7 @@
       "device": "komodo",
       "build": "BP1A.250505.005",
       "branch": "a15",
-      "created": "2026-09-28T23:52:07Z",
+      "created": "2026-09-29T01:05:45Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a15/releases/a15-bp1a.250505.005/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bp1a.250505.005"
     },
