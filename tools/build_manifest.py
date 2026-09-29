@@ -321,6 +321,12 @@ def assign(files: list[str], defs: list[dict]) -> tuple[dict[str, list[str]], li
     return by_package, unclaimed
 
 
+def drop_excluded(unclaimed: list[str], excluded: list[str]) -> list[str]:
+    """Drop files under a deliberately omitted directory from the report."""
+    return [f for f in unclaimed
+            if not any(f"/{name}/" in f"/{f}" for name in excluded)]
+
+
 # <library file="/system/framework/foo.jar"/> in a permissions xml.
 LIBRARY_REF = re.compile(r'file="(/[^"]+\.jar)"')
 
@@ -821,8 +827,7 @@ def build(args) -> int:
 
     if excluded:
         before = len(unclaimed)
-        unclaimed = [f for f in unclaimed
-                     if not any(f"/{name}/" in f"/{f}" for name in excluded)]
+        unclaimed = drop_excluded(unclaimed, excluded)
         print(f"  {before - len(unclaimed)} file(s) excluded by choice: "
               f"{', '.join(excluded)}")
 

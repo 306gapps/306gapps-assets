@@ -20,6 +20,12 @@ exclude:
   # updated by Play. Left out so Play installs the build matching the device.
   - GoogleCamera
 
+  # The image carries two Pixel Themes stubs declaring the same package name at
+  # the same version code, so PackageManager installs one and logs the other as
+  # a duplicate. They differ only in three legacy icon bundles that this one
+  # has and that one does not, so we ship PixelThemesStub and drop this.
+  - PixelThemesStub2022_and_newer
+
 # Preset selections following NikGApps' editions, each building on the one
 # before it. Tiers name packages rather than families because they cut across
 # them: stock takes the Pixel launcher but not the wallpapers.
@@ -532,7 +538,9 @@ packages:
     summary: >-
       Pixel icon packs and theming options for the launcher.
     include:
-      - product/app/PixelThemesStub*/**
+      # not PixelThemesStub2022_and_newer: same package name and version code,
+      # so only one of the two can install. see exclude.
+      - product/app/PixelThemesStub/**
 
   - id: nowplaying
     name: Now Playing

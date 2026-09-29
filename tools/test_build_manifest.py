@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 import build_manifest as bm
 
@@ -224,3 +225,46 @@ class TestPrivappAllowlists(unittest.TestCase):
             "product/priv-app/PrebuiltGmsCore/app_chimera/m/X/X.apk",
             "product/priv-app/PrebuiltGmsCore/m/optional/Y.apk"))
         self.assertEqual(got, [])
+
+
+class TestPixelThemesStubs(unittest.TestCase):
+    """a13-a15 images carry two Pixel Themes stubs.
+
+    Both declare com.google.android.apps.customization.pixel at versionCode 2,
+    so PackageManager installs one and logs the other as a duplicate. The two
+    differ only in three legacy icon bundles, which PixelThemesStub has and
+    PixelThemesStub2022_and_newer does not, so we ship the first and record
+    the second as deliberately dropped.
+    """
+
+    def defs(self, rel):
+        import yaml
+        return yaml.safe_load(open(Path(__file__).parent.parent
+                                   / "packages" / f"{rel}.yaml"))
+
+    def test_only_one_stub_is_claimed(self):
+        files = ["product/app/PixelThemesStub/PixelThemesStub.apk",
+                 "product/app/PixelThemesStub2022_and_newer/"
+                 "PixelThemesStub2022_and_newer.apk"]
+        for rel in ("a13", "a14", "a15"):
+            doc = self.defs(rel)
+            by_package, unclaimed = bm.assign(files, doc["packages"])
+            self.assertEqual(by_package["pixelthemes"], files[:1], rel)
+            self.assertEqual(unclaimed, files[1:], rel)
+
+    def test_the_dropped_stub_is_not_reported_as_missed(self):
+        for rel in ("a13", "a14", "a15"):
+            doc = self.defs(rel)
+            left = bm.drop_excluded(
+                ["product/app/PixelThemesStub2022_and_newer/"
+                 "PixelThemesStub2022_and_newer.apk"], doc["exclude"])
+            self.assertEqual(left, [], rel)
+
+    def test_later_releases_ship_their_one_stub(self):
+        for rel, name in (("a16", "PixelThemesStub2025"),
+                          ("a17", "PixelThemesStub2026")):
+            doc = self.defs(rel)
+            path = f"product/app/{name}/{name}.apk"
+            by_package, unclaimed = bm.assign([path], doc["packages"])
+            self.assertEqual(by_package["pixelthemes"], [path], rel)
+            self.assertEqual(unclaimed, [], rel)
