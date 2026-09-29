@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-29T01:24:24Z",
+    "created": "2026-09-29T13:11:36Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "9b170bb32eacb6a5902e86cdc56a8e58da14abb5842f0f65e4b7c021321a23bc"
+    "definitions": "e12089250d6ef794ab93a5404ae84e0c80aaa1783b12c13b86ec2103f40a3723"
   },
   "groups": [
     {
@@ -2992,18 +2992,6 @@
           "encoding": "gzip",
           "asset_sha256": "31b7cc42f4148ad7737b416b08135789956d0a7f229f8d9ab5563746182b4646",
           "asset_size": 14177,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
-          "asset": "110327d8969f3aa9-PixelThemesStub2022_and_newer.apk.gz",
-          "sha256": "110327d8969f3aa9e87ea81bfdb59f89e1e9a2b7adffb29e94402c9d2739aa0c",
-          "size": 49565,
-          "encoding": "gzip",
-          "asset_sha256": "cfa29dedf832d4cdb02375200df29e627a5ef12a8c805452f7b58e62640ac596",
-          "asset_size": 14162,
           "mode": "0644",
           "context": "",
           "kind": "apk"
