@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-bp1a.250505.005-8997fae7.zip",
       "sha256": "8997fae7ef176ff6cd7ee35bf1c6435fb3ec30ce2b69b28e572f283e7443e266"
     },
-    "created": "2026-09-28T23:52:07Z",
+    "created": "2026-09-29T01:05:45Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bp1a.250505.005",
-    "definitions": "cbeba563cedc0f75eced7f6876af3ef98b42c4b71adc5b1d656606bcaf858040"
+    "definitions": "9969b3a3792c66ad4f55d215aadf4bbead2a906235d7c98c523d850a02798fb9"
   },
   "groups": [
     {
@@ -123,10 +123,6 @@
     {
       "id": "androidauto",
       "name": "Android Auto"
-    },
-    {
-      "id": "digitalkey",
-      "name": "Digital car key"
     },
     {
       "id": "partnersetup",
@@ -323,9 +319,9 @@
         "pixelthemes",
         "aicore",
         "wallet",
+        "digitalkey",
         "wellbeing",
         "androidauto",
-        "digitalkey",
         "partnersetup",
         "carriersetup",
         "euicc",
@@ -3513,69 +3509,9 @@
       ]
     },
     {
-      "id": "wellbeing",
-      "name": "Digital Wellbeing",
-      "group": "wellbeing",
-      "files": [
-        {
-          "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
-          "asset": "d490827df76092b6-WellbeingPrebuilt.apk.gz",
-          "sha256": "d490827df76092b67223769f41eacb5001589e50ba5bf803c4cf9c464da88257",
-          "size": 23214818,
-          "encoding": "gzip",
-          "asset_sha256": "fc1fc25cae4f3d69e0043c923154ddd01010610749331aa155f1ee80c1a55056",
-          "asset_size": 8269888,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.apps.wellbeing"
-      ],
-      "version": {
-        "versionCode": "668567",
-        "versionName": "1.19.692156742 (668567)"
-      },
-      "summary": "Digital Wellbeing, with screen time and bedtime mode.",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "androidauto",
-      "name": "Android Auto",
-      "group": "androidauto",
-      "files": [
-        {
-          "path": "product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk",
-          "asset": "28bace99ff6a5ce6-AndroidAutoStubPrebuilt.apk.gz",
-          "sha256": "28bace99ff6a5ce671109a7c47a1dae2ff8eeb8f9ee5faa3f8de53964d9ff7f4",
-          "size": 3795743,
-          "encoding": "gzip",
-          "asset_sha256": "5089cafdc8791b0ab40c7938c5073533d40e341e37f6208a1f431a64d476d248",
-          "asset_size": 1495162,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "com.google.android.projection.gearhead"
-      ],
-      "version": {
-        "versionCode": "12543850",
-        "versionName": "1.2.543850-stub"
-      },
-      "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
       "id": "digitalkey",
       "name": "Digital car key",
-      "group": "digitalkey",
+      "group": "pixel",
       "files": [
         {
           "path": "system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml",
@@ -3634,6 +3570,66 @@
         "versionName": "15"
       },
       "summary": "Time sync for the digital car key, which lets a phone unlock and start a car. Only on devices with ultra-wideband hardware, so absent from a-series and base models.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "name": "Digital Wellbeing",
+      "group": "wellbeing",
+      "files": [
+        {
+          "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
+          "asset": "d490827df76092b6-WellbeingPrebuilt.apk.gz",
+          "sha256": "d490827df76092b67223769f41eacb5001589e50ba5bf803c4cf9c464da88257",
+          "size": 23214818,
+          "encoding": "gzip",
+          "asset_sha256": "fc1fc25cae4f3d69e0043c923154ddd01010610749331aa155f1ee80c1a55056",
+          "asset_size": 8269888,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.wellbeing"
+      ],
+      "version": {
+        "versionCode": "668567",
+        "versionName": "1.19.692156742 (668567)"
+      },
+      "summary": "Digital Wellbeing, with screen time and bedtime mode.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "androidauto",
+      "name": "Android Auto",
+      "group": "androidauto",
+      "files": [
+        {
+          "path": "product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk",
+          "asset": "28bace99ff6a5ce6-AndroidAutoStubPrebuilt.apk.gz",
+          "sha256": "28bace99ff6a5ce671109a7c47a1dae2ff8eeb8f9ee5faa3f8de53964d9ff7f4",
+          "size": 3795743,
+          "encoding": "gzip",
+          "asset_sha256": "5089cafdc8791b0ab40c7938c5073533d40e341e37f6208a1f431a64d476d248",
+          "asset_size": 1495162,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.projection.gearhead"
+      ],
+      "version": {
+        "versionCode": "12543850",
+        "versionName": "1.2.543850-stub"
+      },
+      "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
       "requires": [
         "gmscore"
       ]
