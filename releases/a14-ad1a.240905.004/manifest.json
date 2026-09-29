@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-ad1a.240905.004-323f7f98.zip",
       "sha256": "323f7f981f90e717260356a2ffa7a5c996a3d913235e6ae3cb121a28f40af010"
     },
-    "created": "2026-09-29T01:15:37Z",
+    "created": "2026-09-29T13:28:14Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004",
-    "definitions": "254511422ccf35187370c4ec04307995ccdd28d0341f6343ae6f5007b6026c5c"
+    "definitions": "0ea128c6bbebf202d88cac61abb0e6afb18de2df1548764b391bf2cd1fa19754"
   },
   "groups": [
     {
@@ -3369,18 +3369,6 @@
           "encoding": "gzip",
           "asset_sha256": "8aefe90f73d4a426af00e6947bbc4b0e020f79c16011edab76b476d4b5096110",
           "asset_size": 30667,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
-          "asset": "b451ecac6ef64601-PixelThemesStub2022_and_newer.apk.gz",
-          "sha256": "b451ecac6ef64601f1bc45aa30a98e5ebf5d37d8b9436c00e065e7edd9032e97",
-          "size": 115101,
-          "encoding": "gzip",
-          "asset_sha256": "4c030b073c999811f5eacb58b153de4bb721570af8914baf01fcfd9e8c349088",
-          "asset_size": 30645,
           "mode": "0644",
           "context": "",
           "kind": "apk"
