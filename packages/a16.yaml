@@ -500,7 +500,11 @@ packages:
     name: Pixel Launcher
     group: pixel
     requires: [gmscore]
-    summary: Pixel home screen. Pair with gsa for the search bar.
+    summary: >-
+      Pixel home screen, which on Android 16 and newer needs support from the
+      ROM to start at all. Pair with gsa for the search bar. Without that
+      support it crash-loops on launch, and because it replaces the ROM's own
+      launcher the phone is left with no home screen.
     removes:
       - Launcher3
       - Launcher3QuickStep
