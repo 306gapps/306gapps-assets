@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-29T00:08:25Z",
+    "created": "2026-09-29T01:24:24Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "c663bdaf2544bae170c29374b1b122c02f875a2cc95566902d7c35c881ad319c"
+    "definitions": "9b170bb32eacb6a5902e86cdc56a8e58da14abb5842f0f65e4b7c021321a23bc"
   },
   "groups": [
     {
@@ -115,10 +115,6 @@
     {
       "id": "androidauto",
       "name": "Android Auto"
-    },
-    {
-      "id": "digitalkey",
-      "name": "Digital car key"
     },
     {
       "id": "partnersetup",
@@ -303,9 +299,9 @@
         "emojiwallpaper",
         "pixelthemes",
         "wallet",
+        "digitalkey",
         "wellbeing",
         "androidauto",
-        "digitalkey",
         "partnersetup",
         "carriersetup",
         "euicc",
@@ -3053,6 +3049,60 @@
       ]
     },
     {
+      "id": "digitalkey",
+      "name": "Digital car key",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml",
+          "asset": "9ae0b7f339b65a7f-org.carconnectivity.android.digitalkey.timesync.xml.gz",
+          "sha256": "9ae0b7f339b65a7f4725f0b994b869a7f0482f1b64eaa63dad8272d31e1e4c5f",
+          "size": 862,
+          "encoding": "gzip",
+          "asset_sha256": "b96954bf31e2cdaca01201af03f8b277c949a9b1506934c4d8025297db03f469",
+          "asset_size": 598,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar",
+          "asset": "f324a16f5829beb6-org.carconnectivity.android.digitalkey.timesync.jar.gz",
+          "sha256": "f324a16f5829beb624e66ff8b76ea5825f6afd5bc900f94ff68ccb73eae856cd",
+          "size": 20106,
+          "encoding": "gzip",
+          "asset_sha256": "b1c70851d5544960e9af5529ba75737c64f2485e2d2bd172c496dc8fc4119b47",
+          "asset_size": 8801,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk",
+          "asset": "05a3d5305893ac64-CccDkTimeSyncService.apk.gz",
+          "sha256": "05a3d5305893ac647588862545ad252e6dba22d3d79b6d7f97aaa48820645570",
+          "size": 33245,
+          "encoding": "gzip",
+          "asset_sha256": "990e9559ceb8dfde27b17343a76914fb09042f3296b897446ff9c3ae873cdc7c",
+          "asset_size": 17195,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "org.carconnectivity.android.digitalkey.timesync"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "summary": "Time sync for the digital car key, which lets a phone unlock and start a car. Only on devices with ultra-wideband hardware, so absent from a-series and base models.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "wellbeing",
       "name": "Digital Wellbeing",
       "group": "wellbeing",
@@ -3108,60 +3158,6 @@
         "versionName": "1.2.526000-stub"
       },
       "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
-      "requires": [
-        "gmscore"
-      ]
-    },
-    {
-      "id": "digitalkey",
-      "name": "Digital car key",
-      "group": "digitalkey",
-      "files": [
-        {
-          "path": "system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml",
-          "asset": "9ae0b7f339b65a7f-org.carconnectivity.android.digitalkey.timesync.xml.gz",
-          "sha256": "9ae0b7f339b65a7f4725f0b994b869a7f0482f1b64eaa63dad8272d31e1e4c5f",
-          "size": 862,
-          "encoding": "gzip",
-          "asset_sha256": "b96954bf31e2cdaca01201af03f8b277c949a9b1506934c4d8025297db03f469",
-          "asset_size": 598,
-          "mode": "0644",
-          "context": "",
-          "kind": "permission"
-        },
-        {
-          "path": "system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar",
-          "asset": "f324a16f5829beb6-org.carconnectivity.android.digitalkey.timesync.jar.gz",
-          "sha256": "f324a16f5829beb624e66ff8b76ea5825f6afd5bc900f94ff68ccb73eae856cd",
-          "size": 20106,
-          "encoding": "gzip",
-          "asset_sha256": "b1c70851d5544960e9af5529ba75737c64f2485e2d2bd172c496dc8fc4119b47",
-          "asset_size": 8801,
-          "mode": "0644",
-          "context": "",
-          "kind": "framework"
-        },
-        {
-          "path": "system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk",
-          "asset": "05a3d5305893ac64-CccDkTimeSyncService.apk.gz",
-          "sha256": "05a3d5305893ac647588862545ad252e6dba22d3d79b6d7f97aaa48820645570",
-          "size": 33245,
-          "encoding": "gzip",
-          "asset_sha256": "990e9559ceb8dfde27b17343a76914fb09042f3296b897446ff9c3ae873cdc7c",
-          "asset_size": 17195,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        }
-      ],
-      "packages": [
-        "org.carconnectivity.android.digitalkey.timesync"
-      ],
-      "version": {
-        "versionCode": "33",
-        "versionName": "13"
-      },
-      "summary": "Time sync for the digital car key, which lets a phone unlock and start a car. Only on devices with ultra-wideband hardware, so absent from a-series and base models.",
       "requires": [
         "gmscore"
       ]
