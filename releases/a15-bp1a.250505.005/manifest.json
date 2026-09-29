@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-bp1a.250505.005-8997fae7.zip",
       "sha256": "8997fae7ef176ff6cd7ee35bf1c6435fb3ec30ce2b69b28e572f283e7443e266"
     },
-    "created": "2026-09-29T01:05:45Z",
+    "created": "2026-09-29T13:39:23Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bp1a.250505.005",
-    "definitions": "9969b3a3792c66ad4f55d215aadf4bbead2a906235d7c98c523d850a02798fb9"
+    "definitions": "110ee824a8b3f601969cc7320fd0a3724c29efcfacfcbe93b774295431bb6027"
   },
   "groups": [
     {
@@ -3424,19 +3424,6 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
-        },
-        {
-          "path": "product/app/PixelThemesStub2022_and_newer/PixelThemesStub2022_and_newer.apk",
-          "asset": "e4639a142177dea2-PixelThemesStub2022_and_newer.apk.gz",
-          "sha256": "e4639a142177dea2b19f08f7f7deeb2b292dd95cce6e9dd827298de8bbbf36ba",
-          "size": 90525,
-          "encoding": "gzip",
-          "asset_sha256": "5f9dbef95458b91b36ba20be531c51c97c0504d61046d6b94c8cecbbef94ef3b",
-          "asset_size": 29806,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk",
-          "stub": true
         }
       ],
       "packages": [
