@@ -2794,7 +2794,6 @@ system_ext/etc/permissions/com.shannon.imsservice.xml
 system_ext/etc/permissions/com.shannon.rcsservice.xml
 system_ext/etc/permissions/google-ril.xml
 system_ext/etc/permissions/oemrilhook.xml
-system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
 system_ext/etc/permissions/privapp-permissions-satellite.xml
 system_ext/etc/permissions/vzw_mvs_permissions.xml
 system_ext/etc/public.libraries-google.txt
@@ -2835,8 +2834,6 @@ system_ext/framework/google-ril.jar
 system_ext/framework/google-ril.jar.fsv_meta
 system_ext/framework/oemrilhook.jar
 system_ext/framework/oemrilhook.jar.fsv_meta
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar.fsv_meta
 system_ext/lib64/com.google.edgetpu_app_service-V4-ndk.so
 system_ext/lib64/com.google.edgetpu_vendor_service-V2-ndk.so
 system_ext/lib64/libaptXHD_encoder.so
@@ -2851,7 +2848,6 @@ system_ext/lib64/vendor.google.whitechapel.audio.audioext@4.0.so
 system_ext/lib64/vendor.google.whitechapel.audio.extension-V2-ndk.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so
-system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk
 system_ext/priv-app/ConnectivityThermalPowerManager/ConnectivityThermalPowerManager.apk
 system_ext/priv-app/DeviceConnectivityServicePrebuilt_24.02.00/DeviceConnectivityServicePrebuilt_24.02.00.apk
 system_ext/priv-app/FactoryOtaPrebuilt/FactoryOtaPrebuilt.apk
