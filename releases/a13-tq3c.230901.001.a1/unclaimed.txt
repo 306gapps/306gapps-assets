@@ -2967,7 +2967,6 @@ system_ext/etc/permissions/com.shannon.rcsservice.xml
 system_ext/etc/permissions/com.verizon.llkagent.xml
 system_ext/etc/permissions/google-ril.xml
 system_ext/etc/permissions/oemrilhook.xml
-system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml
 system_ext/etc/permissions/privapp-permissions-qorvo.xml
 system_ext/etc/permissions/vzw_mvs_permissions.xml
 system_ext/etc/vintf/manifest.xml
@@ -2980,7 +2979,6 @@ system_ext/framework/com.android.hotwordenrollment.common.util.jar
 system_ext/framework/com.google.android.camera.extensions.jar
 system_ext/framework/google-ril.jar
 system_ext/framework/oemrilhook.jar
-system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar
 system_ext/lib/libmediaadaptor.so
 system_ext/lib/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so
 system_ext/lib/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so
@@ -2991,7 +2989,6 @@ system_ext/lib64/libmediaadaptor.so
 system_ext/lib64/libpowerstatshaldataprovider.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.oemservice@1.0.so
 system_ext/lib64/vendor.samsung_slsi.telephony.hardware.radioExternal@1.0.so
-system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk
 system_ext/priv-app/ConnectivityThermalPowerManager/ConnectivityThermalPowerManager.apk
 system_ext/priv-app/EuiccSupportPixel/DKA_RC5_DVT.in
 system_ext/priv-app/EuiccSupportPixel/DKA_RC5_P22_DVT.in

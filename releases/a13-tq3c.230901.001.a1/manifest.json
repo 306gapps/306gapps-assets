@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-28T23:23:21Z",
+    "created": "2026-09-29T00:08:25Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "7832c599db217296d617930bd0de3926ce8d6b3aff8afd585c31527eac66ec2e"
+    "definitions": "c663bdaf2544bae170c29374b1b122c02f875a2cc95566902d7c35c881ad319c"
   },
   "groups": [
     {
@@ -115,6 +115,10 @@
     {
       "id": "androidauto",
       "name": "Android Auto"
+    },
+    {
+      "id": "digitalkey",
+      "name": "Digital car key"
     },
     {
       "id": "partnersetup",
@@ -301,6 +305,7 @@
         "wallet",
         "wellbeing",
         "androidauto",
+        "digitalkey",
         "partnersetup",
         "carriersetup",
         "euicc",
@@ -311,6 +316,77 @@
         "soundamplifier"
       ],
       "summary": "Every package in the release. Where two cannot coexist the first is taken, so this is a starting point rather than literally everything."
+    },
+    {
+      "id": "crdroid",
+      "name": "crDroid official",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "tts",
+        "gsa",
+        "trichrome",
+        "chrome",
+        "webview",
+        "markup",
+        "sounds",
+        "pixellauncher",
+        "wallpapers",
+        "emojiwallpaper",
+        "pixelthemes",
+        "wallet",
+        "wellbeing",
+        "androidauto"
+      ],
+      "summary": "What crDroid ships as its official package. Maintained by the ROM."
+    },
+    {
+      "id": "crdroid-full",
+      "name": "crDroid official full",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "trichrome",
+        "chrome",
+        "webview",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "calculator",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wallpapers",
+        "emojiwallpaper",
+        "pixelthemes",
+        "wallet",
+        "wellbeing",
+        "androidauto",
+        "partnersetup",
+        "carriersetup",
+        "devicepolicy",
+        "feedback"
+      ],
+      "summary": "crDroid's full official selection, adding the everyday Google apps."
     }
   ],
   "packages": [
@@ -873,6 +949,7 @@
         "versionCode": "2960682",
         "versionName": "4.1.17.505591926"
       },
+      "summary": "Google Contacts, with account sync and caller ID.",
       "requires": [
         "gmscore"
       ],
@@ -1645,6 +1722,7 @@
         "versionCode": "541412334",
         "versionName": "109.0.5414.123"
       },
+      "summary": "Chrome. Needs the Trichrome library, which is pulled in for you.",
       "requires": [
         "gmscore",
         "trichrome"
@@ -1689,6 +1767,7 @@
         "versionCode": "541412334",
         "versionName": "109.0.5414.123"
       },
+      "summary": "The system WebView every app uses to render web content. Also needs Trichrome.",
       "requires": [
         "trichrome"
       ],
@@ -1721,6 +1800,7 @@
         "versionCode": "388739",
         "versionName": "1.0.459878599"
       },
+      "summary": "Files by Google, the file manager.",
       "requires": [
         "gmscore"
       ]
@@ -1780,6 +1860,7 @@
         "versionCode": "33",
         "versionName": "13"
       },
+      "summary": "The storage cleanup flow Settings opens when space runs low.",
       "removes": [
         "StorageManager"
       ]
@@ -1809,6 +1890,7 @@
         "versionCode": "47595614",
         "versionName": "6.29.0.519265844"
       },
+      "summary": "Google Photos, with backup and the built-in editor.",
       "requires": [
         "gmscore"
       ],
@@ -1869,6 +1951,7 @@
         "versionCode": "63675156",
         "versionName": "2023.01.08.501398065.Release"
       },
+      "summary": "Gmail.",
       "requires": [
         "gmscore"
       ]
@@ -1898,6 +1981,7 @@
         "versionCode": "1066662178",
         "versionName": "11.44.0905"
       },
+      "summary": "Google Maps, including navigation.",
       "requires": [
         "gmscore"
       ]
@@ -1927,6 +2011,7 @@
         "versionCode": "3",
         "versionName": "1.2"
       },
+      "summary": "Timeline, which records where the phone has been. Off until you turn it on.",
       "requires": [
         "gmscore"
       ]
@@ -1956,6 +2041,7 @@
         "versionCode": "212806139",
         "versionName": "2.22.297.0.arm64-v8a.alldpi"
       },
+      "summary": "Google Drive.",
       "requires": [
         "gmscore"
       ]
@@ -1985,6 +2071,7 @@
         "versionCode": "2017095958",
         "versionName": "2022.30.2-463576837-release"
       },
+      "summary": "Google Calendar.",
       "requires": [
         "gmscore"
       ],
@@ -2018,6 +2105,7 @@
         "versionCode": "84000598",
         "versionName": "8.4 (503542421)"
       },
+      "summary": "Google Calculator.",
       "removes": [
         "ExactCalculator",
         "Calculator"
@@ -2048,6 +2136,7 @@
         "versionCode": "42012013",
         "versionName": "4.2.20230104.501478140"
       },
+      "summary": "Pixel Recorder, with on-device transcription.",
       "requires": [
         "gmscore"
       ],
@@ -2864,7 +2953,8 @@
       "version": {
         "versionCode": "18000005",
         "versionName": "nexus_wallpapers_20220926"
-      }
+      },
+      "summary": "The Pixel wallpaper collections and the picker for them."
     },
     {
       "id": "emojiwallpaper",
@@ -2890,7 +2980,8 @@
       "version": {
         "versionCode": "149",
         "versionName": "1.0.518495248"
-      }
+      },
+      "summary": "Emoji wallpaper. Builds a pattern from emoji you choose."
     },
     {
       "id": "pixelthemes",
@@ -2928,7 +3019,8 @@
       "version": {
         "versionCode": "2",
         "versionName": "13"
-      }
+      },
+      "summary": "Pixel icon packs and theming options for the launcher."
     },
     {
       "id": "wallet",
@@ -2955,6 +3047,7 @@
         "versionCode": "10000000",
         "versionName": "1.0.0.0"
       },
+      "summary": "The Wallet tile in quick settings, for cards and passes.",
       "requires": [
         "gmscore"
       ]
@@ -2984,6 +3077,7 @@
         "versionCode": "452937",
         "versionName": "1.4.489941911 (452937)"
       },
+      "summary": "Digital Wellbeing, with screen time and bedtime mode.",
       "requires": [
         "gmscore"
       ]
@@ -3019,6 +3113,60 @@
       ]
     },
     {
+      "id": "digitalkey",
+      "name": "Digital car key",
+      "group": "digitalkey",
+      "files": [
+        {
+          "path": "system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml",
+          "asset": "9ae0b7f339b65a7f-org.carconnectivity.android.digitalkey.timesync.xml.gz",
+          "sha256": "9ae0b7f339b65a7f4725f0b994b869a7f0482f1b64eaa63dad8272d31e1e4c5f",
+          "size": 862,
+          "encoding": "gzip",
+          "asset_sha256": "b96954bf31e2cdaca01201af03f8b277c949a9b1506934c4d8025297db03f469",
+          "asset_size": 598,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar",
+          "asset": "f324a16f5829beb6-org.carconnectivity.android.digitalkey.timesync.jar.gz",
+          "sha256": "f324a16f5829beb624e66ff8b76ea5825f6afd5bc900f94ff68ccb73eae856cd",
+          "size": 20106,
+          "encoding": "gzip",
+          "asset_sha256": "b1c70851d5544960e9af5529ba75737c64f2485e2d2bd172c496dc8fc4119b47",
+          "asset_size": 8801,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk",
+          "asset": "05a3d5305893ac64-CccDkTimeSyncService.apk.gz",
+          "sha256": "05a3d5305893ac647588862545ad252e6dba22d3d79b6d7f97aaa48820645570",
+          "size": 33245,
+          "encoding": "gzip",
+          "asset_sha256": "990e9559ceb8dfde27b17343a76914fb09042f3296b897446ff9c3ae873cdc7c",
+          "asset_size": 17195,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "org.carconnectivity.android.digitalkey.timesync"
+      ],
+      "version": {
+        "versionCode": "33",
+        "versionName": "13"
+      },
+      "summary": "Time sync for the digital car key, which lets a phone unlock and start a car. Only on devices with ultra-wideband hardware, so absent from a-series and base models.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
       "id": "partnersetup",
       "name": "Google Partner Setup",
       "group": "partnersetup",
@@ -3043,6 +3191,7 @@
         "versionCode": "1450",
         "versionName": "100.448391512"
       },
+      "summary": "Carrier and retail setup hooks used during first boot.",
       "requires": [
         "gmscore"
       ]
@@ -3071,7 +3220,8 @@
       "version": {
         "versionCode": "33",
         "versionName": "13"
-      }
+      },
+      "summary": "Carrier provisioning, including RCS and Wi-Fi calling setup."
     },
     {
       "id": "euicc",
