@@ -268,3 +268,34 @@ class TestPixelThemesStubs(unittest.TestCase):
             by_package, unclaimed = bm.assign([path], doc["packages"])
             self.assertEqual(by_package["pixelthemes"], [path], rel)
             self.assertEqual(unclaimed, [], rel)
+
+
+class TestCrdroidPresets(unittest.TestCase):
+    """The crDroid presets are crDroid's own NikGApps configs, kept in sync.
+
+    They were first transcribed by hand and picked up eight packages the
+    config switches off -- PixelLauncher among them, which crash-loops on a
+    ROM without the framework support for it.
+    """
+
+    def config(self, name):
+        import nikgapps_config
+        return nikgapps_config.read(
+            str(Path(__file__).parent.parent / "reference" / "nikgapps" / f"{name}.config"))
+
+    def test_presets_match_the_configs(self):
+        import yaml
+        for vid, conf in (("crdroid", "crdroid-official"),
+                          ("crdroid-full", "crdroid-full-official")):
+            want, _ = self.config(conf)
+            for rel in ("a13", "a14", "a15", "a16", "a17"):
+                doc = yaml.safe_load(open(Path(__file__).parent.parent
+                                          / "packages" / f"{rel}.yaml"))
+                got = set(next(v for v in doc["variants"] if v["id"] == vid)["packages"])
+                self.assertEqual(got, want, f"{rel} {vid}")
+
+    def test_a_disabled_member_of_an_enabled_set_stays_out(self):
+        want, _ = self.config("crdroid-official")
+        # PixelSpecifics=1 with PixelLauncher=0 under it.
+        self.assertIn("aiai", want)
+        self.assertNotIn("pixellauncher", want)

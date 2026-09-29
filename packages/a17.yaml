@@ -69,11 +69,9 @@ variants:
     name: crDroid official
     summary: >-
       What crDroid ships as its official package. Maintained by the ROM.
-    packages: [aiai, aicore, androidauto, chrome, emojiwallpaper,
-               gemini, gmscore, gsa, gsf, markup, nowplaying,
-               pixellauncher, pixelthemes, restore, setupwizard,
-               sounds, syncadapters, trichrome, tts, vending, wallet,
-               wallpapers, webview, wellbeing]
+    packages: [aiai, androidauto, gemini, gmscore, gsa, gsf, markup,
+               restore, setupwizard, sounds, syncadapters, trichrome,
+               tts, vending, webview, wellbeing]
 
   - id: crdroid-full
     name: crDroid official full
@@ -81,13 +79,12 @@ variants:
       crDroid's full official selection, adding the everyday Google apps.
     packages: [aiai, aicore, androidauto, calculator, calendar,
                carriersetup, chrome, clock, contacts, devicepolicy,
-               dialer, documentsui, drive, emojiwallpaper, feedback,
-               files, gboard, gemini, gmail, gmscore, gsa, gsf, keep,
-               locationhistory, maps, markup, messages, nowplaying,
-               partnersetup, photos, pixellauncher, pixelthemes,
-               recorder, restore, setupwizard, sounds, storagemanager,
-               syncadapters, trichrome, tts, vending, wallet,
-               wallpapers, webview, wellbeing]
+               dialer, documentsui, drive, feedback, files, gboard,
+               gemini, gmail, gmscore, gsa, gsf, keep, locationhistory,
+               maps, markup, messages, partnersetup, photos, recorder,
+               restore, setupwizard, sounds, storagemanager,
+               syncadapters, trichrome, tts, vending, webview,
+               wellbeing]
 
 groups:
   - id: core
