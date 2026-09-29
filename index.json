@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-09-28T23:53:05Z",
+  "updated": "2026-09-29T00:01:39Z",
   "releases": [
     {
       "id": "a17-cd1a.260905.001.b1",
@@ -69,7 +69,7 @@
       "device": "komodo",
       "build": "AD1A.240905.004",
       "branch": "a14",
-      "created": "2026-09-28T23:14:07Z",
+      "created": "2026-09-29T00:00:38Z",
       "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a14/releases/a14-ad1a.240905.004/manifest.json",
       "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004"
     },
