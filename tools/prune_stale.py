@@ -32,6 +32,31 @@ def stale(index: dict) -> list[dict]:
     return [r for r in index.get("releases", []) if r["id"] not in keep]
 
 
+def drop_from_branch(repo: str, r: dict) -> None:
+    """Remove a release's manifest from its version branch.
+
+    The index is rebuilt from those manifests, so leaving one behind brings the
+    entry straight back pointing at assets that no longer exist.
+    """
+    branch = f"a{r['android']['version']}"
+    path = f"releases/{r['id']}"
+    subprocess.run(["git", "fetch", "-q", "origin",
+                    f"refs/heads/{branch}:refs/remotes/origin/{branch}"], check=False)
+    wt = f"/tmp/prune-{branch}"
+    subprocess.run(["rm", "-rf", wt], check=False)
+    subprocess.run(["git", "worktree", "add", "-q", wt, f"origin/{branch}"], check=True)
+    try:
+        subprocess.run(["git", "checkout", "-q", "-B", branch, f"origin/{branch}"],
+                       cwd=wt, check=True)
+        subprocess.run(["git", "rm", "-rq", path], cwd=wt, check=True)
+        subprocess.run(["git", "commit", "-q", "-m",
+                        f"Remove the superseded {r['device']} release"], cwd=wt, check=True)
+        subprocess.run(["git", "push", "-q", "origin", branch], cwd=wt, check=True)
+        print(f"  removed {path} from {branch}")
+    finally:
+        subprocess.run(["git", "worktree", "remove", "--force", wt], check=False)
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--repo", required=True, help="owner/name")
@@ -56,20 +81,13 @@ def main() -> int:
         gh("release", "delete", r["id"], "--repo", args.repo, "--yes",
            "--cleanup-tag", check=False)
         print("  deleted release and tag")
-        # The index is rebuilt from the manifests on the version branches, so
-        # the release directory has to go too or the entry comes straight back
-        # pointing at assets that no longer exist.
-        branch = f"a{r['android']['version']}"
-        subprocess.run(["git", "fetch", "-q", "origin",
-                        f"refs/heads/{branch}:refs/remotes/origin/{branch}"],
-                       check=False)
-        rc = subprocess.run(
-            ["git", "push", "-q", "origin",
-             f":refs/heads/tmp-prune-{r['id']}"], capture_output=True)
-        _ = rc
-        print(f"  remove releases/{r['id']} from branch {branch}, then rebuild the index")
+        drop_from_branch(args.repo, r)
     if not args.delete:
         print("\ndry run; pass --delete to remove them")
+        return 0
+
+    print("\nnow rebuild the index:")
+    print(f"  python3 tools/rebuild_index.py --repo {args.repo} --index index.json")
     return 0
 
 
