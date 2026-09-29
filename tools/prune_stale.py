@@ -55,7 +55,19 @@ def main() -> int:
             continue
         gh("release", "delete", r["id"], "--repo", args.repo, "--yes",
            "--cleanup-tag", check=False)
-        print(f"  deleted release and tag")
+        print("  deleted release and tag")
+        # The index is rebuilt from the manifests on the version branches, so
+        # the release directory has to go too or the entry comes straight back
+        # pointing at assets that no longer exist.
+        branch = f"a{r['android']['version']}"
+        subprocess.run(["git", "fetch", "-q", "origin",
+                        f"refs/heads/{branch}:refs/remotes/origin/{branch}"],
+                       check=False)
+        rc = subprocess.run(
+            ["git", "push", "-q", "origin",
+             f":refs/heads/tmp-prune-{r['id']}"], capture_output=True)
+        _ = rc
+        print(f"  remove releases/{r['id']} from branch {branch}, then rebuild the index")
     if not args.delete:
         print("\ndry run; pass --delete to remove them")
     return 0
