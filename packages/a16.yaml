@@ -20,6 +20,10 @@ exclude:
   # updated by Play. Left out so Play installs the build matching the device.
   - GoogleCamera
 
+  # The GMS Chimera modules under here are deliberately not shipped; Play
+  # delivers them. Keeps them out of the unclaimed report.
+  - PrebuiltGmsCore
+
 # Preset selections following NikGApps' editions, each building on the one
 # before it. Tiers name packages rather than families because they cut across
 # them: stock takes the Pixel launcher but not the wallpapers.
@@ -175,9 +179,14 @@ packages:
     package: com.google.android.gms
     include:
       - product/apex/com.google.android.gmssystem*.apex
-      # The directory and its chimera modules carry release-codename suffixes
-      # (PrebuiltGmsCoreSc, PrebuiltGmsCoreVic_*), so match the family.
-      - product/priv-app/PrebuiltGmsCore*/**
+      # Ship only the base GMS apk (or, on a17, the apex above), not the bundled
+      # Chimera modules -- Play delivers those on first sync, which is how
+      # NikGApps keeps its size down. Layout varies: a13-a15 keep the base in
+      # PrebuiltGmsCore/, a16 in its own PrebuiltGmsCoreVic/. GoogleCertificates
+      # and the rest arrive from Play, so RCS and attestation can lag until the
+      # first sync finishes.
+      - product/priv-app/PrebuiltGmsCore/*.apk
+      - product/priv-app/PrebuiltGmsCoreVic/**
       - product/etc/permissions/privapp-permissions-google*.xml
       # The allowlists are spread across product, system and system_ext;
       # GoogleServicesFramework and CarrierSetup are only in the system_ext
