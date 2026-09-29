@@ -209,6 +209,14 @@ packages:
       - product/etc/sysconfig/google-system-apps-update-ownership.xml
       - product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml
       - product/etc/default-permissions/default-permissions.xml
+    # A static RRO wiring GMS as the framework default for network/fused
+    # location, autofill, credential manager, wallet and nearby -- configs a
+    # real Pixel sets but AOSP-based ROMs leave empty. Synthetic; see
+    # tools/mk_gmscore_overlay.sh.
+    kang:
+      - file: synth/GmsCoreOverlay.apk
+        path: product/overlay/GmsCoreOverlay.apk
+        synthetic: true
 
   - id: androidauto
     name: Android Auto

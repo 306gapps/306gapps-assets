@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="config_enableAutoPowerModes">false</bool>
+    <bool name="config_enableFusedLocationOverlay">false</bool>
+    <bool name="config_enableGeocoderOverlay">false</bool>
+    <bool name="config_enableGeofenceOverlay">false</bool>
+    <bool name="config_enableNetworkLocationOverlay">false</bool>
+    <bool name="vvm3_enabled">false</bool>
+</resources>
