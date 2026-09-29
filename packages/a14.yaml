@@ -212,6 +212,14 @@ packages:
     package: com.google.android.projection.gearhead
     include:
       - product/priv-app/AndroidAutoStubPrebuilt/**
+    # A static RRO that names Gearhead for the system automotive-projection role.
+    # A real Pixel's framework sets config_systemAutomotiveProjection, so the OTA
+    # ships no overlay; an AOSP-based ROM that leaves it empty rejects Android
+    # Auto without this. Synthetic -- see tools/mk_aa_overlay.sh.
+    kang:
+      - file: synth/AndroidAutoProjectionOverlay.apk
+        path: product/overlay/AndroidAutoProjectionOverlay.apk
+        synthetic: true
 
   - id: gsf
     name: Google Services Framework
