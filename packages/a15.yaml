@@ -149,8 +149,6 @@ groups:
     name: Digital Wellbeing
   - id: androidauto
     name: Android Auto
-  - id: digitalkey
-    name: Digital car key
   - id: partnersetup
     name: Google Partner Setup
   - id: carrier
@@ -776,7 +774,7 @@ packages:
 
   - id: digitalkey
     name: Digital car key
-    group: digitalkey
+    group: pixel
     requires: [gmscore]
     summary: >-
       Time sync for the digital car key, which lets a phone unlock and
