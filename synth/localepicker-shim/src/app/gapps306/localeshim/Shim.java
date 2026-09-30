@@ -2,6 +2,7 @@ package app.gapps306.localeshim;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import com.android.internal.app.LocalePicker;
 import com.android.internal.app.LocalePickerWithRegion;
@@ -30,6 +31,8 @@ public class Shim extends Activity implements LocalePickerWithRegion.LocaleSelec
     public void onLocaleSelected(LocaleStore.LocaleInfo locale) {
         if (locale != null) {
             LocalePicker.updateLocale(locale.getLocale());
+            // Or the wizard re-applies its region default on resume.
+            Settings.Global.putInt(getContentResolver(), "is_locale_set", 1);
         }
         setResult(RESULT_OK);
         finish();

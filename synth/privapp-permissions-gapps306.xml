@@ -2,5 +2,9 @@
 <permissions>
     <privapp-permissions package="app.gapps306.localeshim">
         <permission name="android.permission.CHANGE_CONFIGURATION"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
+        <permission name="android.permission.MODIFY_DAY_NIGHT_MODE"/>
+        <permission name="lineageos.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
 </permissions>

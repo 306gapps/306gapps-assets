@@ -24,7 +24,12 @@ mkdir -p "$work/classes"
     -d "$work/classes" "$SRC"/src/app/gapps306/localeshim/*.java
 "$ANDROID_BUILD_TOOLS/d8" --lib "$ANDROID_JAR" --min-api 30 --output "$work" \
     "$work"/classes/app/gapps306/localeshim/*.class
-"$ANDROID_BUILD_TOOLS/aapt2" link -o "$work/base.apk" --manifest "$SRC/AndroidManifest.xml" -I "$ANDROID_JAR"
+link_args=(link -o "$work/base.apk" --manifest "$SRC/AndroidManifest.xml" -I "$ANDROID_JAR")
+if [ -d "$SRC/res" ]; then
+    "$ANDROID_BUILD_TOOLS/aapt2" compile --dir "$SRC/res" -o "$work/res.zip"
+    link_args+=("$work/res.zip")
+fi
+"$ANDROID_BUILD_TOOLS/aapt2" "${link_args[@]}"
 ( cd "$work" && zip -qj base.apk classes.dex )
 "$ANDROID_BUILD_TOOLS/zipalign" -f 4 "$work/base.apk" "$work/aligned.apk"
 keytool -genkeypair -keystore "$work/ks.jks" -storepass sixgapps -keypass sixgapps -alias o \

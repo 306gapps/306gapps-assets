@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.gapps306.localeshim" android:versionCode="2" android:versionName="2">
+    package="app.gapps306.localeshim" android:versionCode="15" android:versionName="15">
     <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="34" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <application android:label="Language &amp; region" android:hasCode="true"
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES" />
+    <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
+    <uses-permission android:name="lineageos.permission.WRITE_SECURE_SETTINGS" />
+    <application android:label="Setup helper" android:hasCode="true"
         android:usesNonSdkApi="true">
         <activity
             android:name=".Shim"
@@ -13,6 +17,16 @@
             android:theme="@android:style/Theme.DeviceDefault.Settings">
             <intent-filter android:priority="100">
                 <action android:name="com.google.android.settings.localepicker.LOCALE_REGION_PICKER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".OemPostSetup"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.DeviceDefault.Settings">
+            <intent-filter android:priority="100">
+                <action android:name="com.android.setupwizard.OEM_POST_SETUP" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
