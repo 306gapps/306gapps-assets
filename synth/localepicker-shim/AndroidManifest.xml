@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.gapps306.localeshim" android:versionCode="1" android:versionName="1">
+    <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="34" />
+    <application android:label="Language &amp; region" android:hasCode="true">
+        <activity
+            android:name=".Shim"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter android:priority="100">
+                <action android:name="com.google.android.settings.localepicker.LOCALE_REGION_PICKER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

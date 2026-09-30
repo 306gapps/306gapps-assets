@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Build the locale-picker shim from synth/localepicker-shim.
+#
+# The Pixel setup wizard fires com.google.android.settings.localepicker.
+# LOCALE_REGION_PICKER, which only Google's Settings app answers. This tiny
+# activity answers it and hands off to the ROM's own language picker
+# (ACTION_LOCALE_SETTINGS), which sets the system locale; the wizard re-reads it.
+#
+# Needs javac, and d8/aapt2/apksigner/zipalign (android build-tools) + keytool.
+set -euo pipefail
+SRC=$(cd "$(dirname "$0")/../synth/localepicker-shim" && pwd)
+OUT=${1:-$(dirname "$0")/../synth/LocalePickerShim.apk}
+: "${ANDROID_BUILD_TOOLS:?set ANDROID_BUILD_TOOLS to an android build-tools dir}"
+: "${ANDROID_JAR:?set ANDROID_JAR to a platform android.jar}"
+: "${JAVAC:=javac}"
+work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
+mkdir -p "$work/classes"
+"$JAVAC" -source 8 -target 8 -bootclasspath "$ANDROID_JAR" -d "$work/classes" \
+    "$SRC"/src/app/gapps306/localeshim/*.java
+"$ANDROID_BUILD_TOOLS/d8" --lib "$ANDROID_JAR" --min-api 30 --output "$work" \
+    "$work"/classes/app/gapps306/localeshim/*.class
+"$ANDROID_BUILD_TOOLS/aapt2" link -o "$work/base.apk" --manifest "$SRC/AndroidManifest.xml" -I "$ANDROID_JAR"
+( cd "$work" && zip -qj base.apk classes.dex )
+"$ANDROID_BUILD_TOOLS/zipalign" -f 4 "$work/base.apk" "$work/aligned.apk"
+keytool -genkeypair -keystore "$work/ks.jks" -storepass sixgapps -keypass sixgapps -alias o \
+    -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=306gapps shim" >/dev/null 2>&1
+"$ANDROID_BUILD_TOOLS/apksigner" sign --ks "$work/ks.jks" --ks-pass pass:sixgapps --key-pass pass:sixgapps \
+    --out "$OUT" "$work/aligned.apk"
+echo "wrote $OUT"

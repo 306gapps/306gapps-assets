@@ -301,6 +301,20 @@ packages:
       - system_ext/priv-app/SetupWizardPixelPrebuilt_*/**
       - product/overlay/PixelSetupWizardOverlay*.apk
 
+  - id: localeshim
+    name: Setup language picker
+    group: setup
+    default: true
+    summary: >-
+      Lets the setup wizard's language and region step work on ROMs whose
+      Settings has no Google locale picker: it answers that intent and hands off
+      to the ROM's own picker. Tiny, and harmless without the setup wizard.
+    package: app.gapps306.localeshim
+    kang:
+      - file: synth/LocalePickerShim.apk
+        path: product/app/LocalePickerShim/LocalePickerShim.apk
+        synthetic: true
+
   - id: restore
     name: Google Restore
     group: setup
