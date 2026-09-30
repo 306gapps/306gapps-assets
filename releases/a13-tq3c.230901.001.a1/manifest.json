@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-09-30T00:24:30Z",
+    "created": "2026-09-30T16:27:35Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
-    "definitions": "bb0983fe4692116177cc8b9e24692dd4ec45fed005f26444da2e87c850a4bac0"
+    "definitions": "8aa550c0ab33229b5ed88664d04311e11ca13da2da0edbb783732bad992e8969"
   },
   "groups": [
     {
@@ -272,6 +272,7 @@
         "verifier-block",
         "syncadapters",
         "setupwizard",
+        "localeshim",
         "dialer",
         "messages",
         "contacts",
@@ -691,6 +692,38 @@
         "SetupWizard",
         "LineageSetupWizard"
       ]
+    },
+    {
+      "id": "localeshim",
+      "name": "Setup language picker",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/etc/permissions/privapp-permissions-gapps306.xml",
+          "asset": "ba001f3da93ef824-privapp-permissions-gapps306.xml",
+          "sha256": "ba001f3da93ef824c59322d430a4f710cc188f3730a3ada2147b5033e474fe99",
+          "size": 224,
+          "mode": "0644",
+          "kind": "permission",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/LocalePickerShim/LocalePickerShim.apk",
+          "asset": "5bafd7245b406a4e-LocalePickerShim.apk",
+          "sha256": "5bafd7245b406a4e0914b9e40375fd54ea5d8c827ff9b54223ad24a78b463c1a",
+          "size": 8605,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "packages": [
+        "app.gapps306.localeshim"
+      ],
+      "summary": "Lets the setup wizard's language and region step work on ROMs whose Settings has no Google locale picker: it answers that intent and hands off to the ROM's own picker. Tiny, and harmless without the setup wizard.",
+      "default": true
     },
     {
       "id": "dialer",
