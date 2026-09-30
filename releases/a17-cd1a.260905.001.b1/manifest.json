@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/kodiak-ota-cd1a.260905.001.b1-f5cd5d66.zip",
       "sha256": "f5cd5d663032ec188dda9db5568e30574801b38b6e41a7c12170b28b483a4486"
     },
-    "created": "2026-09-30T15:49:39Z",
+    "created": "2026-09-30T23:21:02Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1",
     "definitions": "c5a487e088449bbb97b1efa27ec3e981bf8dd73bb9b664b2c5aed4dc8b8be530"
   },
@@ -916,9 +916,9 @@
       "files": [
         {
           "path": "product/etc/permissions/privapp-permissions-gapps306.xml",
-          "asset": "ba001f3da93ef824-privapp-permissions-gapps306.xml",
-          "sha256": "ba001f3da93ef824c59322d430a4f710cc188f3730a3ada2147b5033e474fe99",
-          "size": 224,
+          "asset": "ffdf17526c2c41c0-privapp-permissions-gapps306.xml",
+          "sha256": "ffdf17526c2c41c013b15439fc1fbe425269b5b80dc66554c5b5743f08f2770d",
+          "size": 508,
           "mode": "0644",
           "kind": "permission",
           "kanged": true,
@@ -926,9 +926,9 @@
         },
         {
           "path": "product/priv-app/LocalePickerShim/LocalePickerShim.apk",
-          "asset": "5bafd7245b406a4e-LocalePickerShim.apk",
-          "sha256": "5bafd7245b406a4e0914b9e40375fd54ea5d8c827ff9b54223ad24a78b463c1a",
-          "size": 8605,
+          "asset": "730be09287428f09-LocalePickerShim.apk",
+          "sha256": "730be09287428f09997ec1f70e30f81e7deb140dc4ba9f7a28b959677048cd2b",
+          "size": 12701,
           "mode": "0644",
           "kind": "apk",
           "kanged": true,
