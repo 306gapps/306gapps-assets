@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-bp1a.250505.005-8997fae7.zip",
       "sha256": "8997fae7ef176ff6cd7ee35bf1c6435fb3ec30ce2b69b28e572f283e7443e266"
     },
-    "created": "2026-09-29T13:39:23Z",
+    "created": "2026-09-30T00:09:35Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bp1a.250505.005",
-    "definitions": "110ee824a8b3f601969cc7320fd0a3724c29efcfacfcbe93b774295431bb6027"
+    "definitions": "a5061e4fcfd8c03953ec181493c930371dfefa5b096f14dda4ad1bb7355eee0b"
   },
   "groups": [
     {
@@ -347,16 +347,9 @@
         "tts",
         "gsa",
         "trichrome",
-        "chrome",
         "webview",
         "markup",
         "sounds",
-        "pixellauncher",
-        "wallpapers",
-        "emojiwallpaper",
-        "pixelthemes",
-        "aicore",
-        "wallet",
         "wellbeing",
         "androidauto"
       ],
@@ -395,12 +388,7 @@
         "clock",
         "recorder",
         "sounds",
-        "pixellauncher",
-        "wallpapers",
-        "emojiwallpaper",
-        "pixelthemes",
         "aicore",
-        "wallet",
         "wellbeing",
         "androidauto",
         "partnersetup",
@@ -538,6 +526,16 @@
           "kind": "sysconfig"
         },
         {
+          "path": "product/overlay/GmsCoreOverlay.apk",
+          "asset": "102534101be9a419-GmsCoreOverlay.apk",
+          "sha256": "102534101be9a419947c4b7abff9d88d774534bbf906cd4bc734eff932bd8318",
+          "size": 16716,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/priv-app/PrebuiltGmsCore/PrebuiltGmsCoreVic.apk",
           "asset": "f2311d56efbfe69f-PrebuiltGmsCoreVic.apk.gz",
           "sha256": "f2311d56efbfe69f210eadeadb35199018cad7d3f5eb23dad193fdee5cf0d7a0",
@@ -545,150 +543,6 @@
           "encoding": "gzip",
           "asset_sha256": "3e5c7531fc0982739d32a5796b27e0fdd989be9a675a77616480114c65bdd75c",
           "asset_size": 88576017,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_AdsDynamite.uncompressed.apk",
-          "asset": "0963ed9e7e4aac06-PrebuiltGmsCoreVic_AdsDynamite.uncompressed.apk.gz",
-          "sha256": "0963ed9e7e4aac064f380a4b97b3a64a43daf8ef40106dfd8ad39bd09f69dedc",
-          "size": 4294660,
-          "encoding": "gzip",
-          "asset_sha256": "65919f901a6acdab39844907d4143719b5ecd88a59cb2c2f676070944d798fff",
-          "asset_size": 1867880,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_CronetDynamite.apk",
-          "asset": "5bcb834f95fcda39-PrebuiltGmsCoreVic_CronetDynamite.apk.gz",
-          "sha256": "5bcb834f95fcda39b0fcdfbb2adb082ca3e02e111d31bf3c791e1445ee250d6f",
-          "size": 10398931,
-          "encoding": "gzip",
-          "asset_sha256": "dfc93db4852648b4c13a929e8782e8471a00b00dd147ee45cfa8f26a0faa5a7c",
-          "asset_size": 5612115,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteLoader.uncompressed.apk",
-          "asset": "ac55cde8a7b98332-PrebuiltGmsCoreVic_DynamiteLoader.uncompressed.apk.gz",
-          "sha256": "ac55cde8a7b98332477eb796534613af0bcdee4ff20146a35188477e2cf41e53",
-          "size": 193800,
-          "encoding": "gzip",
-          "asset_sha256": "a9116e450d85e73161bbe055567e8545be5d916e54028b2f4a8c7a200c8d67b6",
-          "asset_size": 94104,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteModulesA.apk",
-          "asset": "d639e52496cf18f5-PrebuiltGmsCoreVic_DynamiteModulesA.apk.gz",
-          "sha256": "d639e52496cf18f5ebc2c9a3d792ec4c2ccbd80878264ec0f3161fd26f0678a5",
-          "size": 1106030,
-          "encoding": "gzip",
-          "asset_sha256": "05c7271e93d294f66d0fa49754df230ef205180d04ca22bf9a850235be5a0c02",
-          "asset_size": 481631,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_DynamiteModulesC.apk",
-          "asset": "04860131443420e2-PrebuiltGmsCoreVic_DynamiteModulesC.apk.gz",
-          "sha256": "04860131443420e20b140ae28f99268ce7ba99fc8746c11ed9dfffd13ff74d0d",
-          "size": 2391091,
-          "encoding": "gzip",
-          "asset_sha256": "092d30c66507364f1823bedc5051ed6e5767120ebf9d40128471247d37269b52",
-          "asset_size": 1076882,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_GoogleCertificates.apk",
-          "asset": "1a851744654c4709-PrebuiltGmsCoreVic_GoogleCertificates.apk.gz",
-          "sha256": "1a851744654c47090e991964553b64cc6477bf8620ee897ee2959c84a0987f8d",
-          "size": 279820,
-          "encoding": "gzip",
-          "asset_sha256": "d5b6899c53e439b95c8c34cfcb00bb1d59c59a958575d4aa2af97c7d47a26ea2",
-          "asset_size": 160654,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_MapsDynamite.apk",
-          "asset": "8877b557f09c8da7-PrebuiltGmsCoreVic_MapsDynamite.apk.gz",
-          "sha256": "8877b557f09c8da733d1ab552ab32f9329bc35285e2efe53e11659badb737184",
-          "size": 2602775,
-          "encoding": "gzip",
-          "asset_sha256": "efd74cf40ce45826a4137ed71cfa8657bffd44872c4ed75c3c2d2e31be0db06e",
-          "asset_size": 1208438,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/app_chimera/m/PrebuiltGmsCoreVic_MeasurementDynamite.apk",
-          "asset": "724c9ae290fe9b12-PrebuiltGmsCoreVic_MeasurementDynamite.apk.gz",
-          "sha256": "724c9ae290fe9b12b31db03878980669ea49646a63f30d3cc5febc921c94a94f",
-          "size": 881928,
-          "encoding": "gzip",
-          "asset_sha256": "10fd778c41d66d70eeb53a11e793e6d7ffe50a0edeb0e03087f8ccc8fb69f5e7",
-          "asset_size": 361303,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/independent/AndroidPlatformServices/AndroidPlatformServices.apk",
-          "asset": "e41c84c7981babf0-AndroidPlatformServices.apk.gz",
-          "sha256": "e41c84c7981babf0338b61b4dcf406c9e274318f5ddda5b78f73fb0f4fe41f2e",
-          "size": 13841872,
-          "encoding": "gzip",
-          "asset_sha256": "a615f6bea9f3796a047620de3a5217bc481ac1a7226e440ffdd6cc9fdf35a4de",
-          "asset_size": 5089713,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/MlkitBarcodeUIPrebuilt.apk",
-          "asset": "dcf7bfd6f83c8d1a-MlkitBarcodeUIPrebuilt.apk.gz",
-          "sha256": "dcf7bfd6f83c8d1a2b76b6d425512121fd9c912edb56aadeb29f6e493ef06267",
-          "size": 18462766,
-          "encoding": "gzip",
-          "asset_sha256": "f0291e14049deaa5b1c289477ee2f176f7add6fdcae79e577080d6a95fc1a78e",
-          "asset_size": 7419730,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/TfliteDynamitePrebuilt.apk",
-          "asset": "7bf8bba2e5ad9e26-TfliteDynamitePrebuilt.apk.gz",
-          "sha256": "7bf8bba2e5ad9e263e3bf15336565a6d763c8d6a19f4c916443257de6ba2f8c8",
-          "size": 8208035,
-          "encoding": "gzip",
-          "asset_sha256": "c2a1f135b61bc91afa8b044e872fba31269c393a2f2d8449c7b73ec462e6cdf8",
-          "asset_size": 3783799,
-          "mode": "0644",
-          "context": "",
-          "kind": "apk"
-        },
-        {
-          "path": "product/priv-app/PrebuiltGmsCore/m/optional/VisionBarcodePrebuilt.apk",
-          "asset": "53104c023d5e78b4-VisionBarcodePrebuilt.apk.gz",
-          "sha256": "53104c023d5e78b4de5d380a6393a0887abdab39cecfc42b33dbd2830cf788f8",
-          "size": 5269374,
-          "encoding": "gzip",
-          "asset_sha256": "80b4e27b757f91b9be655e4b990c8283a29b95b5966c4dd04bc654d583591642",
-          "asset_size": 2696024,
           "mode": "0644",
           "context": "",
           "kind": "apk"
@@ -721,10 +575,6 @@
       "packages": [
         "com.google.android.gms"
       ],
-      "version": {
-        "versionCode": "244532035",
-        "versionName": "24.45.32 (260400-693815026)"
-      },
       "summary": "Core Google services. Everything else depends on it. On Android 17 the bulk of it ships as an apex, and the priv-app directory holds only the Chimera modules.",
       "required": true
     },
@@ -3597,6 +3447,16 @@
       "group": "androidauto",
       "files": [
         {
+          "path": "product/overlay/AndroidAutoProjectionOverlay.apk",
+          "asset": "f6775e3c6cd1c5c9-AndroidAutoProjectionOverlay.apk",
+          "sha256": "f6775e3c6cd1c5c929aa5a93226948b670e89de0ac0adffa5ec1d36a8c504096",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk",
           "asset": "28bace99ff6a5ce6-AndroidAutoStubPrebuilt.apk.gz",
           "sha256": "28bace99ff6a5ce671109a7c47a1dae2ff8eeb8f9ee5faa3f8de53964d9ff7f4",
@@ -3612,10 +3472,6 @@
       "packages": [
         "com.google.android.projection.gearhead"
       ],
-      "version": {
-        "versionCode": "12543850",
-        "versionName": "1.2.543850-stub"
-      },
       "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
       "requires": [
         "gmscore"
