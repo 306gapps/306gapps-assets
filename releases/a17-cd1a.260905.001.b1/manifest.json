@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/kodiak-ota-cd1a.260905.001.b1-f5cd5d66.zip",
       "sha256": "f5cd5d663032ec188dda9db5568e30574801b38b6e41a7c12170b28b483a4486"
     },
-    "created": "2026-09-29T23:52:58Z",
+    "created": "2026-09-30T15:49:39Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.260905.001.b1",
-    "definitions": "85860d80cdcc08e89eaa7ad77c7f586a9f75a1c7a2990c88faa74466b49683fd"
+    "definitions": "c5a487e088449bbb97b1efa27ec3e981bf8dd73bb9b664b2c5aed4dc8b8be530"
   },
   "groups": [
     {
@@ -305,6 +305,7 @@
         "verifier-block",
         "syncadapters",
         "setupwizard",
+        "localeshim",
         "restore",
         "searchselector",
         "dialer",
@@ -907,6 +908,38 @@
         "SetupWizard",
         "LineageSetupWizard"
       ]
+    },
+    {
+      "id": "localeshim",
+      "name": "Setup language picker",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/etc/permissions/privapp-permissions-gapps306.xml",
+          "asset": "ba001f3da93ef824-privapp-permissions-gapps306.xml",
+          "sha256": "ba001f3da93ef824c59322d430a4f710cc188f3730a3ada2147b5033e474fe99",
+          "size": 224,
+          "mode": "0644",
+          "kind": "permission",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/LocalePickerShim/LocalePickerShim.apk",
+          "asset": "5bafd7245b406a4e-LocalePickerShim.apk",
+          "sha256": "5bafd7245b406a4e0914b9e40375fd54ea5d8c827ff9b54223ad24a78b463c1a",
+          "size": 8605,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "packages": [
+        "app.gapps306.localeshim"
+      ],
+      "summary": "Lets the setup wizard's language and region step work on ROMs whose Settings has no Google locale picker: it answers that intent and hands off to the ROM's own picker. Tiny, and harmless without the setup wizard.",
+      "default": true
     },
     {
       "id": "restore",
