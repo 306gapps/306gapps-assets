@@ -7,7 +7,7 @@
             android:name=".Shim"
             android:exported="true"
             android:excludeFromRecents="true"
-            android:theme="@android:style/Theme.NoDisplay">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter android:priority="100">
                 <action android:name="com.google.android.settings.localepicker.LOCALE_REGION_PICKER" />
                 <category android:name="android.intent.category.DEFAULT" />
