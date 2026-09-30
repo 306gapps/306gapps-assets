@@ -306,7 +306,10 @@ packages:
     package: app.gapps306.localeshim
     kang:
       - file: synth/LocalePickerShim.apk
-        path: product/app/LocalePickerShim/LocalePickerShim.apk
+        path: product/priv-app/LocalePickerShim/LocalePickerShim.apk
+        synthetic: true
+      - file: synth/privapp-permissions-gapps306.xml
+        path: product/etc/permissions/privapp-permissions-gapps306.xml
         synthetic: true
 
   - id: restore

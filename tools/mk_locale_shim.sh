@@ -2,9 +2,12 @@
 # Build the locale-picker shim from synth/localepicker-shim.
 #
 # The Pixel setup wizard fires com.google.android.settings.localepicker.
-# LOCALE_REGION_PICKER, which only Google's Settings app answers. This tiny
-# activity answers it and hands off to the ROM's own language picker
-# (ACTION_LOCALE_SETTINGS), which sets the system locale; the wizard re-reads it.
+# LOCALE_REGION_PICKER, which only Google's Settings app answers. This priv-app
+# answers it, hosts the platform's own language/region picker, and sets the
+# system locale via com.android.internal.app.LocalePicker; the wizard re-reads it.
+#
+# Compiling against the internal picker needs a framework classpath jar (the
+# ROM's turbine framework.jar), set via FRAMEWORK_JAR.
 #
 # Needs javac, and d8/aapt2/apksigner/zipalign (android build-tools) + keytool.
 set -euo pipefail
@@ -12,11 +15,13 @@ SRC=$(cd "$(dirname "$0")/../synth/localepicker-shim" && pwd)
 OUT=${1:-$(dirname "$0")/../synth/LocalePickerShim.apk}
 : "${ANDROID_BUILD_TOOLS:?set ANDROID_BUILD_TOOLS to an android build-tools dir}"
 : "${ANDROID_JAR:?set ANDROID_JAR to a platform android.jar}"
+: "${FRAMEWORK_JAR:=$SRC/framework-classpath.jar}"
 : "${JAVAC:=javac}"
+[ -f "$FRAMEWORK_JAR" ] || { echo "need FRAMEWORK_JAR (ROM turbine framework.jar) at $FRAMEWORK_JAR"; exit 1; }
 work=$(mktemp -d); trap 'rm -rf "$work"' EXIT
 mkdir -p "$work/classes"
-"$JAVAC" -source 8 -target 8 -bootclasspath "$ANDROID_JAR" -d "$work/classes" \
-    "$SRC"/src/app/gapps306/localeshim/*.java
+"$JAVAC" -source 8 -target 8 -bootclasspath "$ANDROID_JAR" -classpath "$FRAMEWORK_JAR" \
+    -d "$work/classes" "$SRC"/src/app/gapps306/localeshim/*.java
 "$ANDROID_BUILD_TOOLS/d8" --lib "$ANDROID_JAR" --min-api 30 --output "$work" \
     "$work"/classes/app/gapps306/localeshim/*.class
 "$ANDROID_BUILD_TOOLS/aapt2" link -o "$work/base.apk" --manifest "$SRC/AndroidManifest.xml" -I "$ANDROID_JAR"

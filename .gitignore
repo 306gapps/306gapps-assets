@@ -7,3 +7,4 @@ __pycache__/
 /tools/busybox/index-fragment.json
 /out/
 *.idsig
+synth/localepicker-shim/framework-classpath.jar

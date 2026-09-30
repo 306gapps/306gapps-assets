@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.gapps306.localeshim" android:versionCode="1" android:versionName="1">
+    package="app.gapps306.localeshim" android:versionCode="2" android:versionName="2">
     <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="34" />
-    <application android:label="Language &amp; region" android:hasCode="true">
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <application android:label="Language &amp; region" android:hasCode="true"
+        android:usesNonSdkApi="true">
         <activity
             android:name=".Shim"
             android:exported="true"
             android:excludeFromRecents="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:theme="@android:style/Theme.DeviceDefault.Settings">
             <intent-filter android:priority="100">
                 <action android:name="com.google.android.settings.localepicker.LOCALE_REGION_PICKER" />
                 <category android:name="android.intent.category.DEFAULT" />

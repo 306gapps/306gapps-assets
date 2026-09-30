@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <privapp-permissions package="app.gapps306.localeshim">
+        <permission name="android.permission.CHANGE_CONFIGURATION"/>
+    </privapp-permissions>
+</permissions>
