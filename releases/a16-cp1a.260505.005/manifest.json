@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/mustang-ota-cp1a.260505.005-7b16ab03.zip",
       "sha256": "7b16ab0356910934e5e3242df327a19492827633cad925a1f27d215501b3a917"
     },
-    "created": "2026-09-30T16:00:03Z",
+    "created": "2026-09-30T23:30:42Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005",
     "definitions": "008678a15044650cae461824e596f7082c3372ae2430fc4538447741baf5279c"
   },
@@ -857,9 +857,9 @@
       "files": [
         {
           "path": "product/etc/permissions/privapp-permissions-gapps306.xml",
-          "asset": "ba001f3da93ef824-privapp-permissions-gapps306.xml",
-          "sha256": "ba001f3da93ef824c59322d430a4f710cc188f3730a3ada2147b5033e474fe99",
-          "size": 224,
+          "asset": "ffdf17526c2c41c0-privapp-permissions-gapps306.xml",
+          "sha256": "ffdf17526c2c41c013b15439fc1fbe425269b5b80dc66554c5b5743f08f2770d",
+          "size": 508,
           "mode": "0644",
           "kind": "permission",
           "kanged": true,
@@ -867,9 +867,9 @@
         },
         {
           "path": "product/priv-app/LocalePickerShim/LocalePickerShim.apk",
-          "asset": "5bafd7245b406a4e-LocalePickerShim.apk",
-          "sha256": "5bafd7245b406a4e0914b9e40375fd54ea5d8c827ff9b54223ad24a78b463c1a",
-          "size": 8605,
+          "asset": "730be09287428f09-LocalePickerShim.apk",
+          "sha256": "730be09287428f09997ec1f70e30f81e7deb140dc4ba9f7a28b959677048cd2b",
+          "size": 12701,
           "mode": "0644",
           "kind": "apk",
           "kanged": true,
