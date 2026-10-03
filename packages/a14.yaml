@@ -363,6 +363,10 @@ packages:
     include:
       - product/priv-app/Velvet/**
       - product/etc/permissions/velvet_app-privapp-permissions.xml
+    kang:
+      - file: synth/GsaOverlay.apk
+        path: product/overlay/GsaOverlay.apk
+        synthetic: true
 
   - id: gemini
     name: Gemini
@@ -387,6 +391,10 @@ packages:
       - product/etc/permissions/com.google.android.dialer.support.xml
       # Declared by the permissions xml; the dialer will not start without it.
       - product/framework/com.google.android.dialer.support.jar
+    kang:
+      - file: synth/DialerOverlay.apk
+        path: product/overlay/DialerOverlay.apk
+        synthetic: true
 
   - id: messages
     name: Google Messages
@@ -398,6 +406,10 @@ packages:
       - Messaging
     include:
       - product/priv-app/PrebuiltBugle/**
+    kang:
+      - file: synth/MessagesOverlay.apk
+        path: product/overlay/MessagesOverlay.apk
+        synthetic: true
 
   - id: contacts
     name: Google Contacts
@@ -409,6 +421,10 @@ packages:
       Google Contacts, with account sync and caller ID.
     include:
       - product/app/GoogleContacts/**
+    kang:
+      - file: synth/ContactsOverlay.apk
+        path: product/overlay/ContactsOverlay.apk
+        synthetic: true
 
   - id: gboard
     name: Gboard
@@ -438,6 +454,10 @@ packages:
       Google Photos, with backup and the built-in editor.
     include:
       - product/app/Photos/**
+    kang:
+      - file: synth/PhotosOverlay.apk
+        path: product/overlay/PhotosOverlay.apk
+        synthetic: true
 
   - id: markup
     name: Markup
@@ -554,6 +574,10 @@ packages:
       - system_ext/priv-app/NexusLauncherRelease/**
       - system_ext/priv-app/WallpaperPickerGoogleRelease/**
       - system_ext/etc/permissions/com.google.android.apps.pixel.launcherconnector.xml
+    kang:
+      - file: synth/PixelLauncherOverlay.apk
+        path: product/overlay/PixelLauncherOverlay.apk
+        synthetic: true
 
   - id: wallpapers
     name: Pixel wallpapers
@@ -612,6 +636,10 @@ packages:
       Now Playing and Live Caption all route through it.
     include:
       - product/priv-app/DevicePersonalizationAiAiPrebuilt*/**
+    kang:
+      - file: synth/AiaiOverlay.apk
+        path: product/overlay/AiaiOverlay.apk
+        synthetic: true
 
   - id: aicore
     name: AICore
@@ -746,6 +774,10 @@ packages:
     include:
       - product/app/GoogleTTS/**
       - product/tts/google/**
+    kang:
+      - file: synth/TtsOverlay.apk
+        path: product/overlay/TtsOverlay.apk
+        synthetic: true
 
   - id: wellbeing
     name: Digital Wellbeing
@@ -755,6 +787,10 @@ packages:
       Digital Wellbeing, with screen time and bedtime mode.
     include:
       - product/priv-app/WellbeingPrebuilt/**
+    kang:
+      - file: synth/WellbeingOverlay.apk
+        path: product/overlay/WellbeingOverlay.apk
+        synthetic: true
 
   - id: euicc
     name: eSIM support

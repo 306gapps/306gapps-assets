@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_recentsComponentName" translatable="false">com.google.android.apps.nexuslauncher/com.android.quickstep.RecentsActivity</string>
+    <string name="config_secondaryHomePackage" translatable="false">com.google.android.apps.nexuslauncher</string>
+    <string name="exit_to_action_in_initial_setup" translatable="false">com.google.android.apps.nexuslauncher/com.android.quickstep.action.GESTURE_ONBOARDING_ALL_SET</string>
+    <bool name="config_swipe_up_gesture_setting_available">true</bool>
+    <bool name="config_custom_swipe_up_gesture_setting_available">true</bool>
+</resources>

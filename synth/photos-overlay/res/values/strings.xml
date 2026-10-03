@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_defaultGallery" translatable="false">com.google.android.apps.photos</string>
+    <string name="config_systemGallery" translatable="false">com.google.android.apps.photos</string>
+    <string name="config_default_cloud_media_provider_package" translatable="false">com.google.android.apps.photos</string>
+    <string name="config_default_cloud_provider_authority" translatable="false">com.google.android.apps.photos.cloudpicker</string>
+</resources>

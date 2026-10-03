@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_defaultWellbeingPackage" translatable="false">com.google.android.apps.wellbeing</string>
+    <string name="config_systemWellbeing" translatable="false">com.google.android.apps.wellbeing</string>
+</resources>
