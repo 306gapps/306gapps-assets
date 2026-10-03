@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-ad1a.240905.004-323f7f98.zip",
       "sha256": "323f7f981f90e717260356a2ffa7a5c996a3d913235e6ae3cb121a28f40af010"
     },
-    "created": "2026-09-30T23:47:49Z",
+    "created": "2026-10-03T15:01:17Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a14-ad1a.240905.004",
-    "definitions": "5edafe309e131e927942b2d5b9f32d2a1216ec42249eee2711cf08c2914326de"
+    "definitions": "da0cf57c4d4f6c9e65096396525e6d2e5e1991e088f5f6cb47b2488f81e11dc2"
   },
   "groups": [
     {
@@ -309,6 +309,7 @@
         "wallpapers",
         "emojiwallpaper",
         "pixelthemes",
+        "aiai",
         "aicore",
         "wallet",
         "digitalkey",
@@ -342,6 +343,7 @@
         "webview",
         "markup",
         "sounds",
+        "aiai",
         "wellbeing",
         "androidauto"
       ],
@@ -379,6 +381,7 @@
         "calculator",
         "recorder",
         "sounds",
+        "aiai",
         "aicore",
         "wellbeing",
         "androidauto",
@@ -855,6 +858,16 @@
           "kind": "framework"
         },
         {
+          "path": "product/overlay/DialerOverlay.apk",
+          "asset": "f278a64169e24828-DialerOverlay.apk",
+          "sha256": "f278a64169e248286e2edb01b66e968f6c8d36de29f64f3cb1a3e599a369f37c",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/priv-app/GoogleDialer/GoogleDialer.apk",
           "asset": "7d229bd88c6c4568-GoogleDialer.apk.gz",
           "sha256": "7d229bd88c6c456893f9bd75c0bedf72176ee9b0e8cbf4a968f9963a66a5ec08",
@@ -867,13 +880,6 @@
           "kind": "apk"
         }
       ],
-      "packages": [
-        "com.google.android.dialer"
-      ],
-      "version": {
-        "versionCode": "16046248",
-        "versionName": "127.0.620688474"
-      },
       "summary": "Call screening and spam protection.",
       "requires": [
         "gmscore"
@@ -888,6 +894,16 @@
       "group": "messages",
       "files": [
         {
+          "path": "product/overlay/MessagesOverlay.apk",
+          "asset": "6bf14bb012a4efda-MessagesOverlay.apk",
+          "sha256": "6bf14bb012a4efdaf9b24317411f02f729b31acba43db3353e7edb90bbac0536",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/priv-app/PrebuiltBugle/PrebuiltBugle.apk",
           "asset": "4152a94bd321be53-PrebuiltBugle.apk.gz",
           "sha256": "4152a94bd321be5339e711980738c59393dd24261074255cd47e7f917dea180b",
@@ -900,13 +916,6 @@
           "kind": "apk"
         }
       ],
-      "packages": [
-        "com.google.android.apps.messaging"
-      ],
-      "version": {
-        "versionCode": "229794840",
-        "versionName": "messages.android_20240416_00_RC14_alldpi.arm64-v8a.phone"
-      },
       "summary": "RCS-capable SMS client.",
       "requires": [
         "gmscore"
@@ -932,15 +941,18 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "product/overlay/ContactsOverlay.apk",
+          "asset": "77c2aa9064ab0859-ContactsOverlay.apk",
+          "sha256": "77c2aa9064ab08592c8fb8d414cf5f041b2aa2ac24c838b548b392aa2638ac87",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
         }
       ],
-      "packages": [
-        "com.google.android.contacts"
-      ],
-      "version": {
-        "versionCode": "3168631",
-        "versionName": "4.25.22.605409159"
-      },
       "summary": "Google Contacts, with account sync and caller ID.",
       "requires": [
         "gmscore"
@@ -1801,6 +1813,16 @@
           "kind": "apk"
         },
         {
+          "path": "product/overlay/TtsOverlay.apk",
+          "asset": "27ea6bd305120527-TtsOverlay.apk",
+          "sha256": "27ea6bd30512052746f07b107e1eb74a3eea5e66bbacd75b2d7ce46734d79ff5",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/tts/google/de-de/de-de-x-multi-r51.zvoice",
           "asset": "3d9132c3ad087056-de-de-x-multi-r51.zvoice",
           "sha256": "3d9132c3ad08705651d2cb662d291021477efee317d0d08602da8912f80e4c50",
@@ -1846,13 +1868,6 @@
           "kind": "etc"
         }
       ],
-      "packages": [
-        "com.google.android.tts"
-      ],
-      "version": {
-        "versionCode": "210476565",
-        "versionName": "googletts.google-speech-apk_20240319.00_p0.617183227"
-      },
       "summary": "Text to speech, including the offline voice data. That lives outside the app directory; without it only languages downloaded on demand will speak.",
       "requires": [
         "gmscore"
@@ -1863,6 +1878,16 @@
       "name": "Google app and Assistant",
       "group": "search",
       "files": [
+        {
+          "path": "product/overlay/GsaOverlay.apk",
+          "asset": "ee39bb1e8298feec-GsaOverlay.apk",
+          "sha256": "ee39bb1e8298feecb9f53f598d618c91e0bf7a39a95c94ac0ac36b42625d5d1b",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
         {
           "path": "product/priv-app/Velvet/Velvet.apk",
           "asset": "c15e7b2387787f19-Velvet.apk.gz",
@@ -1876,13 +1901,6 @@
           "kind": "apk"
         }
       ],
-      "packages": [
-        "com.google.android.googlequicksearchbox"
-      ],
-      "version": {
-        "versionCode": "301338766",
-        "versionName": "15.17.42.29.arm64"
-      },
       "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
       "requires": [
         "gmscore"
@@ -2122,15 +2140,18 @@
           "mode": "0644",
           "context": "",
           "kind": "apk"
+        },
+        {
+          "path": "product/overlay/PhotosOverlay.apk",
+          "asset": "5db13df578b7ca2d-PhotosOverlay.apk",
+          "sha256": "5db13df578b7ca2dbd8bdc2a0f44e393d3804bc5a618c97e51bced720324c243",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
         }
       ],
-      "packages": [
-        "com.google.android.apps.photos"
-      ],
-      "version": {
-        "versionCode": "48691203",
-        "versionName": "6.64.0.587894741"
-      },
       "summary": "Google Photos, with backup and the built-in editor.",
       "requires": [
         "gmscore"
@@ -3159,6 +3180,16 @@
       "group": "pixel",
       "files": [
         {
+          "path": "product/overlay/PixelLauncherOverlay.apk",
+          "asset": "eb250b53be66bb40-PixelLauncherOverlay.apk",
+          "sha256": "eb250b53be66bb405f47021db3cc35503d7aca93c1376a9aaab52576314cd51a",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
           "asset": "a560faebcb632682-NexusLauncherRelease.apk.gz",
           "sha256": "a560faebcb63268225f03c7dcdc0d188b1f19bedf00b67a6031ffd77f688e2e2",
@@ -3183,13 +3214,6 @@
           "kind": "apk"
         }
       ],
-      "packages": [
-        "com.google.android.apps.nexuslauncher"
-      ],
-      "version": {
-        "versionCode": "907",
-        "versionName": "14"
-      },
       "summary": "Pixel home screen. Pair with gsa for the search bar.",
       "requires": [
         "gmscore"
@@ -3277,6 +3301,27 @@
         "versionName": "14"
       },
       "summary": "Pixel icon packs and theming options for the launcher."
+    },
+    {
+      "id": "aiai",
+      "name": "Device Personalization Services",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/overlay/AiaiOverlay.apk",
+          "asset": "5754bd8063b43b2e-AiaiOverlay.apk",
+          "sha256": "5754bd8063b43b2e9f16f70c9905f4c4c9a406f25f08e2492e7621cd0a69de34",
+          "size": 12620,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "summary": "On-device personalisation. App suggestions, smart text selection, Now Playing and Live Caption all route through it.",
+      "requires": [
+        "gmscore"
+      ]
     },
     {
       "id": "aicore",
@@ -3410,6 +3455,16 @@
       "group": "wellbeing",
       "files": [
         {
+          "path": "product/overlay/WellbeingOverlay.apk",
+          "asset": "3ef9da6862198adb-WellbeingOverlay.apk",
+          "sha256": "3ef9da6862198adbf78791b8ae621ce290971e037f27c9e59d237a33d5b6c150",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
           "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
           "asset": "f5111b9418c637be-WellbeingPrebuilt.apk.gz",
           "sha256": "f5111b9418c637be2f8daf63d10d89fb3cfe3614e477c056dba19794cf16e73b",
@@ -3422,13 +3477,6 @@
           "kind": "apk"
         }
       ],
-      "packages": [
-        "com.google.android.apps.wellbeing"
-      ],
-      "version": {
-        "versionCode": "608297",
-        "versionName": "1.10.632261353 (608297)"
-      },
       "summary": "Digital Wellbeing, with screen time and bedtime mode.",
       "requires": [
         "gmscore"
