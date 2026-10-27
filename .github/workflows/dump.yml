@@ -176,23 +176,21 @@ jobs:
           Source: ${{ matrix.url }}" \
             || echo "release exists, uploading into it"
 
-          # Gigabytes across a hundred-odd assets; --clobber lets a retry pick
-          # up where a transient failure stopped. Long backoff because a 403 here
-          # is usually GitHub's rate limit, which needs minutes to ease.
-          waits="60 120 240 480 0"
-          attempt=0
-          for sleep_for in $waits; do
-            attempt=$((attempt + 1))
-            if gh release upload "$RELEASE" out/assets/* --clobber; then
-              echo "uploaded on attempt $attempt"
-              break
-            fi
-            if [ "$sleep_for" = 0 ]; then
-              echo "::error::upload failed after $attempt attempts"
-              exit 1
-            fi
-            echo "upload attempt $attempt failed; retrying in ${sleep_for}s"
-            sleep "$sleep_for"
+          # Content-addressed names mean an asset already on the release is
+          # correct, so only ever ADD what is missing -- never --clobber, whose
+          # delete-then-reupload loses data when a run is interrupted (e.g. rate
+          # limited). The missing set is recomputed each attempt so retries
+          # resume where the last stopped; long backoff rides out a 403.
+          for sleep_for in 0 60 120 240 480; do
+            [ "$sleep_for" != 0 ] && { echo "retrying in ${sleep_for}s"; sleep "$sleep_for"; }
+            have=$(gh release view "$RELEASE" --json assets --jq '.assets[].name' 2>/dev/null || true)
+            missing=()
+            for f in out/assets/*; do
+              grep -qxF "$(basename "$f")" <<<"$have" || missing+=("$f")
+            done
+            if [ "${#missing[@]}" -eq 0 ]; then echo "all assets present"; break; fi
+            echo "uploading ${#missing[@]} missing asset(s)"
+            gh release upload "$RELEASE" "${missing[@]}" || echo "upload incomplete, will retry"
           done
 
           # A payload missing here fails for users instead.
