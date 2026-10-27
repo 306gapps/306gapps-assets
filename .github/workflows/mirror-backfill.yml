@@ -3,6 +3,9 @@ name: mirror-backfill
 # Copies every published release's payloads from GitHub to the R2 mirror,
 # without re-dumping. For first-time population, or after a dump whose R2 sync
 # was skipped. GitHub stays the source of truth; this only fills the mirror.
+#
+# Uses the release-download CDN and raw.githubusercontent for manifests, not the
+# REST API, so it does not touch GitHub's hourly API rate limit.
 on:
   workflow_dispatch:
 
@@ -26,7 +29,6 @@ jobs:
 
       - name: Sync published assets to R2
         env:
-          GH_TOKEN: ${{ github.token }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: auto
@@ -35,18 +37,22 @@ jobs:
           R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_BUCKET: "306gapps"
-          REPO: ${{ github.repository }}
         run: |
           endpoint="${R2_S3_ENDPOINT:-${R2_ACCOUNT_ID:+https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com}}"
           if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$endpoint" ]; then
             echo "::error::R2 endpoint/credentials not set"; exit 1
           fi
-          ids=$(python3 -c "import json;print('\n'.join(r['id'] for r in json.load(open('index.json'))['releases']))")
-          for id in $ids; do
-            echo "::group::$id"
+          # (manifest_url, asset_base) per release, straight from the local index.
+          python3 -c "import json;[print(r['manifest'], r['asset_base']) for r in json.load(open('index.json'))['releases']]" \
+          | while read -r murl abase; do
+            echo "::group::$abase"
+            curl -fsSL "$murl" -o manifest.json
+            assets=$(python3 -c "import json;print('\n'.join(f['asset'] for p in json.load(open('manifest.json'))['packages'] for f in p['files'] if f.get('asset')))")
             rm -rf dl && mkdir dl
-            gh release download "$id" -R "$REPO" -D dl
+            for a in $assets; do
+              curl -fsSL "$abase/$a" -o "dl/$a" || { echo "::error::failed to fetch $a"; exit 1; }
+            done
             aws s3 sync dl "s3://$R2_BUCKET/" --endpoint-url "$endpoint" --size-only --no-progress
-            rm -rf dl
+            rm -rf dl manifest.json
             echo "::endgroup::"
           done
