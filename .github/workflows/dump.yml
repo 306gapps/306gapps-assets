@@ -59,8 +59,9 @@ jobs:
     if: needs.plan.outputs.any == 'true'
     runs-on: ubuntu-latest
     strategy:
-      # One at a time: each needs ~30 GB of scratch and they share a branch.
-      max-parallel: 1
+      # Each version runs on its own runner and writes only its own version
+      # branch, GitHub release and R2 objects; the index is rebuilt once after.
+      max-parallel: 5
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
@@ -267,24 +268,6 @@ jobs:
           git commit -m "add $RELEASE" || echo "nothing to commit"
           git push origin "$BRANCH"
 
-      - name: Update the index on main
-        env:
-          RELEASE: ${{ matrix.release_id }}
-          BRANCH: a${{ matrix.major }}
-        run: |
-          git checkout -f main
-          git pull --rebase origin main
-          python3 tools/publish_index.py \
-            --index index.json \
-            --manifest "out/releases/$RELEASE/manifest.json" \
-            --repo "${{ github.repository }}" \
-            --branch "$BRANCH" \
-            --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE" \
-            --mirror-base "https://gapps.assets.306bobbyandroid.download"
-          git add index.json
-          git commit -m "index: add $RELEASE" || echo "nothing to commit"
-          git push origin main
-
       - name: Flag unclaimed apps
         run: |
           FILE="out/releases/${{ matrix.release_id }}/unclaimed.txt"
@@ -294,3 +277,28 @@ jobs:
             COUNT=$(echo "$CODE" | wc -l)
             echo "::warning::android ${{ matrix.major }}: $COUNT unclaimed file(s); see releases/${{ matrix.release_id }}/unclaimed.txt"
           fi
+
+  index:
+    needs: [plan, dump]
+    if: ${{ always() && needs.plan.outputs.any == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild index.json from the version branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -f main
+          git pull --rebase origin main
+          python3 tools/rebuild_index.py \
+            --repo "${{ github.repository }}" \
+            --index index.json \
+            --mirror-base "https://gapps.assets.306bobbyandroid.download"
+          git add index.json
+          git commit -m "index: rebuild after dump" || echo "nothing to commit"
+          git push origin main
