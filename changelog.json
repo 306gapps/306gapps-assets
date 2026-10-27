@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "date": "2026-10-03",
+      "title": "Default app assignments",
+      "body": "Installing Google Phone, Messages, Photos and other apps now sets them as the system default, so calls, texts and media open in the right app. Fixes incoming calls being missed when the Google dialer was installed but never made the default."
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Setup helper for crDroid screens",
+      "body": "The Pixel setup wizard now also runs crDroid's own steps - navigation mode, light/dark theme and telemetry - instead of skipping them."
+    },
+    {
+      "date": "2026-09-30",
+      "title": "Setup language picker on AOSP ROMs",
+      "body": "The setup wizard's language and region step now works on ROMs whose Settings has no Google locale picker; a bundled picker answers that step and sets the system locale."
+    }
+  ]
+}
