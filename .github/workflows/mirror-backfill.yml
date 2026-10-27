@@ -1,0 +1,52 @@
+name: mirror-backfill
+
+# Copies every published release's payloads from GitHub to the R2 mirror,
+# without re-dumping. For first-time population, or after a dump whose R2 sync
+# was skipped. GitHub stays the source of truth; this only fills the mirror.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /usr/local/share/boost "$AGENT_TOOLSDIRECTORY" || true
+
+      - name: Sync published assets to R2
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET: "306gapps"
+          REPO: ${{ github.repository }}
+        run: |
+          endpoint="${R2_S3_ENDPOINT:-${R2_ACCOUNT_ID:+https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com}}"
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$endpoint" ]; then
+            echo "::error::R2 endpoint/credentials not set"; exit 1
+          fi
+          ids=$(python3 -c "import json;print('\n'.join(r['id'] for r in json.load(open('index.json'))['releases']))")
+          for id in $ids; do
+            echo "::group::$id"
+            rm -rf dl && mkdir dl
+            gh release download "$id" -R "$REPO" -D dl
+            aws s3 sync dl "s3://$R2_BUCKET/" --endpoint-url "$endpoint" --size-only --no-progress
+            rm -rf dl
+            echo "::endgroup::"
+          done

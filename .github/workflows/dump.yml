@@ -61,7 +61,8 @@ jobs:
     strategy:
       # Each version runs on its own runner and writes only its own version
       # branch, GitHub release and R2 objects; the index is rebuilt once after.
-      max-parallel: 5
+      # Capped at 3: five at once can trip GitHub's secondary upload rate limit.
+      max-parallel: 3
       fail-fast: false
       matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
     name: "android ${{ matrix.major }} (${{ matrix.device }})"
@@ -176,18 +177,22 @@ jobs:
             || echo "release exists, uploading into it"
 
           # Gigabytes across a hundred-odd assets; --clobber lets a retry pick
-          # up where a transient failure stopped.
-          for attempt in 1 2 3; do
+          # up where a transient failure stopped. Long backoff because a 403 here
+          # is usually GitHub's rate limit, which needs minutes to ease.
+          waits="60 120 240 480 0"
+          attempt=0
+          for sleep_for in $waits; do
+            attempt=$((attempt + 1))
             if gh release upload "$RELEASE" out/assets/* --clobber; then
               echo "uploaded on attempt $attempt"
               break
             fi
-            if [ "$attempt" = 3 ]; then
-              echo "::error::upload failed after 3 attempts"
+            if [ "$sleep_for" = 0 ]; then
+              echo "::error::upload failed after $attempt attempts"
               exit 1
             fi
-            echo "upload attempt $attempt failed; retrying"
-            sleep 30
+            echo "upload attempt $attempt failed; retrying in ${sleep_for}s"
+            sleep "$sleep_for"
           done
 
           # A payload missing here fails for users instead.
