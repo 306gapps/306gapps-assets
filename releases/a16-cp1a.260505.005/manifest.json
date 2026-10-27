@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/mustang-ota-cp1a.260505.005-7b16ab03.zip",
       "sha256": "7b16ab0356910934e5e3242df327a19492827633cad925a1f27d215501b3a917"
     },
-    "created": "2026-10-27T17:46:06Z",
+    "created": "2026-10-27T18:52:44Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a16-cp1a.260505.005",
     "definitions": "f0f2c739abd7665e48f08b36337326cd6b923aa352a4c3cf62bf68ac665a3660"
   },
