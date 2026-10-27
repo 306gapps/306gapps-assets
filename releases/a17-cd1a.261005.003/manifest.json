@@ -13,9 +13,9 @@
       "image": "https://dl.google.com/dl/android/aosp/kodiak-ota-cd1a.261005.003-d8e59646.zip",
       "sha256": "d8e59646346161cfaca42bca1f4a5e2afd12d908e38452b329464a47d0b296a2"
     },
-    "created": "2026-10-07T13:35:16Z",
+    "created": "2026-10-27T17:44:11Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.261005.003",
-    "definitions": "efccac059c2a32085fbc7f5bcd45cefed5cc1eda26d09fada36c8c811a93c83a"
+    "definitions": "40f59fe56876d72cbc492762ef7ed777a5d3ab9276822e946a1b0dae9ef62837"
   },
   "groups": [
     {
@@ -2165,25 +2165,22 @@
       "files": [
         {
           "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
-          "asset": "6c7bd753bb8e215a-TrichromeLibrary-Stub.apk.gz",
-          "sha256": "6c7bd753bb8e215ad34a4acff03b73b410eba4778dac960ed02dab8210d8007b",
+          "asset": "8715df31c1cb7d85-TrichromeLibrary-Stub.apk",
+          "sha256": "8715df31c1cb7d850557568feaecc48eed8f619dc460f34b46820f28325499cd",
           "size": 12701,
-          "encoding": "gzip",
-          "asset_sha256": "6d879b60c45f2bfef2af14abd2263ab9a92ec5d9733cf1ebee677aabb998eef8",
-          "asset_size": 6965,
           "mode": "0644",
-          "context": "",
           "kind": "apk",
+          "carried": true,
           "stub": true
         },
         {
           "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
-          "asset": "3b8a2c1db9e469a1-TrichromeLibrary.apk.gz",
-          "sha256": "3b8a2c1db9e469a1738a18660b6d3fd5292c79f8f2c30115f795ed38a4bc3791",
-          "size": 70905012,
+          "asset": "5fe1b01b908ae066-TrichromeLibrary.apk.gz",
+          "sha256": "5fe1b01b908ae066eda07739dae4f1d01575dd77f920c057d644632d0c349c8b",
+          "size": 66033362,
           "mode": "0644",
-          "context": "",
-          "kind": "etc"
+          "kind": "etc",
+          "carried": true
         }
       ],
       "packages": [
@@ -2202,25 +2199,22 @@
       "files": [
         {
           "path": "product/app/Chrome-Stub/Chrome-Stub.apk",
-          "asset": "dea8bbb813c21c05-Chrome-Stub.apk.gz",
-          "sha256": "dea8bbb813c21c05fc8998a79c6d28563cd82684dbd7dbbdec73d438d3a00693",
+          "asset": "298bb76d8ce902cb-Chrome-Stub.apk",
+          "sha256": "298bb76d8ce902cbf9fa865f1affac6feb0eb1be2e3479002d127127b3e3bd95",
           "size": 16797,
-          "encoding": "gzip",
-          "asset_sha256": "8f7fad9602dc320f6b3bbc4ca6eb1d8856f10ec078e2013f216c49f585f92265",
-          "asset_size": 8840,
           "mode": "0644",
-          "context": "",
           "kind": "apk",
+          "carried": true,
           "stub": true
         },
         {
           "path": "product/app/Chrome/Chrome.apk.gz",
-          "asset": "d58b5393fa986d70-Chrome.apk.gz",
-          "sha256": "d58b5393fa986d70bb285772418c9f2b3d7bf255116f5a52d29634b9f626eee9",
-          "size": 26592097,
+          "asset": "30d94fee908ecda5-Chrome.apk.gz",
+          "sha256": "30d94fee908ecda5d346f7f8ad7a5055a3b237ec2d65f92ccfc610dd33534b4f",
+          "size": 20003553,
           "mode": "0644",
-          "context": "",
-          "kind": "etc"
+          "kind": "etc",
+          "carried": true
         }
       ],
       "packages": [
@@ -2247,25 +2241,22 @@
       "files": [
         {
           "path": "product/app/WebViewGoogle-Stub/WebViewGoogle-Stub.apk",
-          "asset": "13042e716ea1f37c-WebViewGoogle-Stub.apk.gz",
-          "sha256": "13042e716ea1f37c28aaa8d758a3d037ff3442a1d7394be22d9b9f383a2518d2",
+          "asset": "39945cfd22b233c0-WebViewGoogle-Stub.apk",
+          "sha256": "39945cfd22b233c0049dbf5c0bdf3d1809ce55f5397727e0953359cac2ce636e",
           "size": 12701,
-          "encoding": "gzip",
-          "asset_sha256": "4917a79b4038e1547095c74deaa29f4cd370f6c784b1d597150d1f0d1ad96875",
-          "asset_size": 7187,
           "mode": "0644",
-          "context": "",
           "kind": "apk",
+          "carried": true,
           "stub": true
         },
         {
           "path": "product/app/WebViewGoogle/WebViewGoogle.apk.gz",
-          "asset": "5bb51549633e4ad4-WebViewGoogle.apk.gz",
-          "sha256": "5bb51549633e4ad429d0e774e5f99a1c2770c4daa9fb0ff524204064347f5012",
-          "size": 79926489,
+          "asset": "737b58dbd7f46c06-WebViewGoogle.apk.gz",
+          "sha256": "737b58dbd7f46c0636180edf3fdc9958464e17e930485723f1572f966eed845f",
+          "size": 48143873,
           "mode": "0644",
-          "context": "",
-          "kind": "etc"
+          "kind": "etc",
+          "carried": true
         }
       ],
       "packages": [
