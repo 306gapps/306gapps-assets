@@ -226,7 +226,7 @@ jobs:
           AWS_REQUEST_CHECKSUM_CALCULATION: when_required
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
         run: |
           if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$R2_S3_ENDPOINT" ] || [ -z "$R2_BUCKET" ]; then
             echo "::notice::R2 secrets not set; skipping mirror"
@@ -279,7 +279,7 @@ jobs:
             --repo "${{ github.repository }}" \
             --branch "$BRANCH" \
             --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE" \
-            --mirror-base "${{ secrets.R2_PUBLIC_BASE }}"
+            --mirror-base "${{ vars.R2_PUBLIC_BASE }}"
           git add index.json
           git commit -m "index: add $RELEASE" || echo "nothing to commit"
           git push origin main
