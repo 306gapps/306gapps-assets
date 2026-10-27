@@ -227,11 +227,14 @@ jobs:
           AWS_REQUEST_CHECKSUM_CALCULATION: when_required
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           # Public on purpose: a bucket name and a public domain, nothing hidden.
           R2_BUCKET: "306gapps"
         run: |
-          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$R2_S3_ENDPOINT" ] || [ -z "$R2_BUCKET" ]; then
-            echo "::notice::R2 secrets not set; skipping mirror"
+          # Either the full S3 endpoint or just the account id (endpoint built from it).
+          endpoint="${R2_S3_ENDPOINT:-${R2_ACCOUNT_ID:+https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com}}"
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$endpoint" ]; then
+            echo "::notice::R2 endpoint/credentials not set; skipping mirror"
             exit 0
           fi
           # Best-effort: GitHub is the source of truth and the client's fallback,
@@ -239,7 +242,7 @@ jobs:
           for attempt in 1 2 3; do
             # Flat, content-addressed names; --size-only since a name pins its bytes.
             if aws s3 sync out/assets "s3://$R2_BUCKET/" \
-                 --endpoint-url "$R2_S3_ENDPOINT" --size-only --no-progress; then
+                 --endpoint-url "$endpoint" --size-only --no-progress; then
               exit 0
             fi
             echo "R2 sync attempt $attempt failed; retrying"; sleep 15
