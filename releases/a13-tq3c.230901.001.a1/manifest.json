@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/felix-ota-tq3c.230901.001.a1-2fd0f36e.zip",
       "sha256": "2fd0f36e0ac316ca5678043cd2a597e09ca6ac0557d9d8e4499f17ce24cb032c"
     },
-    "created": "2026-10-27T17:44:16Z",
+    "created": "2026-10-27T19:01:39Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a13-tq3c.230901.001.a1",
     "definitions": "e86487c39717a07269e217d5838917b4ca8abad298f1615a154194ee2ca05bcf"
   },
