@@ -50,7 +50,12 @@ jobs:
             assets=$(python3 -c "import json;print('\n'.join(f['asset'] for p in json.load(open('manifest.json'))['packages'] for f in p['files'] if f.get('asset')))")
             rm -rf dl && mkdir dl
             for a in $assets; do
-              curl -fsSL "$abase/$a" -o "dl/$a" || { echo "::error::failed to fetch $a"; exit 1; }
+              # A shared asset may be hosted by another release (and already on
+              # R2), so a 404 here is skippable, not fatal.
+              if ! curl -fsSL "$abase/$a" -o "dl/$a"; then
+                rm -f "dl/$a"
+                echo "::warning::skip $a (not on $abase)"
+              fi
             done
             aws s3 sync dl "s3://$R2_BUCKET/" --endpoint-url "$endpoint" --size-only --no-progress
             rm -rf dl manifest.json
