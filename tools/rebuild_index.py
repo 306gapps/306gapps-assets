@@ -52,13 +52,15 @@ def main() -> int:
     p.add_argument("--index", default="index.json")
     p.add_argument("--keep", type=int, default=6,
                    help="releases to keep per Android version")
+    p.add_argument("--mirror-base", default="",
+                   help="preferred download host for assets; GitHub stays the fallback")
     args = p.parse_args()
 
     existing = {}
     idx_path = Path(args.index)
     if idx_path.exists():
         doc = json.loads(idx_path.read_text())
-        existing = {"tools": doc.get("tools", {})}
+        existing = {"tools": doc.get("tools", {}), "mirror_base": doc.get("mirror_base", "")}
 
     entries = []
     for branch in sorted(branches(args.repo), reverse=True):
@@ -95,6 +97,8 @@ def main() -> int:
     }
     if existing.get("tools"):
         doc["tools"] = existing["tools"]
+    if mb := (args.mirror_base or existing.get("mirror_base")):
+        doc["mirror_base"] = mb
 
     idx_path.write_text(json.dumps(doc, indent=2) + "\n")
     print(f"{args.index}: {len(kept)} release(s) listed")

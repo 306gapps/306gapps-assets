@@ -217,6 +217,33 @@ jobs:
                              check=False)
           CHECK
 
+      - name: Mirror payloads to R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          # Newer aws-cli adds checksums R2 rejects; only send them when required.
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$R2_S3_ENDPOINT" ] || [ -z "$R2_BUCKET" ]; then
+            echo "::notice::R2 secrets not set; skipping mirror"
+            exit 0
+          fi
+          # Best-effort: GitHub is the source of truth and the client's fallback,
+          # so a mirror hiccup warns rather than blocking the publish.
+          for attempt in 1 2 3; do
+            # Flat, content-addressed names; --size-only since a name pins its bytes.
+            if aws s3 sync out/assets "s3://$R2_BUCKET/" \
+                 --endpoint-url "$R2_S3_ENDPOINT" --size-only --no-progress; then
+              exit 0
+            fi
+            echo "R2 sync attempt $attempt failed; retrying"; sleep 15
+          done
+          echo "::error::R2 mirror sync failed; assets are on GitHub, clients fall back"
+
       - name: Commit the manifest to the Android version branch
         env:
           RELEASE: ${{ matrix.release_id }}
@@ -251,7 +278,8 @@ jobs:
             --manifest "out/releases/$RELEASE/manifest.json" \
             --repo "${{ github.repository }}" \
             --branch "$BRANCH" \
-            --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE"
+            --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE" \
+            --mirror-base "${{ secrets.R2_PUBLIC_BASE }}"
           git add index.json
           git commit -m "index: add $RELEASE" || echo "nothing to commit"
           git push origin main

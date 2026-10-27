@@ -28,6 +28,8 @@ def main() -> int:
     p.add_argument("--asset-base", required=True, help="URL prefix the payloads live under")
     p.add_argument("--keep", type=int, default=6,
                    help="releases to keep per Android version")
+    p.add_argument("--mirror-base", default="",
+                   help="preferred download host for assets; GitHub stays the fallback")
     args = p.parse_args()
 
     manifest = json.loads(Path(args.manifest).read_text())
@@ -48,6 +50,8 @@ def main() -> int:
     index = load(Path(args.index))
     index["repo"] = args.repo
     index["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    if args.mirror_base:
+        index["mirror_base"] = args.mirror_base
 
     releases = [r for r in index["releases"] if r["id"] != entry["id"]]
     releases.append(entry)
