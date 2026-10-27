@@ -16,6 +16,12 @@ android:
 # Deliberately not shipped; otherwise they bury the packages we have simply
 # missed.
 exclude:
+  - Chrome
+  - Chrome-Stub
+  - WebViewGoogle
+  - WebViewGoogle-Stub
+  - TrichromeLibrary
+  - TrichromeLibrary-Stub
   # Needs the Pixel camera HAL, and a stub signed with our key could never be
   # updated by Play. Left out so Play installs the build matching the device.
   - GoogleCamera
@@ -480,9 +486,14 @@ packages:
       it with uses-static-library and neither loads without it, so it is
       its own package rather than living inside either.
     package: com.google.android.trichromelibrary
-    include:
-      - product/app/TrichromeLibrary/**
-      - product/app/TrichromeLibrary-Stub/**
+    carry:
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/TrichromeLibrary.apk.gz
+        path: product/app/TrichromeLibrary/TrichromeLibrary.apk.gz
+        sha256: 5fe1b01b908ae066eda07739dae4f1d01575dd77f920c057d644632d0c349c8b
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/TrichromeLibrary-Stub.apk
+        path: product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk
+        sha256: 8715df31c1cb7d850557568feaecc48eed8f619dc460f34b46820f28325499cd
+        stub: true
 
   - id: chrome
     name: Chrome
@@ -493,9 +504,14 @@ packages:
       - Jelly
     summary: >-
       Chrome. Needs the Trichrome library, which is pulled in for you.
-    include:
-      - product/app/Chrome/**
-      - product/app/Chrome-Stub/**
+    carry:
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/Chrome.apk.gz
+        path: product/app/Chrome/Chrome.apk.gz
+        sha256: 30d94fee908ecda5d346f7f8ad7a5055a3b237ec2d65f92ccfc610dd33534b4f
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/Chrome-Stub.apk
+        path: product/app/Chrome-Stub/Chrome-Stub.apk
+        sha256: 298bb76d8ce902cbf9fa865f1affac6feb0eb1be2e3479002d127127b3e3bd95
+        stub: true
 
   - id: webview
     name: Google WebView
@@ -506,9 +522,14 @@ packages:
     summary: >-
       The system WebView every app uses to render web content. Also
       needs Trichrome.
-    include:
-      - product/app/WebViewGoogle/**
-      - product/app/WebViewGoogle-Stub/**
+    carry:
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/WebViewGoogle.apk.gz
+        path: product/app/WebViewGoogle/WebViewGoogle.apk.gz
+        sha256: 737b58dbd7f46c0636180edf3fdc9958464e17e930485723f1572f966eed845f
+      - url: https://github.com/306gapps/306gapps-assets/releases/download/carried/WebViewGoogle-Stub.apk
+        path: product/app/WebViewGoogle-Stub/WebViewGoogle-Stub.apk
+        sha256: 39945cfd22b233c0049dbf5c0bdf3d1809ce55f5397727e0953359cac2ce636e
+        stub: true
 
   - id: gmail
     name: Gmail

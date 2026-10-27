@@ -15,6 +15,7 @@ import io
 import shutil
 import struct
 import sys
+import urllib.request
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -117,6 +118,52 @@ def kang_entries(defs_dir: Path, d: dict, assets: Path) -> list[dict]:
         # Synthetic means we generated it; kanged alone means someone else did.
         if item.get("synthetic"):
             entry["synthetic"] = True
+        out.append(entry)
+    return out
+
+
+def fetch_carried(url: str, name: str) -> Path:
+    """Download a carried payload into a cache, keyed by file name."""
+    cache = Path(os.environ.get("CARRY_CACHE", ".carry-cache"))
+    cache.mkdir(parents=True, exist_ok=True)
+    dest = cache / name
+    if dest.exists():
+        return dest
+    tmp = cache / (name + ".part")
+    with urllib.request.urlopen(url) as r, open(tmp, "wb") as f:
+        shutil.copyfileobj(r, f)
+    tmp.rename(dest)
+    return dest
+
+
+def carry_entries(d: dict, assets: Path) -> list[dict]:
+    """Build file records for carried payloads: fetched by URL, not in the dump."""
+    out = []
+    for item in d.get("carry", []):
+        name = os.path.basename(item["path"])
+        src = fetch_carried(item["url"], name)
+        if problem := verify_container(src):
+            raise SystemExit(f"error: {d['id']} carries {name}: {problem}")
+        digest, size = sha256_of(src)
+        if want := item.get("sha256"):
+            if digest != want:
+                raise SystemExit(f"error: {d['id']} carries {name}: "
+                                 f"sha256 {digest} != expected {want}")
+        aname = asset_name(digest, item["path"])
+        dest = assets / aname
+        if not dest.exists():
+            shutil.copy2(src, dest)
+        entry = {
+            "path": item["path"],
+            "asset": aname,
+            "sha256": digest,
+            "size": size,
+            "mode": item.get("mode", "0644"),
+            "kind": classify(item["path"]),
+            "carried": True,
+        }
+        if item.get("stub"):
+            entry["stub"] = True
         out.append(entry)
     return out
 
@@ -700,6 +747,7 @@ def build(args) -> int:
             entries.append(entry)
 
         entries.extend(kang_entries(Path(args.packages).parent.parent, d, assets))
+        entries.extend(carry_entries(d, assets))
 
         if not entries:
             empty.append(d["id"])
