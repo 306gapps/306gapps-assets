@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/kodiak-ota-cd1a.261005.003-d8e59646.zip",
       "sha256": "d8e59646346161cfaca42bca1f4a5e2afd12d908e38452b329464a47d0b296a2"
     },
-    "created": "2026-10-27T17:44:11Z",
+    "created": "2026-10-27T18:53:26Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cd1a.261005.003",
     "definitions": "40f59fe56876d72cbc492762ef7ed777a5d3ab9276822e946a1b0dae9ef62837"
   },
