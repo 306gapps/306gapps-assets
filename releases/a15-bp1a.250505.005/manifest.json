@@ -13,7 +13,7 @@
       "image": "https://dl.google.com/dl/android/aosp/komodo-ota-bp1a.250505.005-8997fae7.zip",
       "sha256": "8997fae7ef176ff6cd7ee35bf1c6435fb3ec30ce2b69b28e572f283e7443e266"
     },
-    "created": "2026-10-27T17:46:15Z",
+    "created": "2026-11-02T13:25:40Z",
     "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a15-bp1a.250505.005",
     "definitions": "7da234c0c3bad31a9279573aa3bf574fdc9a654a5398804e23d14e341d0c97ec"
   },
