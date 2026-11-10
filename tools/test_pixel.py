@@ -54,6 +54,18 @@ class TestParse(unittest.TestCase):
     def test_legal_heading_is_not_a_device(self):
         self.assertNotIn("legal", {b.device for b in self.builds})
 
+    def test_entity_quoted_heading(self):
+        page = (
+            '<h2 id="cubs" data-text="&quot;cubs&quot; for Pixel 11" tabindex="-1">'
+            '</h2><table><tr id="a"><td>17.0.0 (CD1A.260618.001.A7, Aug 2026)</td>'
+            '<td><a href="https://dl.google.com/x/cubs-a7.zip">Link</a></td>'
+            '<td>' + "a" * 64 + '</td></tr></table>'
+        )
+        builds = parse(page)
+        self.assertEqual(len(builds), 1)
+        self.assertEqual(builds[0].device, "cubs")
+        self.assertEqual(builds[0].model, "Pixel 11")
+
 
 class TestNewest(unittest.TestCase):
     def setUp(self):

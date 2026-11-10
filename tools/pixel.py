@@ -20,8 +20,11 @@ MONTHS = {m: i for i, m in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], start=1)}
 
+# data-text is either single-quoted with literal quotes or double-quoted with
+# &quot; entities; Google has shipped both.
 _DEVICE = re.compile(
-    r'<h2 id="(?P<codename>[a-z0-9_]+)"[^>]*data-text=\'"[^"]+" for (?P<name>[^\']+)\'',
+    r'<h2 id="(?P<codename>[a-z0-9_]+)"[^>]*'
+    r'''data-text=(?P<q>["'])(?:"|&quot;)[^"\']*?(?:"|&quot;) for (?P<name>[^"\']+)(?P=q)''',
 )
 _ROW = re.compile(
     r'<tr id="[^"]*">\s*'
