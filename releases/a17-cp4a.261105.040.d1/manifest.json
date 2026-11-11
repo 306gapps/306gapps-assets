@@ -1,0 +1,4356 @@
+{
+  "schema": 1,
+  "release": {
+    "id": "a17-cp4a.261105.040.d1",
+    "android": {
+      "api": 37,
+      "version": "17",
+      "codename": "CinnamonBun"
+    },
+    "source": {
+      "device": "kodiak",
+      "build": "CP4A.261105.040.D1",
+      "image": "https://dl.google.com/dl/android/aosp/kodiak-ota-cp4a.261105.040.d1-7e2c83ec.zip",
+      "sha256": "7e2c83ec86d0ced9690a7fa876635d71e58937dfae3552426e8a713380d42896"
+    },
+    "created": "2026-11-11T19:02:06Z",
+    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cp4a.261105.040.d1",
+    "definitions": "40f59fe56876d72cbc492762ef7ed777a5d3ab9276822e946a1b0dae9ef62837"
+  },
+  "groups": [
+    {
+      "id": "core",
+      "name": "Core",
+      "summary": "Play services, the Store, and the framework everything else needs."
+    },
+    {
+      "id": "setup",
+      "name": "Setup Wizard",
+      "summary": "First-boot setup, restore, and the search engine chooser."
+    },
+    {
+      "id": "dialer",
+      "name": "Google Phone"
+    },
+    {
+      "id": "messages",
+      "name": "Google Messages"
+    },
+    {
+      "id": "contacts",
+      "name": "Google Contacts"
+    },
+    {
+      "id": "gboard",
+      "name": "Gboard"
+    },
+    {
+      "id": "tts",
+      "name": "Google Text-to-Speech"
+    },
+    {
+      "id": "search",
+      "name": "Google Search",
+      "summary": "The Google app, Assistant, and Gemini."
+    },
+    {
+      "id": "chrome",
+      "name": "Google Chrome",
+      "summary": "Chrome, the WebView, and the Trichrome library they share."
+    },
+    {
+      "id": "files",
+      "name": "Google Files",
+      "summary": "Files by Google and the document picker it replaces AOSP's with."
+    },
+    {
+      "id": "photos",
+      "name": "Google Photos"
+    },
+    {
+      "id": "markup",
+      "name": "Markup"
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail"
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps"
+    },
+    {
+      "id": "locationhistory",
+      "name": "Location History"
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive"
+    },
+    {
+      "id": "calendar",
+      "name": "Google Calendar"
+    },
+    {
+      "id": "keep",
+      "name": "Google Keep"
+    },
+    {
+      "id": "meet",
+      "name": "Google Meet"
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator"
+    },
+    {
+      "id": "clock",
+      "name": "Google Clock"
+    },
+    {
+      "id": "recorder",
+      "name": "Pixel Recorder"
+    },
+    {
+      "id": "sounds",
+      "name": "Pixel Sounds"
+    },
+    {
+      "id": "pixel",
+      "name": "Pixel Specifics",
+      "summary": "The launcher, wallpapers, themes, and the on-device AI that backs them."
+    },
+    {
+      "id": "wellbeing",
+      "name": "Digital Wellbeing"
+    },
+    {
+      "id": "androidauto",
+      "name": "Android Auto"
+    },
+    {
+      "id": "partnersetup",
+      "name": "Google Partner Setup"
+    },
+    {
+      "id": "carrier",
+      "name": "Carrier Services",
+      "summary": "Carrier provisioning and eSIM support."
+    },
+    {
+      "id": "devicepolicy",
+      "name": "Android Device Policy"
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback"
+    },
+    {
+      "id": "credentialmanager",
+      "name": "Credential Manager"
+    },
+    {
+      "id": "findmydevice",
+      "name": "Find My Device"
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility",
+      "summary": "TalkBack and the other Google accessibility services."
+    }
+  ],
+  "variants": [
+    {
+      "id": "core",
+      "name": "Core",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters"
+      ],
+      "summary": "Play services, the Store, and the framework. The smallest thing that signs in and installs apps."
+    },
+    {
+      "id": "basic",
+      "name": "Basic",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "dialer",
+        "messages",
+        "contacts",
+        "clock",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "Core plus the phone, messaging and contacts apps."
+    },
+    {
+      "id": "omni",
+      "name": "Omni",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "restore",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "photos",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "keep",
+        "calculator",
+        "clock",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "Basic plus setup, the keyboard, and the everyday Google apps."
+    },
+    {
+      "id": "stock",
+      "name": "Stock",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "restore",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "gemini",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "keep",
+        "calculator",
+        "clock",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wellbeing",
+        "carriersetup"
+      ],
+      "summary": "What a Pixel ships with, near enough."
+    },
+    {
+      "id": "full",
+      "name": "Full",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "restore",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "gemini",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "keep",
+        "calculator",
+        "clock",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wellbeing",
+        "androidauto",
+        "partnersetup",
+        "carriersetup",
+        "devicepolicy",
+        "feedback"
+      ],
+      "summary": "Stock plus the rest of what NikGApps packages."
+    },
+    {
+      "id": "everything",
+      "name": "Everything",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "verifier",
+        "verifier-block",
+        "syncadapters",
+        "setupwizard",
+        "localeshim",
+        "restore",
+        "searchselector",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "gemini",
+        "trichrome",
+        "chrome",
+        "webview",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "keep",
+        "meet",
+        "calculator",
+        "clock",
+        "recorder",
+        "sounds",
+        "pixellauncher",
+        "wallpapers",
+        "emojiwallpaper",
+        "pixelthemes",
+        "nowplaying",
+        "aiai",
+        "aicore",
+        "wallet",
+        "digitalkey",
+        "wellbeing",
+        "androidauto",
+        "partnersetup",
+        "carriersetup",
+        "euicc",
+        "devicepolicy",
+        "feedback",
+        "credentialmanager",
+        "findmydevice",
+        "talkback",
+        "switchaccess",
+        "voiceaccess",
+        "soundamplifier"
+      ],
+      "summary": "Every package in the release. Where two cannot coexist the first is taken, so this is a starting point rather than literally everything."
+    },
+    {
+      "id": "crdroid",
+      "name": "crDroid official",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "restore",
+        "tts",
+        "gsa",
+        "gemini",
+        "trichrome",
+        "webview",
+        "markup",
+        "sounds",
+        "aiai",
+        "wellbeing",
+        "androidauto"
+      ],
+      "summary": "What crDroid ships as its official package. Maintained by the ROM."
+    },
+    {
+      "id": "crdroid-full",
+      "name": "crDroid official full",
+      "packages": [
+        "gmscore",
+        "gsf",
+        "vending",
+        "syncadapters",
+        "setupwizard",
+        "restore",
+        "dialer",
+        "messages",
+        "contacts",
+        "gboard",
+        "tts",
+        "gsa",
+        "gemini",
+        "trichrome",
+        "chrome",
+        "webview",
+        "files",
+        "documentsui",
+        "storagemanager",
+        "photos",
+        "markup",
+        "gmail",
+        "maps",
+        "locationhistory",
+        "drive",
+        "calendar",
+        "keep",
+        "calculator",
+        "clock",
+        "recorder",
+        "sounds",
+        "aiai",
+        "aicore",
+        "wellbeing",
+        "androidauto",
+        "partnersetup",
+        "carriersetup",
+        "devicepolicy",
+        "feedback"
+      ],
+      "summary": "crDroid's full official selection, adding the everyday Google apps."
+    }
+  ],
+  "packages": [
+    {
+      "id": "gmscore",
+      "name": "Google Play services",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/apex/com.google.android.gmssystem.prodvic.apex",
+          "asset": "591d840d0135dc41-com.google.android.gmssystem.prodvic.apex.gz",
+          "sha256": "591d840d0135dc41ad86824ae64be2ebbbc790fff7d4e9980c9d387c7fb3c18b",
+          "size": 151199744,
+          "encoding": "gzip",
+          "asset_sha256": "c1a5a9595fa42bf560594ef2c48b5ef878f5d5ad0f3321ecf8bc4bc7c78e400c",
+          "asset_size": 123081536,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/etc/default-permissions/default-permissions.xml",
+          "asset": "695dc39373c2eb05-default-permissions.xml.gz",
+          "sha256": "695dc39373c2eb057696d72f9cde897bebe554e0177a463f882964fa5ad72bfb",
+          "size": 9284,
+          "encoding": "gzip",
+          "asset_sha256": "c2b023da81375add0ad8bacf2cf66c14816b2d942fbd3f15c55a4043bbef6de4",
+          "asset_size": 2106,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-google-p.xml",
+          "asset": "8d8ad4de073a3ca9-privapp-permissions-google-p.xml.gz",
+          "sha256": "8d8ad4de073a3ca938d8a5d4a7e17347f1f4bfffe8e5b26b70436c7a0dc79c47",
+          "size": 74202,
+          "encoding": "gzip",
+          "asset_sha256": "a4b996e73a8d363722a7128bd350ccddbaa6d679c389740a8cc475ef3473ccdf",
+          "asset_size": 8393,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-google-pearl.xml",
+          "asset": "5bbdc4590b0cb121-privapp-permissions-google-pearl.xml.gz",
+          "sha256": "5bbdc4590b0cb1217bff23c69dbe1aae96ce3ada4dc885e3f528fe01f989d4ca",
+          "size": 1091,
+          "encoding": "gzip",
+          "asset_sha256": "73a04e63e8d44999cc1e7b1b3fd74258667f30e327ddab028462a4681336bec0",
+          "asset_size": 656,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-google-spoon.xml",
+          "asset": "a7bc0604d888110c-privapp-permissions-google-spoon.xml.gz",
+          "sha256": "a7bc0604d888110c48e88d04715921af7c89c00352c1aa820f4b19eda3fc48be",
+          "size": 1696,
+          "encoding": "gzip",
+          "asset_sha256": "a079db99a8394c88d97bbfb668910ec3ef49322866a5df605af500ad5ebdce76",
+          "asset_size": 756,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml",
+          "asset": "26ca2906e0e2700d-allowed_apex_com.google.android.gmssystem.xml",
+          "sha256": "26ca2906e0e2700dae18eae2ec2277bf651528d3385f16b7e8f223a25dc395ed",
+          "size": 292,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-hiddenapi-package-whitelist.xml",
+          "asset": "a8a650bbb6fb2239-google-hiddenapi-package-whitelist.xml.gz",
+          "sha256": "a8a650bbb6fb2239829a6e2b20f5094c5409fc87182e1fc6982234da539a4a35",
+          "size": 7908,
+          "encoding": "gzip",
+          "asset_sha256": "d48dcbb09adf9adef97c932604994056dcce42a8203de512da022d773d97a34d",
+          "asset_size": 1523,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-initial-package-stopped-states.xml",
+          "asset": "ddb8ba326b27acbf-google-initial-package-stopped-states.xml.gz",
+          "sha256": "ddb8ba326b27acbfefec66faf6ac2fe6fc2413a5f2123d1467e082cfa464a580",
+          "size": 3042,
+          "encoding": "gzip",
+          "asset_sha256": "3c482ca32dd4c5ccc474415330ff1d593f77add33382effffba2e9da293004b4",
+          "asset_size": 1086,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-install-constraints-package-allowlist.xml",
+          "asset": "f86c08c073098dde-google-install-constraints-package-allowlist.xml.gz",
+          "sha256": "f86c08c073098ddee4c4d9d1ee82230157c8f0edf1b964e43c8b4f4cbf069dfe",
+          "size": 3201,
+          "encoding": "gzip",
+          "asset_sha256": "f0ec7ffb05911236b2cfd9072cfc2326dd09505c445a23187a8bbf08012295bb",
+          "asset_size": 937,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-staged-installer-whitelist.xml",
+          "asset": "c5c27d407dc5f321-google-staged-installer-whitelist.xml.gz",
+          "sha256": "c5c27d407dc5f3219de77f94fc2b439195ab8f2d017feb68d4ec595aeb09203c",
+          "size": 393,
+          "encoding": "gzip",
+          "asset_sha256": "d40362c7c31f7fd22d667d703b616438ccd76e0b911707fb49f59a0503b2812b",
+          "asset_size": 320,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google-system-apps-update-ownership.xml",
+          "asset": "4ae4c66c889a94cd-google-system-apps-update-ownership.xml.gz",
+          "sha256": "4ae4c66c889a94cd35e6e21cd3dc2b01ff47843fc06fd2add3a289b390b849b1",
+          "size": 783,
+          "encoding": "gzip",
+          "asset_sha256": "2d80b001fb6de303e1e7a88e676eb11ac00cd111f1c899802b9c3ba013ab2d70",
+          "asset_size": 561,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google.xml",
+          "asset": "d1ed0a16b9edacab-google.xml.gz",
+          "sha256": "d1ed0a16b9edacabe6deefb477c3fac77c21624bfe7676da4ef1770fc3e89ae1",
+          "size": 9418,
+          "encoding": "gzip",
+          "asset_sha256": "1d127e899102cef28e37e21b8aecd72226faa3ce4c3f3884be82e3e9aea0288a",
+          "asset_size": 2392,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/google_build.xml",
+          "asset": "724875dc95f7fb7e-google_build.xml.gz",
+          "sha256": "724875dc95f7fb7eb950714f9a474a9a304e081626d9364647e02409e4bdae9c",
+          "size": 1106,
+          "encoding": "gzip",
+          "asset_sha256": "96451f2b0ff9900799f53f2b51163ce44bef09f583733086342c71dc6c8ed720",
+          "asset_size": 650,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/overlay/GmsCoreOverlay.apk",
+          "asset": "102534101be9a419-GmsCoreOverlay.apk",
+          "sha256": "102534101be9a419947c4b7abff9d88d774534bbf906cd4bc734eff932bd8318",
+          "size": 16716,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-google.xml",
+          "asset": "73290957652ba177-privapp-permissions-google.xml.gz",
+          "sha256": "73290957652ba177bd8028e5c34fc39a3a234ff071b5af2d75d9b081470dfd15",
+          "size": 2943,
+          "encoding": "gzip",
+          "asset_sha256": "6ed913e0867edb1e6beef9cb1189fb2f06cf680dd10c936df4b2f32da8ca5dc9",
+          "asset_size": 1101,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/privapp-permissions-google-se.xml",
+          "asset": "d906f0135b8c0b4b-privapp-permissions-google-se.xml.gz",
+          "sha256": "d906f0135b8c0b4bbf1b0d453cf3781a7214615a35a464edcebbfad4407a485c",
+          "size": 18727,
+          "encoding": "gzip",
+          "asset_sha256": "f955f8aeaca1b7f4bc0ba58bddffe9ea0fef26c396ed87ce9a394374627cefa6",
+          "asset_size": 2964,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        }
+      ],
+      "packages": [
+        "com.google.android.gms"
+      ],
+      "summary": "Core Google services. Everything else depends on it. On Android 17 the bulk of it ships as an apex, and the priv-app directory holds only the Chimera modules.",
+      "required": true
+    },
+    {
+      "id": "gsf",
+      "name": "Google Services Framework",
+      "group": "core",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
+          "asset": "2bb7f6c9eda775fe-GoogleServicesFramework.apk.gz",
+          "sha256": "2bb7f6c9eda775fe1c4c8294da2d21e0096b5e124fa517e3380110b969612d71",
+          "size": 1128492,
+          "encoding": "gzip",
+          "asset_sha256": "450ec67308ca55dfd2147ec7cc0c35f88ff1fd7896e52948fc0ae2e7f5e1cdc0",
+          "asset_size": 434030,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gsf"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Device registration and push messaging.",
+      "required": true
+    },
+    {
+      "id": "vending",
+      "name": "Google Play Store",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/priv-app/Phonesky/Phonesky.apk",
+          "asset": "129e54354d0a9abf-Phonesky.apk.gz",
+          "sha256": "129e54354d0a9abf9addf23fcda329b2b612babccce34101f8fe232e2a5a7611",
+          "size": 111214907,
+          "encoding": "gzip",
+          "asset_sha256": "b8748ed446d55d1f75c85a176abbd5ffe5da4458cb21a38828b1886842d3adb9",
+          "asset_size": 41874890,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.android.vending"
+      ],
+      "version": {
+        "versionCode": "85305130",
+        "versionName": "53.0.51-31 [0] [PR] 994758988"
+      },
+      "summary": "App store and Play Protect.",
+      "default": true,
+      "requires": [
+        "gmscore",
+        "gsf"
+      ]
+    },
+    {
+      "id": "verifier",
+      "name": "Play Protect verifier",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/etc/default-permissions/default-permissions-verifier.xml",
+          "asset": "79f407cc49129971-default-permissions-verifier.xml.gz",
+          "sha256": "79f407cc491299713923f0b0e42691bf622fa7695ef79109418a7e98a50e3bc1",
+          "size": 1765,
+          "encoding": "gzip",
+          "asset_sha256": "ec2bf19dec398744eca7f3b18754de51df9ecbce313679c8d2fd886d8d5e5982",
+          "asset_size": 968,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/permissions/com.google.android.verifier.xml",
+          "asset": "01584b30f62e4616-com.google.android.verifier.xml.gz",
+          "sha256": "01584b30f62e46167515190978f6e64568bdeeaa3813226e2b259a2c658947c2",
+          "size": 1122,
+          "encoding": "gzip",
+          "asset_sha256": "d1a00679754a0f72c029c648dc1d5e6df60dd45a7810efc23361087f0c2ca3cb",
+          "asset_size": 634,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/priv-app/VerifierPrebuiltClassic/VerifierPrebuiltClassic.apk",
+          "asset": "8d3bc97f288f8c74-VerifierPrebuiltClassic.apk.gz",
+          "sha256": "8d3bc97f288f8c74af7f1122dda34bd1be25552b3195b1fe4b78e05e81ae1d5c",
+          "size": 3105111,
+          "encoding": "gzip",
+          "asset_sha256": "0840e5bfa4df2e2b035d48df593b9738449fedcbbb96511e30848312fa106026",
+          "asset_size": 1450776,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.verifier"
+      ],
+      "version": {
+        "versionCode": "48099",
+        "versionName": "1.0.866414232"
+      },
+      "summary": "Scans apps as they install. This is also the component Google's developer verification runs through. Leave it out to do without it, or take verifier-block to stop anything installing it later.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "verifier-block",
+      "name": "Block the developer verifier",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/priv-app/VerifierBlocker/VerifierBlocker.apk",
+          "asset": "85eff7f60ccdfc1e-VerifierBlocker.apk",
+          "sha256": "85eff7f60ccdfc1e825396198c0d1e02f86ca00e74571822d7cd5899f0b78edf",
+          "size": 3063,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "packages": [
+        "com.google.android.verifier"
+      ],
+      "summary": "Stops the verifier ever being installed. It claims the package name with an empty apk signed by a key that was generated once and destroyed, and Android will not replace a package with one signed by a different key. Holds no code. Mutually exclusive with the verifier itself.",
+      "conflicts": [
+        "verifier"
+      ]
+    },
+    {
+      "id": "syncadapters",
+      "name": "Contacts and Calendar sync adapters",
+      "group": "core",
+      "files": [
+        {
+          "path": "product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
+          "asset": "044cc57bce2f6ae3-GoogleCalendarSyncAdapter.apk",
+          "sha256": "044cc57bce2f6ae3930c28fd784ae12a1781ff09d204db50e775093ecef12661",
+          "size": 2484539,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        },
+        {
+          "path": "product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
+          "asset": "b680052da895d9a1-GoogleContactsSyncAdapter.apk",
+          "sha256": "b680052da895d9a198b856162148de78bc5ad550e46d92239ee9c9308c86ee04",
+          "size": 1571497,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true
+        }
+      ],
+      "packages": [
+        "com.google.android.syncadapters.contacts",
+        "com.google.android.syncadapters.calendar"
+      ],
+      "summary": "Legacy account sync adapters, off by default. No Pixel image since Android 13 ships them because Play services handles sync itself; offered for ROMs that still expect them.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "setupwizard",
+      "name": "Google Setup Wizard",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/overlay/PixelSetupWizardOverlay2024.apk",
+          "asset": "f20717bcb72f1099-PixelSetupWizardOverlay2024.apk.gz",
+          "sha256": "f20717bcb72f1099406fda089fa6546ab85892fb785a2f78ba50c13c865f2c2a",
+          "size": 133791,
+          "encoding": "gzip",
+          "asset_sha256": "c382499f2aceccf140c72af9559404f1f4a669c5a8d930abd5ad49cee430863f",
+          "asset_size": 118991,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlay2025.apk",
+          "asset": "b28822d928fd3136-PixelSetupWizardOverlay2025.apk.gz",
+          "sha256": "b28822d928fd3136066318ab8701147fa0aceea42e6590f27d0c287b68ba0e4b",
+          "size": 120153,
+          "encoding": "gzip",
+          "asset_sha256": "d0e67f5c65c2322d27ee309e808b29a14609881e1afaa46864cf3c5be6153992",
+          "asset_size": 88568,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlay2026.apk",
+          "asset": "8ad15a28ba2a9ada-PixelSetupWizardOverlay2026.apk.gz",
+          "sha256": "8ad15a28ba2a9ada63108137b4d0c25854056c1fd0120b80449b792bae6c44a1",
+          "size": 78742,
+          "encoding": "gzip",
+          "asset_sha256": "fece543ac770390b64af2836e002b2d006daa2b34002a9e424bb673f126a67ce",
+          "asset_size": 46282,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlayExpressive.apk",
+          "asset": "4926f30d9f64fed0-PixelSetupWizardOverlayExpressive.apk.gz",
+          "sha256": "4926f30d9f64fed03a2ca6e6c529d304627c28019eacf0499126bebca12f116f",
+          "size": 145092,
+          "encoding": "gzip",
+          "asset_sha256": "51314bcda7516bc011213d296be09a4f2db376ec4653598312ff83944550d532",
+          "asset_size": 96796,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/overlay/PixelSetupWizardOverlayPixelPro2026.apk",
+          "asset": "37a0a80b4dfa123f-PixelSetupWizardOverlayPixelPro2026.apk.gz",
+          "sha256": "37a0a80b4dfa123f7ef75a7cbaa4c4ac2668b7ff8580baf6bf2e5a4218544bdc",
+          "size": 86606,
+          "encoding": "gzip",
+          "asset_sha256": "a7bb0b00293445cfaedd7a8c1bb3672e4ee2ce7d2cb12f11a2b16d7e1bca8ff7",
+          "asset_size": 41806,
+          "mode": "0644",
+          "context": "",
+          "kind": "overlay"
+        },
+        {
+          "path": "product/priv-app/SetupWizardPrebuilt_versioned/SetupWizardPrebuilt_versioned.apk",
+          "asset": "80024c8ba216f310-SetupWizardPrebuilt_versioned.apk.gz",
+          "sha256": "80024c8ba216f3105a3256d3d35e5698cf72afa28d15e9c4e461f040957ffd63",
+          "size": 19844753,
+          "encoding": "gzip",
+          "asset_sha256": "f522c554f7769b9ed7246bca6341bab821b3e718247e5c1bfc79d471f3c74959",
+          "asset_size": 7426160,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/SetupWizardPixelPrebuilt_versioned/SetupWizardPixelPrebuilt_versioned.apk",
+          "asset": "1636373c413324bb-SetupWizardPixelPrebuilt_versioned.apk.gz",
+          "sha256": "1636373c413324bb75f1df17de58b5d26715be99131d2eb91825441a15488692",
+          "size": 7998787,
+          "encoding": "gzip",
+          "asset_sha256": "e577282edb93159b621384a0a77b0df36570872cc86edaea64de4be046c7f27b",
+          "asset_size": 3649593,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.pixel.setupwizard.overlay.expressive"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Replaces the ROM's first-boot flow. Needed to sign in during setup; without it you sign in from Settings afterwards.",
+      "default": true,
+      "requires": [
+        "gmscore",
+        "vending"
+      ],
+      "removes": [
+        "Provision",
+        "SetupWizard",
+        "LineageSetupWizard"
+      ]
+    },
+    {
+      "id": "localeshim",
+      "name": "Setup language picker",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/etc/permissions/privapp-permissions-gapps306.xml",
+          "asset": "ffdf17526c2c41c0-privapp-permissions-gapps306.xml",
+          "sha256": "ffdf17526c2c41c013b15439fc1fbe425269b5b80dc66554c5b5743f08f2770d",
+          "size": 508,
+          "mode": "0644",
+          "kind": "permission",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/LocalePickerShim/LocalePickerShim.apk",
+          "asset": "730be09287428f09-LocalePickerShim.apk",
+          "sha256": "730be09287428f09997ec1f70e30f81e7deb140dc4ba9f7a28b959677048cd2b",
+          "size": 12701,
+          "mode": "0644",
+          "kind": "apk",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "packages": [
+        "app.gapps306.localeshim"
+      ],
+      "summary": "Lets the setup wizard's language and region step work on ROMs whose Settings has no Google locale picker: it answers that intent and hands off to the ROM's own picker. Tiny, and harmless without the setup wizard.",
+      "default": true
+    },
+    {
+      "id": "restore",
+      "name": "Google Restore",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/priv-app/GoogleRestorePrebuilt-v1111728/GoogleRestorePrebuilt-v1111728.apk",
+          "asset": "4201dbbb1d90feca-GoogleRestorePrebuilt-v1111728.apk.gz",
+          "sha256": "4201dbbb1d90feca66d3aed9ea2a7b71bdb6be29d4abcf0002f564d37fd53bbd",
+          "size": 27256236,
+          "encoding": "gzip",
+          "asset_sha256": "ef24f8241db1b0ebae4387316d74fe065c02686a8c3d92cab451b85cd384b0d0",
+          "asset_size": 9968287,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.restore"
+      ],
+      "version": {
+        "versionCode": "1111728",
+        "versionName": "1.0.981665568"
+      },
+      "summary": "Restores apps and settings from a previous device during setup.",
+      "requires": [
+        "gmscore",
+        "setupwizard"
+      ]
+    },
+    {
+      "id": "searchselector",
+      "name": "Search engine selector",
+      "group": "setup",
+      "files": [
+        {
+          "path": "product/etc/permissions/com.google.android.apps.setupwizard.searchselector.xml",
+          "asset": "cb1a26b6adcc93af-com.google.android.apps.setupwizard.searchselector.xml.gz",
+          "sha256": "cb1a26b6adcc93afe652736948a196c6343a01500f7f086ac1768bc2682db2ce",
+          "size": 550,
+          "encoding": "gzip",
+          "asset_sha256": "49f50fceee882a2de44a46c4cb6e065b8317900aa35b28682d7f90765f1d1fe3",
+          "asset_size": 344,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/priv-app/SearchSelectorPrebuilt/SearchSelectorPrebuilt.apk",
+          "asset": "ea5888822d3e36b6-SearchSelectorPrebuilt.apk.gz",
+          "sha256": "ea5888822d3e36b6cec4fc5098d1ba5685ed230a0e3cc240a2b350d7f942840e",
+          "size": 6703732,
+          "encoding": "gzip",
+          "asset_sha256": "54fad0eea032f69d8bdf50d48c003457ec66e7fafd6f10aedd532b5426f7f377",
+          "asset_size": 2782065,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.setupwizard.searchselector"
+      ],
+      "version": {
+        "versionCode": "6653",
+        "versionName": "1.36.932215516"
+      },
+      "summary": "The search engine choice screen shown during setup in the EEA.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "dialer",
+      "name": "Google Phone",
+      "group": "dialer",
+      "files": [
+        {
+          "path": "product/etc/permissions/com.google.android.dialer.support.xml",
+          "asset": "42c0ad27676d0b7d-com.google.android.dialer.support.xml.gz",
+          "sha256": "42c0ad27676d0b7d21150d6586672b2567ac272f5f24657110914b090631bdb7",
+          "size": 564,
+          "encoding": "gzip",
+          "asset_sha256": "bb1d7ae10a834002750c516d5eea4c0f846dadb7b2f72dec49c293fdd870fa8c",
+          "asset_size": 361,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/framework/com.google.android.dialer.support.jar",
+          "asset": "66ec682204e45bf3-com.google.android.dialer.support.jar.gz",
+          "sha256": "66ec682204e45bf32514180abb18c87d5f5baed52544a7ab742687ba1d2c5e12",
+          "size": 954,
+          "encoding": "gzip",
+          "asset_sha256": "d1ed1221e53beeb257e9372a5c01264c9739893e409934642f481a9ef84224de",
+          "asset_size": 649,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "product/overlay/DialerOverlay.apk",
+          "asset": "f278a64169e24828-DialerOverlay.apk",
+          "sha256": "f278a64169e248286e2edb01b66e968f6c8d36de29f64f3cb1a3e599a369f37c",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/GoogleDialer/GoogleDialer.apk",
+          "asset": "3f412f3a551e6743-GoogleDialer.apk.gz",
+          "sha256": "3f412f3a551e6743e4086eeda6aa623b7baa5ba061730cef3e866cb28f2519e7",
+          "size": 86812907,
+          "encoding": "gzip",
+          "asset_sha256": "30c0167dcab6283b3d469f6edc5b8bfc0717c49b43677029f0bf9d6ee294e69c",
+          "asset_size": 37669147,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Call screening and spam protection.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Dialer"
+      ]
+    },
+    {
+      "id": "messages",
+      "name": "Google Messages",
+      "group": "messages",
+      "files": [
+        {
+          "path": "product/overlay/MessagesOverlay.apk",
+          "asset": "6bf14bb012a4efda-MessagesOverlay.apk",
+          "sha256": "6bf14bb012a4efdaf9b24317411f02f729b31acba43db3353e7edb90bbac0536",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/PrebuiltBugle/PrebuiltBugle.apk",
+          "asset": "2c44e28885cf0e3a-PrebuiltBugle.apk.gz",
+          "sha256": "2c44e28885cf0e3aaff5d91bf67a9f77d36bd51aa634db5236c73b203ce1424e",
+          "size": 184958201,
+          "encoding": "gzip",
+          "asset_sha256": "319395c18651e7536df3f2a30714b1deef8c73a2d4913c0f09b17ce99cc3116f",
+          "asset_size": 75496077,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "RCS-capable SMS client.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "messaging",
+        "Messaging"
+      ]
+    },
+    {
+      "id": "contacts",
+      "name": "Google Contacts",
+      "group": "contacts",
+      "files": [
+        {
+          "path": "product/app/GoogleContacts/GoogleContacts.apk",
+          "asset": "e7a08b447e7ee0d3-GoogleContacts.apk.gz",
+          "sha256": "e7a08b447e7ee0d3adc9dfce472946739249e83e4f977b3acd548db1b1cfbef5",
+          "size": 33960144,
+          "encoding": "gzip",
+          "asset_sha256": "4dbde464595fca2f37294dab5cc8483c7188446bb2e78f63edf1e9506b950d56",
+          "asset_size": 14116728,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/overlay/ContactsOverlay.apk",
+          "asset": "77c2aa9064ab0859-ContactsOverlay.apk",
+          "sha256": "77c2aa9064ab08592c8fb8d414cf5f041b2aa2ac24c838b548b392aa2638ac87",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "summary": "Google Contacts, with account sync and caller ID.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Contacts"
+      ]
+    },
+    {
+      "id": "gboard",
+      "name": "Gboard",
+      "group": "gboard",
+      "files": [
+        {
+          "path": "product/app/LatinIMEGooglePrebuilt/LatinIMEGooglePrebuilt.apk",
+          "asset": "64a273c460ba41d5-LatinIMEGooglePrebuilt.apk.gz",
+          "sha256": "64a273c460ba41d5eaf0f64f9803a4a326cef17c641e382c16ac19f4f22ff2d5",
+          "size": 86634790,
+          "encoding": "gzip",
+          "asset_sha256": "45d7bb9a353139bcac7342c9c2b3af20240fa874e1f53798378a242749b1b7ec",
+          "asset_size": 38128840,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/ko_2018030706.zip",
+          "asset": "f5f7a2f5a9ce24b6-ko_2018030706.zip",
+          "sha256": "f5f7a2f5a9ce24b676dcaf5591811a23ff3da40127abd571443bac9b99a27d60",
+          "size": 4488386,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/mozc.data",
+          "asset": "c4877d88bfaf1cf8-mozc.data.gz",
+          "sha256": "c4877d88bfaf1cf8d934a0b36db9586a71f34ecf35040e720ba9b803175bf526",
+          "size": 8809478,
+          "encoding": "gzip",
+          "asset_sha256": "8db0716c89d7eab2cea7bf135262b95c23dd48353bd58cf15d522decbce8e7df",
+          "asset_size": 5827042,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/share/ime/google/d3_lms/zh_CN_2018030706.zip",
+          "asset": "a02b08c7589f0ca9-zh_CN_2018030706.zip",
+          "sha256": "a02b08c7589f0ca9c0fcf3c573e53b04287e62ff8c2b086a2c4d3041ebb84fa5",
+          "size": 8674897,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/SODA_punctuation_config.pb",
+          "asset": "a9abe5571c7bd034-SODA_punctuation_config.pb",
+          "sha256": "a9abe5571c7bd034e938271b19b220977ca1d40e2b14674ce4767536d1822511",
+          "size": 36,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/SODA_punctuation_model.tflite",
+          "asset": "a8d841673c8b5df0-SODA_punctuation_model.tflite.gz",
+          "sha256": "a8d841673c8b5df032dffa579931181c5cdbce104454e05a49bf76d2fa5d6046",
+          "size": 2322992,
+          "encoding": "gzip",
+          "asset_sha256": "f5138657977f4a3e5521061792f65baf87b65f415af12a3b897daf72a11969ec",
+          "asset_size": 1895717,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/LARGE_RNNT_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev",
+          "asset": "5b1f0aa2f020dd85-LARGE_RNNT_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "1a601c5ec74542228d82cf8882b593075fcddecda14f86e26cb24c2e7d2bac1c",
+          "asset_size": 1134,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/LARGE_RNNT_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model",
+          "asset": "71faa399e8f239f4-LARGE_RNNT_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model.gz",
+          "sha256": "71faa399e8f239f4d8e72b987c0fe0d4a5406095331807a9cfa5389b6fa7d338",
+          "size": 481664,
+          "encoding": "gzip",
+          "asset_sha256": "c60d645e50b168cecb0b8cb802b9d708e84f023fecd63117fc8e2a5561294f5a",
+          "asset_size": 349965,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev",
+          "asset": "5b1f0aa2f020dd85-MARBLE_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "a906fcb451daa8ec6c733d45c8e8c502ec0657811b0fc2f3018c5ac99416054f",
+          "asset_size": 1130,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/MARBLE_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model",
+          "asset": "71faa399e8f239f4-MARBLE_VOICE_ACTIONS_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model.gz",
+          "sha256": "71faa399e8f239f4d8e72b987c0fe0d4a5406095331807a9cfa5389b6fa7d338",
+          "size": 481664,
+          "encoding": "gzip",
+          "asset_sha256": "2ed0833319158ca23fffd319988ae563207a7b6ccb1294bb7121cb16b138e968",
+          "asset_size": 349961,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/SODA_DICTATION_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev",
+          "asset": "5b1f0aa2f020dd85-SODA_DICTATION_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "83ea9376e6cabe46580e75cffeb229c6406bfa94ff18d7a1f793805b92de1856",
+          "asset_size": 1124,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/SODA_DICTATION_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model",
+          "asset": "f0d6fab11c867f48-SODA_DICTATION_EP_UNIFIED_FRONTEND.endpointer_portable_lstm_model.gz",
+          "sha256": "f0d6fab11c867f48fb8579c8f75285b5562ac090c4cd1c14b86bf634dcec9dac",
+          "size": 481664,
+          "encoding": "gzip",
+          "asset_sha256": "112aac5da59f9c48cd85997a659f8dc32ea2a31015b1f888249bdf95dff4afc2",
+          "asset_size": 338709,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/SODA_DICTATION_EP_UNIFIED_FRONTEND_LANGID.endpointer_portable_lstm_mean_stddev",
+          "asset": "5b1f0aa2f020dd85-SODA_DICTATION_EP_UNIFIED_FRONTEND_LANGID.endpointer_portable_lstm_mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "0e7f087aad741f0be84a897ed398e268bb66de0242fd8148f02d10e14149ae28",
+          "asset_size": 1131,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/acousticmodel/SODA_DICTATION_EP_UNIFIED_FRONTEND_LANGID.endpointer_portable_lstm_model",
+          "asset": "f0d6fab11c867f48-SODA_DICTATION_EP_UNIFIED_FRONTEND_LANGID.endpointer_portable_lstm_model.gz",
+          "sha256": "f0d6fab11c867f48fb8579c8f75285b5562ac090c4cd1c14b86bf634dcec9dac",
+          "size": 481664,
+          "encoding": "gzip",
+          "asset_sha256": "40fecee957122fad14cdafbea4446cf26e87857da788f2dbc0516f7f02eaf7b1",
+          "asset_size": 338716,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/config.pumpkin",
+          "asset": "151a97976220451d-config.pumpkin.gz",
+          "sha256": "151a97976220451d087f4007606657427a515a7b8f9edc8e40b18c581f2b516f",
+          "size": 463745,
+          "encoding": "gzip",
+          "asset_sha256": "2c8a3e68609126c1dae058dfb8f2e41917d099d56d5e9458614982091009759a",
+          "asset_size": 68703,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/LANGUAGE_IDENTIFICATION.config",
+          "asset": "956ea49ec06f96e8-LANGUAGE_IDENTIFICATION.config.gz",
+          "sha256": "956ea49ec06f96e821a6c6125cc7b0dd754ec93f76ed3eec407e112d26f5e6af",
+          "size": 3128,
+          "encoding": "gzip",
+          "asset_sha256": "5cfaaaaa2141d0915d7622031e3e50568ec93ed39ee29b9ca819631b1acafe34",
+          "asset_size": 1383,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_CONTINUOUS.config",
+          "asset": "e52b1c76bc108fad-ONDEVICE_MEDIUM_CONTINUOUS.config.gz",
+          "sha256": "e52b1c76bc108fadbbf83d7de517b2860fb553b98b662a750839af4d732fb977",
+          "size": 15068,
+          "encoding": "gzip",
+          "asset_sha256": "6a6fd834ac02f567b99ff23f3028f50047eb920bbc8ce7e8360d2ab8723759de",
+          "asset_size": 5577,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_SHORT.config",
+          "asset": "5fb5ff589f1f1653-ONDEVICE_MEDIUM_SHORT.config.gz",
+          "sha256": "5fb5ff589f1f1653d1a13818c050ee57e0d70d80523da974d307425f9d9655e9",
+          "size": 17829,
+          "encoding": "gzip",
+          "asset_sha256": "7baab8e64f7b627dd04f842f83744e9faa1e870d00b0e2dbc18070bdfa713ffc",
+          "asset_size": 6355,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_SHORT_compiler.config",
+          "asset": "a3ff391114e2c1e8-ONDEVICE_MEDIUM_SHORT_compiler.config",
+          "sha256": "a3ff391114e2c1e8d2b353c8890d5366dcb2978c132a27c3ec63f3d6b00b79af",
+          "size": 250,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_MEDIUM_VOICE_MATCH.config",
+          "asset": "7524d07033cf6d3c-ONDEVICE_MEDIUM_VOICE_MATCH.config.gz",
+          "sha256": "7524d07033cf6d3c11f5ca1d58ba8ab55430bea9f2e2dacf7e0993daaee1c4dd",
+          "size": 3577,
+          "encoding": "gzip",
+          "asset_sha256": "7021f4201ac02445a107b3ea44b742e986c9e13da4fe4b28ef97ece79ab8de47",
+          "asset_size": 1610,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/configs/ONDEVICE_SPEAKER_TURN_DETECTION.config",
+          "asset": "c23da8f343b48a5a-ONDEVICE_SPEAKER_TURN_DETECTION.config.gz",
+          "sha256": "c23da8f343b48a5afd3dde3173e7baae30e868766d3e4fc9c1999f9bff1cb57d",
+          "size": 3632,
+          "encoding": "gzip",
+          "asset_sha256": "edd159b9b0876bee73efb175fed7ef3afee15d95b9d9860226fcae1def4f8521",
+          "asset_size": 1720,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/SODA.prebuilt_class_archive.mfar",
+          "asset": "c4ddb5cf08840590-SODA.prebuilt_class_archive.mfar.gz",
+          "sha256": "c4ddb5cf08840590e44468b6e26ef6114cb05026fb9f4fd496dd805983f73d1d",
+          "size": 55072,
+          "encoding": "gzip",
+          "asset_sha256": "e80e133f3d07aa806d938affc9bf2803912751f9e979c1833bea54902121bae4",
+          "asset_size": 6291,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/SODA.prebuilt_class_archive.syms",
+          "asset": "4224a1dbed0393aa-SODA.prebuilt_class_archive.syms.gz",
+          "sha256": "4224a1dbed0393aacdab9d3a633d15f0c0fc6c5dfbe8d5e49e890e5a99f71128",
+          "size": 382,
+          "encoding": "gzip",
+          "asset_sha256": "ca08049c6364603e43243540e0706c3abb78da31e8ffd6886b43c6e5218a5e9d",
+          "asset_size": 320,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/apps.txt",
+          "asset": "d41fa0dfc9601a6d-apps.txt.gz",
+          "sha256": "d41fa0dfc9601a6de1957b3cbbc03132debb9d391386e58d72e927f2d8c3f971",
+          "size": 3128,
+          "encoding": "gzip",
+          "asset_sha256": "d235384fb0c67cd6d4c730f3cdd6338be12138144a1821035e5b5579b066c32d",
+          "asset_size": 738,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/contacts.txt",
+          "asset": "f3c4071e8e14813d-contacts.txt.gz",
+          "sha256": "f3c4071e8e14813dc6cb4f5bb1365f3f4e341890bb9e52548da514f688340ec0",
+          "size": 20902,
+          "encoding": "gzip",
+          "asset_sha256": "837438be466788a9c667aefd3f2bca8f787ad738fba2b8250a5ba440490db30e",
+          "asset_size": 3306,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_car_automation.action.union_STD_FST.fst",
+          "asset": "84ec86c5528c9057-en-US_android-auto_car_automation.action.union_STD_FST.fst.gz",
+          "sha256": "84ec86c5528c905725020a32f1afadb8ad2e3aed11bae458f36b5bea9ddc098b",
+          "size": 2916307,
+          "encoding": "gzip",
+          "asset_sha256": "93331ec3d630414b89d6c12a948e9b56081afddd5c2494d871185b0e3b4009db",
+          "asset_size": 508248,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_manual_fixes_STD_FST.fst",
+          "asset": "3dcf7ebae463f81a-en-US_android-auto_manual_fixes_STD_FST.fst.gz",
+          "sha256": "3dcf7ebae463f81a3637fc7ea90a1b50fd24c4893c831866a86ca48adca401b3",
+          "size": 2625,
+          "encoding": "gzip",
+          "asset_sha256": "86043b12b8fde67d7ea47bbfe8052bc16f17e43117e6d84ae75bfc37b9432863",
+          "asset_size": 719,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/en-US_android-auto_top_radio_station_frequencies_STD_FST.fst",
+          "asset": "037e4919610ffb95-en-US_android-auto_top_radio_station_frequencies_STD_FST.fst.gz",
+          "sha256": "037e4919610ffb951a0c17825244f043dc1ee189b959ca3a243dbe9f7891dcfa",
+          "size": 7170,
+          "encoding": "gzip",
+          "asset_sha256": "fd979a13ee929ea08b16c26ce6bf7323f4be39f0e8e53832536b80fa0863a7aa",
+          "asset_size": 1065,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/context_prebuilt/songs.txt",
+          "asset": "ed962607a8daa02e-songs.txt.gz",
+          "sha256": "ed962607a8daa02efe195e9475668ee46a39980add31d4b1ad6a71f845902dcc",
+          "size": 308,
+          "encoding": "gzip",
+          "asset_sha256": "62719c55806362e40ec00dd19993f72ec7658a6363d3338c1fd0d549f9a66af6",
+          "asset_size": 166,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_class_denorm.mfar",
+          "asset": "99b70d6c1aba5ae1-embedded_class_denorm.mfar.gz",
+          "sha256": "99b70d6c1aba5ae140580ec58adf8088fa37b3f3a2ecd85787b522f9b06ebec2",
+          "size": 312176,
+          "encoding": "gzip",
+          "asset_sha256": "6b1866d042946a80a3a202b002b137a4ea0831edb99664a8ff1e6ae40dbd2311",
+          "asset_size": 72545,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_covid_19.mfar",
+          "asset": "c0be3c2f4d205b58-embedded_covid_19.mfar.gz",
+          "sha256": "c0be3c2f4d205b581516cd22367baabdff384d4ba1fce90abdb287eaf95aa756",
+          "size": 269472,
+          "encoding": "gzip",
+          "asset_sha256": "8608852fef68073d4cbeb5f31a964f465f31fe1d2fa59a73bfc707b966ceea15",
+          "asset_size": 5826,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_fix_ampm.mfar",
+          "asset": "46c6796b98e1a332-embedded_fix_ampm.mfar.gz",
+          "sha256": "46c6796b98e1a3322aed6385d57c39111c6cf0833c65e30784d0e2c941f53775",
+          "size": 15664,
+          "encoding": "gzip",
+          "asset_sha256": "b91d879b1e549d149aeb219b5fb5a5a8496025ebe9ec2f2c145d3b50e75b3fd6",
+          "asset_size": 1176,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_normalizer_no_emoticons_no_spoken_punc.mfar",
+          "asset": "e261862f4c488acf-embedded_normalizer_no_emoticons_no_spoken_punc.mfar.gz",
+          "sha256": "e261862f4c488acf21da65104889392cbfc444ddbc2190d1432f2f8b669d2bac",
+          "size": 2488240,
+          "encoding": "gzip",
+          "asset_sha256": "6d93dc3b488407d6cea0e8cb5536bd2f32e70460883e01b7c8f86e0c297764e9",
+          "asset_size": 45157,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_normalizer_only_emojis.mfar",
+          "asset": "77fbe25828ea6032-embedded_normalizer_only_emojis.mfar.gz",
+          "sha256": "77fbe25828ea6032873fccf863274b7b6c960f394451fcbac2e999c2b95dcafa",
+          "size": 223312,
+          "encoding": "gzip",
+          "asset_sha256": "84a63a8b438d66b4932e133f6cd0397169f2c9b83bba923f379fff6f01e52f31",
+          "asset_size": 5012,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_normalizer_only_spoken_punctuation.mfar",
+          "asset": "d3c0c667612153a8-embedded_normalizer_only_spoken_punctuation.mfar.gz",
+          "sha256": "d3c0c667612153a8baa85473d1595cd420129380d8ab4320a66547eaf27a71c9",
+          "size": 50016,
+          "encoding": "gzip",
+          "asset_sha256": "db2cbfb2b04795a359d1df7d84b70b43ca878932ce83eb045ec777c520269e4d",
+          "asset_size": 2015,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_replace_annotated_emoticon_words_dash.mfar",
+          "asset": "1b7dabd9860da493-embedded_replace_annotated_emoticon_words_dash.mfar.gz",
+          "sha256": "1b7dabd9860da493a42ca7011ee760f3bb5e21ddf7d72656a31e59d3ecaf955a",
+          "size": 68128,
+          "encoding": "gzip",
+          "asset_sha256": "8643b8f5064ea2c5b9e5d49dcc97165b176e04c9a1632fc5afb201933d9b5baf",
+          "asset_size": 2166,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/embedded_replace_annotated_punct_words_dash_no_emoticons.mfar",
+          "asset": "e8b64fd8b6780fac-embedded_replace_annotated_punct_words_dash_no_emoticons.mfar.gz",
+          "sha256": "e8b64fd8b6780fac0a5cf6198baff95c181a752afa21790789b82f55f306abbf",
+          "size": 1369472,
+          "encoding": "gzip",
+          "asset_sha256": "cf3eda793c48fa5c263632e3de4e3e0c1313c4dff126baa7ddd82fb740f512e0",
+          "asset_size": 45437,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/porn_normalizer_on_device.mfar",
+          "asset": "26df6fc21fb82d7d-porn_normalizer_on_device.mfar.gz",
+          "sha256": "26df6fc21fb82d7de1e58902238b4bfbfe2d4ee25f4f1ca561953223f66b86a4",
+          "size": 588496,
+          "encoding": "gzip",
+          "asset_sha256": "574c2afd39820003f74aa0ac42d5e08519c8d65370382a244d543a0afb5b3576",
+          "asset_size": 94405,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/denorm/remove_spoken_punc_formatting.mfar",
+          "asset": "b909a26d24d143fa-remove_spoken_punc_formatting.mfar.gz",
+          "sha256": "b909a26d24d143faf94b95a7552631deb2f9ff36205ed4e5599451d9f398b504",
+          "size": 67520,
+          "encoding": "gzip",
+          "asset_sha256": "80fa0537d57c58160d52f59ad1b78ea01428304817a60718bd9800fbe0a5b968",
+          "asset_size": 4592,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/diarization/SODA_SPEAKER_TURN.scd.decoder",
+          "asset": "f0f8473b9ca2f141-SODA_SPEAKER_TURN.scd.decoder.gz",
+          "sha256": "f0f8473b9ca2f141531a06ae03e7fac0eb5df6ff4ea5662d33f5fa2653415e02",
+          "size": 117184,
+          "encoding": "gzip",
+          "asset_sha256": "439ec14aafb0c3ab9763e8c4f0d37f02a456c2beb53b695cfe0888bd5bf914bd",
+          "asset_size": 92119,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/diarization/SODA_SPEAKER_TURN.scd.encoder",
+          "asset": "dede3600d87314c2-SODA_SPEAKER_TURN.scd.encoder.gz",
+          "sha256": "dede3600d87314c2c11c83e68e8e1a19934f3e54e9d896fc0823f8748fb9ecaf",
+          "size": 13400896,
+          "encoding": "gzip",
+          "asset_sha256": "4daafc3144f782088f7dfb91c48d209d3d3787b285a656d6be093d65e883cca9",
+          "asset_size": 9675580,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/diarization/SODA_SPEAKER_TURN.scd.joint_model",
+          "asset": "f9ff21e4dc99ca9e-SODA_SPEAKER_TURN.scd.joint_model.gz",
+          "sha256": "f9ff21e4dc99ca9e0c23af20a07b5e025c07274d39407fd45ec44bdfc95555bf",
+          "size": 124128,
+          "encoding": "gzip",
+          "asset_sha256": "1939fa94a10babe06e080370781b8b895ae613ce931acbd502a55ba492e7ec86",
+          "asset_size": 94919,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/diarization/SODA_SPEAKER_TURN.scd.mean_stddev",
+          "asset": "6b3893c24dae3de2-SODA_SPEAKER_TURN.scd.mean_stddev.gz",
+          "sha256": "6b3893c24dae3de26955c3d954b600cb4a35999d9ea9a38baa69790a64e5229b",
+          "size": 4102,
+          "encoding": "gzip",
+          "asset_sha256": "47d4443fa77438af41b2091928723383929c097b2e6bbbb693abc7a9e8a79dbe",
+          "asset_size": 1075,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/diarization/SODA_SPEAKER_TURN.scd.syms",
+          "asset": "520792715da53312-SODA_SPEAKER_TURN.scd.syms.gz",
+          "sha256": "520792715da53312bafae27314cf98349ce45d30a45b1d0f900f488ce41b77ec",
+          "size": 406,
+          "encoding": "gzip",
+          "asset_sha256": "009ea993808172d74e132e06b0077291268b4844294cfa73525e06e3526702bf",
+          "asset_size": 345,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/large_continuous_frontend_params.mean_stddev",
+          "asset": "5b1f0aa2f020dd85-large_continuous_frontend_params.mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "4bbfcc7b41bc2560c5b9203090cfac9df26f3bd4dedc78451254a5d30f9d0419",
+          "asset_size": 1097,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/large_short_frontend_params.mean_stddev",
+          "asset": "5b1f0aa2f020dd85-large_short_frontend_params.mean_stddev.gz",
+          "sha256": "5b1f0aa2f020dd8559ed556f606f1615704ad0ba30c9a6f26b6c07477faba14a",
+          "size": 4230,
+          "encoding": "gzip",
+          "asset_sha256": "89b8d5f17ac20f65a5a26df47b2c06d0589e05e53bc3999ae2cc145339c22229",
+          "asset_size": 1092,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium-decoder.tflite",
+          "asset": "53a37c2d0072120c-medium-decoder.tflite.gz",
+          "sha256": "53a37c2d0072120c0013ea8d021c48189c6bf2401801d89c2ef308f05af6b224",
+          "size": 2837152,
+          "encoding": "gzip",
+          "asset_sha256": "7e25e4c63e22944f632717c5062efea6f8d5476f0711f0077ef7aed54862ad7d",
+          "asset_size": 2139975,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium-encoder.tflite",
+          "asset": "3539404429a53e7f-medium-encoder.tflite.gz",
+          "sha256": "3539404429a53e7f96ea9754f9826e35006609665cacfda06313c94fde703ce1",
+          "size": 28600528,
+          "encoding": "gzip",
+          "asset_sha256": "ac10ab448741e7e6c401801c4d99498abe31981f9b3386c2dc817afbb496492b",
+          "asset_size": 25425611,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium-joint_posterior.tflite",
+          "asset": "aae696d846b43f28-medium-joint_posterior.tflite.gz",
+          "sha256": "aae696d846b43f2851c863851316ff23545b9080807900f56d8fa757a92b8299",
+          "size": 2482480,
+          "encoding": "gzip",
+          "asset_sha256": "e564dd4636ce954190968c6ddfd51ec063684f4dbddf8969ca7c9141ebaaa099",
+          "asset_size": 1831197,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium-joint_prior.tflite",
+          "asset": "b9956d11ba80e816-medium-joint_prior.tflite.gz",
+          "sha256": "b9956d11ba80e81612d950f04a67681d6df45171369cad4ffba02ba6be6a8552",
+          "size": 2283984,
+          "encoding": "gzip",
+          "asset_sha256": "6b7cb36e5654aceb71eaf64d43423b361e60ecb185864bf1ba331c5258718573",
+          "asset_size": 1667831,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium-rank_candidates_acoustic.tflite",
+          "asset": "76b38688e186cedd-medium-rank_candidates_acoustic.tflite.gz",
+          "sha256": "76b38688e186ceddc2a4171e1603a222ea3ff229d10ba2a797021c9f40a04ad8",
+          "size": 3250832,
+          "encoding": "gzip",
+          "asset_sha256": "d52ae08cb141cf817d81cad7d17424146244059ec769c127c27cc49bb42d4016",
+          "asset_size": 1982109,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium.syms.compact",
+          "asset": "f2c3b3e1c7f1ffc7-medium.syms.compact.gz",
+          "sha256": "f2c3b3e1c7f1ffc79dc1ca66b58769b13a0dd29c4f22999ce6cc602ec70a2caf",
+          "size": 22176,
+          "encoding": "gzip",
+          "asset_sha256": "461904e421c98c17006b075b7cf88e71cf3b6ca4f0be31c8db4d32d580d98b19",
+          "asset_size": 18221,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/endtoendmodel/medium.wpm.portable",
+          "asset": "d0dcc2feb8e5b917-medium.wpm.portable.gz",
+          "sha256": "d0dcc2feb8e5b917fdae88a3d77ea46e47f3d6e7ae9225c46e69d463b5c018f5",
+          "size": 167725,
+          "encoding": "gzip",
+          "asset_sha256": "654b2565ad141a07f2b0a43c3c5dcc79b50d2766f3d1bd1c6b199b60c4bfce62",
+          "asset_size": 93169,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p",
+          "asset": "ad4af5a982cbe1ff-g2p.gz",
+          "sha256": "ad4af5a982cbe1ff31ca2c8b9ad85d641aa7adf790d8fa8b9bf55bb1abd12f8a",
+          "size": 227648,
+          "encoding": "gzip",
+          "asset_sha256": "5021e4074ff664e505147de878645d9b6c3c09cd36a39acfbf2295bceaf171fa",
+          "asset_size": 172852,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p.syms",
+          "asset": "38bf709f6b52fac2-g2p.syms.gz",
+          "sha256": "38bf709f6b52fac2ef255bf441881e498f7b5e2f9b884ba62deb86651477cc93",
+          "size": 4304,
+          "encoding": "gzip",
+          "asset_sha256": "fe306f5f189abfe0ff810c88284104b65d34fc7e23be7ea449e001c0baae9ef5",
+          "asset_size": 596,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/g2p_phonemes.syms",
+          "asset": "0632905bc6dc8ee0-g2p_phonemes.syms.gz",
+          "sha256": "0632905bc6dc8ee04e5bd3072b9a42e9998c8dbb4df04f427d33d1c40b30253a",
+          "size": 4352,
+          "encoding": "gzip",
+          "asset_sha256": "ca5606009eb56cfd3e8fd8183d218c493470834455dea1dfd7047a791ac5d7e9",
+          "asset_size": 761,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/langid/ONDEVICE_langid.tflite",
+          "asset": "204c3531754e9a7f-ONDEVICE_langid.tflite.gz",
+          "sha256": "204c3531754e9a7f87111346a80d20df18103e041b001ec273f713160e40b0f8",
+          "size": 2535664,
+          "encoding": "gzip",
+          "asset_sha256": "06510bed87b74ec2772347e262dd51261ea07a28335bb20aa4f514c9955cf76b",
+          "asset_size": 1600211,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/langid/application_params_langid_stream_multiclass_ONDEVICE",
+          "asset": "3ff2ef9f2ae532ab-application_params_langid_stream_multiclass_ONDEVICE.gz",
+          "sha256": "3ff2ef9f2ae532ab9cab956c59fab4c46a16bbd4a5979d7cca173a7b14b0b278",
+          "size": 528,
+          "encoding": "gzip",
+          "asset_sha256": "e925e1f17379c4d70ed17a6963f8b5683e9facfbe53e4d938d2a40349ce8eb3d",
+          "asset_size": 416,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_acoustic_meanstddev_vector",
+          "asset": "4226ee82fd2ea700-MARBLE_V2_acoustic_meanstddev_vector",
+          "sha256": "4226ee82fd2ea7000e4a5e8eb80db8436844fa2f8d45426de00caf43f7df7e69",
+          "size": 326,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_acoustic_model.int8.tflite",
+          "asset": "8a226cd2f9cdf7a3-MARBLE_V2_acoustic_model.int8.tflite.gz",
+          "sha256": "8a226cd2f9cdf7a32ab44a626265bf5618442cf19b833c3ef928794032762352",
+          "size": 243204,
+          "encoding": "gzip",
+          "asset_sha256": "f198f4ee9d7c91432a819a7f57c457d3f4e83ef6ff922145de2e42932ad63fb0",
+          "asset_size": 224760,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_model.int8.tflite",
+          "asset": "ca91351ee6ae5602-MARBLE_V2_model.int8.tflite.gz",
+          "sha256": "ca91351ee6ae5602f072a4acbdb9d245df64f620192d34448a120f0d9aa58487",
+          "size": 2223788,
+          "encoding": "gzip",
+          "asset_sha256": "5ebb5c59af0ef19b57cce5256313b512edda87f5c76e9deb1401fca38eb4c2de",
+          "asset_size": 1991879,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/magic_mic/MARBLE_V2_vocabulary.syms",
+          "asset": "4d13325054020b1d-MARBLE_V2_vocabulary.syms.gz",
+          "sha256": "4d13325054020b1de047ae02d8db06ba59e7870e8db06b266c3f38db9f229ea1",
+          "size": 179926,
+          "encoding": "gzip",
+          "asset_sha256": "3d0ef6eeff9a0e30754f208c54825990c426b3d9fc775820ba93ced3e632ec4e",
+          "asset_size": 67442,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/metadata",
+          "asset": "b1d6827f6d15b988-metadata.gz",
+          "sha256": "b1d6827f6d15b988e3c1ec748a7b86998c5e24e8789cbc846e49c76dfacd3183",
+          "size": 5258,
+          "encoding": "gzip",
+          "asset_sha256": "9aabbcaac7419321dedf174e074cb1b0c21df522ff6380880c1d12c1ed687ca2",
+          "asset_size": 2946,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/monastery_config.pumpkin",
+          "asset": "a145cd597fb232a6-monastery_config.pumpkin.gz",
+          "sha256": "a145cd597fb232a6fbfb9fff9ef4a0d8ec8388af8d956ea9e13e9279d7fb214f",
+          "size": 1051,
+          "encoding": "gzip",
+          "asset_sha256": "868f851854df9006266f8d5b4c26e834348b9469d32735b1468332e925a7efd1",
+          "asset_size": 418,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/offline_action_data.pb",
+          "asset": "7d281cc00605396b-offline_action_data.pb.gz",
+          "sha256": "7d281cc00605396b03831b70eae7f46d5a3bacdd6adcbe819b78c9d460f6707a",
+          "size": 56334,
+          "encoding": "gzip",
+          "asset_sha256": "8aa37a67a38ee1a19d1b16d9c34968c5a9fc4afb4afa5487853595a9dc725ec1",
+          "asset_size": 14640,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/pumpkin.mmap",
+          "asset": "d6c9bea7688f3862-pumpkin.mmap.gz",
+          "sha256": "d6c9bea7688f3862fef170290b78e140f26b057c43425159c12e340a3f8c8da9",
+          "size": 13942288,
+          "encoding": "gzip",
+          "asset_sha256": "89469f27647691f79a0e11b14fa23f71a2645211778c4a1348d874ac200ad657",
+          "asset_size": 4853046,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/semantics.pumpkin",
+          "asset": "d19cc31b577d6337-semantics.pumpkin.gz",
+          "sha256": "d19cc31b577d6337262636867b29c0e0428d06c46002c169d7d62345a8600663",
+          "size": 394219,
+          "encoding": "gzip",
+          "asset_sha256": "adac8f54243458fc415d0e3eb11c6153fec821be3a1e7bdd4467e0061e577723",
+          "asset_size": 38010,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/voice_match/MARBLE_speakerid.tflite",
+          "asset": "f4cb4993bc690db9-MARBLE_speakerid.tflite.gz",
+          "sha256": "f4cb4993bc690db9926a6b25456fd6559238d84b1ff2755113c234bdc39859f6",
+          "size": 6245296,
+          "encoding": "gzip",
+          "asset_sha256": "e4dfbbd208db4f4f0870ccededccea0dfcd7b6f7b4a402e98ca977e86a8d5c54",
+          "asset_size": 4730531,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/usr/srec/en-US/voice_match/MARBLE_voice_filter.tflite",
+          "asset": "e201b70b7c67d323-MARBLE_voice_filter.tflite.gz",
+          "sha256": "e201b70b7c67d323662e2866671903bcd9375b9721ba15f01d00f3b286464ad3",
+          "size": 3391696,
+          "encoding": "gzip",
+          "asset_sha256": "2c34511829d6bb3d2428d8e014f9fa5ea90ca4f2a794a7b7eaa8a24a9da83d37",
+          "asset_size": 2448033,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "packages": [
+        "com.google.android.inputmethod.latin"
+      ],
+      "version": {
+        "versionCode": "175940514",
+        "versionName": "18.0.3.954559732-preload-arm64-v8a"
+      },
+      "summary": "Keyboard, including the offline speech and CJK models. Those live outside the app directory; without them voice typing only works online and Japanese, Korean and Chinese input is degraded.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "LatinIME"
+      ]
+    },
+    {
+      "id": "tts",
+      "name": "Google Text-to-Speech",
+      "group": "tts",
+      "files": [
+        {
+          "path": "product/app/GoogleTTS/GoogleTTS.apk",
+          "asset": "b38c55dc37687118-GoogleTTS.apk.gz",
+          "sha256": "b38c55dc3768711844235d85ddbfc36f0b362aad842813725ca2ef09713adaf9",
+          "size": 75235258,
+          "encoding": "gzip",
+          "asset_sha256": "be3deddffcfded21d6c0165d6318a7ab60d2a831f35334e17bc920a1e2c5b3ef",
+          "asset_size": 41941249,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/overlay/TtsOverlay.apk",
+          "asset": "27ea6bd305120527-TtsOverlay.apk",
+          "sha256": "27ea6bd30512052746f07b107e1eb74a3eea5e66bbacd75b2d7ce46734d79ff5",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/tts/google/de-de/de-de-x-multi-r62.zvoice",
+          "asset": "2eba3521c5bf93ac-de-de-x-multi-r62.zvoice",
+          "sha256": "2eba3521c5bf93ac0d923c12ec78253bea4f797e9242bd51d29a9ef59a0293c5",
+          "size": 15219572,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/es-es/es-es-x-multi-r59.zvoice",
+          "asset": "613bc1e3cb1c83e8-es-es-x-multi-r59.zvoice",
+          "sha256": "613bc1e3cb1c83e87db9428fbc4fbc2561e7e79d68f55b8098aa0ee3070622f8",
+          "size": 9132841,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/fr-fr/fr-fr-x-multi-r62.zvoice",
+          "asset": "dbf95b831208557b-fr-fr-x-multi-r62.zvoice",
+          "sha256": "dbf95b831208557b6888809aea594768e9d03c33b3570818acac92120910b40d",
+          "size": 17992229,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/it-it/it-it-x-multi-r57.zvoice",
+          "asset": "a499dd0d22dc73bb-it-it-x-multi-r57.zvoice",
+          "sha256": "a499dd0d22dc73bbd8378e4d267e268a6fc912fd2000a53d201ab09af26b3c43",
+          "size": 9346601,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/tts/google/ja-jp/ja-jp-x-multi-r58.zvoice",
+          "asset": "8edf2001613eb230-ja-jp-x-multi-r58.zvoice",
+          "sha256": "8edf2001613eb23080ecbd36068453ef321d3aa899d6ddb9a52359a9e3f87cf1",
+          "size": 30133898,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "summary": "Text to speech, including the offline voice data. That lives outside the app directory; without it only languages downloaded on demand will speak.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "gsa",
+      "name": "Google app and Assistant",
+      "group": "search",
+      "files": [
+        {
+          "path": "product/etc/permissions/velvet_app-privapp-permissions.xml",
+          "asset": "c3e2cfd8572dec9e-velvet_app-privapp-permissions.xml.gz",
+          "sha256": "c3e2cfd8572dec9edc898ce6918a2fd60920300c52aa7aec6c052ab7a63558f9",
+          "size": 308,
+          "encoding": "gzip",
+          "asset_sha256": "cd5d187c10a0f9e6bd66da1fdcda0abfe4035db32ff78ce615649fb12fd00c46",
+          "asset_size": 257,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "product/overlay/GsaOverlay.apk",
+          "asset": "ee39bb1e8298feec-GsaOverlay.apk",
+          "sha256": "ee39bb1e8298feecb9f53f598d618c91e0bf7a39a95c94ac0ac36b42625d5d1b",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/Velvet/Velvet.apk",
+          "asset": "0a09ab5892efcfe1-Velvet.apk.gz",
+          "sha256": "0a09ab5892efcfe14236da282822fc3c6b8eb5a6b2c70053694755186136abe4",
+          "size": 357160627,
+          "encoding": "gzip",
+          "asset_sha256": "c3b4fe802757262e01ae5d38fb6b49c80db6980cb3dc2802ee2a5f7717ea914f",
+          "asset_size": 173875297,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Search, Assistant and the at-a-glance widget. Large (~350 MB).",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "QuickSearchBox"
+      ]
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "group": "search",
+      "files": [
+        {
+          "path": "product/etc/sysconfig/gemini_experience.xml",
+          "asset": "25cc7ac9ade33112-gemini_experience.xml.gz",
+          "sha256": "25cc7ac9ade331128863f12e63bfc80bd5a2f97891df719ad7c25e60fe34e41d",
+          "size": 326,
+          "encoding": "gzip",
+          "asset_sha256": "f0a57e5fbba59d3a9124c266c12ee24b0eadb01af768d43027ca4b2e4c74aff4",
+          "asset_size": 277,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/sysconfig/gemini_intelligence_device.xml",
+          "asset": "d34c475fe5029e81-gemini_intelligence_device.xml",
+          "sha256": "d34c475fe5029e81394803436554e8aee766ac113dc79a273c93d1ebdf404671",
+          "size": 138,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/priv-app/GeminiShell_305/GeminiShell_305.apk",
+          "asset": "9b0a40ee9626c3a3-GeminiShell_305.apk.gz",
+          "sha256": "9b0a40ee9626c3a35200cd50b34f78790144a9bc07554b264b5927c35b0d4949",
+          "size": 5934640,
+          "encoding": "gzip",
+          "asset_sha256": "ed8eec8d7890870db644e9af2cb2df97069fa0155d1c05b7a7b95fd30ae9a251",
+          "asset_size": 2792272,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.bard"
+      ],
+      "version": {
+        "versionCode": "305",
+        "versionName": "1.0.928324527"
+      },
+      "summary": "Google's assistant. Replaces the older Assistant surface.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "trichrome",
+      "name": "Trichrome shared library",
+      "group": "chrome",
+      "files": [
+        {
+          "path": "product/app/TrichromeLibrary-Stub/TrichromeLibrary-Stub.apk",
+          "asset": "8715df31c1cb7d85-TrichromeLibrary-Stub.apk",
+          "sha256": "8715df31c1cb7d850557568feaecc48eed8f619dc460f34b46820f28325499cd",
+          "size": 12701,
+          "mode": "0644",
+          "kind": "apk",
+          "carried": true,
+          "stub": true
+        },
+        {
+          "path": "product/app/TrichromeLibrary/TrichromeLibrary.apk.gz",
+          "asset": "5fe1b01b908ae066-TrichromeLibrary.apk.gz",
+          "sha256": "5fe1b01b908ae066eda07739dae4f1d01575dd77f920c057d644632d0c349c8b",
+          "size": 66033362,
+          "mode": "0644",
+          "kind": "etc",
+          "carried": true
+        }
+      ],
+      "packages": [
+        "com.google.android.trichromelibrary"
+      ],
+      "version": {
+        "versionCode": "782700532",
+        "versionName": "149.0.7827.5"
+      },
+      "summary": "Shared code Chrome and the Google WebView both need. Each declares it with uses-static-library and neither loads without it, so it is its own package rather than living inside either."
+    },
+    {
+      "id": "chrome",
+      "name": "Chrome",
+      "group": "chrome",
+      "files": [
+        {
+          "path": "product/app/Chrome-Stub/Chrome-Stub.apk",
+          "asset": "298bb76d8ce902cb-Chrome-Stub.apk",
+          "sha256": "298bb76d8ce902cbf9fa865f1affac6feb0eb1be2e3479002d127127b3e3bd95",
+          "size": 16797,
+          "mode": "0644",
+          "kind": "apk",
+          "carried": true,
+          "stub": true
+        },
+        {
+          "path": "product/app/Chrome/Chrome.apk.gz",
+          "asset": "30d94fee908ecda5-Chrome.apk.gz",
+          "sha256": "30d94fee908ecda5d346f7f8ad7a5055a3b237ec2d65f92ccfc610dd33534b4f",
+          "size": 20003553,
+          "mode": "0644",
+          "kind": "etc",
+          "carried": true
+        }
+      ],
+      "packages": [
+        "com.android.chrome"
+      ],
+      "version": {
+        "versionCode": "782700532",
+        "versionName": "149.0.7827.5"
+      },
+      "summary": "Chrome. Needs the Trichrome library, which is pulled in for you.",
+      "requires": [
+        "gmscore",
+        "trichrome"
+      ],
+      "removes": [
+        "Browser",
+        "Jelly"
+      ]
+    },
+    {
+      "id": "webview",
+      "name": "Google WebView",
+      "group": "chrome",
+      "files": [
+        {
+          "path": "product/app/WebViewGoogle-Stub/WebViewGoogle-Stub.apk",
+          "asset": "39945cfd22b233c0-WebViewGoogle-Stub.apk",
+          "sha256": "39945cfd22b233c0049dbf5c0bdf3d1809ce55f5397727e0953359cac2ce636e",
+          "size": 12701,
+          "mode": "0644",
+          "kind": "apk",
+          "carried": true,
+          "stub": true
+        },
+        {
+          "path": "product/app/WebViewGoogle/WebViewGoogle.apk.gz",
+          "asset": "737b58dbd7f46c06-WebViewGoogle.apk.gz",
+          "sha256": "737b58dbd7f46c0636180edf3fdc9958464e17e930485723f1572f966eed845f",
+          "size": 48143873,
+          "mode": "0644",
+          "kind": "etc",
+          "carried": true
+        }
+      ],
+      "packages": [
+        "com.google.android.webview"
+      ],
+      "version": {
+        "versionCode": "782700504",
+        "versionName": "149.0.7827.5"
+      },
+      "summary": "The system WebView every app uses to render web content. Also needs Trichrome.",
+      "requires": [
+        "trichrome"
+      ],
+      "removes": [
+        "webview"
+      ]
+    },
+    {
+      "id": "files",
+      "name": "Files by Google",
+      "group": "files",
+      "files": [
+        {
+          "path": "product/priv-app/FilesPrebuilt/FilesPrebuilt.apk",
+          "asset": "6615a61012eb4b45-FilesPrebuilt.apk.gz",
+          "sha256": "6615a61012eb4b458bd33c50a1b32ae4438a342dcfbd8fb5397c2cda1e4dd4a0",
+          "size": 28956449,
+          "encoding": "gzip",
+          "asset_sha256": "5cfe1f4a54c244c9f775ebe20f791dc3c20c1f5cfca803f041043bf755ecd1b1",
+          "asset_size": 12847080,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.nbu.files"
+      ],
+      "version": {
+        "versionCode": "1943511",
+        "versionName": "1.12100.956597080.2-release"
+      },
+      "summary": "Files by Google, the file manager.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "documentsui",
+      "name": "Google document picker",
+      "group": "files",
+      "files": [
+        {
+          "path": "system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk",
+          "asset": "e67ed4c857523340-DocumentsUIGoogle.apk.gz",
+          "sha256": "e67ed4c8575233400bed21d3dc3eb604680ea807465f25f4156646293415bc43",
+          "size": 11516538,
+          "encoding": "gzip",
+          "asset_sha256": "9fd409816f73852533a588f9e141054a553d8ae983e79b7ec4cc2cafb789817a",
+          "asset_size": 4488110,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.documentsui"
+      ],
+      "version": {
+        "versionCode": "373040040",
+        "versionName": "17"
+      },
+      "summary": "Replaces the AOSP file picker. This is what every app opens when it asks you to choose a file.",
+      "removes": [
+        "DocumentsUI"
+      ]
+    },
+    {
+      "id": "storagemanager",
+      "name": "Google storage manager",
+      "group": "files",
+      "files": [
+        {
+          "path": "system_ext/priv-app/StorageManagerGoogle/StorageManagerGoogle.apk",
+          "asset": "dbc3a5889904811b-StorageManagerGoogle.apk.gz",
+          "sha256": "dbc3a5889904811b3a9f01e5b171d5a395b64d55df7738d0c1cafb93a3c5d6c7",
+          "size": 4840254,
+          "encoding": "gzip",
+          "asset_sha256": "bcbe8821c9c1080d36dc52afec62a703736dc68bd24e0a9209a8252a2e17541c",
+          "asset_size": 2230040,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.storagemanager"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "The storage cleanup flow Settings opens when space runs low.",
+      "removes": [
+        "StorageManager"
+      ]
+    },
+    {
+      "id": "photos",
+      "name": "Google Photos",
+      "group": "photos",
+      "files": [
+        {
+          "path": "product/app/Photos/Photos.apk",
+          "asset": "a0e72bd6eda575cd-Photos.apk.gz",
+          "sha256": "a0e72bd6eda575cd8fad5ae30f97647efd5e9efc1edd380d23366b6509a0b823",
+          "size": 187784515,
+          "encoding": "gzip",
+          "asset_sha256": "ef94e9e3115fbf6815872c3f5256e2380859ecb3ffc0fc18e23e8a2069728bc4",
+          "asset_size": 75605104,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/overlay/PhotosOverlay.apk",
+          "asset": "5db13df578b7ca2d-PhotosOverlay.apk",
+          "sha256": "5db13df578b7ca2dbd8bdc2a0f44e393d3804bc5a618c97e51bced720324c243",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        }
+      ],
+      "summary": "Google Photos, with backup and the built-in editor.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Gallery2",
+        "Glimpse"
+      ]
+    },
+    {
+      "id": "markup",
+      "name": "Markup",
+      "group": "markup",
+      "files": [
+        {
+          "path": "product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk",
+          "asset": "56e1d87baa7a1d9a-MarkupGoogle_v2.apk.gz",
+          "sha256": "56e1d87baa7a1d9a91e5985f8ff5d9146e05a035c73e6206f055f863623bfa1b",
+          "size": 6875934,
+          "encoding": "gzip",
+          "asset_sha256": "1c6b2fe5b81354942b64d7ba9d81dc646a3debb3ab820284b430d2f1fc87f1cb",
+          "asset_size": 3125201,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.markup"
+      ],
+      "version": {
+        "versionCode": "232",
+        "versionName": "1.0"
+      },
+      "summary": "The annotation editor Photos and screenshots open."
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "group": "gmail",
+      "files": [
+        {
+          "path": "product/app/PrebuiltGmail/PrebuiltGmail.apk",
+          "asset": "be09ef03dfcca1a3-PrebuiltGmail.apk.gz",
+          "sha256": "be09ef03dfcca1a3a7349f6c1457e26b01c00ee76949fb7cf163dbe35505bd73",
+          "size": 188936707,
+          "encoding": "gzip",
+          "asset_sha256": "965083f98381ab7bccd96d40a78bcb488b41957d0e502d643bb8b2b620cb61e7",
+          "asset_size": 70205555,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gm"
+      ],
+      "version": {
+        "versionCode": "65646076",
+        "versionName": "2026.03.09.884664556.Release"
+      },
+      "summary": "Gmail.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps",
+      "group": "maps",
+      "files": [
+        {
+          "path": "product/app/Maps/Maps.apk",
+          "asset": "6412d90f83072a8a-Maps.apk.gz",
+          "sha256": "6412d90f83072a8aec9fd2b7b42bfa3c08ddd425923d168a30d7a4f445199f8a",
+          "size": 122384540,
+          "encoding": "gzip",
+          "asset_sha256": "694b20f915fd6b6c1009d25b9a6581e61e6fb7a8f306377d66957294c80ec425",
+          "asset_size": 56458485,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.maps"
+      ],
+      "version": {
+        "versionCode": "1068739427",
+        "versionName": "26.34.04.965633971"
+      },
+      "summary": "Google Maps, including navigation.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "locationhistory",
+      "name": "Location History",
+      "group": "locationhistory",
+      "files": [
+        {
+          "path": "product/app/LocationHistoryPrebuilt/LocationHistoryPrebuilt.apk",
+          "asset": "bd569288da97977e-LocationHistoryPrebuilt.apk.gz",
+          "sha256": "bd569288da97977ec04965dd1879f884a5a8db46d4c56fed18486e4050fb88d7",
+          "size": 2700122,
+          "encoding": "gzip",
+          "asset_sha256": "cc03835439b00d08682e82dd1b14f9f9ec348185f560591659cfe956bd0b5c46",
+          "asset_size": 1169697,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.gms.location.history"
+      ],
+      "version": {
+        "versionCode": "3",
+        "versionName": "1.2"
+      },
+      "summary": "Timeline, which records where the phone has been. Off until you turn it on.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive",
+      "group": "drive",
+      "files": [
+        {
+          "path": "product/app/Drive/Drive.apk",
+          "asset": "b21f4c5ce8959a64-Drive.apk.gz",
+          "sha256": "b21f4c5ce8959a6464d4189353d402f1a2aa76713066a4c40c05a6227481fab4",
+          "size": 87543254,
+          "encoding": "gzip",
+          "asset_sha256": "b1105bde9a1caa947e07e76cb114f17db13e139492713efcd69a840be260187b",
+          "asset_size": 38031588,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.docs"
+      ],
+      "version": {
+        "versionCode": "214582264",
+        "versionName": "2.26.307.6.arm64-v8a.alldpi"
+      },
+      "summary": "Google Drive.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "calendar",
+      "name": "Google Calendar",
+      "group": "calendar",
+      "files": [
+        {
+          "path": "product/app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk",
+          "asset": "6060540a89791b64-CalendarGooglePrebuilt.apk.gz",
+          "sha256": "6060540a89791b6434b7a294db6a334bc4bdd602fc2e07ce480e33e50e973f1d",
+          "size": 46935340,
+          "encoding": "gzip",
+          "asset_sha256": "dc4a1c24532e33706fe864b90cefc56b62ab074b9ee2ef5f211b8e9b39e29f17",
+          "asset_size": 20856593,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.calendar"
+      ],
+      "version": {
+        "versionCode": "2018015783",
+        "versionName": "2026.03.0-857911644-release"
+      },
+      "summary": "Google Calendar.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Calendar",
+        "Etar"
+      ]
+    },
+    {
+      "id": "keep",
+      "name": "Google Keep",
+      "group": "keep",
+      "files": [
+        {
+          "path": "product/app/GoogleKeepPrebuilt/GoogleKeepPrebuilt.apk",
+          "asset": "7b508b661e33f379-GoogleKeepPrebuilt.apk.gz",
+          "sha256": "7b508b661e33f379e56af05c53eec7d2b90b791d7d586d47bded927562b39d3f",
+          "size": 35161247,
+          "encoding": "gzip",
+          "asset_sha256": "d6d07109a0a68f5dcaf737e9b649fa8934d99ad8cde8f12d8a602d6eef2caf49",
+          "asset_size": 15090162,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.keep"
+      ],
+      "version": {
+        "versionCode": "220658918",
+        "versionName": "5.26.181.01.90"
+      },
+      "summary": "Google Keep.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "meet",
+      "name": "Google Meet",
+      "group": "meet",
+      "files": [
+        {
+          "path": "product/app/MeetPrebuilt_20260216/MeetPrebuilt_20260216.apk",
+          "asset": "d2642ba58ea153ee-MeetPrebuilt_20260216.apk.gz",
+          "sha256": "d2642ba58ea153ee1300caeb51547e2d293d9c67486fd7832a8ca3d75b9d4a26",
+          "size": 76604417,
+          "encoding": "gzip",
+          "asset_sha256": "bd429679f3e9e1363b41a919ba656c88766dafa89ff67fbc4099c8618115ab4a",
+          "asset_size": 51037276,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.tachyon"
+      ],
+      "version": {
+        "versionCode": "6958709",
+        "versionName": "347.0.870744322.duo.android_20260216.01_p0"
+      },
+      "summary": "Google Meet.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "calculator",
+      "name": "Google Calculator",
+      "group": "calculator",
+      "files": [
+        {
+          "path": "product/app/CalculatorGooglePrebuilt_85011599/CalculatorGooglePrebuilt_85011599.apk",
+          "asset": "85613af92e79091c-CalculatorGooglePrebuilt_85011599.apk.gz",
+          "sha256": "85613af92e79091c664dc5c78fac616fbe4757ac9c2b15bde60b0246da205d37",
+          "size": 8299061,
+          "encoding": "gzip",
+          "asset_sha256": "30bab2d4971d8dc0c772a1accd4fa4b1d8665a66ded1cf913d8fec146b2b5d48",
+          "asset_size": 5080488,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.calculator"
+      ],
+      "version": {
+        "versionCode": "85011599",
+        "versionName": "9.1 (886477075)"
+      },
+      "summary": "Google Calculator.",
+      "removes": [
+        "ExactCalculator",
+        "Calculator"
+      ]
+    },
+    {
+      "id": "clock",
+      "name": "Google Clock",
+      "group": "clock",
+      "files": [
+        {
+          "path": "product/priv-app/PrebuiltDeskClockGoogle_76112331/PrebuiltDeskClockGoogle_76112331.apk",
+          "asset": "096db8de92f7ac91-PrebuiltDeskClockGoogle_76112331.apk.gz",
+          "sha256": "096db8de92f7ac91c05c6d6dd83a780e0168dada75cc98efa0ec83033417347e",
+          "size": 18380219,
+          "encoding": "gzip",
+          "asset_sha256": "0604947612ed9ed3dbede759c92fa4626a7f077522904e0ff116bc4199b94efd",
+          "asset_size": 7350615,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.deskclock"
+      ],
+      "version": {
+        "versionCode": "76112331",
+        "versionName": "9.1 (965977594)"
+      },
+      "summary": "Google Clock, with alarms and timers.",
+      "removes": [
+        "DeskClock"
+      ]
+    },
+    {
+      "id": "recorder",
+      "name": "Pixel Recorder",
+      "group": "recorder",
+      "files": [
+        {
+          "path": "product/priv-app/RecorderPrebuilt_953092853/RecorderPrebuilt_953092853.apk",
+          "asset": "5f32edafe2655721-RecorderPrebuilt_953092853.apk.gz",
+          "sha256": "5f32edafe26557210d712e4d83b76bff131476aad00dcd661394a4759584b0ed",
+          "size": 94676924,
+          "encoding": "gzip",
+          "asset_sha256": "f29940a9426d32d9847d24b9a5834c2554fec597b4a4c6c7729a8f831dc556a0",
+          "asset_size": 50924585,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.recorder"
+      ],
+      "version": {
+        "versionCode": "42405813",
+        "versionName": "4.2.20260521.953092853"
+      },
+      "summary": "Pixel Recorder, with on-device transcription.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Recorder"
+      ]
+    },
+    {
+      "id": "sounds",
+      "name": "Pixel sounds",
+      "group": "sounds",
+      "files": [
+        {
+          "path": "product/app/SoundPickerPrebuilt_3.4/SoundPickerPrebuilt_3.4.apk",
+          "asset": "d8f3feee3542d8e7-SoundPickerPrebuilt_3.4.apk.gz",
+          "sha256": "d8f3feee3542d8e756e8205d1172564832d77204197ed90f7e4f8c2eec301037",
+          "size": 7725653,
+          "encoding": "gzip",
+          "asset_sha256": "422d5eef3879d2e1d64149c70e7310db2a640e005f55804e2f1a112972c7b067",
+          "asset_size": 3200669,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/media/audio/alarms/A_real_hoot.ogg",
+          "asset": "dd59715b4e56e035-A_real_hoot.ogg.gz",
+          "sha256": "dd59715b4e56e0357a14945cd03d61f3a4a0a2b210c6a88a871cd6ad4020c5ce",
+          "size": 42523,
+          "encoding": "gzip",
+          "asset_sha256": "b0cf707cd7b431fc084d415e91cd234651a77f2133445339ee30838f471c8aaa",
+          "asset_size": 40257,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Bright_morning.ogg",
+          "asset": "d44ac2e5470d5085-Bright_morning.ogg",
+          "sha256": "d44ac2e5470d5085c372df27c32abcaa5a8203993faaebacc05903541bd82026",
+          "size": 230610,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Cuckoo_clock.ogg",
+          "asset": "f740118421fc1746-Cuckoo_clock.ogg",
+          "sha256": "f740118421fc1746ce76798f75fdb0725f9ad3164d45659f5a8515efb504c6db",
+          "size": 97406,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Early_twilight.ogg",
+          "asset": "73f021cfb105c6b5-Early_twilight.ogg",
+          "sha256": "73f021cfb105c6b5ed583cac60a6dd49b62a7ffa150667cee35da3a4b816e03f",
+          "size": 294022,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Fresh_morning.ogg",
+          "asset": "31185f8727104cfe-Fresh_morning.ogg",
+          "sha256": "31185f8727104cfeb724a868c5ac01792440bf829ebf4635c81bd402fa825bb0",
+          "size": 1131449,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Fresh_start.ogg",
+          "asset": "5cceb458d054e5ca-Fresh_start.ogg",
+          "sha256": "5cceb458d054e5ca941c5d092a35ae8cee2513bc403e7b234cb26c468f6beb02",
+          "size": 662017,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Full_of_wonder.ogg",
+          "asset": "14c3e991b4ffea68-Full_of_wonder.ogg",
+          "sha256": "14c3e991b4ffea68c82db9ae8cc56a0f4f86577550b2d5bb1daf806b12528015",
+          "size": 432688,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Gentle_breeze.ogg",
+          "asset": "8bac5b99167ae9cb-Gentle_breeze.ogg",
+          "sha256": "8bac5b99167ae9cb366f89163fc6332a47707e74ef31ae49c523c51e7b7278ee",
+          "size": 259892,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Icicles.ogg",
+          "asset": "84a6842613b93cc1-Icicles.ogg",
+          "sha256": "84a6842613b93cc18cab6bcc4a6a1ae3e1103e5969af8292c0eb17985e505d18",
+          "size": 163148,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Jump_start.ogg",
+          "asset": "d32bf2d749bac528-Jump_start.ogg",
+          "sha256": "d32bf2d749bac52876e69c8db262489c2fbaefcf3d163e654c3c8c9d82a4cc56",
+          "size": 227757,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Loose_change.ogg",
+          "asset": "4feac7f4881edd56-Loose_change.ogg",
+          "sha256": "4feac7f4881edd561db3e9ef67485d2ca30c7935f659944225b555b9364228b7",
+          "size": 93514,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Rolling_fog.ogg",
+          "asset": "7de8ccdf0cbd8687-Rolling_fog.ogg",
+          "sha256": "7de8ccdf0cbd86871acb4675beb92554690c889da4ca1dae72e8adf1b96d5803",
+          "size": 267998,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Spokes.ogg",
+          "asset": "182b5f4a7bb432cd-Spokes.ogg",
+          "sha256": "182b5f4a7bb432cd8517849da1ac6e79319f7c95fb6287e462b8299d3cea0e63",
+          "size": 54605,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/alarms/Sunshower.ogg",
+          "asset": "f20ea7496d774329-Sunshower.ogg",
+          "sha256": "f20ea7496d77432970707b83609b470ba0a7c93f3aefb39fcec290d643eef6c9",
+          "size": 519038,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Beginning.ogg",
+          "asset": "333e01cfa968e5db-Beginning.ogg",
+          "sha256": "333e01cfa968e5dbceb830ae082fc53fe54c26d33b539b1f0d82d22a6e9cd281",
+          "size": 29000,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Coconuts.ogg",
+          "asset": "be453377733aa11c-Coconuts.ogg",
+          "sha256": "be453377733aa11c28f1298384be04929ca9f5e003d46d036b52eb39896a2e25",
+          "size": 16064,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Duet.ogg",
+          "asset": "825decd417c05661-Duet.ogg",
+          "sha256": "825decd417c05661593538323a31bf9562766b412acb64f10fcd496f71c1edb7",
+          "size": 19638,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/End_note.ogg",
+          "asset": "762af2dc33c85948-End_note.ogg",
+          "sha256": "762af2dc33c8594889743976ddf358b02723247431d7d27d8b2aaee8db1f916e",
+          "size": 20158,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Eureka.ogg",
+          "asset": "5c4d30c02648ca12-Eureka.ogg.gz",
+          "sha256": "5c4d30c02648ca121c78d24bba91e9e40ef632e2c28caee95c2f8f044b540b10",
+          "size": 10112,
+          "encoding": "gzip",
+          "asset_sha256": "8c1b6702ef1e9b5dee46b78e4e6f77074ba9866a7761eaaa577c7ebbc3cfd28c",
+          "asset_size": 8904,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Gentle_gong.ogg",
+          "asset": "d9618b2a252b4ca0-Gentle_gong.ogg",
+          "sha256": "d9618b2a252b4ca07b5a805d9dcabafc80c79a1a073ff793be006fe92575b581",
+          "size": 35405,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Kernel.ogg",
+          "asset": "75fbe14248a85cd3-Kernel.ogg.gz",
+          "sha256": "75fbe14248a85cd3dca7aed59f48723dd7975245b4048c934b1c999a349b954a",
+          "size": 12785,
+          "encoding": "gzip",
+          "asset_sha256": "78509681094eacc808c55f23a470c94cd1ea0cf2a60d5a8d284f17e1129b86e4",
+          "asset_size": 11992,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Mallet.ogg",
+          "asset": "87d2486ad67273fa-Mallet.ogg",
+          "sha256": "87d2486ad67273fa348433a5c0a0f181b9427938e6aaf3ccf2049fbe22def3ab",
+          "size": 20706,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/None.ogg",
+          "asset": "3a71a540e952a43b-None.ogg.gz",
+          "sha256": "3a71a540e952a43b4e2e12c9b58d221ebc5f21e6b59f31179af6b2f2a0643af1",
+          "size": 3894,
+          "encoding": "gzip",
+          "asset_sha256": "0fe90175ed892d0e9b9a752070a3245439d4bce750a730c7db1221b916dd8aa9",
+          "asset_size": 3111,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Orders_up.ogg",
+          "asset": "ca2bba67bfdc81b2-Orders_up.ogg.gz",
+          "sha256": "ca2bba67bfdc81b20d15565cd89b6fb998b7ced94934dec33c5513d612498515",
+          "size": 14266,
+          "encoding": "gzip",
+          "asset_sha256": "599e0c2980ac8e6c0a591db50b6ddb78f1260a085d255860fc620a6dc65c7eb5",
+          "asset_size": 12801,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Ping.ogg",
+          "asset": "c8236004a51cdcf7-Ping.ogg.gz",
+          "sha256": "c8236004a51cdcf7310555aade59fa53e99fa402401f09ea2aa22e04ee3067b2",
+          "size": 6749,
+          "encoding": "gzip",
+          "asset_sha256": "e6a388c87efa8774c5950182e7b45ff75eb69b0e5c6cf8ee25ff717906faade7",
+          "asset_size": 6007,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Pipes.ogg",
+          "asset": "461de04c9b3f2857-Pipes.ogg.gz",
+          "sha256": "461de04c9b3f285739d34c4c2bbf204ec8447e9b4beb309595fa66508e328472",
+          "size": 10466,
+          "encoding": "gzip",
+          "asset_sha256": "1faa33b19f1ff8909f5c6c3e0b84a6e59fe15e09f266f2d62d8ab5010ae4366c",
+          "asset_size": 9808,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Popcorn.ogg",
+          "asset": "624267ac31d50c81-Popcorn.ogg",
+          "sha256": "624267ac31d50c81660f4a4b05acfd47f261a41ff9fbb9328726f9ef59c62f22",
+          "size": 20332,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Shopkeeper.ogg",
+          "asset": "ab5ffd78bd204e7c-Shopkeeper.ogg.gz",
+          "sha256": "ab5ffd78bd204e7c18c36bfa19900fb6bc59763eb0590c5d7c081ff2b4398fb5",
+          "size": 23319,
+          "encoding": "gzip",
+          "asset_sha256": "e4fae3d6cc7f3cdc1dbdc91579911a7ed20682120dd03719654de3001deb8fdf",
+          "asset_size": 21437,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Sticks_and_stones.ogg",
+          "asset": "3186ab0da4ee963a-Sticks_and_stones.ogg",
+          "sha256": "3186ab0da4ee963a2c96219415c5e2627bac04696141c19e3a852ee1a6fad86d",
+          "size": 15665,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Tuneup.ogg",
+          "asset": "1ce7b22a9632fcfd-Tuneup.ogg",
+          "sha256": "1ce7b22a9632fcfd04310e3c8d29e1a8ef42a99de44d85f90d7d54f842881513",
+          "size": 48307,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Tweeter.ogg",
+          "asset": "224eb43f8ef6dd68-Tweeter.ogg",
+          "sha256": "224eb43f8ef6dd684c414803f0f826774f7407034edfa0aea5da28e65866a7ac",
+          "size": 15814,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/notifications/Twinkle.ogg",
+          "asset": "dc36402ff095794a-Twinkle.ogg.gz",
+          "sha256": "dc36402ff095794a0171fcb14a027802a87b9cb913b83f91bd81c021cd29419a",
+          "size": 34033,
+          "encoding": "gzip",
+          "asset_sha256": "b27bb3e7eb36e90e94afe45fcd001f3086c5765238dcf156f6d5a0ed5310e3a3",
+          "asset_size": 32017,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Copycat.ogg",
+          "asset": "c1ad0c9371e5d1f5-Copycat.ogg",
+          "sha256": "c1ad0c9371e5d1f555f92741367c73c6d315931f2c3743dd2e929701f098fe1f",
+          "size": 585416,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Crackle.ogg",
+          "asset": "232f3c5f8ebb1129-Crackle.ogg",
+          "sha256": "232f3c5f8ebb11298f2fd51c45b5f45c45ef31b4520b460e9be4de469094344b",
+          "size": 229665,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Flutterby.ogg",
+          "asset": "86f6a491ab82a8f4-Flutterby.ogg",
+          "sha256": "86f6a491ab82a8f47cec30ac4f44428a503bff2c5bbdc3f40510ccaa7e767272",
+          "size": 81983,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Hotline.ogg",
+          "asset": "d90247b5d02336d0-Hotline.ogg",
+          "sha256": "d90247b5d02336d0d0894f3e2750968fc422d0d5ea763f03e9d6affa77d1e323",
+          "size": 332018,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Leaps_and_bounds.ogg",
+          "asset": "ad3313639a1db606-Leaps_and_bounds.ogg",
+          "sha256": "ad3313639a1db6067c5e7e849a3e2dee78e845a9c668bcbc18ae62eaf0d65550",
+          "size": 1113609,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Lollipop.ogg",
+          "asset": "65c9855b3f2251f6-Lollipop.ogg",
+          "sha256": "65c9855b3f2251f6b14de5db41f528f8f943c7906d6c7d068862d9bea0185739",
+          "size": 239564,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Lost_and_found.ogg",
+          "asset": "4289bfe98f2bc4de-Lost_and_found.ogg",
+          "sha256": "4289bfe98f2bc4de096211086526b78e3268cc59e9c680f8639e7c51da49ebc7",
+          "size": 555786,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Mash_up.ogg",
+          "asset": "efa06e3095251223-Mash_up.ogg",
+          "sha256": "efa06e309525122308b5602b816102791a2bdf634a644ef65e2001f7638a20f7",
+          "size": 431912,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Monkey_around.ogg",
+          "asset": "10d8b1ae0ae78fc3-Monkey_around.ogg",
+          "sha256": "10d8b1ae0ae78fc322c0bddc2d1d521639e607c5e37b89fcce0b21f0ff35134c",
+          "size": 277682,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/None.ogg",
+          "asset": "b6c33a344b5d97f3-None.ogg.gz",
+          "sha256": "b6c33a344b5d97f31c25f244bdc05d6e3dd445c91975862aaad594c40cd2960c",
+          "size": 3893,
+          "encoding": "gzip",
+          "asset_sha256": "46ba5231b5a10e0c067da391878d61a9497fdd0a0d293cbc12b3ff967466ab88",
+          "asset_size": 3109,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Schools_out.ogg",
+          "asset": "82325018bc09f5f6-Schools_out.ogg",
+          "sha256": "82325018bc09f5f63641e3aff175d3f7c176ec226dd2aa03961e67377af241a1",
+          "size": 216941,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/The_big_adventure.ogg",
+          "asset": "20b6a79e1d8d4351-The_big_adventure.ogg.gz",
+          "sha256": "20b6a79e1d8d43511c500bb796ca8c58a4927b26c673c836f9d992857e9c9394",
+          "size": 255608,
+          "encoding": "gzip",
+          "asset_sha256": "282368831f685ab0fd49e7091ed5d4a57238037268304751a96a43dbe4d06e1c",
+          "asset_size": 242010,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/The_next_adventure.ogg",
+          "asset": "f272fee27d3cbec9-The_next_adventure.ogg",
+          "sha256": "f272fee27d3cbec96c40be3a12aa005323ea423b8c00b50516564a68ecb91be5",
+          "size": 582408,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Your_new_adventure.ogg",
+          "asset": "b64d3a3680a52c5c-Your_new_adventure.ogg",
+          "sha256": "b64d3a3680a52c5cc4b9990bf8b4a51b53f796b2e393ea86ef2e658a0fe86473",
+          "size": 530842,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ringtones/Zen_too.ogg",
+          "asset": "0fa6d4db5da7d2b6-Zen_too.ogg",
+          "sha256": "0fa6d4db5da7d2b673cf19aa2cf38effe767c8767bba6ef2a02f5e54a88f29cf",
+          "size": 344563,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/ChargingStarted.ogg",
+          "asset": "e1a83659b04217cd-ChargingStarted.ogg.gz",
+          "sha256": "e1a83659b04217cd063cf902e9ee950972f306ab34ef01c9952d9b7092c6e6aa",
+          "size": 22364,
+          "encoding": "gzip",
+          "asset_sha256": "5ae8c7cee234c3eb03e084fb51236bf626caecd1eed5bd9d47e85304ce3baceb",
+          "asset_size": 20843,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Dock.ogg",
+          "asset": "8de5e62d50784ef6-Dock.ogg",
+          "sha256": "8de5e62d50784ef68a8f35d03747961a4bda5f84f91f6a4d8a3a032c39e7891d",
+          "size": 18542,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Effect_Tick.ogg",
+          "asset": "3d5e97779ae3e6e5-Effect_Tick.ogg.gz",
+          "sha256": "3d5e97779ae3e6e5f96eb6a30dfd7781cbd39f80f44bacb5c2597547350a77a0",
+          "size": 4212,
+          "encoding": "gzip",
+          "asset_sha256": "48cf8854425b405e8d4240d0243755d641be00721ae55709789a11055c9f598a",
+          "asset_size": 3519,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/InCallNotification.ogg",
+          "asset": "1ed24a6403f321e7-InCallNotification.ogg.gz",
+          "sha256": "1ed24a6403f321e749ea2f43676b47346b2955605d83cc1ceb193d012ce4e42a",
+          "size": 6275,
+          "encoding": "gzip",
+          "asset_sha256": "c3606b9388bac0f4189c988c560e22eebd4fa6816758ca2a0623085aef57be94",
+          "asset_size": 5547,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressDelete.ogg",
+          "asset": "08d66acd840c5779-KeypressDelete.ogg.gz",
+          "sha256": "08d66acd840c5779b5287eb8e2172946098143b52316f3b3eb32c02fa21d6382",
+          "size": 4091,
+          "encoding": "gzip",
+          "asset_sha256": "263fa2849539170bed08f4097e57f4c7e4c1041d39edc579c7ed1525c21488b3",
+          "asset_size": 3401,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressReturn.ogg",
+          "asset": "a0d9043c54499893-KeypressReturn.ogg.gz",
+          "sha256": "a0d9043c5449989329dc266fc905dba1a02970d2e04eb3988fcf9a4ab3762972",
+          "size": 4090,
+          "encoding": "gzip",
+          "asset_sha256": "31bfabc2844b289a9b6dcc969cc2f4140cba55adf5beeaac95dc4395f8af95ed",
+          "asset_size": 3398,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressSpacebar.ogg",
+          "asset": "6b43b5c576bb97fd-KeypressSpacebar.ogg.gz",
+          "sha256": "6b43b5c576bb97fd06ecf1a2bd667d7eecaf17095bd861214617d772274731bf",
+          "size": 4125,
+          "encoding": "gzip",
+          "asset_sha256": "465ddd91a68bad20974114041182202eda05aac910b29bd62fafe7b17b72d478",
+          "asset_size": 3440,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/KeypressStandard.ogg",
+          "asset": "4bcb3e9c18e97d80-KeypressStandard.ogg.gz",
+          "sha256": "4bcb3e9c18e97d8048e51af105777458dfe9094c930317fe19e9382489d1bd5b",
+          "size": 4251,
+          "encoding": "gzip",
+          "asset_sha256": "07bec3a91d488eb82e8f92691b1ff3c51d0b3927434460e3a3b08cc325c182e8",
+          "asset_size": 3525,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Lock.ogg",
+          "asset": "b1d4b1d151e85b67-Lock.ogg.gz",
+          "sha256": "b1d4b1d151e85b678674c04c420a93057068cef7744948ce012cfe2026f8de2f",
+          "size": 6215,
+          "encoding": "gzip",
+          "asset_sha256": "8b945a3ddf89f6d0861add4907b0ccb6c23f356a4bdaccf20da73cdccb4d2227",
+          "asset_size": 5556,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/LowBattery.ogg",
+          "asset": "57544671c4dd829f-LowBattery.ogg.gz",
+          "sha256": "57544671c4dd829f439b8528298cfc82d46a5d91374c129ee5fdabca61b21525",
+          "size": 17574,
+          "encoding": "gzip",
+          "asset_sha256": "450a4cf33e16d47293b3038ae5424992f5b3573f1345ba218ac9684e9043d34c",
+          "asset_size": 16613,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCFailure.ogg",
+          "asset": "4b9e527667d41472-NFCFailure.ogg",
+          "sha256": "4b9e527667d414728deb5dbf93b2a7ea57c0c168194bf6c28653060595e2d4ff",
+          "size": 31870,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCInitiated.ogg",
+          "asset": "76531db9b3c04fbe-NFCInitiated.ogg",
+          "sha256": "76531db9b3c04fbe84a8b6dac4a346464215bd5c0fa9b9d4578773a467fef68b",
+          "size": 25194,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCSuccess.ogg",
+          "asset": "70ebe31acfc8c5e0-NFCSuccess.ogg",
+          "sha256": "70ebe31acfc8c5e0157fa46efc62fcf3d04bc2572d38f1fe923d1eefb5c2fe05",
+          "size": 27201,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCTransferComplete.ogg",
+          "asset": "3044823afc947abb-NFCTransferComplete.ogg",
+          "sha256": "3044823afc947abb220105f25848a43ced8ded1df41da0e6d48b0e84aacc453f",
+          "size": 33297,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/NFCTransferInitiated.ogg",
+          "asset": "f47c2b5815dd7ce8-NFCTransferInitiated.ogg",
+          "sha256": "f47c2b5815dd7ce8e7b5839a9d8dec305b20391f08796fb12cfe2579283f8f26",
+          "size": 28204,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Undock.ogg",
+          "asset": "10861a4affc68aac-Undock.ogg",
+          "sha256": "10861a4affc68aac1f8e68673c2015e39cb2abe886dabd91af94e0052d643365",
+          "size": 17136,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/Unlock.ogg",
+          "asset": "4f295f7b22409372-Unlock.ogg.gz",
+          "sha256": "4f295f7b224093729772408232036b9b66d0fd68f450d1a94902cd92eb0196fe",
+          "size": 5660,
+          "encoding": "gzip",
+          "asset_sha256": "6617d70e564f3a3de628f35816ffd53f2cc7fe5aea989c2f295eb5326cf4af07",
+          "asset_size": 4967,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/VideoRecord.ogg",
+          "asset": "1610eb56d0e61486-VideoRecord.ogg.gz",
+          "sha256": "1610eb56d0e61486206a2bd285b3a8d1c1a2531c5867eae11e01241c0142f965",
+          "size": 12323,
+          "encoding": "gzip",
+          "asset_sha256": "bae0f5f296e14cffb4391fb5b740710dbf9caced1958cc0d74fba5a403fcac9d",
+          "asset_size": 11537,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/VideoStop.ogg",
+          "asset": "56b2c1bd4a6e13a0-VideoStop.ogg.gz",
+          "sha256": "56b2c1bd4a6e13a0d68ebdbf7e774c952760bc77d5b553f24f55746e28db25dc",
+          "size": 12438,
+          "encoding": "gzip",
+          "asset_sha256": "f3fca359d4292da1e5a6d04f23f1a210a344aaf1eba0ee36daf09ce218391977",
+          "asset_size": 11631,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/WirelessChargingStarted.ogg",
+          "asset": "d8a667775ab3d231-WirelessChargingStarted.ogg",
+          "sha256": "d8a667775ab3d231b4e8a525d516d72b6bc17716ee4f31a658376dc2af19f9d7",
+          "size": 36005,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/audio_end.ogg",
+          "asset": "ab6496d860739691-audio_end.ogg.gz",
+          "sha256": "ab6496d8607396910c46d15830b6e424d834f5816cb92348eb8bafd95f1eb081",
+          "size": 10388,
+          "encoding": "gzip",
+          "asset_sha256": "295fb64d6f72120150ab4ecbd8e516ace26f01271ca1d94c8e8e882973196928",
+          "asset_size": 9558,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/audio_initiate.ogg",
+          "asset": "ae2be3474f4a688f-audio_initiate.ogg.gz",
+          "sha256": "ae2be3474f4a688fcd5a0ade30c642756b2fdd901ce9c68190c166db5a7b84c8",
+          "size": 11177,
+          "encoding": "gzip",
+          "asset_sha256": "d40555c8781902f1270f3658da0b4769026a8cd54ebead85890605c97a54410b",
+          "asset_size": 10363,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/camera_click.ogg",
+          "asset": "0b023c0f15d6e2a7-camera_click.ogg.gz",
+          "sha256": "0b023c0f15d6e2a78b09108e025b86b51cd48111bbd4b2e5de400350b9c0e1c6",
+          "size": 6401,
+          "encoding": "gzip",
+          "asset_sha256": "913559069ea77b5b749ce954bc11283dfd857c91bfd18f70c525c2a48f1be852",
+          "asset_size": 5750,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/camera_focus.ogg",
+          "asset": "85c3d0ec79346997-camera_focus.ogg.gz",
+          "sha256": "85c3d0ec79346997de4ae783868059c5967ccc92f44c28390933f711efe50c8c",
+          "size": 11259,
+          "encoding": "gzip",
+          "asset_sha256": "c5a4889ca402f927231ce83596c1020a66bb3d47b49a0ee8d7ed6190438df640",
+          "asset_size": 10460,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/reverse_charging_end.ogg",
+          "asset": "6fe88f1674c41783-reverse_charging_end.ogg",
+          "sha256": "6fe88f1674c41783305ae7fea11ae73b2b31a13ed805629d5db7d1bcd373721b",
+          "size": 24496,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "product/media/audio/ui/reverse_charging_start.ogg",
+          "asset": "a335c2b1d78d597c-reverse_charging_start.ogg.gz",
+          "sha256": "a335c2b1d78d597cb2434377d8e9129e9a9c26f6f49835645bc20d54c40a0a9e",
+          "size": 20116,
+          "encoding": "gzip",
+          "asset_sha256": "7ca6da6b90fe29b321811b473cf13cfe01a272abc6be8b7259629a223b0b8467",
+          "asset_size": 18842,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        }
+      ],
+      "packages": [
+        "com.google.android.soundpicker"
+      ],
+      "version": {
+        "versionCode": "34000302",
+        "versionName": "3.4 (946751357)"
+      },
+      "summary": "Pixel ringtones, alarms and notification sounds. Includes the picker that exposes them."
+    },
+    {
+      "id": "pixellauncher",
+      "name": "Pixel Launcher",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/overlay/PixelLauncherOverlay.apk",
+          "asset": "eb250b53be66bb40-PixelLauncherOverlay.apk",
+          "sha256": "eb250b53be66bb405f47021db3cc35503d7aca93c1376a9aaab52576314cd51a",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "system_ext/etc/permissions/com.google.android.apps.pixel.launcherconnector.xml",
+          "asset": "7917b1aeb85d545b-com.google.android.apps.pixel.launcherconnector.xml.gz",
+          "sha256": "7917b1aeb85d545bb6434d76eafdfd6feab4b7caeebc011de13bb1fc33080508",
+          "size": 848,
+          "encoding": "gzip",
+          "asset_sha256": "429c2526bd23812f28a50dafb5b812bc5fda3a7383d0d4fb4a1a6810fe47587c",
+          "asset_size": 452,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk",
+          "asset": "16c360e630136cbd-NexusLauncherRelease.apk.gz",
+          "sha256": "16c360e630136cbd1e7710a489545ebef063a8040012c7c471156c96068f9ffe",
+          "size": 18852824,
+          "encoding": "gzip",
+          "asset_sha256": "3ed6309b1522f20d6407db3efd80a1aac1dc555735dca325ab58ace1c6ef1671",
+          "asset_size": 9171072,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/WallpaperPickerGoogleRelease/WallpaperPickerGoogleRelease.apk",
+          "asset": "5be20d1e0a927d20-WallpaperPickerGoogleRelease.apk.gz",
+          "sha256": "5be20d1e0a927d20ca63307eecdd8c6f15ca46a58e7a3edf78b860ba1f1c808c",
+          "size": 18229098,
+          "encoding": "gzip",
+          "asset_sha256": "c2dc5f235029d1358e5b8863310f6ef4ccc35df076015ce77e28ad9e178eeab9",
+          "asset_size": 11460222,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Pixel home screen, which on Android 16 and newer needs support from the ROM to start at all. Pair with gsa for the search bar. Without that support it crash-loops on launch, and because it replaces the ROM's own launcher the phone is left with no home screen.",
+      "requires": [
+        "gmscore"
+      ],
+      "removes": [
+        "Launcher3",
+        "Launcher3QuickStep",
+        "Trebuchet"
+      ]
+    },
+    {
+      "id": "wallpapers",
+      "name": "Pixel wallpapers",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelWallpapers2026/PixelWallpapers2026.apk",
+          "asset": "310f95ed536822ee-PixelWallpapers2026.apk",
+          "sha256": "310f95ed536822ee8ce80621ca9aade3b65adf4e4e56a140e8a289a51dc3e70e",
+          "size": 67866075,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.wallpaper.pixel"
+      ],
+      "version": {
+        "versionCode": "18000013",
+        "versionName": "nexus_wallpapers_20260730"
+      },
+      "summary": "The Pixel wallpaper collections and the picker for them."
+    },
+    {
+      "id": "emojiwallpaper",
+      "name": "Emoji wallpaper",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/WallpaperEmojiPrebuilt-p26-foldable-wallpaper/WallpaperEmojiPrebuilt-p26-foldable-wallpaper.apk",
+          "asset": "e99eed3c45fcfee1-WallpaperEmojiPrebuilt-p26-foldable-wallpaper.apk.gz",
+          "sha256": "e99eed3c45fcfee1c6d4401d0dcd2265dc61b46fbefe29844738e2485feb8d77",
+          "size": 12396856,
+          "encoding": "gzip",
+          "asset_sha256": "de6525d78a07f217181e4a566feac785da4d5a7608cc7cf473410bf83ff06f56",
+          "asset_size": 6956197,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.emojiwallpaper"
+      ],
+      "version": {
+        "versionCode": "8404",
+        "versionName": "1.4.887711908"
+      },
+      "summary": "Emoji wallpaper. Builds a pattern from emoji you choose."
+    },
+    {
+      "id": "pixelthemes",
+      "name": "Pixel themes",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/PixelThemesStub2026/PixelThemesStub2026.apk",
+          "asset": "f787f2f26baff51b-PixelThemesStub2026.apk.gz",
+          "sha256": "f787f2f26baff51b822088aa268ec52d976b9caa1c1d6a448a6096c944c41c2d",
+          "size": 86429,
+          "encoding": "gzip",
+          "asset_sha256": "13c4ced1b87ce4b5d86cff54fedfe7c34fb859f4b47047576274707f3e67a0ce",
+          "asset_size": 31086,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.customization.pixel"
+      ],
+      "version": {
+        "versionCode": "2",
+        "versionName": "17"
+      },
+      "summary": "Pixel icon packs and theming options for the launcher."
+    },
+    {
+      "id": "nowplaying",
+      "name": "Now Playing",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/app/NowPlayingPrebuilt/NowPlayingPrebuilt.apk",
+          "asset": "ece21acb147fc1c6-NowPlayingPrebuilt.apk.gz",
+          "sha256": "ece21acb147fc1c6262e19bde44cd3259cab36cb3ebcc11e0ba0e464957624e5",
+          "size": 8292098,
+          "encoding": "gzip",
+          "asset_sha256": "f6bde80698d3c0b54660ac76a322561048365ed61f104196f0bb268d3ea6a299",
+          "asset_size": 3722851,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/etc/default-permissions/default-permissions_nowplaying.xml",
+          "asset": "92bae58c43d2e5fb-default-permissions_nowplaying.xml",
+          "sha256": "92bae58c43d2e5fb0db30004573a86af4fd0dc326c2b54054074680dd2f173ba",
+          "size": 241,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.pixel.nowplaying"
+      ],
+      "version": {
+        "versionCode": "29437",
+        "versionName": "2026.04.19.919868054.1-release"
+      },
+      "summary": "Now Playing, which names music around you on the lock screen. Works offline once its database downloads.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "aiai",
+      "name": "Device Personalization Services",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/overlay/AiaiOverlay.apk",
+          "asset": "5754bd8063b43b2e-AiaiOverlay.apk",
+          "sha256": "5754bd8063b43b2e9f16f70c9905f4c4c9a406f25f08e2492e7621cd0a69de34",
+          "size": 12620,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/DevicePersonalizationAiAiPrebuiltPixel2026/DevicePersonalizationAiAiPrebuiltPixel2026.apk",
+          "asset": "9cdd89c59a44d87e-DevicePersonalizationAiAiPrebuiltPixel2026.apk.gz",
+          "sha256": "9cdd89c59a44d87ef9626cce2c857e749085612cdac20726cb25fb4a438407fb",
+          "size": 106906599,
+          "encoding": "gzip",
+          "asset_sha256": "d3f2c94de002bb7d3bdc203b008a0e317155478d06c23d531b30d76cc833fe2d",
+          "asset_size": 52563637,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "On-device personalisation. App suggestions, smart text selection, Now Playing and Live Caption all route through it.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "aicore",
+      "name": "AICore",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "product/priv-app/AICorePrebuilt-aicore_20260703.00_RC01/AICorePrebuilt-aicore_20260703.00_RC01.apk",
+          "asset": "d82440ab87cf7fb1-AICorePrebuilt-aicore_20260703.00_RC01.apk.gz",
+          "sha256": "d82440ab87cf7fb10cc18b4d8c113aab3ca30217ed8054e98b5c19be1d95ad69",
+          "size": 1709517,
+          "encoding": "gzip",
+          "asset_sha256": "d0f53716c6676e0c785280fd831cb4fa472bd857d98100e9f374379778235f24",
+          "asset_size": 798609,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.aicore"
+      ],
+      "version": {
+        "versionCode": "480268",
+        "versionName": "0.stub.aicore_20260703.00_RC01.955890832"
+      },
+      "summary": "On-device foundation models the newer Pixel features build on.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "wallet",
+      "name": "Google Wallet quick access",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "system_ext/priv-app/QuickAccessWallet/QuickAccessWallet.apk",
+          "asset": "97a436516ce9c2ab-QuickAccessWallet.apk.gz",
+          "sha256": "97a436516ce9c2ab33fa4da550bade1d1124f1a5388a05d973c5bdae9bb15e4a",
+          "size": 1218003,
+          "encoding": "gzip",
+          "asset_sha256": "ea41b027a459d22d07ef0cc5c56033ade326506148e6c0c6a30676f9b93f73f8",
+          "asset_size": 550475,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.android.systemui.plugin.globalactions.wallet"
+      ],
+      "version": {
+        "versionCode": "10000000",
+        "versionName": "1.0.0.0"
+      },
+      "summary": "The Wallet tile in quick settings, for cards and passes.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "digitalkey",
+      "name": "Digital car key",
+      "group": "pixel",
+      "files": [
+        {
+          "path": "system_ext/etc/permissions/CccDkTimeSyncService.xml",
+          "asset": "23353a7c38945374-CccDkTimeSyncService.xml",
+          "sha256": "23353a7c38945374a05665f7d4b3d771cb31ad1de1a4b00847be31e5594aee53",
+          "size": 230,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/org.carconnectivity.android.digitalkey.timesync.xml",
+          "asset": "a0d23ab937a4a78f-org.carconnectivity.android.digitalkey.timesync.xml.gz",
+          "sha256": "a0d23ab937a4a78f2b609342ce3d617e713cac865a6906166b3dd8e7e891e8e8",
+          "size": 861,
+          "encoding": "gzip",
+          "asset_sha256": "4211a7c5e500677b9705a4bdc2f0a6365c9284fc89c64e3aae0662900df22c37",
+          "asset_size": 597,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar",
+          "asset": "eaf79824313ff877-org.carconnectivity.android.digitalkey.timesync.jar.gz",
+          "sha256": "eaf79824313ff877983c25de6517dd9cbddeb3cfd1a4be126ef89c93f16cdac4",
+          "size": 22498,
+          "encoding": "gzip",
+          "asset_sha256": "d7af8ada4e175c9e1dbf98e39757af5ecd72f9134f44166243eee0e7eb104339",
+          "asset_size": 9424,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "system_ext/framework/org.carconnectivity.android.digitalkey.timesync.jar.fsv_meta",
+          "asset": "574b7bf64a305d7e-org.carconnectivity.android.digitalkey.timesync.jar.fsv_meta.gz",
+          "sha256": "574b7bf64a305d7e571694ea9b77b586993d5a35cf5ad6577ac57f96bb69bdd8",
+          "size": 8192,
+          "encoding": "gzip",
+          "asset_sha256": "1d99a3f8c951c52d887b04cc7aaf0dec14cc349fe4153e1ccfc1e4743889895e",
+          "asset_size": 411,
+          "mode": "0644",
+          "context": "",
+          "kind": "framework"
+        },
+        {
+          "path": "system_ext/priv-app/CccDkTimeSyncService/CccDkTimeSyncService.apk",
+          "asset": "3c28741f7673b66a-CccDkTimeSyncService.apk.gz",
+          "sha256": "3c28741f7673b66a9b4d97e2c346b486760ba77dde9de1327cd124bc2a2ff9e2",
+          "size": 59035,
+          "encoding": "gzip",
+          "asset_sha256": "386a530516c261861f4abbe213d54cbf91d94c36a5258309f1c3cd150aaeee7d",
+          "asset_size": 39671,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "org.carconnectivity.android.digitalkey.timesync"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Time sync for the digital car key, which lets a phone unlock and start a car. Only on devices with ultra-wideband hardware, so absent from a-series and base models.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "name": "Digital Wellbeing",
+      "group": "wellbeing",
+      "files": [
+        {
+          "path": "product/overlay/WellbeingOverlay.apk",
+          "asset": "3ef9da6862198adb-WellbeingOverlay.apk",
+          "sha256": "3ef9da6862198adbf78791b8ae621ce290971e037f27c9e59d237a33d5b6c150",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/WellbeingPrebuilt/WellbeingPrebuilt.apk",
+          "asset": "4f474268e59e5af1-WellbeingPrebuilt.apk.gz",
+          "sha256": "4f474268e59e5af131d8362ca5c24f13105479ce41b0d147941ba0f36580962d",
+          "size": 26363478,
+          "encoding": "gzip",
+          "asset_sha256": "2aa7c2cbc5f348e5df8975b3341e075d2c2e8d1b4d7887c7199a272840fab50c",
+          "asset_size": 9388220,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "summary": "Digital Wellbeing, with screen time and bedtime mode.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "androidauto",
+      "name": "Android Auto",
+      "group": "androidauto",
+      "files": [
+        {
+          "path": "product/overlay/AndroidAutoProjectionOverlay.apk",
+          "asset": "f6775e3c6cd1c5c9-AndroidAutoProjectionOverlay.apk",
+          "sha256": "f6775e3c6cd1c5c929aa5a93226948b670e89de0ac0adffa5ec1d36a8c504096",
+          "size": 8524,
+          "mode": "0644",
+          "kind": "overlay",
+          "kanged": true,
+          "synthetic": true
+        },
+        {
+          "path": "product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk",
+          "asset": "1332a64a357704b5-AndroidAutoStubPrebuilt.apk.gz",
+          "sha256": "1332a64a357704b59da2924e1a5ae6b177dd0d3f373d2dd7f27c286bdd24cb60",
+          "size": 4085082,
+          "encoding": "gzip",
+          "asset_sha256": "7971f088796ae84cb8de70597df7cbac9f1916161bad8fef0b29650580b5b599",
+          "asset_size": 1632473,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.projection.gearhead"
+      ],
+      "summary": "A stub. Play installs the real Android Auto over it on first use, which is how a Pixel does it; the full app is not in the factory image to take.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "partnersetup",
+      "name": "Google Partner Setup",
+      "group": "partnersetup",
+      "files": [
+        {
+          "path": "product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk",
+          "asset": "b438d9e6062d1175-PartnerSetupPrebuilt.apk.gz",
+          "sha256": "b438d9e6062d1175409b6b746221acfd1f85991fe029743b84f94110e6b7c64a",
+          "size": 1571073,
+          "encoding": "gzip",
+          "asset_sha256": "0548fe18a0cb0c9b0c453a54edfd1948720a22fac8fbe337406c05ddf0eab24e",
+          "asset_size": 683597,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.partnersetup"
+      ],
+      "version": {
+        "versionCode": "2869",
+        "versionName": "100.740061114"
+      },
+      "summary": "Carrier and retail setup hooks used during first boot.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "carriersetup",
+      "name": "Carrier Setup",
+      "group": "carrier",
+      "files": [
+        {
+          "path": "system_ext/priv-app/CarrierSetup/CarrierSetup.apk",
+          "asset": "60d8e4ee6117085d-CarrierSetup.apk.gz",
+          "sha256": "60d8e4ee6117085d5c5b5a5947d436c451e7854e95534b77e1cc29a431524618",
+          "size": 9008448,
+          "encoding": "gzip",
+          "asset_sha256": "36f941cc522e6fe952cb9ab4ead2ec84ae950d0564152df18f192e9ae3223daa",
+          "asset_size": 4714366,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.carriersetup"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Carrier provisioning, including RCS and Wi-Fi calling setup."
+    },
+    {
+      "id": "euicc",
+      "name": "eSIM support",
+      "group": "carrier",
+      "files": [
+        {
+          "path": "product/priv-app/EuiccGoogle/EuiccGoogle.apk",
+          "asset": "526cf97eb5e2fb08-EuiccGoogle.apk.gz",
+          "sha256": "526cf97eb5e2fb08d2265744fff245b43080ef5087815a3c3c6dc3b484acd97f",
+          "size": 17835120,
+          "encoding": "gzip",
+          "asset_sha256": "b406e8ecd9c16f7b49494087c6ae4a76859f2440e04814e605d5f60ab51439a4",
+          "asset_size": 6031357,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/etc/permissions/com.google.euiccpixel.permissions.xml",
+          "asset": "5b0c62ea593d8bac-com.google.euiccpixel.permissions.xml",
+          "sha256": "5b0c62ea593d8bac4240f6a34bfbfbfd3c40e7b6916d7242481a9ce5343c019b",
+          "size": 250,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/etc/permissions/com.google.euiccpixel.xml",
+          "asset": "513beea0f7743f29-com.google.euiccpixel.xml.gz",
+          "sha256": "513beea0f7743f2969481ff761920f82623008744463b744bffe79ccbfa2399b",
+          "size": 1159,
+          "encoding": "gzip",
+          "asset_sha256": "34d0a78806e9705bf0e1b13159b5c1dd6802a9ecc5eb27920a2137793ad8f001",
+          "asset_size": 454,
+          "mode": "0644",
+          "context": "",
+          "kind": "permission"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccGoogleOverlay/EuiccGoogleOverlay.apk",
+          "asset": "cf919d069cb6441e-EuiccGoogleOverlay.apk.gz",
+          "sha256": "cf919d069cb6441ec4f1440490fc89f8b042c07a4bd48938c7060797e5db266f",
+          "size": 5807671,
+          "encoding": "gzip",
+          "asset_sha256": "1d1087bed8ae1266ad501147056816f0c5d1bce4990225db0fbc6f2fd66ed957",
+          "asset_size": 2743140,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/DKA_0303_03x_25.up",
+          "asset": "a742546ea7ac01d2-DKA_0303_03x_25.up.gz",
+          "sha256": "a742546ea7ac01d2b15a68f404dd0e3fe04c6b6d1285475147b2ac530fee1419",
+          "size": 104903,
+          "encoding": "gzip",
+          "asset_sha256": "f5c1342dc42b99b5297f47a97d4ff3124de36d037278b532ba9d042d3f54aec4",
+          "asset_size": 59954,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/EuiccSupportPixel-P23.apk",
+          "asset": "11daff4f0e338ee3-EuiccSupportPixel-P23.apk.gz",
+          "sha256": "11daff4f0e338ee3d9570ad3a8e0bb657c5e2bc36afad67fb99b26db6268f5ad",
+          "size": 3880617,
+          "encoding": "gzip",
+          "asset_sha256": "504cd329641e9554a3236f73c026779660161b3fe62879dc28f1f8b985787b04",
+          "asset_size": 1543239,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1-security.img",
+          "asset": "3c26c1d1d3f66121-esim-full-v1-security.img.gz",
+          "sha256": "3c26c1d1d3f661211bbf9441d889d61ac99f897f8050373f002bfae2dc90de0e",
+          "size": 81875,
+          "encoding": "gzip",
+          "asset_sha256": "523e06968aa8a909fdd61a598437ffb28b76b9f18cd3000486458adefeb924c7",
+          "asset_size": 35194,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixel-P23/esim-full-v1.img",
+          "asset": "1d1ad1764923796d-esim-full-v1.img.gz",
+          "sha256": "1d1ad1764923796d2f1d67f58b6ccd9c74cd7b100bf6db5c1032a5d75222d200",
+          "size": 24408,
+          "encoding": "gzip",
+          "asset_sha256": "9406caded027e3db0c41e5b8638cce0f353cebae8125ab21dcd7bec8574748f3",
+          "asset_size": 11361,
+          "mode": "0644",
+          "context": "",
+          "kind": "etc"
+        },
+        {
+          "path": "system_ext/priv-app/EuiccSupportPixelPermissions/EuiccSupportPixelPermissions.apk",
+          "asset": "4ac1c01f75e1cd68-EuiccSupportPixelPermissions.apk.gz",
+          "sha256": "4ac1c01f75e1cd6868f1694eaafa6460b2914871053bc488db8eb21b124d7840",
+          "size": 20957,
+          "encoding": "gzip",
+          "asset_sha256": "d4bd93cb169a92031b9a3797403d155593cade0ad744e994cab98f6a4399de4a",
+          "asset_size": 10420,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.euicc"
+      ],
+      "version": {
+        "versionCode": "303506",
+        "versionName": "D.2.1.970464463-google"
+      },
+      "summary": "Needed for eSIM provisioning on most carriers.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "devicepolicy",
+      "name": "Android Device Policy",
+      "group": "devicepolicy",
+      "files": [
+        {
+          "path": "product/app/DevicePolicyPrebuilt-v10572820/DevicePolicyPrebuilt-v10572820.apk",
+          "asset": "f8a6fe36c9f8beaa-DevicePolicyPrebuilt-v10572820.apk.gz",
+          "sha256": "f8a6fe36c9f8beaa6b2c37800919e018998b591e1201c2ece8fb67b2828f3f0e",
+          "size": 24180421,
+          "encoding": "gzip",
+          "asset_sha256": "915bd89761acaa30ca14cbf3ea669426fbe77332fdad6eec722024457ee944e8",
+          "asset_size": 8965911,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.work.clouddpc"
+      ],
+      "version": {
+        "versionCode": "10572820",
+        "versionName": "149.81.4 (10572820)"
+      },
+      "summary": "Work profile and managed device support.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "feedback",
+      "name": "Google Feedback",
+      "group": "feedback",
+      "files": [
+        {
+          "path": "system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
+          "asset": "08e664dc3342c4d4-GoogleFeedback.apk.gz",
+          "sha256": "08e664dc3342c4d44c5eb18ca61f5a882ce80894fc5d24fbf8aa2650c91b8780",
+          "size": 548748,
+          "encoding": "gzip",
+          "asset_sha256": "11fe12d97257822fbdbf0d6c4df9c3c12eb13ce020bc66613b6668b037ee2c49",
+          "asset_size": 222392,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.feedback"
+      ],
+      "version": {
+        "versionCode": "37",
+        "versionName": "17"
+      },
+      "summary": "Reports problems to Google. Harmless to leave out.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "credentialmanager",
+      "name": "Credential Manager",
+      "group": "credentialmanager",
+      "files": [
+        {
+          "path": "product/app/CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0/CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0.apk",
+          "asset": "f3e9d7301c296c7b-CredentialManagerPrebuilt_credentialmanager.android_20260520.00_p0.apk.gz",
+          "sha256": "f3e9d7301c296c7b8eda25f0847563aa810308b7041bd2d435439b29a750069c",
+          "size": 5652933,
+          "encoding": "gzip",
+          "asset_sha256": "7ef979aed217cef670fdd1ffc83d93da879889f93c8cb907d3d4b5cfcfaf9435",
+          "asset_size": 2458066,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.credentialmanager"
+      ],
+      "version": {
+        "versionCode": "1765",
+        "versionName": "2026.05.20.918286961.0-release"
+      },
+      "summary": "Passkey and password autofill support.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "findmydevice",
+      "name": "Find My Device",
+      "group": "findmydevice",
+      "files": [
+        {
+          "path": "product/app/FindMyDevicePrebuilt-3-1-621-1/FindMyDevicePrebuilt-3-1-621-1.apk",
+          "asset": "6c7c00163195077c-FindMyDevicePrebuilt-3-1-621-1.apk.gz",
+          "sha256": "6c7c00163195077c8d719b64a00aa63af018601486a15f7951240ea390b4d35e",
+          "size": 2683547,
+          "encoding": "gzip",
+          "asset_sha256": "300a15a105b3faea3f39278c99b64cded13943dc5be5e0fcc6ade282d2cd49ee",
+          "asset_size": 1159923,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.adm"
+      ],
+      "version": {
+        "versionCode": "1",
+        "versionName": "3.1.621-1_stub"
+      },
+      "summary": "Find My Device, for locating or wiping the phone remotely.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "talkback",
+      "name": "TalkBack",
+      "group": "accessibility",
+      "files": [
+        {
+          "path": "product/app/talkback/talkback.apk",
+          "asset": "92c63ad6ecb8e71a-talkback.apk.gz",
+          "sha256": "92c63ad6ecb8e71a28bb1f6744442a9ccbb0101b6cb28d6708c9c98a1e069e52",
+          "size": 50387038,
+          "encoding": "gzip",
+          "asset_sha256": "507ae1b5f54e9e86a83074ed151c870b732a117ef1e995868c467a632977b465",
+          "asset_size": 18828295,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        },
+        {
+          "path": "product/etc/default-permissions/default-permissions_talkback.xml",
+          "asset": "6dc77f1e861b77d2-default-permissions_talkback.xml.gz",
+          "sha256": "6dc77f1e861b77d2b8e1cca95fe495c15890f1474e174eb806525d4e4681dad5",
+          "size": 1317,
+          "encoding": "gzip",
+          "asset_sha256": "d1b0ed84455c849d910173966d02be3e576cfa6ca3b5859480a05302f61f11b3",
+          "asset_size": 739,
+          "mode": "0644",
+          "context": "",
+          "kind": "sysconfig"
+        }
+      ],
+      "packages": [
+        "com.google.android.marvin.talkback"
+      ],
+      "version": {
+        "versionCode": "60201234",
+        "versionName": "17.0.0.889642762"
+      },
+      "summary": "Screen reader. The one accessibility service most users need.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "switchaccess",
+      "name": "Switch Access",
+      "group": "accessibility",
+      "files": [
+        {
+          "path": "product/app/SwitchAccessPrebuilt_1.17.0.877181440/SwitchAccessPrebuilt_1.17.0.877181440.apk",
+          "asset": "36af4bcfb34bb557-SwitchAccessPrebuilt_1.17.0.877181440.apk.gz",
+          "sha256": "36af4bcfb34bb55735d7465a19c4848f20413099b4da5944a4e233a3780ae73f",
+          "size": 15424699,
+          "encoding": "gzip",
+          "asset_sha256": "d89b3a4118bb97bee350b7464b7e7abea38db4dcb7ff0d1185372841e46e52cb",
+          "asset_size": 5497084,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.accessibility.switchaccess"
+      ],
+      "version": {
+        "versionCode": "787",
+        "versionName": "1.17.0.877181440"
+      },
+      "summary": "Control the device with switches rather than the touchscreen.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "voiceaccess",
+      "name": "Voice Access",
+      "group": "accessibility",
+      "files": [
+        {
+          "path": "product/app/VoiceAccessPrebuilt/VoiceAccessPrebuilt.apk",
+          "asset": "7f189c7827f95a11-VoiceAccessPrebuilt.apk.gz",
+          "sha256": "7f189c7827f95a11cb11cc163e7dc6c6872b71a23b39b78b21b45b70004d45f8",
+          "size": 16750734,
+          "encoding": "gzip",
+          "asset_sha256": "05ab7ff80f2bb2e74de1f432ba6982ff619976483702da3b3e03f7c905795a1f",
+          "asset_size": 7295032,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.apps.accessibility.voiceaccess"
+      ],
+      "version": {
+        "versionCode": "122120",
+        "versionName": "17.0.911421684"
+      },
+      "summary": "Control the device by voice.",
+      "requires": [
+        "gmscore"
+      ]
+    },
+    {
+      "id": "soundamplifier",
+      "name": "Sound Amplifier",
+      "group": "accessibility",
+      "files": [
+        {
+          "path": "product/app/SoundAmplifierPrebuilt_v4.91.886631805/SoundAmplifierPrebuilt_v4.91.886631805.apk",
+          "asset": "b1219281194d1306-SoundAmplifierPrebuilt_v4.91.886631805.apk.gz",
+          "sha256": "b1219281194d1306dba0aca9435b4071f51dbd0af51bbe5d92033d9b536791fa",
+          "size": 31737131,
+          "encoding": "gzip",
+          "asset_sha256": "b61aef6fa8d9eadbb8a37280762ee870b4fb24b2ac22cbdd652d34464a0a076f",
+          "asset_size": 18633728,
+          "mode": "0644",
+          "context": "",
+          "kind": "apk"
+        }
+      ],
+      "packages": [
+        "com.google.android.accessibility.soundamplifier"
+      ],
+      "version": {
+        "versionCode": "236304",
+        "versionName": "4.91.886631805"
+      },
+      "summary": "Amplifies and filters audio through headphones.",
+      "requires": [
+        "gmscore"
+      ]
+    }
+  ]
+}
