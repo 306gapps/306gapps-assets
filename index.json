@@ -1,8 +1,22 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-11-11T14:32:37Z",
+  "updated": "2026-11-11T19:04:44Z",
   "releases": [
+    {
+      "id": "a17-cp4a.261105.040.d1",
+      "android": {
+        "api": 37,
+        "version": "17",
+        "codename": "CinnamonBun"
+      },
+      "device": "kodiak",
+      "build": "CP4A.261105.040.D1",
+      "branch": "a17",
+      "created": "2026-11-11T19:02:06Z",
+      "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/a17/releases/a17-cp4a.261105.040.d1/manifest.json",
+      "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/a17-cp4a.261105.040.d1"
+    },
     {
       "id": "a17-cd1a.261005.003",
       "android": {
