@@ -78,11 +78,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$RELEASE_TAG" --title microG \
-            --notes "microG and the stores that go with it, rebuilt by the microg workflow." \
-            || echo "release exists, uploading into it"
           for sleep_for in 0 60 120 240; do
             [ "$sleep_for" != 0 ] && { echo "retrying in ${sleep_for}s"; sleep "$sleep_for"; }
+            # Inside the loop: a 5xx on create would otherwise leave nothing to upload into.
+            gh release view "$RELEASE_TAG" >/dev/null 2>&1 ||
+              gh release create "$RELEASE_TAG" --title microG \
+                --notes "microG and the stores that go with it, rebuilt by the microg workflow." ||
+              continue
             have=$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' 2>/dev/null || true)
             missing=()
             for f in out/assets/*; do
