@@ -1,0 +1,390 @@
+{
+  "schema": 1,
+  "release": {
+    "id": "microg-0.3.18.252432-b7749171",
+    "flavor": "microg",
+    "android": {
+      "api": 33,
+      "version": "13+",
+      "codename": ""
+    },
+    "min_api": 33,
+    "source": {
+      "device": "",
+      "build": "0.3.18.252432",
+      "image": "",
+      "sha256": ""
+    },
+    "created": "2026-11-25T16:47:19Z",
+    "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/microg",
+    "definitions": "00df07377dd7bb91400bb89244fdda5943609be71bab09efcb17873e5bf8d373"
+  },
+  "groups": [
+    {
+      "id": "microg",
+      "name": "microG",
+      "summary": "An open replacement for Google Play services. Needs a ROM with signature spoofing, or Google sign-in and push will not work."
+    },
+    {
+      "id": "stores",
+      "name": "App stores",
+      "summary": "Ways to install apps without the Play Store."
+    }
+  ],
+  "packages": [
+    {
+      "id": "microg",
+      "name": "microG Services",
+      "group": "microg",
+      "packages": [
+        "com.google.android.gms"
+      ],
+      "files": [
+        {
+          "path": "product/overlay/MicroGLocationOverlay.apk",
+          "asset": "2d84dcfbe3a000c0-MicroGLocationOverlay.apk.gz",
+          "sha256": "2d84dcfbe3a000c03574fd9cb6cc4f627229a661adb85945b03527562a28c412",
+          "size": 8524,
+          "encoding": "gzip",
+          "asset_sha256": "b9b5b7d952d062b4299724d94ffcecb8a40224510b983ef2211c6405c2dc859d",
+          "asset_size": 4067,
+          "mode": "0644",
+          "kind": "overlay"
+        },
+        {
+          "path": "system/etc/default-permissions/default-permissions-GmsCore-306gapps.xml",
+          "asset": "4ac6f8c3b6f41e3a-default-permissions-GmsCore-306gapps.xml.gz",
+          "sha256": "4ac6f8c3b6f41e3a51e148e489a132b2e4b04a9c16174a4f99b9f51878810a6b",
+          "size": 1586,
+          "encoding": "gzip",
+          "asset_sha256": "97f29a559af091bc4482d88de9923bb28656797eaf000a2e8641c0a99acb027d",
+          "asset_size": 684,
+          "mode": "0644",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "system/etc/permissions/privapp-permissions-GmsCore-306gapps.xml",
+          "asset": "dc5545960a90cfcb-privapp-permissions-GmsCore-306gapps.xml.gz",
+          "sha256": "dc5545960a90cfcb68782c4b6db3f1ddf32d5e2b9346e07ebf0d9c18524fb223",
+          "size": 1945,
+          "encoding": "gzip",
+          "asset_sha256": "c2e5e394018c9540865eca156a940a044afad1671ba3b17ee7cee066b52ea7a3",
+          "asset_size": 792,
+          "mode": "0644",
+          "kind": "permission"
+        },
+        {
+          "path": "system/etc/sysconfig/microg-306gapps.xml",
+          "asset": "5d3e4e5a5d131b5a-microg-306gapps.xml.gz",
+          "sha256": "5d3e4e5a5d131b5adad23f5aecb46a89d8109fbf8091a87c20d58f6bd4e95c3c",
+          "size": 1480,
+          "encoding": "gzip",
+          "asset_sha256": "b7c6cac2c0ad61f2012daca8651b18ce390b774cad740b7ebd7c7b12e301946a",
+          "asset_size": 655,
+          "mode": "0644",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "system/priv-app/GmsCore/GmsCore.apk",
+          "asset": "1094fa60ace2367a-GmsCore.apk",
+          "sha256": "1094fa60ace2367ac52bd08d1bd4f33fa8144ba930e355121b28234b8ebbf382",
+          "size": 108520063,
+          "mode": "0644",
+          "kind": "apk"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libc++_shared.so",
+          "asset": "83269b3124a287fa-libc___shared.so.gz",
+          "sha256": "83269b3124a287fac36b17c9fb64beb398c83dad6677b19ce63cf80d09966fd7",
+          "size": 1330832,
+          "encoding": "gzip",
+          "asset_sha256": "2683e314fc27f26ee08a1be35ff3bf50672ff360d7d62f2eaa12d95c0b011a4a",
+          "asset_size": 417771,
+          "mode": "0644",
+          "kind": "lib"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libconscrypt_gmscore_jni.so",
+          "asset": "1f1a32b0e56469cf-libconscrypt_gmscore_jni.so.gz",
+          "sha256": "1f1a32b0e56469cfc2942bfdaa5cdcd009dea8926dba3a79370342dd011a3201",
+          "size": 2111792,
+          "encoding": "gzip",
+          "asset_sha256": "a69724220a7574842d8997faae86ed3e6c2af8ae397870a600f0ceaac31cf24b",
+          "asset_size": 818321,
+          "mode": "0644",
+          "kind": "lib"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libcronet.102.0.5005.125.so",
+          "asset": "06526d8e8ce75ce1-libcronet.102.0.5005.125.so.gz",
+          "sha256": "06526d8e8ce75ce1f75beace0f7503d3a0f88f2b1d5606b019d56018859a8467",
+          "size": 6034224,
+          "encoding": "gzip",
+          "asset_sha256": "09b04dbd4e4262e183289b260db5bd85e122b9699b3c9bcac32916fc84508042",
+          "asset_size": 2420429,
+          "mode": "0644",
+          "kind": "lib"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libimage_processing_util_jni.so",
+          "asset": "2ead62ff358ae3a9-libimage_processing_util_jni.so.gz",
+          "sha256": "2ead62ff358ae3a9e9cb5b0278a1d5132a7b410288bc74add8f6356d668fdc39",
+          "size": 28944,
+          "encoding": "gzip",
+          "asset_sha256": "078a09ce1c7d5f6edb6163cac76efba5953b86bc285f092b82f84ebabda9dd6b",
+          "asset_size": 14709,
+          "mode": "0644",
+          "kind": "lib"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libmapbox-gl.so",
+          "asset": "aab48ec878445481-libmapbox-gl.so.gz",
+          "sha256": "aab48ec87844548193bfd65b14f9ea4187a3f758e09f52a036aafdc158037f9a",
+          "size": 9911176,
+          "encoding": "gzip",
+          "asset_sha256": "36ab521d9df8a4589faf4c4451f68c5870f10baf5def7bebdec65ebf92d0aaf4",
+          "asset_size": 3123540,
+          "mode": "0644",
+          "kind": "lib"
+        },
+        {
+          "path": "system/priv-app/GmsCore/lib/arm64/libopencv_java4.so",
+          "asset": "a9be317ba4d41ce7-libopencv_java4.so.gz",
+          "sha256": "a9be317ba4d41ce7913817febf25d59c9585e50dfb3acee226f401d2016bf0d6",
+          "size": 22658424,
+          "encoding": "gzip",
+          "asset_sha256": "9dada911a3ddb01c73ecf11198cdffadd845f01bee9e1771d40941551275dd0e",
+          "asset_size": 8909344,
+          "mode": "0644",
+          "kind": "lib"
+        }
+      ],
+      "version": {
+        "versionCode": "252432036",
+        "versionName": "0.3.18.252432"
+      },
+      "summary": "Stands in for Google Play services: accounts, push messaging, location and the APIs apps expect.",
+      "required": true,
+      "removes": [
+        "GmsCore",
+        "PrebuiltGmsCore",
+        "PrebuiltGmsCoreVic",
+        "system/addon.d/50-microg.sh",
+        "system/etc/microg-installer",
+        "system_ext/etc/microg-installer",
+        "product/etc/microg-installer"
+      ]
+    },
+    {
+      "id": "microg-gsf",
+      "name": "microG Services Framework Proxy",
+      "group": "microg",
+      "packages": [
+        "com.google.android.gsf"
+      ],
+      "files": [
+        {
+          "path": "system/priv-app/GsfProxy/GsfProxy.apk",
+          "asset": "86891b174301f06a-GsfProxy.apk.gz",
+          "sha256": "86891b174301f06a1c84187b545a0a2a57044c6b768f3e84e865908743349692",
+          "size": 21872,
+          "encoding": "gzip",
+          "asset_sha256": "02aaf2bdb85e6bc21ed4b249fd1644e7988c52c9f073d3743df7bb78a42b1e8e",
+          "asset_size": 19282,
+          "mode": "0644",
+          "kind": "apk"
+        }
+      ],
+      "version": {
+        "versionCode": "8",
+        "versionName": "v0.1.0"
+      },
+      "summary": "Lets apps that look for Google Services Framework find microG.",
+      "required": true,
+      "removes": [
+        "GsfProxy",
+        "GoogleServicesFramework"
+      ]
+    },
+    {
+      "id": "fakestore",
+      "name": "microG Companion",
+      "group": "microg",
+      "packages": [
+        "com.android.vending"
+      ],
+      "files": [
+        {
+          "path": "product/etc/default-permissions/default-permissions-FakeStore-306gapps.xml",
+          "asset": "1fd6635135e84b8f-default-permissions-FakeStore-306gapps.xml.gz",
+          "sha256": "1fd6635135e84b8f60de75ba7b2cdeefe3f3f2f423e66ddd7ab28e0f2e0c9ac6",
+          "size": 482,
+          "encoding": "gzip",
+          "asset_sha256": "a8bfa20ea85b903b9d5a5af4e2a239f2d8fd975e0c0af2eb12492e0e21db1ef2",
+          "asset_size": 388,
+          "mode": "0644",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-FakeStore-306gapps.xml",
+          "asset": "8558eb15da1d1ce2-privapp-permissions-FakeStore-306gapps.xml.gz",
+          "sha256": "8558eb15da1d1ce2d1066013179d9e09ac331cd4d585dc94761ad4ec8f645419",
+          "size": 947,
+          "encoding": "gzip",
+          "asset_sha256": "f5235af98ff45ba35dcca853bde938bf98de727f5ed694ddf0b615b3ea767eb7",
+          "asset_size": 516,
+          "mode": "0644",
+          "kind": "permission"
+        },
+        {
+          "path": "product/priv-app/FakeStore/FakeStore.apk",
+          "asset": "3f1bde2f72bca746-FakeStore.apk.gz",
+          "sha256": "3f1bde2f72bca746fbb53b61a32c2a85fcb026f886ee96d6fe9a05de9a6c6d5b",
+          "size": 4212484,
+          "encoding": "gzip",
+          "asset_sha256": "fc735325429ecb574ea2ebf7bee53ec347f20ff919fc836bcd997c40c44dd8ff",
+          "asset_size": 3254458,
+          "mode": "0644",
+          "kind": "apk"
+        }
+      ],
+      "version": {
+        "versionCode": "84022636",
+        "versionName": "0.3.18.40226"
+      },
+      "summary": "Answers apps that check for the Play Store, for licensing and in-app billing. Takes the Play Store's package name, so cannot sit beside it.",
+      "default": true,
+      "requires": [
+        "microg"
+      ],
+      "removes": [
+        "FakeStore",
+        "Phonesky"
+      ]
+    },
+    {
+      "id": "aurorastore",
+      "name": "Aurora Store",
+      "group": "stores",
+      "packages": [
+        "com.aurora.store"
+      ],
+      "files": [
+        {
+          "path": "product/app/AuroraStore/AuroraStore.apk",
+          "asset": "8a1ed9aa09631290-AuroraStore.apk.gz",
+          "sha256": "8a1ed9aa09631290da91cb793e0517b0f20dc70239ac94ae6682cd94f91a4bad",
+          "size": 9362660,
+          "encoding": "gzip",
+          "asset_sha256": "d0cb50b5d4b656bd4bca8f604b77d656099fe720166370e6af3a8ea9eb03bb29",
+          "asset_size": 6891136,
+          "mode": "0644",
+          "kind": "apk"
+        }
+      ],
+      "version": {
+        "versionCode": "76",
+        "versionName": "4.8.4"
+      },
+      "summary": "Installs and updates apps from Google Play without a Google account.",
+      "default": true,
+      "removes": [
+        "AuroraStore"
+      ]
+    },
+    {
+      "id": "auroraservices",
+      "name": "Aurora Services",
+      "group": "stores",
+      "packages": [
+        "com.aurora.services"
+      ],
+      "files": [
+        {
+          "path": "product/etc/default-permissions/default-permissions-AuroraServices-306gapps.xml",
+          "asset": "35a7f40c821037e0-default-permissions-AuroraServices-306gapps.xml.gz",
+          "sha256": "35a7f40c821037e0cc25ce929c216cd2d19f46648a92ba5f429e812e4ce1dbdd",
+          "size": 482,
+          "encoding": "gzip",
+          "asset_sha256": "5796cdd9a7c83d11dc4f3330529f739caa5655dd7748341389ede0a7f458f4d3",
+          "asset_size": 381,
+          "mode": "0644",
+          "kind": "sysconfig"
+        },
+        {
+          "path": "product/etc/permissions/privapp-permissions-AuroraServices-306gapps.xml",
+          "asset": "05f0cf29ad6cecb3-privapp-permissions-AuroraServices-306gapps.xml.gz",
+          "sha256": "05f0cf29ad6cecb385fc751f33f9ecc36131561ab7722979f3729829562c653f",
+          "size": 565,
+          "encoding": "gzip",
+          "asset_sha256": "1aa690009e454d76a4576d2e9332e0d82f0eba633d2cff23e6816c6fa47b86a4",
+          "asset_size": 422,
+          "mode": "0644",
+          "kind": "permission"
+        },
+        {
+          "path": "product/priv-app/AuroraServices/AuroraServices.apk",
+          "asset": "f03f3768f1955907-AuroraServices.apk.gz",
+          "sha256": "f03f3768f1955907ec313ae497cfd92b4f6f58ee1c01b6b38bd0b6a2a9a50593",
+          "size": 2133555,
+          "encoding": "gzip",
+          "asset_sha256": "0d97aa2789ed887b63429d23f10ce4c3f2cc6eed9aaed2488aba9186a52c1250",
+          "asset_size": 1425815,
+          "mode": "0644",
+          "kind": "apk"
+        }
+      ],
+      "version": {
+        "versionCode": "11",
+        "versionName": "1.1.1"
+      },
+      "summary": "Lets Aurora Store install and update apps without asking each time. Upstream has been quiet since 2021, but it still works.",
+      "requires": [
+        "aurorastore"
+      ],
+      "removes": [
+        "AuroraServices"
+      ]
+    },
+    {
+      "id": "fdroidpriv",
+      "name": "F-Droid Privileged Extension",
+      "group": "stores",
+      "packages": [
+        "org.fdroid.fdroid.privileged"
+      ],
+      "files": [
+        {
+          "path": "product/etc/permissions/privapp-permissions-FDroidPrivilegedExtension-306gapps.xml",
+          "asset": "08300d5baea8e75c-privapp-permissions-FDroidPrivilegedExtension-306gapps.xml.gz",
+          "sha256": "08300d5baea8e75c78a4e754ba245df7a3d7e873b6f00b77c096e6f39d90198b",
+          "size": 602,
+          "encoding": "gzip",
+          "asset_sha256": "8f5da4583d3a760c5967d46fe09afecfd73f61bdb5fea4e8e98d9c6cbc2b9116",
+          "asset_size": 443,
+          "mode": "0644",
+          "kind": "permission"
+        },
+        {
+          "path": "product/priv-app/FDroidPrivilegedExtension/FDroidPrivilegedExtension.apk",
+          "asset": "6261445e671bea58-FDroidPrivilegedExtension.apk.gz",
+          "sha256": "6261445e671bea58fd8d5b7c10140845a44a01940cc2e1ad8c52e3aa4a264e94",
+          "size": 45943,
+          "encoding": "gzip",
+          "asset_sha256": "4a828ee699d7a39513e4c1756ddb1b07d7a56e6c215d37ca45f06a98a7967b55",
+          "asset_size": 33668,
+          "mode": "0644",
+          "kind": "apk"
+        }
+      ],
+      "version": {
+        "versionCode": "2140",
+        "versionName": "0.2.14"
+      },
+      "summary": "Lets F-Droid install and update apps without asking each time. F-Droid itself is not included; install it as a normal app.",
+      "removes": [
+        "FDroidPrivilegedExtension"
+      ]
+    }
+  ]
+}
