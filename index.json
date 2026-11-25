@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "repo": "306gapps/306gapps-assets",
-  "updated": "2026-11-11T19:04:44Z",
+  "updated": "2026-11-25T16:47:43Z",
   "releases": [
     {
       "id": "a17-cp4a.261105.040.d1",
@@ -106,5 +106,22 @@
       }
     }
   },
-  "mirror_base": "https://gapps.assets.306bobbyandroid.download"
+  "mirror_base": "https://gapps.assets.306bobbyandroid.download",
+  "flavors": [
+    {
+      "id": "microg-0.3.18.252432-b7749171",
+      "flavor": "microg",
+      "android": {
+        "api": 33,
+        "version": "13+",
+        "codename": ""
+      },
+      "device": "",
+      "build": "0.3.18.252432",
+      "branch": "microg",
+      "created": "2026-11-25T16:47:19Z",
+      "manifest": "https://raw.githubusercontent.com/306gapps/306gapps-assets/microg/releases/microg-0.3.18.252432-b7749171/manifest.json",
+      "asset_base": "https://github.com/306gapps/306gapps-assets/releases/download/microg"
+    }
+  ]
 }
