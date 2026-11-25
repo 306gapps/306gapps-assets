@@ -129,8 +129,10 @@ jobs:
           id="${{ steps.check.outputs.id }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git fetch origin "$BRANCH" 2>/dev/null; then
-            git checkout -f "$BRANCH"
+          # Full refs throughout: "microg" is also the release tag and a
+          # directory on main, and a bare name resolves to either.
+          if git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" 2>/dev/null; then
+            git checkout -f -B "$BRANCH" "refs/remotes/origin/$BRANCH"
           else
             git checkout --orphan "$BRANCH"
             git rm -rf --cached . >/dev/null 2>&1 || true
@@ -139,7 +141,7 @@ jobs:
           cp out/manifest.json "releases/$id/"
           git add "releases/$id"
           git commit -m "add $id" || echo "nothing to commit"
-          git push origin "$BRANCH"
+          git push origin "HEAD:refs/heads/$BRANCH"
 
       # Last, so the index never names a release whose payloads are not up.
       - name: Record it in the index
