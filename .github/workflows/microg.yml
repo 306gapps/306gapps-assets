@@ -1,0 +1,157 @@
+name: microg
+
+# Rebuilds the microG release when upstream publishes a new apk or the
+# definitions in microg/ change. The release id is derived from both, so an
+# unchanged id means there is nothing to do.
+on:
+  schedule:
+    - cron: "20 5 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild even if nothing changed
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: microg
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: microg
+      BRANCH: microg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+
+      - name: Compare upstream with what is published
+        id: check
+        run: |
+          want=$(python3 tools/build_microg.py --resolve-only)
+          have=$(python3 -c "import json;print(next((f['id'] for f in json.load(open('index.json')).get('flavors',[]) if f.get('flavor')=='microg'),''))")
+          echo "upstream $want, published ${have:-nothing}"
+          echo "id=$want" >> "$GITHUB_OUTPUT"
+          if [ "$want" = "$have" ] && [ "${{ inputs.force }}" != "true" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ANDROID_HOME is preinstalled on the runner; --require-sdk makes the
+      # privileged-permission check mandatory, since a gap there bootloops.
+      - name: Build
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          python3 tools/build_microg.py --require-sdk \
+            --assets out/assets --out out/manifest.json \
+            --asset-base "https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG"
+          id=$(python3 -c "import json;print(json.load(open('out/manifest.json'))['release']['id'])")
+          if [ "$id" != "${{ steps.check.outputs.id }}" ]; then
+            echo "::error::upstream moved during the build ($id != ${{ steps.check.outputs.id }}); the next run will pick it up"
+            exit 1
+          fi
+
+      - uses: actions/setup-go@v5
+        if: steps.check.outputs.changed == 'true'
+        with:
+          go-version: "1.27"
+      - name: Validate with the builder
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          go install github.com/306gapps/306gapps/cmd/306gapps@latest
+          "$HOME/go/bin/306gapps" validate out/manifest.json
+
+      # One release holds every microG version's payloads. Names are content
+      # addressed, so an asset already there is correct and older manifests
+      # keep working.
+      - name: Publish payloads
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$RELEASE_TAG" --title microG \
+            --notes "microG and the stores that go with it, rebuilt by the microg workflow." \
+            || echo "release exists, uploading into it"
+          for sleep_for in 0 60 120 240; do
+            [ "$sleep_for" != 0 ] && { echo "retrying in ${sleep_for}s"; sleep "$sleep_for"; }
+            have=$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' 2>/dev/null || true)
+            missing=()
+            for f in out/assets/*; do
+              grep -qxF "$(basename "$f")" <<<"$have" || missing+=("$f")
+            done
+            if [ "${#missing[@]}" -eq 0 ]; then echo "all assets present"; exit 0; fi
+            echo "uploading ${#missing[@]} missing asset(s)"
+            gh release upload "$RELEASE_TAG" "${missing[@]}" || echo "upload incomplete, will retry"
+          done
+          echo "::error::assets still missing from the release"
+          exit 1
+
+      - name: Mirror payloads to R2
+        if: steps.check.outputs.changed == 'true'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2_S3_ENDPOINT: ${{ secrets.R2_S3_ENDPOINT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET: "306gapps"
+        run: |
+          endpoint="${R2_S3_ENDPOINT:-${R2_ACCOUNT_ID:+https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com}}"
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$endpoint" ]; then
+            echo "::notice::R2 endpoint/credentials not set; skipping mirror"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            if aws s3 sync out/assets "s3://$R2_BUCKET/" \
+                 --endpoint-url "$endpoint" --size-only --no-progress; then
+              exit 0
+            fi
+            echo "R2 sync attempt $attempt failed; retrying"; sleep 15
+          done
+          echo "::error::R2 mirror sync failed; assets are on GitHub, clients fall back"
+
+      - name: Commit the manifest to the microg branch
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          id="${{ steps.check.outputs.id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git fetch origin "$BRANCH" 2>/dev/null; then
+            git checkout -f "$BRANCH"
+          else
+            git checkout --orphan "$BRANCH"
+            git rm -rf --cached . >/dev/null 2>&1 || true
+          fi
+          mkdir -p "releases/$id"
+          cp out/manifest.json "releases/$id/"
+          git add "releases/$id"
+          git commit -m "add $id" || echo "nothing to commit"
+          git push origin "$BRANCH"
+
+      # Last, so the index never names a release whose payloads are not up.
+      - name: Record it in the index
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git checkout -f main
+          for _ in 1 2 3; do
+            git pull --rebase origin main
+            python3 tools/publish_flavor.py --manifest out/manifest.json \
+              --repo "${{ github.repository }}" --branch "$BRANCH" \
+              --changelog changelog.json
+            git add index.json changelog.json
+            git commit -m "index: microg ${{ steps.check.outputs.id }}" || exit 0
+            git push origin main && exit 0
+            git reset -q --hard origin/main
+          done
+          exit 1

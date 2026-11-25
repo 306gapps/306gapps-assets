@@ -60,7 +60,8 @@ def main() -> int:
     idx_path = Path(args.index)
     if idx_path.exists():
         doc = json.loads(idx_path.read_text())
-        existing = {"tools": doc.get("tools", {}), "mirror_base": doc.get("mirror_base", "")}
+        existing = {"tools": doc.get("tools", {}), "mirror_base": doc.get("mirror_base", ""),
+                    "flavors": doc.get("flavors", [])}
 
     entries = []
     for branch in sorted(branches(args.repo), reverse=True):
@@ -97,6 +98,9 @@ def main() -> int:
     }
     if existing.get("tools"):
         doc["tools"] = existing["tools"]
+    # Not on the version branches; published by the microg workflow.
+    if existing.get("flavors"):
+        doc["flavors"] = existing["flavors"]
     if mb := (args.mirror_base or existing.get("mirror_base")):
         doc["mirror_base"] = mb
 

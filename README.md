@@ -132,6 +132,8 @@ build matching the model -- and YouTube is the same argument at 243 MiB.
 | `tools/prune_release.py` | remove release assets no manifest references |
 | `tools/check_fresh.py` | report releases built from definitions since edited |
 | `tools/axml.py` | read package id and version from a compiled AndroidManifest |
+| `tools/build_microg.py` | resolve, verify and package the microG release |
+| `tools/publish_flavor.py` | record the microG release in `index.json` |
 
 Each runs standalone, so the pipeline can be driven by hand when the workflow
 needs debugging:
@@ -195,6 +197,41 @@ warning.
 
 A stub cannot be manufactured. Play will only install over one signed with the
 same key, and Google's are signed with Google's.
+
+## microG
+
+microG is published as one release that installs on any supported Android
+version, not per Pixel build. `microg/microg.yaml` names each package, where
+its apk comes from, the signing certificate it must carry, and the permission
+and sysconfig files in `microg/etc/` that go with it.
+
+The `microg` workflow runs daily. `tools/build_microg.py --resolve-only` works
+out the release id the current upstream apks would produce; the id hashes every
+apk URL plus the definitions, so if it matches the one in `index.json` there is
+nothing to do. Otherwise it downloads each apk, refuses any signed by a
+different certificate than the one pinned, unpacks GmsCore's arm64 libraries
+beside it, and checks every privileged permission the apks request against our
+allowlists using the runner's Android SDK. A gap there would bootloop an
+enforcing device, so it fails the build rather than warning.
+
+Payloads go to the single `microg` GitHub release (and R2), the manifest to
+`releases/<id>/` on the `microg` branch, and the entry to `flavors` in
+`index.json`, not `releases`: builders from before microG would otherwise
+offer it and then refuse to install it on anything but Android 13. A change of
+microG version also adds a line to `changelog.json`.
+
+microG Services and the Services Framework proxy go to `/system`, with their
+permission files beside them: Android only reads a priv-app's allowlist from
+its own partition, and the build counts only those. The companion and stores go
+to `/product`. `synth/MicroGLocationOverlay.apk` (built by `tools/mk_overlay.sh
+microg-location MicroGLocationOverlay.apk`) pins network location and the
+geocoder to microG; stock AOSP selects it anyway, but some device trees pin a
+vendor provider. Fused location is left to the framework, since pinning it to a
+provider that is not direct-boot aware breaks location before unlock.
+
+If upstream rotates a signing key the build fails until someone checks the new
+key and updates both `cert:` and the matching `sha256-cert-digest` in the
+permission files.
 
 ## busybox
 

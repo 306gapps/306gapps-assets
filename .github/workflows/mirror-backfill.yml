@@ -43,7 +43,7 @@ jobs:
             echo "::error::R2 endpoint/credentials not set"; exit 1
           fi
           # (manifest_url, asset_base) per release, straight from the local index.
-          python3 -c "import json;[print(r['manifest'], r['asset_base']) for r in json.load(open('index.json'))['releases']]" \
+          python3 -c "import json;d=json.load(open('index.json'));[print(r['manifest'], r['asset_base']) for r in d['releases']+d.get('flavors',[])]" \
           | while read -r murl abase; do
             echo "::group::$abase"
             curl -fsSL "$murl" -o manifest.json

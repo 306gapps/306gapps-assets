@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Privileged permissions granted to microG Services (com.google.android.gms).
+
+    Android 8.0+ refuses to boot when a privileged app requests a
+    signature|privileged permission that is not whitelisted here, so this list
+    is deliberately a superset of what microG currently declares.
+-->
+<permissions>
+    <privapp-permissions package="com.google.android.gms" sha256-cert-digest="9B:D0:67:27:E6:27:96:C0:13:0E:B6:DA:B3:9B:73:15:74:51:58:2C:BD:13:8E:86:C4:68:AC:C3:95:D1:41:65">
+        <permission name="android.permission.CHANGE_DEVICE_IDLE_TEMP_WHITELIST" />
+        <permission name="android.permission.DUMP" />
+        <permission name="android.permission.INSTALL_LOCATION_PROVIDER" />
+        <permission name="android.permission.INTERACT_ACROSS_PROFILES" />
+        <permission name="android.permission.INTERACT_ACROSS_USERS" />
+        <permission name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+        <permission name="android.permission.LOCATION_HARDWARE" />
+        <permission name="android.permission.MANAGE_USB" />
+        <permission name="android.permission.MODIFY_PHONE_STATE" />
+        <permission name="android.permission.NETWORK_SCAN" />
+        <permission name="android.permission.PROVIDE_DEFAULT_ENABLED_CREDENTIAL_SERVICE" />
+        <permission name="android.permission.PROVIDE_REMOTE_CREDENTIALS" />
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND" />
+        <permission name="android.permission.UPDATE_APP_OPS_STATS" />
+        <permission name="android.permission.UPDATE_DEVICE_STATS" />
+        <permission name="android.permission.WATCH_APPOPS" />
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
+        <!-- Only present on ROMs patched for signature spoofing; ignored elsewhere. -->
+        <permission name="android.permission.FAKE_PACKAGE_SIGNATURE" />
+    </privapp-permissions>
+</permissions>

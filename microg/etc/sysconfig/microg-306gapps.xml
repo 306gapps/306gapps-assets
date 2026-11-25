@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    System configuration for microG.
+
+    Entries naming a package that is not installed are ignored by Android, so
+    this single file is safe regardless of which optional components you picked.
+-->
+<config>
+    <!-- microG has to keep running in the background to deliver push messages -->
+    <allow-in-power-save package="com.google.android.gms" />
+    <allow-in-data-usage-save package="com.google.android.gms" />
+    <allow-unthrottled-location package="com.google.android.gms" />
+    <allow-in-power-save-except-idle package="com.android.vending" />
+
+    <!-- Push and checkin broadcasts must reach apps that target Android 8+ -->
+    <allow-implicit-broadcast action="com.google.android.c2dm.intent.RECEIVE" />
+    <allow-implicit-broadcast action="com.google.android.checkin.CHECKIN_COMPLETE" />
+    <allow-implicit-broadcast action="com.google.gservices.intent.action.GSERVICES_CHANGED" />
+    <allow-implicit-broadcast action="com.google.gservices.intent.action.GSERVICES_OVERRIDE" />
+
+    <!-- microG uses a few hidden APIs that Android 9+ would otherwise block -->
+    <hidden-api-whitelisted-app package="com.google.android.gms" />
+
+    <!-- These have to work for the primary/system user as well -->
+    <system-user-whitelisted-app package="com.google.android.gms" />
+    <system-user-whitelisted-app package="com.android.vending" />
+    <system-user-whitelisted-app package="org.fdroid.fdroid.privileged" />
+</config>

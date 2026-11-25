@@ -1,0 +1,150 @@
+# microG, published as one release that installs on any supported Android
+# version rather than per Pixel dump. tools/build_microg.py resolves the newest
+# apk for each package, checks it against the pinned signing certificate, and
+# writes the manifest. The microg workflow rebuilds it when upstream moves.
+#
+# The privapp-permissions files pin the same certificates, so a rotated key
+# fails the build rather than shipping an app that has no permissions or does
+# not boot. Update a cert only after checking the new key yourself.
+
+min_api: 33
+arch: arm64
+
+groups:
+  - id: microg
+    name: microG
+    summary: >-
+      An open replacement for Google Play services. Needs a ROM with
+      signature spoofing, or Google sign-in and push will not work.
+  - id: stores
+    name: App stores
+    summary: Ways to install apps without the Play Store.
+
+# {part} expands to system, system_ext and product.
+legacy:
+  # What the standalone microg-recovery-installer left behind. Its addon.d
+  # script would otherwise restore the old copies after a ROM update.
+  - system/addon.d/50-microg.sh
+  - "{part}/etc/microg-installer"
+
+packages:
+  - id: microg
+    name: microG Services
+    group: microg
+    required: true
+    summary: >-
+      Stands in for Google Play services: accounts, push messaging,
+      location and the APIs apps expect.
+    removes:
+      - GmsCore
+      - PrebuiltGmsCore
+      - PrebuiltGmsCoreVic
+    apk:
+      package: com.google.android.gms
+      path: system/priv-app/GmsCore/GmsCore.apk
+      cert: 9BD06727E62796C0130EB6DAB39B73157451582CBD138E86C468ACC395D14165
+      fdroid: https://repo.microg.org/fdroid/repo
+      libs: true
+    files:
+      # Android reads a priv-app's allowlist only from its own partition.
+      - src: etc/permissions/privapp-permissions-GmsCore-306gapps.xml
+        path: system/etc/permissions/privapp-permissions-GmsCore-306gapps.xml
+      - src: etc/default-permissions/default-permissions-GmsCore-306gapps.xml
+        path: system/etc/default-permissions/default-permissions-GmsCore-306gapps.xml
+      - src: etc/sysconfig/microg-306gapps.xml
+        path: system/etc/sysconfig/microg-306gapps.xml
+      # Pins network location and the geocoder to microG, for device trees
+      # that pin another provider; stock AOSP would pick it anyway.
+      - src: ../synth/MicroGLocationOverlay.apk
+        path: product/overlay/MicroGLocationOverlay.apk
+
+  - id: microg-gsf
+    name: microG Services Framework Proxy
+    group: microg
+    required: true
+    summary: Lets apps that look for Google Services Framework find microG.
+    removes:
+      - GsfProxy
+      - GoogleServicesFramework
+    apk:
+      package: com.google.android.gsf
+      path: system/priv-app/GsfProxy/GsfProxy.apk
+      cert: 9BD06727E62796C0130EB6DAB39B73157451582CBD138E86C468ACC395D14165
+      fdroid: https://repo.microg.org/fdroid/repo
+
+  - id: fakestore
+    name: microG Companion
+    group: microg
+    default: true
+    requires: [microg]
+    summary: >-
+      Answers apps that check for the Play Store, for licensing and in-app
+      billing. Takes the Play Store's package name, so cannot sit beside it.
+    removes:
+      - FakeStore
+      - Phonesky
+    apk:
+      package: com.android.vending
+      path: product/priv-app/FakeStore/FakeStore.apk
+      cert: 9BD06727E62796C0130EB6DAB39B73157451582CBD138E86C468ACC395D14165
+      fdroid: https://repo.microg.org/fdroid/repo
+    files:
+      - src: etc/permissions/privapp-permissions-FakeStore-306gapps.xml
+        path: product/etc/permissions/privapp-permissions-FakeStore-306gapps.xml
+      - src: etc/default-permissions/default-permissions-FakeStore-306gapps.xml
+        path: product/etc/default-permissions/default-permissions-FakeStore-306gapps.xml
+
+  - id: aurorastore
+    name: Aurora Store
+    group: stores
+    default: true
+    summary: >-
+      Installs and updates apps from Google Play without a Google account.
+    removes:
+      - AuroraStore
+    apk:
+      package: com.aurora.store
+      path: product/app/AuroraStore/AuroraStore.apk
+      cert: 4C626157AD02BDA3401A7263555F68A79663FC3E13A4D4369A12570941AA280F
+      # IzzyOnDroid keeps upstream's signature, which Aurora Services shares.
+      # GitLab's uploads sit behind a Cloudflare challenge CI cannot pass.
+      fdroid: https://apt.izzysoft.de/fdroid/repo
+
+  - id: auroraservices
+    name: Aurora Services
+    group: stores
+    requires: [aurorastore]
+    summary: >-
+      Lets Aurora Store install and update apps without asking each time.
+      Upstream has been quiet since 2021, but it still works.
+    removes:
+      - AuroraServices
+    apk:
+      package: com.aurora.services
+      path: product/priv-app/AuroraServices/AuroraServices.apk
+      cert: 4C626157AD02BDA3401A7263555F68A79663FC3E13A4D4369A12570941AA280F
+      gitlab: AuroraOSS/AuroraServices
+      asset: '^AuroraServices[-_]v?[0-9][0-9.]*\.apk$'
+      url: https://gitlab.com/AuroraOSS/AuroraServices/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk
+    files:
+      - src: etc/permissions/privapp-permissions-AuroraServices-306gapps.xml
+        path: product/etc/permissions/privapp-permissions-AuroraServices-306gapps.xml
+      - src: etc/default-permissions/default-permissions-AuroraServices-306gapps.xml
+        path: product/etc/default-permissions/default-permissions-AuroraServices-306gapps.xml
+
+  - id: fdroidpriv
+    name: F-Droid Privileged Extension
+    group: stores
+    summary: >-
+      Lets F-Droid install and update apps without asking each time.
+      F-Droid itself is not included; install it as a normal app.
+    removes:
+      - FDroidPrivilegedExtension
+    apk:
+      package: org.fdroid.fdroid.privileged
+      path: product/priv-app/FDroidPrivilegedExtension/FDroidPrivilegedExtension.apk
+      cert: 43238D512C1E5EB2D6569F4A3AFBF5523418B82E0A3ED1552770ABB9A9C9CCAB
+      fdroid: https://f-droid.org/repo
+    files:
+      - src: etc/permissions/privapp-permissions-FDroidPrivilegedExtension-306gapps.xml
+        path: product/etc/permissions/privapp-permissions-FDroidPrivilegedExtension-306gapps.xml
